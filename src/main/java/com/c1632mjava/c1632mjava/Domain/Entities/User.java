@@ -1,30 +1,47 @@
 package com.c1632mjava.c1632mjava.Domain.Entities;
 
+import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
+import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    private LocalDate birthdate;
+
     private String email;
     private String password;
+    private LocalDateTime birthdate;
     private String photo;
-    private Enum gender;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     private String pronouns;
     private String description;
-    private Enum socialBattery;
+
+    @Enumerated(EnumType.STRING)
+    private SocialBattery socialBattery;
+
     private String currentSong;
+
+    @OneToMany(mappedBy = "liked_artists")
+    private List<Long> likedArtistId;
+
+    @OneToMany(mappedBy = "liked_genres")
+    private List<Long> likedGenreId;
+
     private boolean active;
 }
