@@ -20,6 +20,6 @@ public class Genre implements Serializable {
     private Long genreId;
     private String genreName;
 
-    @OneToMany(mappedBy = "liked_genres")
-    private List<Long> likedGenreId;
+    @OneToMany(mappedBy = "genre")
+    private List<LikedGenre> likedGenres;
 }
