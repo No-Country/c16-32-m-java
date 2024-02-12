@@ -23,7 +23,7 @@ public class MatchPreferences implements Serializable {
     @ManyToOne
     @JoinColumn(name = "users_id")
 
-    private Long userId;
+    private User user;
 
     private boolean female;
     private boolean male;

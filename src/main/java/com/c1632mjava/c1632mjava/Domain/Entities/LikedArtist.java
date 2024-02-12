@@ -21,11 +21,11 @@ public class LikedArtist implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "users_id")
-    private Long userId;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "artists_id")
-    private Long artistId;
+    private Artist artist;
 
     private boolean active;
 

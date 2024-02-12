@@ -21,11 +21,11 @@ public class LikedGenre implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "users_id")
-    private Long userId;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "genres_id")
-    private Long genreId;
+    private Genre genre;
 
     private boolean active;
 

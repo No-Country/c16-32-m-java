@@ -20,6 +20,6 @@ public class Artist implements Serializable {
     private Long artistId;
     private String artistName;
 
-    @OneToMany(mappedBy = "liked_artists")
-    private List<Long> likedArtistId;
+    @OneToMany(mappedBy = "artist")
+    private List<LikedArtist> likedArtists;
 }
