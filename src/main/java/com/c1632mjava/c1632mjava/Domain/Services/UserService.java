@@ -4,7 +4,6 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 
 public interface UserService {

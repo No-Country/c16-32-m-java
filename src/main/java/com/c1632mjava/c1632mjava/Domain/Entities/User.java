@@ -38,11 +38,11 @@ public class User implements Serializable {
 
     private String currentSong;
 
-    @OneToMany(mappedBy = "user")
-    private List<LikedArtist> likedArtists;
+    @ManyToMany
+    private List<Artist> Artists;
 
-    @OneToMany(mappedBy = "user")
-    private List<LikedGenre> likedGenres;
+    @ManyToMany
+    private List<Genre> Genres;
 
     private boolean active;
 }

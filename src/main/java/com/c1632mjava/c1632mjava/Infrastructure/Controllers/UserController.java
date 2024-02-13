@@ -28,6 +28,10 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
+    /* TODO. Foreach a array likedArtists/likedGenres del User y save de artist/Genres.
+     findUserById y generar relación con artist/genre ahí mismo.
+     Así no hacen falta controllers para Artist/Genre!*/
+
     @GetMapping("/all")
     public ResponseEntity<Page<UserReadDto>> findUserList (@PageableDefault(size = 10)
                                                            Pageable paging) {
@@ -43,6 +47,11 @@ public class UserController {
     public ResponseEntity<UserReadDto> findByEmail (@PathVariable String email) {
         return ResponseEntity.ok(userService.findUserByEmail(email));
     }
+
+    /*Front envía DtoArtist. (sea para update o delete)
+    Find by id al User.
+    Corroborar artista en db.
+    Pisar el array de artistas. */
 
     @PutMapping
     @Transactional
