@@ -1,11 +1,7 @@
 package com.c1632mjava.c1632mjava.Application.Implementations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
-import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
-import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
-import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
-import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
-import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
+import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
@@ -14,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +30,6 @@ public class UserServiceImpl implements UserService {
     public Page<UserReadDto> findAll(boolean active, Pageable paging) {
         return this.userRepository.findAllByActive(active, paging).
                 map(userMapper::convertUserToRead);
-
     }
 
     @Override
