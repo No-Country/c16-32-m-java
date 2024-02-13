@@ -10,12 +10,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class GoogleController {
-	@GetMapping
-	/*obtener token del usuario*/
-	public Map<String, Object> currentUser(OAuth2AuthenticationToken OAuth2AuthenticationToken) {
-		return OAuth2AuthenticationToken.getPrincipal().getAttributes();
-	}
-	
-	/*cambiar el URI de redireccionamiento autorizados asi redirecciona a nuestra pagina creada*/
+    @GetMapping
+    /*obtener token del usuario*/
+    public Map<String, Object> currentUser(OAuth2AuthenticationToken OAuth2AuthenticationToken) {
+        return OAuth2AuthenticationToken.getPrincipal().getAttributes();
+    }
+
+    /*cambiar el URI de redireccionamiento autorizados asi redirecciona a nuestra pagina creada*/
 
 }

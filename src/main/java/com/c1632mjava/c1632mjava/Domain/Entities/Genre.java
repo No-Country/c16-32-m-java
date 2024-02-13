@@ -19,7 +19,4 @@ public class Genre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long genreId;
     private String genreName;
-
-    @OneToMany(mappedBy = "genre")
-    private List<LikedGenre> likedGenres;
 }
