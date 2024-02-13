@@ -21,6 +21,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    private String name;
     private String email;
     private String password;
     private LocalDateTime birthdate;
@@ -37,11 +38,11 @@ public class User implements Serializable {
 
     private String currentSong;
 
-    @OneToMany(mappedBy = "user")
-    private List<LikedArtist> likedArtists;
+    @ManyToMany
+    private List<Artist> Artists;
 
-    @OneToMany(mappedBy = "user")
-    private List<LikedGenre> likedGenres;
+    @ManyToMany
+    private List<Genre> Genres;
 
     private boolean active;
 }

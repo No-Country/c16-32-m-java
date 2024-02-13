@@ -1,5 +1,6 @@
 package com.c1632mjava.c1632mjava.Domain.Entities;
 
+import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,4 @@ public class Artist implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long artistId;
     private String artistName;
-
-    @OneToMany(mappedBy = "artist")
-    private List<LikedArtist> likedArtists;
 }
