@@ -20,10 +20,7 @@ public class MatchPreferences implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matchPreferenceId;
 
-    @ManyToOne
-    @JoinColumn(name = "users_id")
-
-    private User user;
+    private Long userId;
 
     private boolean female;
     private boolean male;
