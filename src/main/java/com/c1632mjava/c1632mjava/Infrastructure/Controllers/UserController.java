@@ -70,4 +70,19 @@ public class UserController {
             return ResponseEntity.ok().build();
         }
     }
+
+    /*metodos para el registro*/
+    @ModelAttribute("user")
+    public UserCreateDto returnNewUserCreate (){
+        return new  UserCreateDto();//chequear mas adelante
+    }
+    @GetMapping
+    public String showRegisterForm(){
+        return "registro";
+    }
+
+    @PostMapping
+    public String registerUserAccount(@ModelAttribute ("user") UserCreateDto userCreateDto{
+    userService.registerUser();
+    }
 }

@@ -5,6 +5,8 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User implements Serializable {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -45,4 +48,12 @@ public class User implements Serializable {
     private List<Genre> Genres;
 
     private boolean active;
+
+    public User(String name, String email, String password, LocalDateTime birthdate, String photo) {
+        this.name=name;
+        this.email=email;
+        this.password=password;
+        this.birthdate=birthdate;
+        this.photo=photo;
+    }
 }

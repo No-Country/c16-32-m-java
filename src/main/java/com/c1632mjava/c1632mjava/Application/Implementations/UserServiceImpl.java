@@ -98,4 +98,17 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(userToToggle);
         return userToToggle.isActive();
     }
+
+    /*metodo registro*/
+    @Override
+    public User save(UserCreateDto userCreateDto) {
+        User user=new User();
+        user.getName();
+        user.getPronouns();
+        user.getGender();
+        user.getBirthdate();
+        user.getDescription();
+
+        return userRepository.save(user);
+    }
 }
