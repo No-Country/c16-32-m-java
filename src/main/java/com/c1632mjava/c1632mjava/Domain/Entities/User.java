@@ -46,5 +46,5 @@ public class User implements Serializable {
 
     private List <Long> bannedUsers;
 
-    private boolean active;
+    private boolean active = true;
 }

@@ -62,14 +62,14 @@ public class UserController {
         return ResponseEntity.ok(userService.findUserByEmail(email));
     }
 
-    @PutMapping
+    @PutMapping("/id/{id}")
     @Transactional
     public ResponseEntity<UserReadDto> updateUser (@RequestBody @Valid
                                                    UserUpdateDto userUpdateDto) {
         return ResponseEntity.ok(userService.updateUser(userUpdateDto));
     }
 
-    @PutMapping("/id/{id}")
+    @DeleteMapping("/id/{id}")
     @Transactional
     public ResponseEntity<Boolean> toggleUser(@PathVariable Long id) {
         boolean toggledUser = userService.toggleUser(id);

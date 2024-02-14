@@ -12,10 +12,12 @@ public record MatchPreferencesCreateDto(
         @NotNull boolean other,
         @NotNull int minAge,
         @NotNull int maxAge,
-        @NotBlank Distance distance,
-        @NotBlank CompatibilityPercentage compatibilityPercentage,
+        Distance distance,
+        CompatibilityPercentage compatibilityPercentage,
         @NotNull boolean longTermRelationship,
         @NotNull boolean justFriends,
         @NotNull boolean rightNow
         ) {
 }
+
+//TODO. Revisar constrains a Distance, Compatibility, minAge, maxAge.

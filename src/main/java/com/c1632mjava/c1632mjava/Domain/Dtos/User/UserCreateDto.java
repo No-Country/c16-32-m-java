@@ -11,10 +11,10 @@ public record UserCreateDto(
     @NotNull String email,
     @NotNull LocalDateTime birthdate,
     @NotNull String photo,
-    @NotBlank Gender gender,
+    Gender gender,
     @NotNull String pronouns,
     @NotNull String description){
 }
 
-
+//TODO. Revisar validation constrains para birthdate, gender, password e email.
 
