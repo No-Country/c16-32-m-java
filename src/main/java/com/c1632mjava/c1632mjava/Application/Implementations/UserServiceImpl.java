@@ -1,9 +1,18 @@
 package com.c1632mjava.c1632mjava.Application.Implementations;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.ArtistMapper;
+import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.GenreMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
+import com.c1632mjava.c1632mjava.Domain.Entities.Artist;
+import com.c1632mjava.c1632mjava.Domain.Entities.Genre;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
+import com.c1632mjava.c1632mjava.Domain.Repositories.ArtistRepository;
+import com.c1632mjava.c1632mjava.Domain.Repositories.GenreRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
+import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +20,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     public final UserRepository userRepository;
     public final UserMapper userMapper;
+    private final ArtistRepository artistRepository;
+    private final ArtistMapper artistMapper;
+    private final GenreRepository genreRepository;
+    private final GenreMapper genreMapper;
+    private final MatchPreferencesService matchPreferencesService;
 
     @Override
     public UserReadDto registerUser(UserCreateDto userCreateDto) {
@@ -51,7 +69,7 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findById(userUpdateDto.userId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        if (user.isActive()){
+        if (user.isActive()) {
             if (userUpdateDto.name() != null) {
                 user.setName(userUpdateDto.name());
             }
@@ -96,19 +114,47 @@ public class UserServiceImpl implements UserService {
         User userToToggle = this.userRepository.findById(id).orElse(null);
         userToToggle.setActive(!userToToggle.isActive());
         this.userRepository.save(userToToggle);
+        matchPreferencesService.toggleMatchPreferences(id);
         return userToToggle.isActive();
     }
 
-    /*metodo registro*/
     @Override
-    public User save(UserCreateDto userCreateDto) {
-        User user=new User();
-        user.getName();
-        user.getPronouns();
-        user.getGender();
-        user.getBirthdate();
-        user.getDescription();
+    public UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId) {
+        List<Artist> editedArtistList = new ArrayList<>();
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        user.setArtists(null);
 
-        return userRepository.save(user);
+        for (ArtistDto artistDto : artistDtoList) {
+            Artist artist = artistMapper.convertDtoToArtist(artistDto);
+            if (!artistRepository.existsById(artist.getArtistId())) {
+                artist = artistRepository.save(artist);
+            }
+            editedArtistList.add(artist);
+        }
+
+        user.setArtists(editedArtistList);
+        user = userRepository.save(user);
+        return userMapper.convertUserToRead(user);
     }
+
+    @Override
+    public UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId) {
+        List<Genre> editedGenreList = new ArrayList<>();
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        user.setGenres(null);
+
+        for (GenreDto genreDto : genreDtoList) {
+            Genre genre = genreMapper.convertDtoToGenre(genreDto);
+            if (!genreRepository.existsById(genre.getGenreId())) {
+                genre = genreRepository.save(genre);
+            }
+            editedGenreList.add(genre);
+        }
+
+        user.setGenres(editedGenreList);
+        user = userRepository.save(user);
+        return userMapper.convertUserToRead(user);
+    }
+
+
 }

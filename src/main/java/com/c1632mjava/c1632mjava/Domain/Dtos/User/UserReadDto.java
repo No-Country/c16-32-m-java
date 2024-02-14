@@ -1,9 +1,11 @@
 package com.c1632mjava.c1632mjava.Domain.Dtos.User;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record UserReadDto(
     Long userId,
@@ -14,6 +16,10 @@ public record UserReadDto(
     String pronouns,
     String description,
     SocialBattery socialBattery,
-    String currentSong){
+    String currentSong,
+    List<ArtistDto> Artists,
+    List<GenreDto> Genres,
+    List<Long> bannedUsers
+    ){
 }
 

@@ -41,19 +41,13 @@ public class User implements Serializable {
 
     private String currentSong;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     private List<Artist> Artists;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     private List<Genre> Genres;
 
-    private boolean active;
+    private List <Long> bannedUsers;
 
-    public User(String name, String email, String password, LocalDateTime birthdate, String photo) {
-        this.name=name;
-        this.email=email;
-        this.password=password;
-        this.birthdate=birthdate;
-        this.photo=photo;
-    }
+    private boolean active = true;
 }
