@@ -1,6 +1,8 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.Application.Validations.AuthService;
 import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +26,20 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     @Transactional
-    public ResponseEntity<UserReadDto> registerUser(@RequestBody @Valid
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
                                                     UserCreateDto userCreateDto){
-        UserReadDto result = userService.registerUser(userCreateDto);
-        return ResponseEntity.ok(result);
+        //UserReadDto result = userService.registerUser(userCreateDto);
+        try{
+            return ResponseEntity.ok(authService.register(userCreateDto));
+        }
+        catch (RuntimeException e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        //return ResponseEntity.ok(result);
     }
 
     @PostMapping("/likedartists/{userId}")
