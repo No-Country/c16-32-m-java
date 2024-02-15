@@ -85,7 +85,7 @@ public class UserServiceImplTest {
         assertEquals(user.getGenres(), result.Genres());
         assertEquals(user.getBannedUsers(), result.bannedUsers());
     }
-
+/*
     @Test
     void shouldNotFindUserById() {
         /*mandar id para buscar
@@ -94,15 +94,15 @@ public class UserServiceImplTest {
            //ACT HERE
              });
         assert like -> Assertions.assertEquals("some message", thrown.getMessage());
-         */
+
     }
 
     @Test
     void shouldFindAllUsers() {
-    /* Generar list vacía.
+    Generar list vacía.
        Assert a misma cantidad de objetos.
-     */
 
+*/
 }
 
 

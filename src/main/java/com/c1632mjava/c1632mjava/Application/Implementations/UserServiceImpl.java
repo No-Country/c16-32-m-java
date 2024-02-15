@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserReadDto> findAll(boolean active, Pageable paging) {
-        return this.userRepository.findAllByActive(active, paging).
+        return userRepository.findAllByActive(active, paging).
                 map(userMapper::convertUserToRead);
     }
 
@@ -154,5 +154,57 @@ public class UserServiceImpl implements UserService {
         user = userRepository.save(user);
         return userMapper.convertUserToRead(user);
     }
+
+    @Override
+    public boolean banUser (Long banningUserId, Long matchId) throws EntityNotFoundException {
+        UserReadDto loggedUser = findUserById(BanningUserId); //Reemplazar luego por el user logueado.
+        MatchReadDto matchToBan = matchService.findMatchById(matchId);
+        Long bannedUserId;
+        if (matchToBan.user1().userId() == loggedUser) {
+            bannedUserId = matchToBan.user2().userId();
+        }
+        if (matchToBan.user2().userId() == loggedUser) {
+            bannedUserId = matchToBan.user1().userId();
+        }
+        //TODO. Estas validaciones deberían hacerse aparte y sólo llamarse acá, para mejorar lectura.
+        //En concreto, los casos falsos son: 1° el user logged no corresponde a ninguno de los user matched.
+        //2° El match ya se encuentra inactivo (fue bloqueado antes).
+        if ((matchToBan.user1().userId() != loggedUser && matchToBan.user2().userId() != loggedUser)
+                || !matchToBan.isActive) {
+            throw new EntityNotFoundException();
+            return false;
+        }
+        matchService.deleteMatchById(matchId);
+        User userToUpdate = userMapper.convertReadToUser(loggedUser);
+        userToUpdate.getBannedUsers().add(bannedUserId);
+        userRepository.save(userToUpdate);
+        return true;
+    }
+
+    @Override
+    public List <UserReadDto> findAllBannedByUserId(Long id) throws EntityNotFoundException{
+        List <UserReadDto> bannedUsers = new ArrayList<>();
+        UserReadDto loggedUser = findUserById(id);
+        List <Long> bannedListIds = loggedUser.bannedUsers();
+        for (Long bannedUserId : bannedListIds){
+            UserReadDto bannedUser = findUserById(bannedUserId);
+            bannedUsers.add(bannedUser);
+        }
+        return bannedUsers;
+    }
+
+    @Override
+    public boolean unbanUser (Long loggedUserId, Long unbanUserId){
+        UserReadDto loggedUser = findUserById(loggedUserId); //Reemplazar luego por el user logueado.
+        User userToUpdate = userMapper.convertReadToUser(loggedUser);
+        userToUpdate.getBannedUsers().remove(unbanUserId);
+
+
+        userRepository.save(userToUpdate);
+        return false;
+    }
+
+
+
 
 }
