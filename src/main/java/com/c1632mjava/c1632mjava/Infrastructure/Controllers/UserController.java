@@ -8,6 +8,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -31,12 +36,16 @@ public class UserController {
     @PostMapping("/register")
     @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
-                                                    UserCreateDto userCreateDto){
+                                                    UserCreateDto userCreateDto,
+                                                     @RequestParam (name ="details") String userDetails){
         //UserReadDto result = userService.registerUser(userCreateDto);
         try{
-            return ResponseEntity.ok(authService.register(userCreateDto));
+            Map<String, Object> userAttributes = new ObjectMapper()
+                    .readValue(URLDecoder.decode(userDetails, StandardCharsets.UTF_8.toString()), Map.class);
+            UserCreateDto mergedUser = userCreateDto.withEmail((String) userAttributes.get("email"));
+            return ResponseEntity.ok(authService.register(mergedUser));
         }
-        catch (RuntimeException e){
+        catch (RuntimeException | IOException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         //return ResponseEntity.ok(result);

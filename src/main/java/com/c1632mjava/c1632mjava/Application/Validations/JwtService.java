@@ -24,7 +24,7 @@ public class JwtService {
         return getToken(new HashMap<>(), user);
     }
 
-    private String getToken(Map<String,Object> extraClaims, UserDetails user) {
+    private String getToken(Map<String, Object> extraClaims, UserDetails user) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -45,8 +45,8 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username=getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername())&& !isTokenExpired(token));
+        final String username = getUsernameFromToken(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private Claims getAllClaims(String token)
