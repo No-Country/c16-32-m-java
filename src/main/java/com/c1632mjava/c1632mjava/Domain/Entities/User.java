@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 public class User implements Serializable {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
