@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "matches", uniqueConstraints =
@@ -37,6 +36,7 @@ public class Match implements Serializable {
     @JoinColumn(name = "user_id_2")
     private User user2;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "matches")
-    private List<Chat> chats;
+    @OneToOne
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
 }
