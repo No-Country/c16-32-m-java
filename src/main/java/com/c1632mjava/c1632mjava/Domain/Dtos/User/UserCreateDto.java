@@ -18,6 +18,6 @@ public record UserCreateDto(
 
 //TODO. Revisar validation constrains para birthdate, gender, password e email.
 /*
-Para password e email se puede hacer una RegExp con la libreria Validations, a través de la anotación @Email
+Para password e email se puede hacer una RegExp con jackson, a través de la anotación @Email
  */
 

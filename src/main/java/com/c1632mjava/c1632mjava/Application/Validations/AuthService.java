@@ -2,6 +2,7 @@ package com.c1632mjava.c1632mjava.Application.Validations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -32,7 +33,6 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(token)
                 .build();
-
     }
 
     @Transactional

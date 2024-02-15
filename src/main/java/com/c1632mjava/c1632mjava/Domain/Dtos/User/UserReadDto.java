@@ -4,6 +4,8 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
+import lombok.Builder;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
