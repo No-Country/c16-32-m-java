@@ -1,5 +1,7 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -28,9 +32,19 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-    /* TODO. Foreach a array likedArtists/likedGenres del User y save de artist/Genres.
-     findUserById y generar relación con artist/genre ahí mismo.
-     Así no hacen falta controllers para Artist/Genre!*/
+    @PostMapping("/likedartists/{userId}")
+    @Transactional
+    public ResponseEntity<UserReadDto> addLikedArtistToUser(@PathVariable Long userId,
+                                                    @RequestBody @Valid List<ArtistDto> artistDtoList){
+        return ResponseEntity.ok(userService.addLikedArtistToUser(artistDtoList, userId));
+    }
+
+    @PostMapping("/likedgenres/{userId}")
+    @Transactional
+    public ResponseEntity<UserReadDto> addLikedGenreToUser(@PathVariable Long userId,
+                                                    @RequestBody @Valid List<GenreDto> genreDtoList){
+        return ResponseEntity.ok(userService.addLikedGenreToUser(genreDtoList, userId));
+    }
 
     @GetMapping("/all")
     public ResponseEntity<Page<UserReadDto>> findUserList (@PageableDefault(size = 10)
@@ -48,19 +62,14 @@ public class UserController {
         return ResponseEntity.ok(userService.findUserByEmail(email));
     }
 
-    /*Front envía DtoArtist. (sea para update o delete)
-    Find by id al User.
-    Corroborar artista en db.
-    Pisar el array de artistas. */
-
-    @PutMapping
+    @PutMapping("/id/{id}")
     @Transactional
     public ResponseEntity<UserReadDto> updateUser (@RequestBody @Valid
                                                    UserUpdateDto userUpdateDto) {
         return ResponseEntity.ok(userService.updateUser(userUpdateDto));
     }
 
-    @PutMapping("/id/{id}")
+    @DeleteMapping("/id/{id}")
     @Transactional
     public ResponseEntity<Boolean> toggleUser(@PathVariable Long id) {
         boolean toggledUser = userService.toggleUser(id);
