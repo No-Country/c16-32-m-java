@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,6 @@ import java.util.List;
 @NoArgsConstructor
 public class User implements Serializable {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -47,7 +47,7 @@ public class User implements Serializable {
     @ManyToMany (fetch = FetchType.EAGER)
     private List<Genre> Genres;
 
-    private List <Long> bannedUsers;
+    private List <Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 }

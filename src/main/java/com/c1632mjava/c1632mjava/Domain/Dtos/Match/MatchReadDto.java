@@ -10,9 +10,7 @@ public record MatchReadDto(
     Long id,
     Float compatibilityPercentage,
     LocalDateTime dateOfMatch,
-    Boolean active,
     UserReadDto user1,
-    UserReadDto user2,
-    List<ChatReadDto> chats
+    UserReadDto user2
 ) {
 }

@@ -7,8 +7,8 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import java.util.List;
 
 public interface MatchService {
-    MatchReadDto findById(Long id);
-    List<MatchReadDto> findAllByUserId(Long userId);
-    Match create(MatchCreateDto dto);
-    void delete(Long id);
+    MatchReadDto findMatchById(Long id);
+    List<MatchReadDto> findAllMatchesByUserId(Long userId);
+    Match createMatch(MatchCreateDto dto);
+    void deleteMatch(Long id);
 }
