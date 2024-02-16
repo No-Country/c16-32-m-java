@@ -79,4 +79,28 @@ public class UserController {
             return ResponseEntity.ok().build();
         }
     }
+
+    @DeleteMapping("/{banningId}/ban/{matchId}")
+    @Transactional
+    ResponseEntity<Boolean> banUser (@PathVariable Long banningId,
+                                     @PathVariable Long matchId){
+        boolean result = userService.banUser(banningId, matchId);
+        if (result) { return ResponseEntity.noContent().build(); }
+        else return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/bannedlist/{userId}")
+    ResponseEntity<List<UserReadDto>> readAllBannedByUserId(@PathVariable Long userId){
+        List<UserReadDto> bannedList = userService.findAllBannedByUserId(userId);
+        return ResponseEntity.ok(bannedList);
+    }
+
+    @PutMapping("/{banningId}/unban/{unbannedUserId}")
+    @Transactional
+    ResponseEntity<Boolean> unbanUser (@PathVariable Long banningId,
+                                     @PathVariable Long unbannedUserId){
+        boolean result = userService.unbanUser(banningId, unbannedUserId);
+        if (result) { return ResponseEntity.ok().build(); }
+        else return ResponseEntity.badRequest().build();
+    }
 }

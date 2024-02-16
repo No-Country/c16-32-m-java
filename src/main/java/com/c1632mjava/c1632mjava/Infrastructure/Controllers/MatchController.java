@@ -15,18 +15,18 @@ public class MatchController {
     private final MatchService matchService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<MatchReadDto> findById(@PathVariable Long id){
-        return ResponseEntity.ok(this.matchService.findById(id));
+    public ResponseEntity<MatchReadDto> findMatchById(@PathVariable Long id){
+        return ResponseEntity.ok(this.matchService.findMatchById(id));
     }
 
     @GetMapping("users/{userId}")
-    public ResponseEntity<List<MatchReadDto>> findAllByUserId(@PathVariable Long userId){
-        return ResponseEntity.ok(this.matchService.findAllByUserId(userId));
+    public ResponseEntity<List<MatchReadDto>> findAllMatchesByUserId(@PathVariable Long userId){
+        return ResponseEntity.ok(this.matchService.findAllMatchesByUserId(userId));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        this.matchService.delete(id);
+    public ResponseEntity<Void> deleteMatch(@PathVariable Long id){
+        this.matchService.deleteMatch(id);
         return ResponseEntity.noContent().build();
     }
 

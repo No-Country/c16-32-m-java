@@ -1,6 +1,7 @@
 package com.c1632mjava.c1632mjava.Application.Implementations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.MatchMapper;
+import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Match;
@@ -8,6 +9,7 @@ import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchService;
+import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdLessThanOneException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdNotNullException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
@@ -24,11 +26,12 @@ import java.util.Optional;
 public class MatchServiceImpl implements MatchService {
     private final MatchMapper matchMapper;
     private final MatchRepository matchRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
     @Transactional(readOnly = true)
     @Override
-    public MatchReadDto findById(Long id) {
+    public MatchReadDto findMatchById(Long id) {
         final String MATCH_NOT_EXISTS_BY_ID_TEXT = "No existe match con el ID: ";
 
         this.validId(id, "match");
@@ -50,18 +53,17 @@ public class MatchServiceImpl implements MatchService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<MatchReadDto> findAllByUserId(Long userId) {
+    public List<MatchReadDto> findAllMatchesByUserId(Long userId) {
         final String USER_NOT_EXISTS_BY_ID_TEXT = "No existe usuario con el ID: ";
-
         this.validId(userId, "usuario");
 
-        Optional<User> optionalUser = this.userRepository.findById(userId);
+        var userReadDto = userService.findUserById(userId);
+        User user = userMapper.convertReadToUser(userReadDto);
 
-        if(optionalUser.isEmpty()){
+        if(user == null){
             throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + userId);
         }
 
-        User user = optionalUser.get();
         List<Match> matches = this.matchRepository.findAllByUser1OrUser2(user, user);
 
         matches = matches.stream().filter(match -> Boolean.TRUE.equals(match.getActive())).toList();
@@ -71,13 +73,13 @@ public class MatchServiceImpl implements MatchService {
 
     @Transactional
     @Override
-    public Match create(MatchCreateDto dto) {
+    public Match createMatch(MatchCreateDto dto) {
         return null;
     }
 
     @Transactional
     @Override
-    public void delete(Long id) {
+    public void deleteMatch(Long id) {
         final String MATCH_NOT_EXISTS_BY_ID_TEXT = "No existe match con el ID: ";
 
         this.validId(id, "match");
@@ -95,6 +97,7 @@ public class MatchServiceImpl implements MatchService {
         }
 
         match.setActive(Boolean.FALSE);
+        match.getChat().setActive(false);
     }
 
     private void validId(Long id, String subject){
