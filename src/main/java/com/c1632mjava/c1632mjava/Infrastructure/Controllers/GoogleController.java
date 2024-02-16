@@ -1,4 +1,4 @@
-/*package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
+package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,4 +16,3 @@ public class GoogleController {
     }
 
 }
-*/
