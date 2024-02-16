@@ -82,9 +82,9 @@ public class UserController {
 
     @DeleteMapping("/{banningId}/ban/{matchId}")
     @Transactional
-    ResponseEntity<Boolean> banUser (@PathVariable Long banningUserId,
+    ResponseEntity<Boolean> banUser (@PathVariable Long banningId,
                                      @PathVariable Long matchId){
-        boolean result = userService.banUser(banningUserId, matchId);
+        boolean result = userService.banUser(banningId, matchId);
         if (result) { return ResponseEntity.noContent().build(); }
         else return ResponseEntity.badRequest().build();
     }
@@ -95,5 +95,12 @@ public class UserController {
         return ResponseEntity.ok(bannedList);
     }
 
-
+    @PutMapping("/{banningId}/unban/{unbannedUserId}")
+    @Transactional
+    ResponseEntity<Boolean> unbanUser (@PathVariable Long banningId,
+                                     @PathVariable Long unbannedUserId){
+        boolean result = userService.unbanUser(banningId, unbannedUserId);
+        if (result) { return ResponseEntity.ok().build(); }
+        else return ResponseEntity.badRequest().build();
+    }
 }

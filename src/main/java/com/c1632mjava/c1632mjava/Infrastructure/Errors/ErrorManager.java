@@ -22,11 +22,6 @@ public class ErrorManager {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(IntegrityValidation.class)
-    public ResponseEntity BusinessRulesError(Exception e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity ValidationException(Exception e) {
         return ResponseEntity.badRequest().body(e.getMessage());

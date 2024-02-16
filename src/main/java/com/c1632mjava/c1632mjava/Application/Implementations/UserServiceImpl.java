@@ -5,12 +5,15 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.ArtistMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.GenreMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
+import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.Artist;
 import com.c1632mjava.c1632mjava.Domain.Entities.Genre;
+import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.ArtistRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.GenreRepository;
+import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
@@ -34,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private final GenreRepository genreRepository;
     private final GenreMapper genreMapper;
     private final MatchPreferencesService matchPreferencesService;
+    private final MatchRepository matchRepository;
 
     @Override
     public UserReadDto registerUser(UserCreateDto userCreateDto) {
@@ -157,27 +161,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean banUser (Long banningUserId, Long matchId) throws EntityNotFoundException {
-        UserReadDto loggedUser = findUserById(BanningUserId); //Reemplazar luego por el user logueado.
-        MatchReadDto matchToBan = matchService.findMatchById(matchId);
-        Long bannedUserId;
-        if (matchToBan.user1().userId() == loggedUser) {
-            bannedUserId = matchToBan.user2().userId();
+        UserReadDto loggedUser = findUserById(banningUserId); //Reemplazar luego por el user logueado.
+        Match matchToBan = matchRepository.findById(matchId).orElseThrow(EntityNotFoundException::new);
+        Long bannedUserId = 0L;
+        if (matchToBan.getUser1().getUserId().equals(loggedUser.userId())) {
+            bannedUserId = matchToBan.getUser2().getUserId();
         }
-        if (matchToBan.user2().userId() == loggedUser) {
-            bannedUserId = matchToBan.user1().userId();
+        if (matchToBan.getUser2().getUserId().equals(loggedUser.userId())) {
+            bannedUserId = matchToBan.getUser1().getUserId();
         }
         //TODO. Estas validaciones deberían hacerse aparte y sólo llamarse acá, para mejorar lectura.
         //En concreto, los casos falsos son: 1° el user logged no corresponde a ninguno de los user matched.
         //2° El match ya se encuentra inactivo (fue bloqueado antes).
-        if ((matchToBan.user1().userId() != loggedUser && matchToBan.user2().userId() != loggedUser)
-                || !matchToBan.isActive) {
+        if ((!matchToBan.getUser1().getUserId().equals(loggedUser.userId())
+                && !matchToBan.getUser2().getUserId().equals(loggedUser.userId())
+                || !matchToBan.getActive())) {
             throw new EntityNotFoundException();
-            return false;
         }
-        matchService.deleteMatchById(matchId);
+
+        matchToBan.setActive(false);
+        matchRepository.save(matchToBan);
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
+
+        if (!userToUpdate.getBannedUsers().contains(bannedUserId)) {
         userToUpdate.getBannedUsers().add(bannedUserId);
         userRepository.save(userToUpdate);
+        }
         return true;
     }
 
@@ -194,14 +203,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean unbanUser (Long loggedUserId, Long unbanUserId){
+    public boolean unbanUser (Long loggedUserId, Long unbanUserId) throws EntityNotFoundException{
         UserReadDto loggedUser = findUserById(loggedUserId); //Reemplazar luego por el user logueado.
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
         userToUpdate.getBannedUsers().remove(unbanUserId);
-
-
         userRepository.save(userToUpdate);
-        return false;
+        return true;
     }
 
 
