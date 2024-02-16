@@ -1,8 +1,11 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatReadDto;
+import com.c1632mjava.c1632mjava.Domain.Entities.Chat;
 import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +27,9 @@ public class ChatController {
         return ResponseEntity.ok(this.chatService.findAllBySenderId(senderId));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        this.chatService.delete(id);
-        return ResponseEntity.noContent().build();
+    // Only for tests (development)
+    @PostMapping
+    public ResponseEntity<Chat> create(@RequestBody ChatCreateDto dto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.chatService.create(dto));
     }
 }

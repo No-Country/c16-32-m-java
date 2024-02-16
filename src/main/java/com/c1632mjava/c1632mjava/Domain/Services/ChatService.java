@@ -10,5 +10,4 @@ public interface ChatService {
     Chat create(ChatCreateDto dto);
     ChatReadDto findById(Long id);
     List<ChatReadDto> findAllBySenderId(Long senderId);
-    void delete(Long id);
 }

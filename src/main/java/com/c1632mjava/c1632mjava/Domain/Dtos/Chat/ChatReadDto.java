@@ -12,6 +12,5 @@ public record ChatReadDto(
     ArrayList<String> previousMessages,
     UserReadDto sender,
     UserReadDto receiver
-    // MatchReadDto?
 ) {
 }
