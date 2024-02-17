@@ -1,12 +1,16 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
+import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/matches")
@@ -20,8 +24,10 @@ public class MatchController {
     }
 
     @GetMapping("users/{userId}")
-    public ResponseEntity<List<MatchReadDto>> findAllMatchesByUserId(@PathVariable Long userId){
-        return ResponseEntity.ok(this.matchService.findAllMatchesByUserId(userId));
+
+    public ResponseEntity<Page<MatchReadDto>> findAllMatchesByUserId(@PageableDefault(size = 10) Pageable paging,
+                                                                     @PathVariable Long userId){
+        return ResponseEntity.ok(this.matchService.findAllMatchesByUserId(userId, paging));
     }
 
     @DeleteMapping("/{id}")
@@ -30,5 +36,9 @@ public class MatchController {
         return ResponseEntity.noContent().build();
     }
 
-    // hacer endpoint para crear un match SOLO PARA PRUEBAS
+    // Only for tests (development)
+    @PostMapping
+    public ResponseEntity<Match> create(@RequestBody MatchCreateDto dto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.matchService.createMatch(dto));
+    }
 }
