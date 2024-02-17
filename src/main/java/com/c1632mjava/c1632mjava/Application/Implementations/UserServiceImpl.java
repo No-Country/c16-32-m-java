@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId) {
-        List<Artist> editedArtistList = new ArrayList<>();
+        ArrayList<Artist> editedArtistList = new ArrayList<>();
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
         user.setArtists(null);
 
@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId) {
-        List<Genre> editedGenreList = new ArrayList<>();
+        ArrayList<Genre> editedGenreList = new ArrayList<>();
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
         user.setGenres(null);
 
@@ -210,8 +210,5 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userToUpdate);
         return true;
     }
-
-
-
 
 }
