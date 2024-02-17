@@ -1,29 +1,32 @@
 package com.c1632mjava.c1632mjava.Application.Implementations;
 
+import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.MatchMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
+import com.c1632mjava.c1632mjava.Domain.Entities.Chat;
 import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
+import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
-import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdLessThanOneException;
-import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdNotNullException;
-import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
-import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MatchServiceImpl implements MatchService {
+    private final ChatService chatService;
     private final MatchMapper matchMapper;
     private final MatchRepository matchRepository;
     private final UserService userService;
@@ -72,7 +75,40 @@ public class MatchServiceImpl implements MatchService {
     @Transactional
     @Override
     public Match createMatch(MatchCreateDto dto) {
-        return null;
+        final String USER_NOT_EXISTS_BY_ID_TEXT = "No existe ususario con el ID: ";
+
+        if(dto == null){
+            throw new MatchNotNullException("El match no puede ser nulo.");
+        }
+
+        Match match = this.matchMapper.convertCreateToMatch(dto);
+        match.setDateOfMatch(LocalDateTime.now());
+        match.setActive(Boolean.TRUE);
+
+        UserReadDto userReadDto1 = this.userService.findUserById(dto.user1());
+
+        if(userReadDto1 == null){
+            throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.user1());
+        }
+
+        User user1 = this.userMapper.convertReadToUser(userReadDto1);
+        match.setUser1(user1);
+
+        UserReadDto userReadDto2 = this.userService.findUserById(dto.user2());
+
+        if(userReadDto2 == null){
+            throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.user2());
+        }
+
+        User user2 = this.userMapper.convertReadToUser(userReadDto2);
+        match.setUser2(user2);
+
+        ChatCreateDto chatCreateDto = new ChatCreateDto(null, null, dto.user1(), dto.user2());
+
+        Chat chat = this.chatService.create(chatCreateDto);
+        match.setChat(chat);
+
+        return this.matchRepository.save(match);
     }
 
     @Transactional
