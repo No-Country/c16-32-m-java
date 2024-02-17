@@ -30,6 +30,7 @@ public class User implements Serializable {
     private LocalDateTime birthdate;
     private String photo;
 
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
