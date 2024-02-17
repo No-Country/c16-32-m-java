@@ -51,4 +51,9 @@ public class ErrorManager {
     public ResponseEntity<String> userNotFoundException(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+
+    @ExceptionHandler(ChatNotNullException.class)
+    public ResponseEntity<String> chatNotNullException(ChatNotNullException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 }

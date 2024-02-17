@@ -12,11 +12,12 @@ import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,8 +32,9 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public Chat create(ChatCreateDto dto) {
         final String USER_NOT_EXISTS_BY_ID_TEXT = "No existe usuario con el ID: ";
+
         if(dto == null){
-            throw new RuntimeException();
+            throw new ChatNotNullException("El chat no puede ser nulo.");
         }
 
         Chat chat = this.chatMapper.convertCreateToChat(dto);
@@ -45,43 +47,16 @@ public class ChatServiceImpl implements ChatService {
             throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.senderId());
         }
 
-        //mapear con usermapper
-        User sender = new User();
-        sender.setUserId(senderDto.userId());
-        sender.setName(senderDto.name());
-        sender.setBirthdate(senderDto.birthdate());
-        sender.setPhoto(senderDto.photo());
-        sender.setGender(senderDto.gender());
-        sender.setPronouns(senderDto.pronouns());
-        sender.setDescription(senderDto.description());
-        sender.setSocialBattery(senderDto.socialBattery());
-        sender.setCurrentSong(senderDto.currentSong());
-        //sender.setArtists(senderDto.Artists());
-        //sender.setGemres
-        sender.setBannedUsers(senderDto.bannedUsers());
-
+        User sender = this.userMapper.convertReadToUser(senderDto);
         chat.setSender(sender);
 
-        //receiver
         UserReadDto receiverDto = this.userService.findUserById(dto.receiverId());
 
         if(receiverDto == null){
             throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.receiverId());
         }
 
-        User receiver = new User();
-        receiver.setUserId(receiverDto.userId());
-        receiver.setName(receiverDto.name());
-        receiver.setBirthdate(receiverDto.birthdate());
-        receiver.setPhoto(receiverDto.photo());
-        receiver.setGender(receiverDto.gender());
-        receiver.setPronouns(receiverDto.pronouns());
-        receiver.setDescription(receiverDto.description());
-        receiver.setSocialBattery(receiverDto.socialBattery());
-        receiver.setCurrentSong(receiverDto.currentSong());
-        //receiver.setArtists(senderDto.Artists());
-        //receiver.setGenres
-        receiver.setBannedUsers(receiverDto.bannedUsers());
+        User receiver = this.userMapper.convertReadToUser(receiverDto);
 
         chat.setReceiver(receiver);
 
@@ -108,7 +83,7 @@ public class ChatServiceImpl implements ChatService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<ChatReadDto> findAllBySenderId(Long senderId) {
+    public Page<ChatReadDto> findAllBySenderId(Long senderId, Pageable paging) {
         this.validId(senderId);
 
         UserReadDto userReadDto = this.userService.findUserById(senderId);
@@ -117,15 +92,11 @@ public class ChatServiceImpl implements ChatService {
             throw new UserNotFoundException("No existe usuario con el ID: " + senderId);
         }
 
-        // Change for UserMapper method
-        User user = new User();
-        user.setUserId(userReadDto.userId());
+        User user = this.userMapper.convertReadToUser(userReadDto);
 
-        List<Chat> chats = this.chatRepository.findAllBySender(user);
+        Page<Chat> chats = this.chatRepository.findAllBySenderAndActiveIsTrue(user, paging);
 
-        chats = chats.stream().filter(chat -> Boolean.TRUE.equals(chat.getActive())).toList();
-
-        return chats.stream().map(this.chatMapper::convertChatToRead).toList();
+        return chats.map(this.chatMapper::convertChatToRead);
     }
 
     private void validId(Long id){

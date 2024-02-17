@@ -7,7 +7,6 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
-import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdLessThanOneException;
@@ -15,10 +14,11 @@ import com.c1632mjava.c1632mjava.Infrastructure.Errors.IdNotNullException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,7 +53,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<MatchReadDto> findAllMatchesByUserId(Long userId) {
+    public Page<MatchReadDto> findAllMatchesByUserId(Long userId, Pageable paging) {
         final String USER_NOT_EXISTS_BY_ID_TEXT = "No existe usuario con el ID: ";
         this.validId(userId, "usuario");
 
@@ -64,11 +64,9 @@ public class MatchServiceImpl implements MatchService {
             throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + userId);
         }
 
-        List<Match> matches = this.matchRepository.findAllByUser1OrUser2(user, user);
+        Page<Match> matches = this.matchRepository.findAllByUser1AndActiveIsTrueOrUser2AndActiveIsTrue(user, user, paging);
 
-        matches = matches.stream().filter(match -> Boolean.TRUE.equals(match.getActive())).toList();
-
-        return matches.stream().map(this.matchMapper::convertMatchToRead).toList();
+        return matches.map(this.matchMapper::convertMatchToRead);
     }
 
     @Transactional
@@ -97,7 +95,7 @@ public class MatchServiceImpl implements MatchService {
         }
 
         match.setActive(Boolean.FALSE);
-        match.getChat().setActive(false);
+        match.getChat().setActive(Boolean.FALSE);
     }
 
     private void validId(Long id, String subject){

@@ -5,11 +5,12 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Chat;
 import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequestMapping("/chats")
 @RestController
@@ -23,8 +24,9 @@ public class ChatController {
     }
 
     @GetMapping("/senders/{senderId}")
-    public ResponseEntity<List<ChatReadDto>> findAllBySenderId(@PathVariable Long senderId){
-        return ResponseEntity.ok(this.chatService.findAllBySenderId(senderId));
+    public ResponseEntity<Page<ChatReadDto>> findAllBySenderId(@PageableDefault(size = 10) Pageable paging,
+                                                               @PathVariable Long senderId){
+        return ResponseEntity.ok(this.chatService.findAllBySenderId(senderId, paging));
     }
 
     // Only for tests (development)
