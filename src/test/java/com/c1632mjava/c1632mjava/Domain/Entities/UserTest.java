@@ -6,8 +6,8 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
     Long id; String name; String password; String email; LocalDateTime birthdate;
@@ -40,6 +40,7 @@ public class UserTest {
         User user = new User();
         assertThat(user).isNotNull();
         assertThat(user.isActive()).isTrue();
+        //TODO. Convendría hacer assertEquals a los atributos por defecto para mayor precisión.
     }
 
     @Test

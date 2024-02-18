@@ -17,6 +17,7 @@ import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -56,21 +57,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserReadDto findUserById(Long id) {
         User user = this.userRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow( () -> new UserNotFoundException(id));
         return userMapper.convertUserToRead(user);
     }
 
     @Override
     public UserReadDto findUserByEmail(String email) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow( () -> new UserNotFoundException(email));
         return userMapper.convertUserToRead(user);
     }
 
     @Override
     public UserReadDto updateUser(UserUpdateDto userUpdateDto) {
         User user = this.userRepository.findById(userUpdateDto.userId())
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new UserNotFoundException(userUpdateDto.userId()));
 
         if (user.isActive()) {
             if (userUpdateDto.name() != null) {
@@ -113,8 +114,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean toggleUser(Long id) throws EntityNotFoundException {
-        User userToToggle = this.userRepository.findById(id).orElse(null);
+    public Boolean toggleUser(Long id) {
+        User userToToggle = this.userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
         userToToggle.setActive(!userToToggle.isActive());
         this.userRepository.save(userToToggle);
         matchPreferencesService.toggleMatchPreferences(id);
@@ -124,7 +126,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId) {
         ArrayList<Artist> editedArtistList = new ArrayList<>();
-        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findById(userId)
+                .orElseThrow( () -> new UserNotFoundException(userId));
         user.setArtists(null);
 
         for (ArtistDto artistDto : artistDtoList) {
@@ -143,7 +146,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId) {
         ArrayList<Genre> editedGenreList = new ArrayList<>();
-        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findById(userId)
+                .orElseThrow( () -> new UserNotFoundException(userId));
         user.setGenres(null);
 
         for (GenreDto genreDto : genreDtoList) {
@@ -191,7 +195,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List <UserReadDto> findAllBannedByUserId(Long id) throws EntityNotFoundException{
+    public List <UserReadDto> findAllBannedByUserId(Long id){
         List <UserReadDto> bannedUsers = new ArrayList<>();
         UserReadDto loggedUser = findUserById(id);
         List <Long> bannedListIds = loggedUser.bannedUsers();
