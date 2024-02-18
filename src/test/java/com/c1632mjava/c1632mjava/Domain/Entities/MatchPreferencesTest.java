@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatchPreferencesTest {
@@ -27,13 +28,15 @@ class MatchPreferencesTest {
     MatchPreferences testing;
 
     @BeforeEach
-    void setUp() {
+    /*void setUp() {
         testing = new MatchPreferences();
-    }
+    }*/
 
     @Test
     void emptyConstructorTest(){/*fail*/
-        //assertNotNull(testing);
+        //
+        testing = new MatchPreferences();
+        MatchPreferences matchPreferences =new MatchPreferences();
         assertEquals(0L, testing.getMatchPreferenceId());
         assertEquals(0L, testing.getUserId());
         assertFalse(testing.isFemale());
@@ -69,14 +72,16 @@ class MatchPreferencesTest {
 
     @Test
     void getMatchPreferenceId() {
+        testing.setMatchPreferenceId(matchPreferenceId);
         Long matchPreferenceActual= testing.getMatchPreferenceId();
         Assertions.assertEquals(matchPreferenceId, matchPreferenceActual);
     }
 
     @Test
     void getUserId() {
+        testing.setUserId(userId);
         Long userIdActual= testing.getUserId();
-        Assertions.assertEquals(matchPreferenceId, userIdActual);
+        Assertions.assertEquals(userId, userIdActual);
     }
 
     @Test
