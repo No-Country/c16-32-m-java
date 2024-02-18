@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<Page<UserReadDto>> findUserList (@PageableDefault(size = 10)
                                                            Pageable paging) {
-        return ResponseEntity.ok(userService.findAll(true, paging));
+        return ResponseEntity.ok(userService.findAllUsers(true, paging));
     }
 
     @GetMapping("/id/{id}")

@@ -8,7 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 public interface MatchPreferencesService {
     MatchPreferencesReadDto createMatchPreferences(MatchPreferencesCreateDto matchPreferencesCreateDto);
-    MatchPreferencesReadDto findPreferencesByUserId(Long id) throws EntityNotFoundException;
-    MatchPreferencesReadDto updateMatchPreferences(MatchPreferencesUpdateDto matchPreferencesUpdateDto) throws EntityNotFoundException;
-    Boolean toggleMatchPreferences(Long userId) throws EntityNotFoundException;
+    MatchPreferencesReadDto findPreferencesByUserId(Long id);
+    MatchPreferencesReadDto updateMatchPreferences(MatchPreferencesUpdateDto matchPreferencesUpdateDto);
+    Boolean toggleMatchPreferences(Long userId);
 }

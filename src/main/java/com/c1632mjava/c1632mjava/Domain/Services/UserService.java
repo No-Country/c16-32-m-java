@@ -12,15 +12,15 @@ import java.util.List;
 
 public interface UserService {
     UserReadDto registerUser(UserCreateDto userCreateDto);
-    Page<UserReadDto>  findAll(boolean active, Pageable paging);
-    UserReadDto findUserById(Long id) throws EntityNotFoundException;
-    UserReadDto findUserByEmail(String email) throws EntityNotFoundException;
-    UserReadDto updateUser(UserUpdateDto userUpdateDto) throws EntityNotFoundException;
-    Boolean toggleUser(Long id) throws EntityNotFoundException;
+    Page<UserReadDto> findAllUsers(boolean active, Pageable paging);
+    UserReadDto findUserById(Long id);
+    UserReadDto findUserByEmail(String email);
+    UserReadDto updateUser(UserUpdateDto userUpdateDto);
+    Boolean toggleUser(Long id);
     UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId);
     UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId);
-    boolean banUser (Long banningUserId, Long matchId) throws EntityNotFoundException;
-    List <UserReadDto> findAllBannedByUserId(Long id) throws EntityNotFoundException;
-    boolean unbanUser (Long loggedUserId, Long unbanUserId) throws EntityNotFoundException;
+    boolean banUser (Long banningUserId, Long matchId);
+    List <UserReadDto> findAllBannedByUserId(Long id);
+    boolean unbanUser (Long loggedUserId, Long unbanUserId);
 
 }

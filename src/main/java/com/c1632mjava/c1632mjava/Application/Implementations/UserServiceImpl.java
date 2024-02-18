@@ -5,7 +5,6 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.ArtistMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.GenreMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
-import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.Artist;
 import com.c1632mjava.c1632mjava.Domain.Entities.Genre;
@@ -17,6 +16,7 @@ import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -49,27 +49,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserReadDto> findAll(boolean active, Pageable paging) {
+    public Page<UserReadDto> findAllUsers(boolean active, Pageable paging) {
         return userRepository.findAllByActive(active, paging).
                 map(userMapper::convertUserToRead);
     }
 
     @Override
-    public UserReadDto findUserById(Long id) {
+    public UserReadDto findUserById(Long id)
+            throws UserNotFoundException {
         User user = this.userRepository.findById(id)
                 .orElseThrow( () -> new UserNotFoundException(id));
         return userMapper.convertUserToRead(user);
     }
 
     @Override
-    public UserReadDto findUserByEmail(String email) {
+    public UserReadDto findUserByEmail(String email)
+            throws UserNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow( () -> new UserNotFoundException(email));
         return userMapper.convertUserToRead(user);
     }
 
     @Override
-    public UserReadDto updateUser(UserUpdateDto userUpdateDto) {
+    public UserReadDto updateUser(UserUpdateDto userUpdateDto)
+            throws UserNotFoundException {
         User user = this.userRepository.findById(userUpdateDto.userId())
                 .orElseThrow(() -> new UserNotFoundException(userUpdateDto.userId()));
 
@@ -114,7 +117,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean toggleUser(Long id) {
+    public Boolean toggleUser(Long id)
+            throws UserNotFoundException {
         User userToToggle = this.userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
         userToToggle.setActive(!userToToggle.isActive());
@@ -124,7 +128,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId) {
+    public UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId)
+            throws UserNotFoundException {
         ArrayList<Artist> editedArtistList = new ArrayList<>();
         User user = userRepository.findById(userId)
                 .orElseThrow( () -> new UserNotFoundException(userId));
@@ -144,7 +149,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId) {
+    public UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId)
+            throws UserNotFoundException {
         ArrayList<Genre> editedGenreList = new ArrayList<>();
         User user = userRepository.findById(userId)
                 .orElseThrow( () -> new UserNotFoundException(userId));
@@ -164,9 +170,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean banUser (Long banningUserId, Long matchId) throws EntityNotFoundException {
+    public boolean banUser (Long banningUserId, Long matchId)
+            throws MatchNotFoundException, UserNotFoundException{
         UserReadDto loggedUser = findUserById(banningUserId); //Reemplazar luego por el user logueado.
-        Match matchToBan = matchRepository.findById(matchId).orElseThrow(EntityNotFoundException::new);
+        Match matchToBan = matchRepository.findById(matchId)
+                .orElseThrow( () -> new MatchNotFoundException(matchId));
         Long bannedUserId = 0L;
         if (matchToBan.getUser1().getUserId().equals(loggedUser.userId())) {
             bannedUserId = matchToBan.getUser2().getUserId();
@@ -177,10 +185,12 @@ public class UserServiceImpl implements UserService {
         //TODO. Estas validaciones deberían hacerse aparte y sólo llamarse acá, para mejorar lectura.
         //En concreto, los casos falsos son: 1° el user logged no corresponde a ninguno de los user matched.
         //2° El match ya se encuentra inactivo (fue bloqueado antes).
-        if ((!matchToBan.getUser1().getUserId().equals(loggedUser.userId())
-                && !matchToBan.getUser2().getUserId().equals(loggedUser.userId())
-                || !matchToBan.getActive())) {
-            throw new EntityNotFoundException();
+        if (!matchToBan.getUser1().getUserId().equals(loggedUser.userId())
+                && !matchToBan.getUser2().getUserId().equals(loggedUser.userId())) {
+            throw new UserNotFoundException(loggedUser.userId());
+        }
+        if (!matchToBan.getActive()) {
+            throw new MatchNotFoundException(matchId);
         }
 
         matchToBan.setActive(false);
@@ -207,7 +217,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean unbanUser (Long loggedUserId, Long unbanUserId) throws EntityNotFoundException{
+    public boolean unbanUser (Long loggedUserId, Long unbanUserId) {
         UserReadDto loggedUser = findUserById(loggedUserId); //Reemplazar luego por el user logueado.
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
         userToUpdate.getBannedUsers().remove(unbanUserId);

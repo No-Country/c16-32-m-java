@@ -33,21 +33,19 @@ public class MatchServiceImpl implements MatchService {
 
     @Transactional(readOnly = true)
     @Override
-    public MatchReadDto findMatchById(Long id) {
-        final String MATCH_NOT_EXISTS_BY_ID_TEXT = "No existe match con el ID: ";
-
+    public MatchReadDto findMatchById(Long id) throws MatchNotFoundException {
         this.validId(id, "match");
 
         Optional<Match> optionalMatch = this.matchRepository.findById(id);
 
         if(optionalMatch.isEmpty()){
-            throw new MatchNotFoundException(MATCH_NOT_EXISTS_BY_ID_TEXT + id);
+            throw new MatchNotFoundException(id);
         }
 
         Boolean isActive = optionalMatch.get().getActive();
 
         if(Boolean.FALSE.equals(isActive)){
-            throw new MatchNotFoundException(MATCH_NOT_EXISTS_BY_ID_TEXT + id);
+            throw new MatchNotFoundException(id);
         }
 
         return this.matchMapper.convertMatchToRead(optionalMatch.get());
@@ -74,7 +72,7 @@ public class MatchServiceImpl implements MatchService {
     public Match createMatch(MatchCreateDto dto) {
 
         if(dto == null){
-            throw new MatchNotNullException("El match no puede ser nulo.");
+            throw new MatchNotNullException();
         }
 
         Match match = this.matchMapper.convertCreateToMatch(dto);
@@ -110,20 +108,18 @@ public class MatchServiceImpl implements MatchService {
     @Transactional
     @Override
     public void deleteMatch(Long id) {
-        final String MATCH_NOT_EXISTS_BY_ID_TEXT = "No existe match con el ID: ";
-
         this.validId(id, "match");
 
         Optional<Match> optionalMatch = this.matchRepository.findById(id);
 
         if(optionalMatch.isEmpty()){
-            throw new MatchNotFoundException(MATCH_NOT_EXISTS_BY_ID_TEXT + id);
+            throw new MatchNotFoundException(id);
         }
 
         Match match = optionalMatch.get();
 
         if(Boolean.FALSE.equals(match.getActive())){
-            throw new MatchNotFoundException(MATCH_NOT_EXISTS_BY_ID_TEXT + id);
+            throw new MatchNotFoundException(id);
         }
 
         match.setActive(Boolean.FALSE);

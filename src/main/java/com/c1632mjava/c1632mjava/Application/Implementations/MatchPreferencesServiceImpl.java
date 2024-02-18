@@ -5,7 +5,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.MatchPreferences;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchPreferencesRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
-import jakarta.persistence.EntityNotFoundException;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,19 +27,20 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
 
     @Override
     public MatchPreferencesReadDto findPreferencesByUserId(Long id)
-            throws EntityNotFoundException {
+            throws UserNotFoundException {
         MatchPreferences matchPreferences =
-                matchPreferencesRepository.findByUserId(id).orElseThrow(EntityNotFoundException::new);
+                matchPreferencesRepository.findByUserId(id)
+                        .orElseThrow( () -> new UserNotFoundException(id));
         return matchPreferencesMapper.convertMatchPreferencesToRead(matchPreferences);
     }
 
     @Override
     public MatchPreferencesReadDto updateMatchPreferences(
             MatchPreferencesUpdateDto mPUpdateDto)
-            throws EntityNotFoundException {
+            throws UserNotFoundException {
         MatchPreferences newPreferences =
                 matchPreferencesRepository.findByUserId(mPUpdateDto.userId())
-                        .orElseThrow(EntityNotFoundException::new);
+                        .orElseThrow( () -> new UserNotFoundException(mPUpdateDto.userId()));
         if(newPreferences.isActive()) {
             if (mPUpdateDto.distance() != null) {
                 newPreferences.setDistance(mPUpdateDto.distance());
@@ -67,10 +68,10 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
 
     @Override
     public Boolean toggleMatchPreferences(Long userId)
-            throws EntityNotFoundException {
+            throws UserNotFoundException {
         MatchPreferences toggleMP =
                 matchPreferencesRepository.findByUserId(userId)
-                        .orElseThrow(EntityNotFoundException::new);
+                        .orElseThrow( () -> new UserNotFoundException(userId));
         toggleMP.setActive(!toggleMP.isActive());
         return toggleMP.isActive();
     }

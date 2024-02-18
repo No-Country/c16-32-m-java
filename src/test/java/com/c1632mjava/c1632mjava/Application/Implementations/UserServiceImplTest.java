@@ -201,7 +201,7 @@ public class UserServiceImplTest {
             Pageable paging = PageRequest.of(0, 20);
 
             when(userRepository.findAllByActive(any(), any())).thenReturn(new PageImpl<>(userList));
-            var result = userService.findAll(true, paging);
+            var result = userService.findAllUsers(true, paging);
 
             assertThat(userList).hasSize(1);
         }
@@ -212,7 +212,7 @@ public class UserServiceImplTest {
             Pageable paging = PageRequest.of(0, 20);
 
             when(userRepository.findAllByActive(any(), any())).thenReturn(new PageImpl<>(userList));
-            var result = userService.findAll(true, paging);
+            var result = userService.findAllUsers(true, paging);
 
             assertThat(userList).hasSize(0);
         }
@@ -472,7 +472,6 @@ public class UserServiceImplTest {
             assertEquals(user.getGenres().get(0).getGenreName(), result.Genres().get(0).genreName());
         }
     }
-
 
     @Nested
     @DisplayName("Tests on ban, unban and find all banned users, both positive and negative cases")
