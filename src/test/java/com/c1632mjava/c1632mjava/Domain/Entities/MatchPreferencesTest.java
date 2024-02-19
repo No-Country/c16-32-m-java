@@ -33,12 +33,12 @@ class MatchPreferencesTest {
     }*/
 
     @Test
-    void emptyConstructorTest(){/*fail*/
+    void emptyConstructorTest(){
         //
         testing = new MatchPreferences();
         MatchPreferences matchPreferences =new MatchPreferences();
-        assertEquals(0L, testing.getMatchPreferenceId());
-        assertEquals(0L, testing.getUserId());
+        assertEquals(null, testing.getMatchPreferenceId());
+        assertEquals(null, testing.getUserId());
         assertFalse(testing.isFemale());
         assertFalse(testing.isMale());
         assertFalse(testing.isOther());
@@ -47,8 +47,8 @@ class MatchPreferencesTest {
         assertFalse(testing.isRightNow());
         assertEquals(0, testing.getMinAge());
         assertEquals(0, testing.getMaxAge());
-        assertEquals("", testing.getDistance());//enum
-        assertEquals("", testing.getCompatibilityPercentage());//enum
+        assertEquals(null, testing.getDistance());//enum
+        assertEquals(null, testing.getCompatibilityPercentage());//enum
 
     }
     @Test
@@ -132,24 +132,29 @@ class MatchPreferencesTest {
 
     @Test
     void isLongTermRelationship() {/*fail*/
+        testing.setLongTermRelationship(longTermRelationship);
         boolean lGrRelationshipActual=testing.isLongTermRelationship();
+        //System.out.println(lGrRelationshipActual);
         Assertions.assertTrue(lGrRelationshipActual);
     }
 
     @Test
     void isJustFriends() {
+        testing.setJustFriends(justFriends);
         boolean justFriendsActual=testing.isJustFriends();
         Assertions.assertFalse(justFriendsActual);
     }
 
     @Test
     void isRightNow() {
+        testing.setRightNow(rightNow);
         boolean rightNowActual=testing.isRightNow();
         Assertions.assertFalse(rightNowActual);
     }
 
     @Test
-    void isActive() {/*fail*/
+    void isActive() {/*CHEUQEAR SI ESTA BIEN TESTEADO*/
+        testing.setActive(active);
         boolean isActiveActual=testing.isActive();
         Assertions.assertTrue(isActiveActual);
     }
