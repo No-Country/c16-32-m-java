@@ -3,22 +3,22 @@ package com.c1632mjava.c1632mjava.Domain.Entities;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+@Builder
+public class User implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,12 +42,43 @@ public class User implements Serializable {
     private String currentSong;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Artist> Artists;
+    private ArrayList<Artist> Artists;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Genre> Genres;
+    private ArrayList<Genre> Genres;
 
-    private List <Long> bannedUsers = new ArrayList<>();
+    private ArrayList<Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
+
+    // UserDetails validations using JWT
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

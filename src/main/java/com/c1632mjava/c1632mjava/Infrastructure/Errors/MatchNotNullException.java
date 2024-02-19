@@ -1,7 +1,9 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Errors;
 
 public class MatchNotNullException extends RuntimeException{
-    public MatchNotNullException(String message) {
-        super(message);
+    static String MATCH_CANT_BE_NULL = "Match no puede ser nulo!";
+
+    public MatchNotNullException() {
+        super(MATCH_CANT_BE_NULL);
     }
 }

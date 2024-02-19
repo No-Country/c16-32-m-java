@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @AutoConfigureMockMvc //Configura el manejo de endpoints (post, put, get, delete, patch).
 @WithMockUser //Habilita la autenticación (evita el error 403)
 @AutoConfigureJsonTesters //Permite manejarse con DTO en lugar de requerir JSON.
-class UserControllerTest {
+class UserTestControllerTest {
 
     @Autowired //Como el test está fuera del contexto de SpringBoot no pueden hacerse por constructor.
     private MockMvc mvc;

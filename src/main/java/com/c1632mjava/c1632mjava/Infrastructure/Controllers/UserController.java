@@ -1,21 +1,32 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.Application.Validations.AuthService;
 import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -23,13 +34,24 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     @Transactional
-    public ResponseEntity<UserReadDto> registerUser(@RequestBody @Valid
-                                                    UserCreateDto userCreateDto){
-        UserReadDto result = userService.registerUser(userCreateDto);
-        return ResponseEntity.ok(result);
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
+                                                    UserCreateDto userCreateDto,
+                                                     @RequestParam (name ="userName") String name,
+                                                     @RequestParam (name ="email") String email){
+
+        try{
+            UserCreateDto mergedUser = userCreateDto.withName(name).withEmail(email);
+            return ResponseEntity.ok(authService.register(mergedUser));
+        }
+        catch (RuntimeException e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PostMapping("/likedartists/{userId}")
@@ -49,7 +71,7 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<Page<UserReadDto>> findUserList (@PageableDefault(size = 10)
                                                            Pageable paging) {
-        return ResponseEntity.ok(userService.findAll(true, paging));
+        return ResponseEntity.ok(userService.findAllUsers(true, paging));
     }
 
     @GetMapping("/id/{id}")
@@ -98,7 +120,7 @@ public class UserController {
     @PutMapping("/{banningId}/unban/{unbannedUserId}")
     @Transactional
     ResponseEntity<Boolean> unbanUser (@PathVariable Long banningId,
-                                     @PathVariable Long unbannedUserId){
+                                     @PathVariable Long unbannedUserId) {
         boolean result = userService.unbanUser(banningId, unbannedUserId);
         if (result) { return ResponseEntity.ok().build(); }
         else return ResponseEntity.badRequest().build();
