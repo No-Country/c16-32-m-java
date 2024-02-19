@@ -4,6 +4,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import jakarta.persistence.EntityNotFoundException;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

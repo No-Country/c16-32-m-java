@@ -8,7 +8,9 @@ import com.c1632mjava.c1632mjava.Domain.Entities.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.*;
 import com.c1632mjava.c1632mjava.Domain.Repositories.*;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.*;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -477,16 +479,79 @@ public class UserServiceImplTest {
     @DisplayName("Tests on ban, unban and find all banned users, both positive and negative cases")
     class BanningTests {
         @Test
-        void shouldBanAUserByUserId() {}
+        void shouldBanAUserByUserId() {
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsers, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            Match match = new Match(id, 75.5F, LocalDateTime.now(),
+                    active, banningUser, bannedUser, null);
+
+            when(userRepository.findById(any())).thenReturn(Optional.of(banningUser));
+            when(matchRepository.findById(any())).thenReturn(Optional.of(match));
+
+            var result = userService.banUser(banningUser.getUserId(), match.getMatchId());
+
+            verify(matchRepository, times(1)).save(match);
+            verify(userRepository, times(1)).save(any());
+            assertFalse(match.getActive());
+        }
 
         @Test
-        void shouldNotBanAUserByUserIdWhenLoggedUserIdIsWrong() {}
+        void shouldNotBanAUserByUserIdWhenLoggedUserIdIsWrong() {
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsers, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            Match match = new Match(id, 75.5F, LocalDateTime.now(),
+                    active, banningUser, bannedUser, null);
+
+            when(userRepository.findById(any())).thenReturn(Optional.empty());
+
+            Exception thrown = Assertions.assertThrows(UserNotFoundException.class, () -> {
+                userService.banUser(banningUser.getUserId(), match.getMatchId());
+            });
+
+            Assertions.assertEquals(UserNotFoundException.
+                    USER_NOT_EXISTS_BY_ID_TEXT + id, thrown.getMessage());
+        }
 
         @Test
-        void shouldNotBanAUserByUserIdWhenBannedUserIdIsWrong() {}
+        void shouldNotBanAUserByUserIdWhenBannedUserIsAlreadyBanned() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+            bannedUsersHere.add(id2);
 
-        @Test
-        void shouldNotBanAUserByUserIdWhenBannedUserIsAlreadyBanned() {}
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            Match match = new Match(id, 75.5F, LocalDateTime.now(),
+                    active2, banningUser, bannedUser, null);
+
+            when(userRepository.findById(any())).thenReturn(Optional.of(banningUser));
+            when(matchRepository.findById(any())).thenReturn(Optional.of(match));
+
+            Exception thrown = Assertions.assertThrows(MatchNotFoundException.class, () -> {
+                userService.banUser(banningUser.getUserId(), match.getMatchId());
+            });
+
+            Assertions.assertEquals(MatchNotFoundException.
+                    MATCH_NOT_EXISTS_BY_ID_TEXT + id, thrown.getMessage());
+            verify(matchRepository, times(0)).save(match);
+            verify(userRepository, times(0)).save(any());
+        }
 
         @Test
         void shoudFindAllBannedUsersByUserId() {
@@ -509,18 +574,109 @@ public class UserServiceImplTest {
         }
 
         @Test
-        void shoudReturnEmptyIfItHasNotBannedUsers() {}
+        void shoudReturnEmptyIfItHasNotBannedUsers() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+            User user1 = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            when(userRepository.findById(any())).thenReturn(Optional.of(user1));
+            var result = userService.findAllBannedByUserId(user1.getUserId());
+
+            assertThat(result).hasSize(0);
+        }
 
         @Test
-        void shouldUnbanAUserByUserId() {}
+        void shouldUnbanAUserByUserId() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+            bannedUsersHere.add(id2);
+
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            when(userRepository.findById(any())).thenReturn(Optional.of(banningUser));
+            when(userRepository.existsById(2L)).thenReturn(true);
+
+            var result = userService.unbanUser(banningUser.getUserId(), bannedUser.getUserId());
+
+            verify(userRepository, times(1)).save(any());
+        }
 
         @Test
-        void shouldNotUnbanAUserByUserIdWhenLoggedUserIdIsWrong() {}
+        void shouldNotUnbanAUserByUserIdWhenLoggedUserIdIsWrong() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+            bannedUsersHere.add(id2);
+
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            Exception thrown = Assertions.assertThrows(UserNotFoundException.class, () -> {
+                userService.banUser(banningUser.getUserId(), bannedUser.getUserId());
+            });
+
+            Assertions.assertEquals(UserNotFoundException.
+                            USER_NOT_EXISTS_BY_ID_TEXT + banningUser.getUserId(),
+                    thrown.getMessage());
+            verify(userRepository, times(0)).save(any());
+        }
 
         @Test
-        void shouldNotUnbanAUserByUserIdWhenBannedUserIdIsWrong() {}
+        void shouldNotUnbanAUserByUserIdWhenBannedUserIdIsWrong() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(banningUser));
+            Exception thrown = Assertions.assertThrows(UserNotFoundException.class, () -> {
+                userService.unbanUser(banningUser.getUserId(), bannedUser.getUserId());
+            });
+
+            Assertions.assertEquals(UserNotFoundException.
+                            USER_NOT_EXISTS_BY_ID_TEXT + bannedUser.getUserId(),
+                    thrown.getMessage());
+            verify(userRepository, times(0)).save(any());
+        }
 
         @Test
-        void shouldNotUnbanAUserByUserIdWhenThatUserIsNotBanned() {}
+        void shouldNotUnbanAUserByUserIdWhenThatUserIsNotBanned() {
+            ArrayList<Long> bannedUsersHere = new ArrayList<>();
+
+            User banningUser = new User(id, name, email, password, birthdate,
+                    photo, gender, pronouns, description, socialBattery,
+                    currentSong, artists, genres, bannedUsersHere, active);
+
+            User bannedUser = new User(id2, name2, email2, password2, birthdate2,
+                    photo2, gender2, pronouns2, description2, socialBattery2,
+                    currentSong2, artists, genres, bannedUsers, active);
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(banningUser));
+            when(userRepository.existsById(2L)).thenReturn(true);
+            Exception thrown = Assertions.assertThrows(UserNotFoundException.class, () -> {
+                userService.unbanUser(banningUser.getUserId(), bannedUser.getUserId());
+            });
+
+            Assertions.assertEquals(UserNotFoundException.
+                            USER_NOT_EXISTS_BY_ID_TEXT + bannedUser.getUserId(),
+                    thrown.getMessage());
+            verify(userRepository, times(0)).save(any());
+        }
+
     }
 }
+

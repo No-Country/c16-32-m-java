@@ -9,6 +9,7 @@ import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -98,7 +99,7 @@ public class UserController {
     @PutMapping("/{banningId}/unban/{unbannedUserId}")
     @Transactional
     ResponseEntity<Boolean> unbanUser (@PathVariable Long banningId,
-                                     @PathVariable Long unbannedUserId){
+                                     @PathVariable Long unbannedUserId) {
         boolean result = userService.unbanUser(banningId, unbannedUserId);
         if (result) { return ResponseEntity.ok().build(); }
         else return ResponseEntity.badRequest().build();

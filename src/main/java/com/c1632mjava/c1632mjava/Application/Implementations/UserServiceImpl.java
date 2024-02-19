@@ -20,6 +20,7 @@ import com.c1632mjava.c1632mjava.Infrastructure.Errors.MatchNotFoundException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -193,13 +194,13 @@ public class UserServiceImpl implements UserService {
             throw new MatchNotFoundException(matchId);
         }
 
-        matchToBan.setActive(false);
-        matchRepository.save(matchToBan);
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
 
         if (!userToUpdate.getBannedUsers().contains(bannedUserId)) {
-        userToUpdate.getBannedUsers().add(bannedUserId);
-        userRepository.save(userToUpdate);
+            matchToBan.setActive(false);
+            matchRepository.save(matchToBan);
+            userToUpdate.getBannedUsers().add(bannedUserId);
+            userRepository.save(userToUpdate);
         }
         return true;
     }
@@ -220,9 +221,14 @@ public class UserServiceImpl implements UserService {
     public boolean unbanUser (Long loggedUserId, Long unbanUserId) {
         UserReadDto loggedUser = findUserById(loggedUserId); //Reemplazar luego por el user logueado.
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
-        userToUpdate.getBannedUsers().remove(unbanUserId);
-        userRepository.save(userToUpdate);
-        return true;
+        if (!userRepository.existsById(unbanUserId) ||
+                !userToUpdate.getBannedUsers().contains(unbanUserId)) {
+            throw new UserNotFoundException(unbanUserId);
+        }
+            userToUpdate.getBannedUsers().remove(unbanUserId);
+            userRepository.save(userToUpdate);
+            return true;
+        }
+
     }
 
-}
