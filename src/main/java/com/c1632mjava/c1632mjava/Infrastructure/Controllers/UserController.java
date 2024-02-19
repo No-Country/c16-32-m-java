@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -42,7 +43,7 @@ public class UserController {
                                                     UserCreateDto userCreateDto,
                                                      @RequestParam (name ="userName") String name,
                                                      @RequestParam (name ="email") String email){
-        //UserReadDto result = userService.registerUser(userCreateDto);
+
         try{
             UserCreateDto mergedUser = userCreateDto.withName(name).withEmail(email);
             return ResponseEntity.ok(authService.register(mergedUser));
@@ -50,7 +51,7 @@ public class UserController {
         catch (RuntimeException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        //return ResponseEntity.ok(result);
+
     }
 
     @PostMapping("/likedartists/{userId}")
@@ -70,7 +71,7 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<Page<UserReadDto>> findUserList (@PageableDefault(size = 10)
                                                            Pageable paging) {
-        return ResponseEntity.ok(userService.findAll(true, paging));
+        return ResponseEntity.ok(userService.findAllUsers(true, paging));
     }
 
     @GetMapping("/id/{id}")
@@ -119,7 +120,7 @@ public class UserController {
     @PutMapping("/{banningId}/unban/{unbannedUserId}")
     @Transactional
     ResponseEntity<Boolean> unbanUser (@PathVariable Long banningId,
-                                     @PathVariable Long unbannedUserId){
+                                     @PathVariable Long unbannedUserId) {
         boolean result = userService.unbanUser(banningId, unbannedUserId);
         if (result) { return ResponseEntity.ok().build(); }
         else return ResponseEntity.badRequest().build();

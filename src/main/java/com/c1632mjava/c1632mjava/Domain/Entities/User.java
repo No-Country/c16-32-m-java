@@ -42,12 +42,12 @@ public class User implements Serializable, UserDetails {
     private String currentSong;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Artist> Artists;
+    private ArrayList<Artist> Artists;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Genre> Genres;
+    private ArrayList<Genre> Genres;
 
-    private List <Long> bannedUsers = new ArrayList<>();
+    private ArrayList<Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 

@@ -24,6 +24,7 @@ public class MatchController {
     }
 
     @GetMapping("users/{userId}")
+
     public ResponseEntity<Page<MatchReadDto>> findAllMatchesByUserId(@PageableDefault(size = 10) Pageable paging,
                                                                      @PathVariable Long userId){
         return ResponseEntity.ok(this.matchService.findAllMatchesByUserId(userId, paging));

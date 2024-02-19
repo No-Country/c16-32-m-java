@@ -31,8 +31,6 @@ public class ChatServiceImpl implements ChatService {
     @Transactional
     @Override
     public Chat create(ChatCreateDto dto) {
-        final String USER_NOT_EXISTS_BY_ID_TEXT = "No existe usuario con el ID: ";
-
         if(dto == null){
             throw new ChatNotNullException("El chat no puede ser nulo.");
         }
@@ -44,7 +42,7 @@ public class ChatServiceImpl implements ChatService {
         UserReadDto senderDto = this.userService.findUserById(dto.senderId());
 
         if(senderDto == null){
-            throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.senderId());
+            throw new UserNotFoundException(dto.senderId());
         }
 
         User sender = this.userMapper.convertReadToUser(senderDto);
@@ -53,7 +51,7 @@ public class ChatServiceImpl implements ChatService {
         UserReadDto receiverDto = this.userService.findUserById(dto.receiverId());
 
         if(receiverDto == null){
-            throw new UserNotFoundException(USER_NOT_EXISTS_BY_ID_TEXT + dto.receiverId());
+            throw new UserNotFoundException(dto.receiverId());
         }
 
         User receiver = this.userMapper.convertReadToUser(receiverDto);
@@ -89,7 +87,7 @@ public class ChatServiceImpl implements ChatService {
         UserReadDto userReadDto = this.userService.findUserById(senderId);
 
         if(userReadDto == null){
-            throw new UserNotFoundException("No existe usuario con el ID: " + senderId);
+            throw new UserNotFoundException(senderId);
         }
 
         User user = this.userMapper.convertReadToUser(userReadDto);
