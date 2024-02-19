@@ -5,12 +5,15 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Distance;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatchPreferencesTest {
     /*data for testing*/
+    @Mock
+    User user;
     Long matchPreferenceId=2L;
     Long userId=8L;
     boolean female=true;
