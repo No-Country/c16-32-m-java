@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -35,17 +37,17 @@ public class UserController {
 
     @PostMapping("/register")
     @Transactional
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
                                                     UserCreateDto userCreateDto,
-                                                     @RequestParam (name ="details") String userDetails){
+                                                     @RequestParam (name ="userName") String name,
+                                                     @RequestParam (name ="email") String email){
         //UserReadDto result = userService.registerUser(userCreateDto);
         try{
-            Map<String, Object> userAttributes = new ObjectMapper()
-                    .readValue(URLDecoder.decode(userDetails, StandardCharsets.UTF_8.toString()), Map.class);
-            UserCreateDto mergedUser = userCreateDto.withEmail((String) userAttributes.get("email"));
+            UserCreateDto mergedUser = userCreateDto.withName(name).withEmail(email);
             return ResponseEntity.ok(authService.register(mergedUser));
         }
-        catch (RuntimeException | IOException e){
+        catch (RuntimeException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         //return ResponseEntity.ok(result);

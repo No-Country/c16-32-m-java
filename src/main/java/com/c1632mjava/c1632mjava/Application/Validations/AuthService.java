@@ -26,7 +26,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     // Integrar oauth 2, UserRegister debe contenter la validación por oauth2
-    public AuthResponse login(UserRegister data) {
+    public AuthResponse login(UserCreateDto data) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
         UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
         String token = jwtService.getToken(user);
@@ -46,11 +46,11 @@ public class AuthService {
                 .email(data.email())
                 .password(passwordEncoder.encode(data.password()))
                 .name(data.name())
-                .birthdate(data.birthdate())
+                .birthdate(data.birthdate()) // dato a pedir
                 .photo(data.photo())
-                .gender(data.gender())
-                .pronouns(data.pronouns())
-                .description(data.description())
+                .gender(data.gender()) // dato a pedir
+                .pronouns(data.pronouns()) // dato a pedir
+                .description(data.description()) // dato a pedir
                 .build();
         userRepository.save(user);
 

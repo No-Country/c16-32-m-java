@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
         uses = {ChatMapper.class, UserMapper.class},
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface MatchMapper {
-    @Mapping(target = "chats", ignore = true)
+    @Mapping(target = "chat", ignore = true)
     @Mapping(target = "matchId", ignore = true)
     @Mapping(target = "user1", ignore = true)
     @Mapping(target = "user2", ignore = true)
