@@ -22,11 +22,6 @@ public class ErrorManager {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(IntegrityValidation.class)
-    public ResponseEntity BusinessRulesError(Exception e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity ValidationException(Exception e) {
         return ResponseEntity.badRequest().body(e.getMessage());
@@ -55,5 +50,15 @@ public class ErrorManager {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> userNotFoundException(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(ChatNotNullException.class)
+    public ResponseEntity<String> chatNotNullException(ChatNotNullException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+    @ExceptionHandler(MatchNotNullException.class)
+    public ResponseEntity<String> matchNotNullException(MatchNotNullException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }

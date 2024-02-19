@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public record ChatReadDto(
-    Long id,
+    Long chatId,
     String lastMessage,
     LocalDateTime date,
     ArrayList<String> previousMessages,
     UserReadDto sender,
     UserReadDto receiver
-    // MatchReadDto?
 ) {
 }

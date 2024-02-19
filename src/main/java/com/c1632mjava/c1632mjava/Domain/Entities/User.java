@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="users")
@@ -20,7 +20,6 @@ import java.util.List;
 @Builder
 public class User implements Serializable, UserDetails {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -48,7 +47,7 @@ public class User implements Serializable, UserDetails {
     @ManyToMany (fetch = FetchType.EAGER)
     private List<Genre> Genres;
 
-    private List <Long> bannedUsers;
+    private List <Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 

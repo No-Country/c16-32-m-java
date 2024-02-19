@@ -19,5 +19,8 @@ public interface UserService {
     Boolean toggleUser(Long id) throws EntityNotFoundException;
     UserReadDto addLikedArtistToUser(List<ArtistDto> artistDtoList, Long userId);
     UserReadDto addLikedGenreToUser(List<GenreDto> genreDtoList, Long userId);
+    boolean banUser (Long banningUserId, Long matchId) throws EntityNotFoundException;
+    List <UserReadDto> findAllBannedByUserId(Long id) throws EntityNotFoundException;
+    boolean unbanUser (Long loggedUserId, Long unbanUserId) throws EntityNotFoundException;
 
 }
