@@ -116,4 +116,59 @@ class MatchPreferencesServiceImplTest {
         assertNotNull(result);
         assertEquals(active, result);
     }
+
+    /*negative cases*/
+    @Test
+    void createMatchPreferencesWith5EmptyParameters() {/*advertencias extrañas*/
+        /*all the variables are null*/
+        distance=null;
+        minAge=0;
+        maxAge=0;
+        userId=null;
+        compatibilityPercentage=null;
+        MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper );
+        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
+                compatibilityPercentage, longTermRelationship,justFriends, rightNow);
+        MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
+                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
+        MatchPreferencesCreateDto expectedPreferencesCreateDto=new MatchPreferencesCreateDto(userId, female, male, other, minAge,
+                maxAge, distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow);
+
+        when(matchPreferencesMapper.convertCreateToMatchPreferences(expectedPreferencesCreateDto)).
+                thenReturn(expectedMatchPreferences);
+        when(matchPreferencesRepository.save(expectedMatchPreferences)).thenReturn(expectedMatchPreferences);
+        when(matchPreferencesMapper.convertMatchPreferencesToRead(expectedMatchPreferences)).thenReturn(expectedReadDto);
+
+        MatchPreferencesReadDto result = testing.createMatchPreferences(expectedPreferencesCreateDto);
+        assertNotNull(result);
+        assertEquals(expectedReadDto, result);
+    }
+
+   @Test
+   void updateMatchPreferencesWith5EmptyParameters() {/*advertencias extrañas*/
+        MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper);
+        /*I decided to change minAge, maxAge, longTermRelationship*/
+        userId=0L;
+        matchPreferenceId=0L;
+        minAge=0;
+        maxAge=0;
+        distance= null;
+        compatibilityPercentage=null;
+        longTermRelationship=true;
+        MatchPreferences oldMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
+                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
+
+        MatchPreferencesUpdateDto expectedUpdate= new MatchPreferencesUpdateDto(matchPreferenceId, female, male, other, minAge, maxAge,
+                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow);
+        MatchPreferences newMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
+                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
+        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
+                compatibilityPercentage, longTermRelationship,justFriends, rightNow);
+
+        when(matchPreferencesRepository.findByUserId(expectedUpdate.userId())).thenReturn(Optional.of(oldMatchPreferences));
+        when(matchPreferencesMapper.convertMatchPreferencesToRead(newMatchPreferences)).thenReturn(expectedReadDto);
+        MatchPreferencesReadDto result=matchPreferencesService.updateMatchPreferences(expectedUpdate);
+        assertNotNull(result);
+        assertEquals(expectedReadDto, result);
+    }
 }
