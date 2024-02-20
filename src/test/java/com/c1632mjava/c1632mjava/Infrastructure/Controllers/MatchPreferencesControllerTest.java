@@ -138,4 +138,15 @@ class MatchPreferencesControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         verify(matchPreferencesService, times(1)).toggleMatchPreferences(id);
     }
+
+    @Test
+    void falseToggleMatchPreferences() {
+        Long id = 4L;
+        boolean toggleResult = false;
+
+        when(matchPreferencesService.toggleMatchPreferences(id)).thenReturn(toggleResult);
+        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(id);
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+        verify(matchPreferencesService, times(1)).toggleMatchPreferences(id);
+    }
 }
