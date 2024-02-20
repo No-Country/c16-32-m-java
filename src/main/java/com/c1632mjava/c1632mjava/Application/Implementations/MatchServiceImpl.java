@@ -70,7 +70,6 @@ public class MatchServiceImpl implements MatchService {
     @Transactional
     @Override
     public Match createMatch(MatchCreateDto dto) {
-
         if(dto == null){
             throw new MatchNotNullException();
         }
@@ -128,11 +127,11 @@ public class MatchServiceImpl implements MatchService {
 
     private void validId(Long id, String subject){
         if(id == null){
-            throw new IdNotNullException("El ID del " + subject + " no puede ser nulo.");
+            throw new IdNotNullException(subject);
         }
 
         if(id < 1){
-            throw new IdLessThanOneException("El ID del " + subject + " no puede ser menor a 1.");
+            throw new IdLessThanOneException(subject);
         }
     }
 }

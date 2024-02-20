@@ -6,10 +6,12 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.ChatMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.UserMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Chat;
+import com.c1632mjava.c1632mjava.Domain.Entities.Match;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.ChatRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +21,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -38,10 +42,33 @@ class ChatServiceImplTest {
     @Autowired
     private ChatServiceImpl chatService;
 
+    private Long chatId;
+    private String lastMessage;
+    private LocalDateTime date;
+    private Boolean active;
+    private ArrayList<String> previousMessages;
+    private User sender;
+    private User receiver;
+    private Match match;
+
+    @BeforeEach
+    void setUp() {
+        this.chatId = 1L;
+        this.lastMessage = "Todo bien por suerte";
+        this.date = LocalDateTime.now();
+        this.active = Boolean.TRUE;
+        this.previousMessages = new ArrayList<>();
+        this.previousMessages.add("Hola!");
+        this.previousMessages.add("Como estas?");
+        this.sender = new User();
+        this.receiver = new User();
+        this.match = new Match();
+    }
+
     @Test
     void createChatSuccessful() {
         //GIVEN
-        ChatCreateDto in = new ChatCreateDto("Mañana a las 9AM", null, 1L, 2L);
+        ChatCreateDto in = new ChatCreateDto(this.lastMessage, this.previousMessages, 1L, 2L);
 
         UserReadDto senderDto = new UserReadDto(1L, "Leonardo", null, null, null, null, null, null, null, null, null, null);
         UserReadDto receiverDto = new UserReadDto(2L, "Jorge", null, null, null, null, null, null, null, null, null, null);
@@ -70,7 +97,7 @@ class ChatServiceImplTest {
         //THEN
         assertEquals(expected, actual);
         verify(this.userService, times(2)).findUserById(anyLong());
-        verify(this.chatRepository).save(any(Chat.class));
+        verify(this.chatRepository, times(1)).save(any(Chat.class));
     }
 
     @Test
@@ -88,7 +115,7 @@ class ChatServiceImplTest {
 
     @Test
     void createChatThrowUserNotFoundExceptionWhenSenderNotExists() {
-        ChatCreateDto in = new ChatCreateDto("Como estas?", null, 1L, null);
+        ChatCreateDto in = new ChatCreateDto(this.lastMessage, this.previousMessages, 1L, 2L);
 
         when(this.userService.findUserById(anyLong())).thenReturn(null);
 
@@ -96,13 +123,13 @@ class ChatServiceImplTest {
         assertThrows(UserNotFoundException.class, () -> {
             this.chatService.create(in);
         });
-        verify(this.userService).findUserById(anyLong());
+        verify(this.userService, times(1)).findUserById(anyLong());
         verify(this.chatRepository, never()).save(any(Chat.class));
     }
 
     @Test
     void createChatThrowUserNotFoundExceptionWhenReceiverNotExists() {
-        ChatCreateDto in = new ChatCreateDto("Como estas?", null, 1L, null);
+        ChatCreateDto in = new ChatCreateDto(this.lastMessage, this.previousMessages, 1L, 2L);
 
         when(this.userService.findUserById(anyLong()))
                 .thenAnswer(invocation -> {
@@ -118,15 +145,15 @@ class ChatServiceImplTest {
         assertThrows(UserNotFoundException.class, () -> {
             this.chatService.create(in);
         });
-        verify(this.userService).findUserById(anyLong());
+        verify(this.userService, times(2)).findUserById(anyLong());
         verify(this.chatRepository, never()).save(any(Chat.class));
     }
 
     @Test
     void findChatByIdSuccessful() {
         //GIVEN
-        Long chatId = 1L;
-        Optional<Chat> optionalChat = Optional.of(new Chat(1L, "Hola!", null, Boolean.TRUE, null, null,null, null));
+        Long chatId = this.chatId;
+        Optional<Chat> optionalChat = Optional.of(new Chat(this.chatId, this.lastMessage, this.date, this.active, this.previousMessages, this.sender,this.receiver, this.match));
         ChatReadDto expected = this.chatMapper.convertChatToRead(optionalChat.get());
 
         when(this.chatRepository.findById(anyLong())).thenReturn(optionalChat);
@@ -136,13 +163,13 @@ class ChatServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
-        verify(this.chatRepository).findById(anyLong());
+        verify(this.chatRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void findChatByIdThrowChatNotFoundExceptionWhenChatNotExists() {
         //GIVEN
-        Long chatId = 1L;
+        Long chatId = this.chatId;
         Optional<Chat> optionalChat = Optional.empty();
 
         when(this.chatRepository.findById(anyLong())).thenReturn(optionalChat);
@@ -151,14 +178,14 @@ class ChatServiceImplTest {
         assertThrows(ChatNotFoundException.class, () -> {
             this.chatService.findById(chatId);
         });
-        verify(this.chatRepository).findById(anyLong());
+        verify(this.chatRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void findChatByIdThrowChatNotFoundExceptionWhenActiveIsFalse() {
         //GIVEN
-        Long chatId = 1L;
-        Optional<Chat> optionalChat = Optional.of(new Chat(1L, "Hola!", null, Boolean.FALSE, null, null,null, null));
+        Long chatId = this.chatId;
+        Optional<Chat> optionalChat = Optional.of(new Chat(this.chatId, this.lastMessage, this.date, Boolean.FALSE, this.previousMessages, this.sender,this.receiver, this.match));
 
         when(this.chatRepository.findById(anyLong())).thenReturn(optionalChat);
 
@@ -166,7 +193,7 @@ class ChatServiceImplTest {
         assertThrows(ChatNotFoundException.class, () -> {
             this.chatService.findById(chatId);
         });
-        verify(this.chatRepository).findById(anyLong());
+        verify(this.chatRepository, times(1)).findById(anyLong());
     }
 
     @Test
@@ -202,8 +229,8 @@ class ChatServiceImplTest {
         UserReadDto userReadDto = new UserReadDto(1L, "Leonardo", null, null, null, "El", null, null, null, null, null, null);
         Page<Chat> chats = new PageImpl<>(
                 Arrays.asList(
-                        new Chat(1L, "Hola!", null, Boolean.TRUE, null, null, null, null),
-                        new Chat(2L, "Adios!", null, Boolean.TRUE, null, null, null, null)
+                        new Chat(1L, this.lastMessage, this.date, this.active, this.previousMessages, this.sender, this.receiver, this.match),
+                        new Chat(2L, this.lastMessage, this.date, this.active, this.previousMessages, this.sender, this.receiver, this.match)
                 )
         );
 
@@ -217,8 +244,9 @@ class ChatServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
-        verify(this.userService).findUserById(anyLong());
-        verify(this.chatRepository).findAllBySenderAndActiveIsTrue(any(User.class), any(Pageable.class));
+        assertEquals(expected.getSize(), actual.getSize());
+        verify(this.userService, times(1)).findUserById(anyLong());
+        verify(this.chatRepository, times(1)).findAllBySenderAndActiveIsTrue(any(User.class), any(Pageable.class));
     }
 
     @Test
@@ -233,7 +261,7 @@ class ChatServiceImplTest {
         assertThrows(UserNotFoundException.class, () -> {
             this.chatService.findAllBySenderId(senderId, paging);
         });
-        verify(this.userService).findUserById(anyLong());
+        verify(this.userService, times(1)).findUserById(anyLong());
         verify(this.chatRepository, never()).findAllBySenderAndActiveIsTrue(any(User.class), any(Pageable.class));
     }
 
