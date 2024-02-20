@@ -15,6 +15,7 @@ public interface MatchMapper {
     @Mapping(target = "matchId", ignore = true)
     @Mapping(target = "user1", ignore = true)
     @Mapping(target = "user2", ignore = true)
-    Match convertCreateToMatch(MatchCreateDto dto);
+    Match convertCreateToMatch(MatchCreateDto createDto);
     MatchReadDto convertMatchToRead(Match match);
+    Match convertReadToMatch(MatchReadDto readDto);
 }

@@ -7,10 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -23,9 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -69,7 +66,9 @@ public class SpotifyController {
     private SpotifyUser getUserProfileFromSpotify(String accesToken){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accesToken);
+        headers.add("Authorization", "Bearer " + accesToken);
         HttpEntity<String> entity = new HttpEntity<>(headers);
+        RequestEntity<Void> rEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create("https://api.spotify.com/v1/me"));
         ResponseEntity<SpotifyUser> response = restTemplate.exchange(spotifyUserInfoUri,
                 HttpMethod.GET,
                 entity,

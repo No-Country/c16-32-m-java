@@ -10,7 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.util.ArrayList;
+>>>>>>> 38e00a1a9100af4032e05c5b3e190178c6cba873
 
 @Entity
 @Table(name="users")
@@ -20,7 +24,6 @@ import java.util.List;
 @Builder
 public class User implements Serializable, UserDetails {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -43,12 +46,12 @@ public class User implements Serializable, UserDetails {
     private String currentSong;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Artist> Artists;
+    private ArrayList<Artist> Artists;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Genre> Genres;
+    private ArrayList<Genre> Genres;
 
-    private List <Long> bannedUsers;
+    private ArrayList<Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 
