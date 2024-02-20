@@ -14,6 +14,7 @@ import com.c1632mjava.c1632mjava.Domain.Repositories.MatchRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -46,11 +48,31 @@ class MatchServiceImplTest {
     @Autowired
     private MatchServiceImpl matchService;
 
+    private Long matchId;
+    private Float compatibilityPercentage;
+    private LocalDateTime dateOfMatch;
+    private Boolean active;
+    private User user1;
+    private User user2;
+    private Chat chat;
+
+    @BeforeEach
+    void setUp() {
+        this.matchId = 1L;
+        this.compatibilityPercentage = 67.9F;
+        this.dateOfMatch = LocalDateTime.now();
+        this.active = Boolean.TRUE;
+        this.user1 = new User();
+        this.user2 = new User();
+        this.chat = new Chat();
+    }
+
     @Test
     void findMatchByIdSuccessful() {
         //GIVEN
-        Long matchId = 1L;
-        Optional<Match> optionalMatch = Optional.of(new Match(1L, 45.6F, null, Boolean.TRUE, null, null, null));
+        Long matchId = this.matchId;
+        Optional<Match> optionalMatch = Optional.of
+                (new Match(this.matchId, this.compatibilityPercentage, this.dateOfMatch, this.active, this.user1, this.user2, this.chat));
         MatchReadDto expected = this.matchMapper.convertMatchToRead(optionalMatch.get());
 
         when(this.matchRepository.findById(anyLong())).thenReturn(optionalMatch);
@@ -60,13 +82,13 @@ class MatchServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void findMatchByIdThrowMatchNotFoundExceptionWhenMatchNotExists() {
         //GIVEN
-        Long matchId = 1L;
+        Long matchId = this.matchId;
 
         when(this.matchRepository.findById(anyLong())).thenReturn(Optional.empty());
 
@@ -74,14 +96,14 @@ class MatchServiceImplTest {
         assertThrows(MatchNotFoundException.class, () -> {
             this.matchService.findMatchById(matchId);
         });
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void findMatchByIdThrowMatchNotFoundExceptionWhenActiveIsFalse() {
         //GIVEN
-        Long matchId = 1L;
-        Optional<Match> optionalMatch = Optional.of(new Match(1L, 45.6F, null, Boolean.FALSE, null, null, null));
+        Long matchId = this.matchId;
+        Optional<Match> optionalMatch = Optional.of(new Match(this.matchId, this.compatibilityPercentage, this.dateOfMatch, Boolean.FALSE, this.user1, this.user2, this.chat));
 
         when(this.matchRepository.findById(anyLong())).thenReturn(optionalMatch);
 
@@ -89,7 +111,7 @@ class MatchServiceImplTest {
         assertThrows(MatchNotFoundException.class, () -> {
             this.matchService.findMatchById(matchId);
         });
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
@@ -100,8 +122,8 @@ class MatchServiceImplTest {
         UserReadDto userReadDto = new UserReadDto(1L, "Leonardo", null, null, null, "El", null, null, null, null, null, null);
         Page<Match> matches = new PageImpl<>(
                 Arrays.asList(
-                        new Match(1L, 45.7F, null, Boolean.TRUE, null, null, null),
-                        new Match(2L, 45.7F, null, Boolean.TRUE, null, null, null)
+                        new Match(1L, this.compatibilityPercentage, this.dateOfMatch, this.active, this.user1, this.user2, this.chat),
+                        new Match(2L, this.compatibilityPercentage, this.dateOfMatch, this.active, this.user1, this.user2, this.chat)
                 )
         );
 
@@ -117,8 +139,9 @@ class MatchServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
-        verify(this.userService).findUserById(anyLong());
-        verify(this.matchRepository)
+        assertEquals(expected.getSize(), actual.getSize());
+        verify(this.userService, times(1)).findUserById(anyLong());
+        verify(this.matchRepository, times(1))
                 .findAllByUser1AndActiveIsTrueOrUser2AndActiveIsTrue(any(User.class), any(User.class), any(Pageable.class));
     }
 
@@ -135,13 +158,13 @@ class MatchServiceImplTest {
         assertThrows(UserNotFoundException.class, () -> {
             this.matchService.findAllMatchesByUserId(userId, paging);
         });
-        verify(this.userService).findUserById(anyLong());
+        verify(this.userService, times(1)).findUserById(anyLong());
     }
 
     @Test
     void createMatchSuccessful() {
         //GIVEN
-        MatchCreateDto in = new MatchCreateDto(56.8F, 1L, 2L);
+        MatchCreateDto in = new MatchCreateDto(this.compatibilityPercentage, 1L, 2L);
         UserReadDto userReadDto1 = new UserReadDto(1L, "Francisco", null, null, null, null, null, null, null, null, null, null);
         UserReadDto userReadDto2 = new UserReadDto(2L, "Tomas", null, null, null, null, null, null, null, null, null, null);
         ChatCreateDto chatCreateDto = new ChatCreateDto("Como estas?", null, 1L, 2L);
@@ -171,8 +194,8 @@ class MatchServiceImplTest {
         //THEN
         assertEquals(expected, actual);
         verify(this.userService, times(2)).findUserById(anyLong());
-        verify(this.chatService).create(any(ChatCreateDto.class));
-        verify(this.matchRepository).save(any(Match.class));
+        verify(this.chatService, times(1)).create(any(ChatCreateDto.class));
+        verify(this.matchRepository, times(1)).save(any(Match.class));
     }
 
     @Test
@@ -192,7 +215,7 @@ class MatchServiceImplTest {
     @Test
     void createMatchThrowUserNotFoundExceptionWhenUser1NotExists() {
         //GIVEN
-        MatchCreateDto in = new MatchCreateDto(56.8F, 1L, null);
+        MatchCreateDto in = new MatchCreateDto(this.compatibilityPercentage, 1L, 2L);
         UserReadDto userReadDto = null;
 
         when(this.userService.findUserById(anyLong())).thenReturn(userReadDto);
@@ -209,7 +232,7 @@ class MatchServiceImplTest {
     @Test
     void createMatchThrowUserNotFoundExceptionWhenUser2NotExists() {
         //GIVEN
-        MatchCreateDto in = new MatchCreateDto(56.8F, 1L, 2L);
+        MatchCreateDto in = new MatchCreateDto(this.compatibilityPercentage, 1L, 2L);
 
         when(this.userService.findUserById(anyLong()))
                 .thenAnswer(invocation -> {
@@ -233,9 +256,9 @@ class MatchServiceImplTest {
     @Test
     void deleteMatchSuccessful() {
         //GIVEN
-        Long matchId = 1L;
+        Long matchId = this.matchId;
         Chat chat = new Chat(1L, "Adios", null, Boolean.TRUE, null, null, null, null);
-        Optional<Match> optionalMatch = Optional.of(new Match(1L, 45.6F, null, Boolean.TRUE, null, null, chat));
+        Optional<Match> optionalMatch = Optional.of(new Match(this.matchId, this.compatibilityPercentage, this.dateOfMatch, this.active, this.user1, this.user2, chat));
 
         when(this.matchRepository.findById(anyLong())).thenReturn(optionalMatch);
 
@@ -243,13 +266,13 @@ class MatchServiceImplTest {
         this.matchService.deleteMatch(matchId);
 
         //THEN
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void deleteMatchThrowMatchNotFoundExceptionWhenMatchNotExists() {
         //GIVEN
-        Long matchId = 1L;
+        Long matchId = this.matchId;
 
         when(this.matchRepository.findById(anyLong())).thenReturn(Optional.empty());
 
@@ -257,14 +280,14 @@ class MatchServiceImplTest {
         assertThrows(MatchNotFoundException.class, () -> {
             this.matchService.deleteMatch(matchId);
         });
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
     void deleteMatchThrowMatchNotFoundExceptionWhenActiveIsFalse() {
         //GIVEN
-        Long matchId = 1L;
-        Optional<Match> optionalMatch = Optional.of(new Match(1L, 45.6F, null, Boolean.FALSE, null, null, null));
+        Long matchId = this.matchId;
+        Optional<Match> optionalMatch = Optional.of(new Match(this.matchId, this.compatibilityPercentage, this.dateOfMatch, Boolean.FALSE, this.user1, this.user2, this.chat));
 
         when(this.matchRepository.findById(anyLong())).thenReturn(optionalMatch);
 
@@ -272,7 +295,7 @@ class MatchServiceImplTest {
         assertThrows(MatchNotFoundException.class, () -> {
             this.matchService.deleteMatch(matchId);
         });
-        verify(this.matchRepository).findById(anyLong());
+        verify(this.matchRepository, times(1)).findById(anyLong());
     }
 
     @Test
