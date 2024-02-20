@@ -27,6 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 //import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder.content;
 
 import static org.mockito.Mockito.*;
@@ -67,6 +69,7 @@ class MatchPreferencesControllerTest {
     @BeforeEach
     void setUp() {
         objectMapper=new ObjectMapper();
+        matchPreferencesController=new MatchPreferencesController(matchPreferencesService);
 
     }
     @Test
@@ -124,46 +127,61 @@ class MatchPreferencesControllerTest {
         //verify(matchPreferencesService.findPreferencesByUserId(userId));
     }
 
-    /*@Test
+    @Test
     void updateMatchPreferences() throws Exception {
         MatchPreferencesReadDto matchPreferencesReadDto=new MatchPreferencesReadDto(female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship,justFriends, rightNow);
+
+        boolean female=false;
+        boolean male=true;
+        boolean other=false;
+        int minAge=22;
+        int maxAge=28;
+
         MatchPreferencesUpdateDto matchPreferencesUpdateDto=new MatchPreferencesUpdateDto(userId,female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship,justFriends, rightNow);
 
         when(matchPreferencesService.updateMatchPreferences(any(MatchPreferencesUpdateDto.class)))
                 .thenReturn(matchPreferencesReadDto);
 
-        mvc.perform(put("/preferences")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(matchPreferencesUpdateDto)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.female").value(false))
-                .andExpect(jsonPath("$.male").value(false));
+        String updateContent = objectMapper.writeValueAsString(matchPreferencesUpdateDto);
+
+        MockHttpServletRequestBuilder mockRequest= MockMvcRequestBuilders.put("/preferences")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(updateContent);
+
+        mvc.perform(mockRequest).andExpect(status().isOk())
+                .andExpect(jsonPath("$.female").value(matchPreferencesReadDto.female()))
+                .andExpect(jsonPath("$.male").value(matchPreferencesReadDto.male()))
+                .andExpect(jsonPath("$.other").value(matchPreferencesReadDto.other()))
+                .andExpect(jsonPath("$.minAge").value(matchPreferencesReadDto.minAge()))
+                .andExpect(jsonPath("$.maxAge").value(matchPreferencesReadDto.maxAge()))
+                .andExpect(jsonPath("$.distance").value(matchPreferencesReadDto.distance().name()))
+                .andExpect(jsonPath("$.compatibilityPercentage").value(matchPreferencesReadDto.compatibilityPercentage().name()))
+                .andExpect(jsonPath("$.longTermRelationship").value(matchPreferencesReadDto.longTermRelationship()))
+                .andExpect(jsonPath("$.justFriends").value(matchPreferencesReadDto.justFriends()))
+                .andExpect(jsonPath("$.rightNow").value(matchPreferencesReadDto.rightNow()));
         verify(matchPreferencesService).updateMatchPreferences(matchPreferencesUpdateDto);
-    }*/
-
-
-    @Test
-    void toggleMatchPreferences() {//null pointer exception
-        Long id = 4L;
-        boolean toggleResult = true;
-
-        when(matchPreferencesService.toggleMatchPreferences(id)).thenReturn(toggleResult);
-        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(id);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        verify(matchPreferencesService, times(1)).toggleMatchPreferences(id);
     }
 
+
     @Test
-    void falseToggleMatchPreferences() {//nullpointer exception
-        Long id = 4L;
+    void toggleMatchPreferences() {
+        boolean toggleResult = true;
+
+        when(matchPreferencesService.toggleMatchPreferences(userId)).thenReturn(toggleResult);
+        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(userId);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        verify(matchPreferencesService, times(1)).toggleMatchPreferences(userId);
+    }
+    @Test
+    void falseToggleMatchPreferences() {
         boolean toggleResult = false;
 
-        when(matchPreferencesService.toggleMatchPreferences(id)).thenReturn(toggleResult);
-        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(id);
+        when(matchPreferencesService.toggleMatchPreferences(userId)).thenReturn(toggleResult);
+        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(userId);
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
-        verify(matchPreferencesService, times(1)).toggleMatchPreferences(id);
+        verify(matchPreferencesService, times(1)).toggleMatchPreferences(userId);
     }
 }
