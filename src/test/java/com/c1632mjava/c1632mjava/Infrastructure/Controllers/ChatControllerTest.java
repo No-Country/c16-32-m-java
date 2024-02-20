@@ -7,12 +7,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -24,7 +27,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(ChatController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WithMockUser
+@AutoConfigureJsonTesters
 class ChatControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -48,7 +54,7 @@ class ChatControllerTest {
         this.previousMessages = new ArrayList<>();
         this.previousMessages.add("Cuidate, hasta la proxima!");
         this.chatId = 1L;
-        this.date = LocalDateTime.now();
+        this.date = null;
         this.sender = null;
         this.receiver = null;
     }

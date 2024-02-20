@@ -8,12 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -24,7 +27,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(MatchController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WithMockUser
+@AutoConfigureJsonTesters
 class MatchControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -46,7 +52,7 @@ class MatchControllerTest {
         this.url = "/matches";
         this.compatibilityPercentage = 78.9F;
         this.matchId = 1L;
-        this.dateOfMatch = LocalDateTime.now();
+        this.dateOfMatch = null;
         this.chat = null;
         this.user1 = null;
         this.user2 = null;

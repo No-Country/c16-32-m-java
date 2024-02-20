@@ -8,21 +8,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(ReportedMessageController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WithMockUser
+@AutoConfigureJsonTesters
 class ReportedMessageControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -45,7 +49,7 @@ class ReportedMessageControllerTest {
         this.message = "Me sentí ofendido";
         this.chatId = 1L;
         this.reportedMessageId = 1L;
-        this.date = LocalDateTime.now();
+        this.date = null;
         this.reviewed = Boolean.FALSE;
         this.chat = null;
     }
@@ -72,7 +76,7 @@ class ReportedMessageControllerTest {
     @Test
     void createReportedMessageThrowMethodArgumentNotValidException() throws Exception {
         //GIVEN
-        ReportedMessageCreateDto in = new ReportedMessageCreateDto(this.message, this.chatId);
+        ReportedMessageCreateDto in = new ReportedMessageCreateDto(null, null);
 
         //WHEN
         MvcResult result = this.mvc.perform(post(this.url)
