@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@WithMockUser
 @WebMvcTest(MatchController.class)
-class MatchControllerTest {
+public class MatchControllerTest {
     @Autowired
     private MockMvc mvc;
     @MockBean
@@ -39,7 +39,7 @@ class MatchControllerTest {
     }
 
     @Test
-    void findMatchById() throws Exception {
+    public void findMatchById() throws Exception {
         //GIVEN
         Long matchId = 1L;
         MatchReadDto out = new MatchReadDto(1L, 98.9F, null, null, null, null);
