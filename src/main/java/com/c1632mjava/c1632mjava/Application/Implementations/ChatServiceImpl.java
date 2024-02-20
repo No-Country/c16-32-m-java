@@ -32,7 +32,7 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public Chat create(ChatCreateDto dto) {
         if(dto == null){
-            throw new ChatNotNullException("El chat no puede ser nulo.");
+            throw new ChatNotNullException();
         }
 
         Chat chat = this.chatMapper.convertCreateToChat(dto);
@@ -64,16 +64,16 @@ public class ChatServiceImpl implements ChatService {
     @Transactional(readOnly = true)
     @Override
     public ChatReadDto findById(Long id) {
-        this.validId(id);
+        this.validId(id, "chat");
 
         Optional<Chat> optionalChat = this.chatRepository.findById(id);
 
         if(optionalChat.isEmpty()){
-            throw new ChatNotFoundException("No existe chat con el ID: " + id);
+            throw new ChatNotFoundException(id);
         }
 
         if(optionalChat.get().getActive().equals(Boolean.FALSE)){
-            throw new ChatNotFoundException("No existe chat con el ID: " + id);
+            throw new ChatNotFoundException(id);
         }
 
         return this.chatMapper.convertChatToRead(optionalChat.get());
@@ -82,7 +82,7 @@ public class ChatServiceImpl implements ChatService {
     @Transactional(readOnly = true)
     @Override
     public Page<ChatReadDto> findAllBySenderId(Long senderId, Pageable paging) {
-        this.validId(senderId);
+        this.validId(senderId, "usuario");
 
         UserReadDto userReadDto = this.userService.findUserById(senderId);
 
@@ -97,13 +97,13 @@ public class ChatServiceImpl implements ChatService {
         return chats.map(this.chatMapper::convertChatToRead);
     }
 
-    private void validId(Long id){
+    private void validId(Long id, String subject){
         if(id == null){
-            throw new IdNotNullException("El ID del chat no puede ser nulo.");
+            throw new IdNotNullException(subject);
         }
 
         if(id < 1){
-            throw new IdLessThanOneException("El ID del chat no puede ser menor a 1.");
+            throw new IdLessThanOneException(subject);
         }
     }
 }

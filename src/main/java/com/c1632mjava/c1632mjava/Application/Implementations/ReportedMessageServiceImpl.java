@@ -35,7 +35,7 @@ public class ReportedMessageServiceImpl implements ReportedMessageService {
         Optional<Chat> optionalChat = this.chatRepository.findById(dto.chatId());
 
         if (optionalChat.isEmpty()) {
-            throw new ChatNotFoundException("No existe chat con el ID: " + dto.chatId());
+            throw new ChatNotFoundException(dto.chatId());
         }
 
         Chat chat = optionalChat.get();

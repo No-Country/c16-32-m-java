@@ -10,6 +10,7 @@ import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.ChatRepository;
 import com.c1632mjava.c1632mjava.Domain.Repositories.ReportedMessageRepository;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.ChatNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,22 +34,40 @@ class ReportedMessageServiceImplTest {
     @Autowired
     private ReportedMessageServiceImpl reportedMessageService;
 
+    private Long reportedMessageId;
+    private String message;
+    private LocalDateTime date;
+    private Boolean reviewed;
+    private Chat chat;
+    private User sender;
+    private User receiver;
+
+    @BeforeEach
+    void setUp() {
+        this.reportedMessageId = 1L;
+        this.message = "Me sentí ofendido.";
+        this.date = LocalDateTime.now();
+        this.reviewed = Boolean.FALSE;
+        this.chat = new Chat();
+        this.chat.setChatId(1L);
+        this.chat.setLastMessage("Boludito");
+        this.chat.setDate(LocalDateTime.now());
+        this.chat.setActive(Boolean.TRUE);
+        this.chat.setPreviousMessages(new ArrayList<>());
+        this.chat.setSender(new User());
+        this.chat.setReceiver(new User());
+        this.chat.setMatch(new Match());
+        this.sender = new User();
+        this.receiver = new User();
+    }
+
     @Test
     void createReportedMessageSuccessful() {
         //GIVEN
-        ReportedMessageCreateDto in = new ReportedMessageCreateDto("Me sentí ofendido por este mensaje.", 1L);
+        ReportedMessageCreateDto in = new ReportedMessageCreateDto(this.message, this.chat.getChatId());
         ReportedMessage reportedMessage = this.reportedMessageMapper.convertCreateToReported(in);
-        Chat chat = new Chat();
-        chat.setChatId(1L);
-        chat.setLastMessage("Boludito");
-        chat.setDate(LocalDateTime.now());
-        chat.setActive(Boolean.TRUE);
-        chat.setPreviousMessages(new ArrayList<>());
-        chat.setSender(new User());
-        chat.setReceiver(new User());
-        chat.setMatch(new Match());
 
-        when(this.chatRepository.findById(anyLong())).thenReturn(Optional.of(chat));
+        when(this.chatRepository.findById(anyLong())).thenReturn(Optional.of(this.chat));
         when(this.reportedMessageRepository.save(any(ReportedMessage.class))).thenReturn(reportedMessage);
 
         ReportedMessageReadDto expected = this.reportedMessageMapper.convertReportedToRead(reportedMessage);
@@ -58,20 +77,23 @@ class ReportedMessageServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
-        verify(this.chatRepository).findById(anyLong());
-        verify(this.reportedMessageRepository).save(any(ReportedMessage.class));
+
+        verify(this.chatRepository, times(1)).findById(anyLong());
+        verify(this.reportedMessageRepository, times(1)).save(any(ReportedMessage.class));
     }
 
     @Test
     void createReportedMessageThrowChatNotFoundException() {
         //GIVEN
-        ReportedMessageCreateDto in = new ReportedMessageCreateDto("Me sentí ofendido por este mensaje.", 1L);
+
+        ReportedMessageCreateDto in = new ReportedMessageCreateDto(this.message, this.chat.getChatId());
 
         //WHEN AND THEN
         assertThrows(ChatNotFoundException.class, () -> {
             this.reportedMessageService.create(in);
         });
-        verify(this.chatRepository).findById(anyLong());
+
+        verify(this.chatRepository, times(1)).findById(anyLong());
         verify(this.reportedMessageRepository, never()).save(any(ReportedMessage.class));
     }
 }
