@@ -39,6 +39,6 @@ public class MatchPreferences implements Serializable {
     private boolean justFriends;
     private boolean rightNow;
 
-    private boolean active; //TODO. Debería desactivarse cuando pasa a false el User anexo.
+    private boolean active;
 
 }

@@ -20,13 +20,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthService {
 
-   /* private final UserRepository userRepository;
+    private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     // Integrar oauth 2, UserRegister debe contenter la validación por oauth2
-    public AuthResponse login(UserRegister data) {
+
+    public AuthResponse login(UserCreateDto data) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
         UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
         String token = jwtService.getToken(user);
@@ -57,6 +58,6 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
                 .build();
+    }
 
-    }*/
 }

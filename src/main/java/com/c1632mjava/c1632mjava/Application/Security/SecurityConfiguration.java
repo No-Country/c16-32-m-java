@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(ologin ->
                         ologin.authorizationEndpoint(aEndpoint ->
-                                        aEndpoint.baseUri("/oauth/spotify"))
+                                aEndpoint.baseUri("/oauth/spotify"))
                                 .defaultSuccessUrl("/users/register"))
                 .cors(Customizer.withDefaults())
                 .headers(headers -> headers.xssProtection(Customizer.withDefaults()))
