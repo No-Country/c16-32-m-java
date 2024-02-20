@@ -30,7 +30,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+   /* private final UserService userService;
     private final AuthService authService;
 
     @PostMapping("/register")
@@ -97,5 +97,5 @@ public class UserController {
         } else {
             return ResponseEntity.ok().build();
         }
-    }
+    }*/
 }

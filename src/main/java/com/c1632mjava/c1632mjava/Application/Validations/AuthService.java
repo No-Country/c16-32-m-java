@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
+   /* private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -58,5 +58,5 @@ public class AuthService {
                 .token(jwtService.getToken(user))
                 .build();
 
-    }
+    }*/
 }

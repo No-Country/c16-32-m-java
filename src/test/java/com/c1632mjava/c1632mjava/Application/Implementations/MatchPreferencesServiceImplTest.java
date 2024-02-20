@@ -8,6 +8,7 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Enums.CompatibilityPercentage;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Distance;
 import com.c1632mjava.c1632mjava.Domain.Entities.MatchPreferences;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchPreferencesRepository;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MatchPreferencesServiceImplTest {
@@ -106,15 +107,18 @@ class MatchPreferencesServiceImplTest {
         assertEquals(expectedReadDto, result);
     }
     @Test
-    void toggleMatchPreferences() {/*fail*/
+    void toggleMatchPreferences() throws UserNotFoundException {/*fail*/
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
 
         when(matchPreferencesRepository.findByUserId(userId)).thenReturn(Optional.of(expectedMatchPreferences));
-        //when(matchPreferencesRepository.isActive()).thenReturn(active);
-        Boolean result=matchPreferencesService.toggleMatchPreferences(userId);
+
+        // Act
+        Boolean result = matchPreferencesService.toggleMatchPreferences(userId);
+
+        // Assert
         assertNotNull(result);
-        assertEquals(active, result);
+        assertEquals(!expectedMatchPreferences.isActive(), result);
     }
 
     /*negative cases*/
@@ -165,10 +169,14 @@ class MatchPreferencesServiceImplTest {
         MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
                 compatibilityPercentage, longTermRelationship,justFriends, rightNow);
 
-        when(matchPreferencesRepository.findByUserId(expectedUpdate.userId())).thenReturn(Optional.of(oldMatchPreferences));
-        when(matchPreferencesMapper.convertMatchPreferencesToRead(newMatchPreferences)).thenReturn(expectedReadDto);
-        MatchPreferencesReadDto result=matchPreferencesService.updateMatchPreferences(expectedUpdate);
-        assertNotNull(result);
-        assertEquals(expectedReadDto, result);
+       when(matchPreferencesRepository.findByUserId(userId))
+               .thenReturn(Optional.of(newMatchPreferences));
+
+       Boolean result = matchPreferencesService.toggleMatchPreferences(userId);
+
+       verify(matchPreferencesRepository, times(1)).findByUserId(userId);
+       verify(matchPreferencesRepository, times(1)).save(any(MatchPreferences.class));
+
+       assertEquals(!newMatchPreferences.isActive(), result);
     }
 }
