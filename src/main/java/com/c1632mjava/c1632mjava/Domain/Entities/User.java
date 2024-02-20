@@ -11,10 +11,14 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 =======
 import java.util.ArrayList;
 >>>>>>> 38e00a1a9100af4032e05c5b3e190178c6cba873
+=======
+import java.util.ArrayList;
+>>>>>>> a6828fe703a934cb57e363190eed89caf731f4b9
 
 @Entity
 @Table(name="users")
