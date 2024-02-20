@@ -106,7 +106,7 @@ class MatchPreferencesServiceImplTest {
         assertEquals(expectedReadDto, result);
     }
     @Test
-    void toggleMatchPreferences() throws UserNotFoundException {/*fail*/
+    void toggleMatchPreferences() throws UserNotFoundException {/*active es true aca*/
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
 
@@ -123,7 +123,7 @@ class MatchPreferencesServiceImplTest {
     /*negative cases*/
     @Test
     void createMatchPreferencesWith5EmptyParameters() {/*advertencias extrañas*/
-        /*all the variables are null*/
+        /*all the variables are null*//*me toma valores nulos en maximo y minimo de edad, distancia, userId y porcentaje de compatibilidad*/
         distance=null;
         minAge=0;
         maxAge=0;
@@ -148,12 +148,9 @@ class MatchPreferencesServiceImplTest {
     }
 
     @Test
-    void toggleMatchPreferencesWith5EmptyParameters() {
-        distance=null;
-        minAge=0;
-        maxAge=0;
-        userId=null;
-        compatibilityPercentage=null;
+    void toggleMatchPreferencesWithActiveFalse() {
+        /*pasar active a false, falla*/
+        active=false;
 
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
