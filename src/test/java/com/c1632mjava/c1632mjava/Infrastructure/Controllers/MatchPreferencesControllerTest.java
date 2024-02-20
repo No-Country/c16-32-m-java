@@ -13,14 +13,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
 import org.springframework.http.MediaType;
 //import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder.content;
 
+import static org.mockito.Mockito.*;
 import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -49,6 +52,7 @@ class MatchPreferencesControllerTest {
 
     @MockBean
     private MatchPreferencesService matchPreferencesService;
+    private MatchPreferencesController matchPreferencesController;
     ObjectMapper objectMapper;
     @BeforeEach
     void setUp() {
@@ -126,5 +130,12 @@ class MatchPreferencesControllerTest {
 
     @Test
     void toggleMatchPreferences() {
+        Long id = 4L;
+        boolean toggleResult = true;
+
+        when(matchPreferencesService.toggleMatchPreferences(id)).thenReturn(toggleResult);
+        ResponseEntity<Boolean> responseEntity = matchPreferencesController.toggleMatchPreferences(id);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        verify(matchPreferencesService, times(1)).toggleMatchPreferences(id);
     }
 }
