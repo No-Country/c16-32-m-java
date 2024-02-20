@@ -6,14 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatchPreferencesTest {
-    /*data for testing*/
+
     @Mock
     User user;
+
     Long matchPreferenceId=2L;
     Long userId=8L;
     boolean female=true;
@@ -26,18 +25,16 @@ class MatchPreferencesTest {
     boolean longTermRelationship=true;
     boolean justFriends=false;
     boolean rightNow=false;
-
-    private boolean active=true;
+    boolean active=true;
     MatchPreferences testing;
 
     @BeforeEach
-    /*void setUp() {
+    void setUp(){
         testing = new MatchPreferences();
-    }*/
+    }
 
     @Test
     void emptyConstructorTest(){
-        //
         testing = new MatchPreferences();
         MatchPreferences matchPreferences =new MatchPreferences();
         assertEquals(null, testing.getMatchPreferenceId());

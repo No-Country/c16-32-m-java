@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="chats")
@@ -41,11 +40,6 @@ public class Chat implements Serializable {
     @JoinColumn(name = "receiver_id")
     private User receiver;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "matches_chats",
-            joinColumns = @JoinColumn(name = "chat_id"),
-            inverseJoinColumns = @JoinColumn(name = "match_id")
-    )
-    private List<Match> matches;
+    @OneToOne(mappedBy = "chat")
+    private Match match;
 }

@@ -73,6 +73,7 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
                 matchPreferencesRepository.findByUserId(userId)
                         .orElseThrow( () -> new UserNotFoundException(userId));
         toggleMP.setActive(!toggleMP.isActive());
+        matchPreferencesRepository.save(toggleMP);
         return toggleMP.isActive();
     }
 }

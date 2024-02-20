@@ -11,4 +11,5 @@ public interface UserMapper {
     @Mapping(target = "Genres", source = "genres")
     UserReadDto convertUserToRead(User user);
     User convertCreateToUser(UserCreateDto userCreateDto);
+    User convertReadToUser(UserReadDto userReadDto);
      }

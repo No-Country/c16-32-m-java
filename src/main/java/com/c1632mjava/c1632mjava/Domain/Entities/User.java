@@ -9,9 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="users")
@@ -21,7 +20,6 @@ import java.util.List;
 @Builder
 public class User implements Serializable, UserDetails {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -44,12 +42,12 @@ public class User implements Serializable, UserDetails {
     private String currentSong;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Artist> Artists;
+    private ArrayList<Artist> Artists;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Genre> Genres;
+    private ArrayList<Genre> Genres;
 
-    private List <Long> bannedUsers;
+    private ArrayList<Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 
@@ -63,7 +61,6 @@ public class User implements Serializable, UserDetails {
     public String getUsername() {
         return this.email;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

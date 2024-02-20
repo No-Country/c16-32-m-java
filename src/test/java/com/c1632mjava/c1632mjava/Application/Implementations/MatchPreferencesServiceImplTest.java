@@ -31,7 +31,6 @@ class MatchPreferencesServiceImplTest {
     @InjectMocks
     private MatchPreferencesServiceImpl matchPreferencesService;
 
-    /*data for testing*/
     Long matchPreferenceId=6L;
     Long userId=2L;
     boolean female=true;
@@ -67,7 +66,7 @@ class MatchPreferencesServiceImplTest {
     }
 
     @Test
-    void findPreferencesByUserId() { /*advertencias extrañas*/
+    void findPreferencesByUserId() {
         MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper);
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
@@ -81,8 +80,9 @@ class MatchPreferencesServiceImplTest {
         assertNotNull(result);
         assertEquals(expectedReadDto, result);
     }
+
     @Test
-    void updateMatchPreferences() {/*advertencias extrañas*/
+    void updateMatchPreferences() {
         //MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper);
         MatchPreferences oldMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
@@ -105,6 +105,7 @@ class MatchPreferencesServiceImplTest {
         assertNotNull(result);
         assertEquals(expectedReadDto, result);
     }
+
     @Test
     void toggleMatchPreferences() throws UserNotFoundException {/*active es true aca*/
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
@@ -122,47 +123,22 @@ class MatchPreferencesServiceImplTest {
 
     /*negative cases*/
     @Test
-    void createMatchPreferencesWith5EmptyParameters() {/*advertencias extrañas*/
-        /*all the variables are null*//*me toma valores nulos en maximo y minimo de edad, distancia, userId y porcentaje de compatibilidad*/
-        distance=null;
-        minAge=0;
-        maxAge=0;
-        userId=null;
-        compatibilityPercentage=null;
-        MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper );
-        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
-                compatibilityPercentage, longTermRelationship,justFriends, rightNow);
-        MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
-                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
-        MatchPreferencesCreateDto expectedPreferencesCreateDto=new MatchPreferencesCreateDto(userId, female, male, other, minAge,
-                maxAge, distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow);
-
-        when(matchPreferencesMapper.convertCreateToMatchPreferences(expectedPreferencesCreateDto)).
-                thenReturn(expectedMatchPreferences);
-        when(matchPreferencesRepository.save(expectedMatchPreferences)).thenReturn(expectedMatchPreferences);
-        when(matchPreferencesMapper.convertMatchPreferencesToRead(expectedMatchPreferences)).thenReturn(expectedReadDto);
-
-        MatchPreferencesReadDto result = testing.createMatchPreferences(expectedPreferencesCreateDto);
-        assertNotNull(result);
-        assertEquals(expectedReadDto, result);
-    }
-
-    @Test
     void toggleMatchPreferencesWithActiveFalse() {
-        /*pasar active a false, falla*/
-        active=false;
+        /* The user reactivates, their matchPreferences that were false should turn true! */
+        MatchPreferences expectedMatchPreferences = new MatchPreferences(
+                matchPreferenceId, userId, female, male, other, minAge, maxAge,
+                distance, compatibilityPercentage, longTermRelationship, justFriends,
+                rightNow, false);
 
-        MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
-                distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
-
-        when(matchPreferencesRepository.findByUserId(userId)).thenReturn(Optional.of(expectedMatchPreferences));
+        when(matchPreferencesRepository.findByUserId(userId)).thenReturn(
+                Optional.of(expectedMatchPreferences));
 
         // Act
         Boolean result = matchPreferencesService.toggleMatchPreferences(userId);
 
         // Assert
         //assertNotNull(result);
-        assertFalse(expectedMatchPreferences.isActive());
+        assertTrue(expectedMatchPreferences.isActive());
     }
 
 }

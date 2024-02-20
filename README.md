@@ -7,6 +7,5 @@ Authors:
 * Juarez, Carmina. UX. AR.
 * Nuñez, Facundo. Frontend. AR.
 * Robledo, Emanuel. Frontend. AR.
-* Ruiz, Armando. Backend. AR.
 * Ospina, Alejandro. Backend. CO.
 * Villalba, Fernanda. UX. CO.
