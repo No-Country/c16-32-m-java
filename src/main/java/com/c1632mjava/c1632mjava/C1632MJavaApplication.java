@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class})
 public class C1632MJavaApplication {
 
 	public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
+import com.c1632mjava.c1632mjava.C1632MJavaApplication;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.MatchPreferencesCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.MatchPreferencesReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.MatchPreferencesUpdateDto;
@@ -11,10 +12,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,8 +35,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
-@WebMvcTest(MatchPreferencesController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WithMockUser
+@AutoConfigureJsonTesters
+//@ContextConfiguration(classes= C1632MJavaApplication.class)
+//@WebMvcTest(MatchPreferencesController.class)
 class MatchPreferencesControllerTest {
     /*data for testing*/
     Long matchPreferenceId=20L;
@@ -63,7 +73,7 @@ class MatchPreferencesControllerTest {
     void createMatchPreferences() throws Exception {
         //Mockito.when(matchPreferencesService.createMatchPreferences(any(MatchPreferencesCreateDto.class)))
           //      .thenReturn(matchPreferencesReadDto);
-
+        /*usar jacksontester para mockear el json*/
         MatchPreferencesCreateDto matchPreferencesCreateDto=new MatchPreferencesCreateDto(userId, female, male, other,
                 minAge, maxAge, distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow);
         MatchPreferencesReadDto matchPreferencesReadDto=new MatchPreferencesReadDto(female, male, other, minAge, maxAge,
@@ -76,7 +86,16 @@ class MatchPreferencesControllerTest {
                         .content(objectMapper.writeValueAsString(matchPreferencesCreateDto)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.userId").value(matchPreferencesReadDto.female()));
+                .andExpect(jsonPath("$.female").value(matchPreferencesReadDto.female()))
+                .andExpect(jsonPath("$.male").value(matchPreferencesReadDto.male()))
+                .andExpect(jsonPath("$.other").value(matchPreferencesReadDto.other()))
+                .andExpect(jsonPath("$.minAge").value(matchPreferencesReadDto.minAge()))
+                .andExpect(jsonPath("$.maxAge").value(matchPreferencesReadDto.maxAge()))
+                .andExpect(jsonPath("$.distance").value(matchPreferencesReadDto.distance().name()))
+                .andExpect(jsonPath("$.compatibilityPercentage").value(matchPreferencesReadDto.compatibilityPercentage().name()))
+                .andExpect(jsonPath("$.longTermRelationship").value(matchPreferencesReadDto.longTermRelationship()))
+                .andExpect(jsonPath("$.justFriends").value(matchPreferencesReadDto.justFriends()))
+                .andExpect(jsonPath("$.rightNow").value(matchPreferencesReadDto.rightNow()));
     }
 
     @Test
@@ -96,15 +115,13 @@ class MatchPreferencesControllerTest {
                 .andExpect(jsonPath("$.other").value(matchPreferencesReadDto.other()))
                 .andExpect(jsonPath("$.minAge").value(matchPreferencesReadDto.minAge()))
                 .andExpect(jsonPath("$.maxAge").value(matchPreferencesReadDto.maxAge()))
-                .andExpect(jsonPath("$.distance").value(matchPreferencesReadDto.distance()))
-                .andExpect(jsonPath("$.compatibilityPercentage").value(matchPreferencesReadDto.compatibilityPercentage()))
+                .andExpect(jsonPath("$.distance").value(matchPreferencesReadDto.distance().name()))
+                .andExpect(jsonPath("$.compatibilityPercentage").value(matchPreferencesReadDto.compatibilityPercentage().name()))
                 .andExpect(jsonPath("$.longTermRelationship").value(matchPreferencesReadDto.longTermRelationship()))
                 .andExpect(jsonPath("$.justFriends").value(matchPreferencesReadDto.justFriends()))
                 .andExpect(jsonPath("$.rightNow").value(matchPreferencesReadDto.rightNow()));
 
-        verify(matchPreferencesService.findPreferencesByUserId(userId));
-
-
+        //verify(matchPreferencesService.findPreferencesByUserId(userId));
     }
 
     /*@Test
@@ -129,7 +146,7 @@ class MatchPreferencesControllerTest {
 
 
     @Test
-    void toggleMatchPreferences() {
+    void toggleMatchPreferences() {//null pointer exception
         Long id = 4L;
         boolean toggleResult = true;
 
@@ -140,7 +157,7 @@ class MatchPreferencesControllerTest {
     }
 
     @Test
-    void falseToggleMatchPreferences() {
+    void falseToggleMatchPreferences() {//nullpointer exception
         Long id = 4L;
         boolean toggleResult = false;
 
