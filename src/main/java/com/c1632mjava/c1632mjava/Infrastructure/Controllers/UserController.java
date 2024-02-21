@@ -38,20 +38,20 @@ public class UserController {
 
     @PostMapping("/register")
     @Transactional
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
                                                     UserCreateDto userCreateDto,
-                                                     @RequestParam (name ="userName") String name,
-                                                     @RequestParam (name ="email") String email){
-
+                                                     @RequestParam (name ="details") String userDetails){
+        //UserReadDto result = userService.registerUser(userCreateDto);
         try{
-            UserCreateDto mergedUser = userCreateDto.withName(name).withEmail(email);
+            Map<String, Object> userAttributes = new ObjectMapper()
+                    .readValue(URLDecoder.decode(userDetails, StandardCharsets.UTF_8.toString()), Map.class);
+            UserCreateDto mergedUser = userCreateDto.withEmail((String) userAttributes.get("email"));
             return ResponseEntity.ok(authService.register(mergedUser));
         }
-        catch (RuntimeException e){
+        catch (RuntimeException | IOException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
+        //return ResponseEntity.ok(result);
     }
 
     @PostMapping("/likedartists/{userId}")

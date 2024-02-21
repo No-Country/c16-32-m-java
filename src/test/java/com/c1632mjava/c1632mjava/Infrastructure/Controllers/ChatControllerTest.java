@@ -69,7 +69,7 @@ class ChatControllerTest {
 
         //WHEN
         this.mvc.perform(get(this.url.concat("/{id}"), chatId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -91,7 +91,7 @@ class ChatControllerTest {
 
         //WHEN
         this.mvc.perform(get(this.url.concat("/senders/{senderId}"), senderId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
