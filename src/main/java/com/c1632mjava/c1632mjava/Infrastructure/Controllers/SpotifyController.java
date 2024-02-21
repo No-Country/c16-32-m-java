@@ -66,13 +66,27 @@ public class SpotifyController {
     private SpotifyUser getUserProfileFromSpotify(String accesToken){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accesToken);
-        headers.add("Authorization", "Bearer " + accesToken);
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        RequestEntity<Void> rEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create("https://api.spotify.com/v1/me"));
         ResponseEntity<SpotifyUser> response = restTemplate.exchange(spotifyUserInfoUri,
                 HttpMethod.GET,
                 entity,
                 SpotifyUser.class);
         return response.getBody();
+    }
+
+    @GetMapping("/user-info")
+    @PreAuthorize("hasAuthority('SCOPE_user-read-email')")
+    public ResponseEntity<SpotifyUser> getUserInfo(@AuthenticationPrincipal OAuth2AuthenticationToken authenticationToken) {
+        if (authenticationToken != null) {
+            OAuth2AuthorizedClient authorizedClient = authorizedClientService
+                    .loadAuthorizedClient(authenticationToken.getAuthorizedClientRegistrationId(),
+                            authenticationToken.getName());
+            if (authorizedClient != null) {
+                String accessToken = authorizedClient.getAccessToken().getTokenValue();
+                SpotifyUser spotifyUser = getUserProfileFromSpotify(accessToken);
+                return ResponseEntity.ok(spotifyUser);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
