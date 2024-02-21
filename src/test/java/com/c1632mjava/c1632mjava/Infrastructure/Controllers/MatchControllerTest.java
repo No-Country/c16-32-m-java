@@ -69,7 +69,7 @@ class MatchControllerTest {
 
         //WHEN
         this.mvc.perform(get(this.url.concat("/{id}"), matchId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -110,7 +110,7 @@ class MatchControllerTest {
 
         //WHEN
         this.mvc.perform(delete(this.url.concat("/{matchId}"), matchId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isNoContent());
 
