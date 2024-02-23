@@ -39,10 +39,9 @@ public class AuthService {
     @Transactional
     public AuthResponse register(UserCreateDto data) {
 
-        Optional.ofNullable(userRepository.findByEmail(data.email())
-                .orElseThrow(() -> new RuntimeException("User already exists")));
+                /*Optional.ofNullable(userRepository.findByEmail(data.email())
+                .orElseThrow(() -> new RuntimeException("User already exists")));*/
 
-        // Se debe incluir los demás atributos para crear el usuario
         User user = User.builder()
                 .email(data.email())
                 .password(passwordEncoder.encode(data.password()))
@@ -53,10 +52,11 @@ public class AuthService {
                 .pronouns(data.pronouns())
                 .description(data.description())
                 .build();
-        userRepository.save(user);
+        user = userRepository.save(user);
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
+                .userId(user.getUserId())
                 .build();
     }
 
