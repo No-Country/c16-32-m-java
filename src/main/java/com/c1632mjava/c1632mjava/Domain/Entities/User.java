@@ -2,12 +2,14 @@ package com.c1632mjava.c1632mjava.Domain.Entities;
 
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -27,7 +29,9 @@ public class User implements Serializable, UserDetails {
     private String name;
     private String email;
     private String password;
-    private LocalDateTime birthdate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthdate;
     private String photo;
 
     @Enumerated(EnumType.STRING)

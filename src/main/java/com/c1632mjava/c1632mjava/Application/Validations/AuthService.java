@@ -1,6 +1,7 @@
 package com.c1632mjava.c1632mjava.Application.Validations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
+import com.c1632mjava.c1632mjava.Domain.Dtos.LoginDTO;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
@@ -26,7 +27,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     // Integrar oauth 2, UserRegister debe contenter la validación por oauth2
-    public AuthResponse login(UserCreateDto data) {
+    public AuthResponse login(LoginDTO data) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
         UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
         String token = jwtService.getToken(user);
@@ -37,9 +38,10 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(UserCreateDto data) {
-
-        Optional.ofNullable(userRepository.findByEmail(data.email())
-                .orElseThrow(() -> new RuntimeException("User already exists")));
+        Optional<User> existingUser = userRepository.findByEmail(data.email());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("User already exists");
+        }
 
         // Se debe incluir los demás atributos para crear el usuario
         User user = User.builder()
