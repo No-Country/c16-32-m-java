@@ -51,6 +51,7 @@ public class AuthService {
                 .gender(data.gender())
                 .pronouns(data.pronouns())
                 .description(data.description())
+                .active(true)
                 .build();
         user = userRepository.save(user);
 

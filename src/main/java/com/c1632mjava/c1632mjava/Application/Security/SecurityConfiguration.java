@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                                 .defaultSuccessUrl("/users/register"))*/
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(corsConfigurationSource()))
-                //.headers(headers -> headers.xssProtection(Customizer.withDefaults()))
+                .headers(headers -> headers.xssProtection(Customizer.withDefaults()))
                 .build();
     }
 

@@ -1,6 +1,7 @@
 package com.c1632mjava.c1632mjava.Domain.Dtos.User;
 
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 public record UserCreateDto(
     @NotNull String name,
     @NotNull String password,
-    @NotNull String email,
+    @NotNull @Email String email,
     @NotNull LocalDateTime birthdate,
     @NotNull String photo,
     Gender gender,
@@ -21,7 +22,7 @@ public record UserCreateDto(
     @NotNull String description){
 }
 
-//TODO. Revisar validation constrains para birthdate, gender, password e email.
+//TODO. Revisar validation constrains para birthdate (pasar a LocalDate), gender, password.
 /*
 Para password e email se puede hacer una RegExp con jackson, a través de la anotación @Email
  */
