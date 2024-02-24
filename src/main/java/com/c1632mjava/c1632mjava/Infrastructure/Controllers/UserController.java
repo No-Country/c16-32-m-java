@@ -40,19 +40,15 @@ public class UserController {
     private final AuthService authService;
 
     @PostMapping("/register")
+    @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
-                                                    UserCreateDto userCreateDto/*,
-                                                     @RequestParam (name ="userName") String name,
-                                                     @RequestParam (name ="email") String email*/){
-        //UserReadDto result = userService.registerUser(userCreateDto);
+                                                    UserCreateDto userCreateDto){
         try{
-            /*UserCreateDto mergedUser = userCreateDto.withName(name).withEmail(email);*/
             return ResponseEntity.ok(authService.register(userCreateDto));
         }
         catch (RuntimeException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        //return ResponseEntity.ok(result);
     }
 
     @PostMapping("/login")

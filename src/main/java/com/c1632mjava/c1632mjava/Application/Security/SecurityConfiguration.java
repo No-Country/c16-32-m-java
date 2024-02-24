@@ -26,6 +26,12 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -45,20 +51,31 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/login").permitAll()
                                 .anyRequest().authenticated()
                 )
+                        //authRequest.anyRequest().permitAll())
                 .sessionManagement(sessionManager ->
                         sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .oauth2Login(ologin ->
-                        ologin.defaultSuccessUrl("/api/v1/chatBeat/spotify")
-                )
-                .cors(Customizer.withDefaults())
+                /*.oauth2Login(ologin ->
+                        ologin.authorizationEndpoint(aEndpoint ->
+                                aEndpoint.baseUri("/oauth/spotify"))
+                                .defaultSuccessUrl("/users/register"))*/
+                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
+                        .configurationSource(corsConfigurationSource()))
                 .headers(headers -> headers.xssProtection(Customizer.withDefaults()))
                 .build();
     }
 
     @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOriginPatterns(Collections.singletonList("*"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setMaxAge(3600L);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
 }

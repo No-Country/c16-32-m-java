@@ -2,9 +2,7 @@ package com.c1632mjava.c1632mjava.Domain.Entities;
 
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
 public class Artist implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long artistId;
+    private String artistId;
     private String artistName;
 }

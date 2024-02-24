@@ -25,8 +25,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
-    // Integrar oauth 2, UserRegister debe contenter la validación por oauth2
+  
     public AuthResponse login(LoginDTO data) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
         UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
@@ -38,27 +37,26 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(UserCreateDto data) {
-        Optional<User> existingUser = userRepository.findByEmail(data.email());
-        if (existingUser.isPresent()) {
-            throw new RuntimeException("User already exists");
-        }
 
-        // Se debe incluir los demás atributos para crear el usuario
+                /*Optional.ofNullable(userRepository.findByEmail(data.email())
+                .orElseThrow(() -> new RuntimeException("User already exists")));*/
+
         User user = User.builder()
                 .email(data.email())
                 .password(passwordEncoder.encode(data.password()))
                 .name(data.name())
-                .birthdate(data.birthdate()) // dato a pedir
+                .birthdate(data.birthdate())
                 .photo(data.photo())
-                .gender(data.gender()) // dato a pedir
-                .pronouns(data.pronouns()) // dato a pedir
-                .description(data.description()) // dato a pedir
+                .gender(data.gender())
+                .pronouns(data.pronouns())
+                .description(data.description())
                 .build();
-        userRepository.save(user);
+        user = userRepository.save(user);
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
+                .userId(user.getUserId())
                 .build();
-
     }
+
 }

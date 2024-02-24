@@ -105,37 +105,3 @@ public class SpotifyController {
                         String.class);
         return response.getBody();
     }
-
-    private String exchangeCodeForAccessToken(String code) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(tokenUrl)
-                .queryParam("grant-type", "authorization-code")
-                .queryParam("code", code)
-                .queryParam("redirect-uri", redirectUri)
-                .queryParam("client-id", clientId)
-                .queryParam("client-secret", clientSecret);
-        ResponseEntity<String> response = restTemplate.postForEntity(builder.toUriString(), null, String.class);
-        return response.getBody();
-    }
-
-    private String getUsernameFromUserInfo(String userInfo) {
-        JSONObject json = new JSONObject(userInfo);
-        return json.getString("display_name");
-    }
-
-    /*@GetMapping("/userInfo")
-    @PreAuthorize("hasAuthority('SCOPE_user-read-email')")
-    public ResponseEntity<SpotifyUser> getUserInfo(@AuthenticationPrincipal OAuth2AuthenticationToken authenticationToken) {
-
-        if (authenticationToken != null) {
-            OAuth2AuthorizedClient authorizedClient = authorizedClientService
-                    .loadAuthorizedClient("spotify",
-                            authenticationToken.getName());
-            if (authorizedClient != null) {
-                String accessToken = authorizedClient.getAccessToken().getTokenValue();
-                SpotifyUser spotifyUser = getUserProfileFromSpotify(accessToken);
-                return ResponseEntity.ok(spotifyUser);
-            }
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }*/
-}

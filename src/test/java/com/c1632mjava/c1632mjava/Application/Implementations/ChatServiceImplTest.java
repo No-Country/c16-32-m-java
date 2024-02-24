@@ -20,7 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +68,6 @@ class ChatServiceImplTest {
     void createChatSuccessful() {
         //GIVEN
         ChatCreateDto in = new ChatCreateDto(this.lastMessage, this.previousMessages, 1L, 2L);
-
         UserReadDto senderDto = new UserReadDto(1L, "Leonardo", null, null, null, null, null, null, null, null, null, null);
         UserReadDto receiverDto = new UserReadDto(2L, "Jorge", null, null, null, null, null, null, null, null, null, null);
         User sender = this.userMapper.convertReadToUser(senderDto);
