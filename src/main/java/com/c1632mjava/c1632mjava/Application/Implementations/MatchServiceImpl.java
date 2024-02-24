@@ -69,7 +69,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Transactional
     @Override
-    public Match createMatch(MatchCreateDto dto) {
+    public MatchReadDto createMatch(MatchCreateDto dto) {
         if(dto == null){
             throw new MatchNotNullException();
         }
@@ -101,7 +101,8 @@ public class MatchServiceImpl implements MatchService {
         Chat chat = this.chatService.create(chatCreateDto);
         match.setChat(chat);
 
-        return this.matchRepository.save(match);
+        match =matchRepository.save(match);
+        return  matchMapper.convertMatchToRead(match);
     }
 
     @Transactional

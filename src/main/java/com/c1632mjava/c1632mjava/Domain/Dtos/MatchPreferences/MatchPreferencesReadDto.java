@@ -5,6 +5,7 @@ import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Distance;
 import jakarta.validation.constraints.NotNull;
 
 public record MatchPreferencesReadDto(
+        Long userId,
         boolean female, boolean male, boolean other,
         int minAge, int maxAge,
         Distance distance,

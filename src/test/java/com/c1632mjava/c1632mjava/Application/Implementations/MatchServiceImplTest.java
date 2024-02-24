@@ -170,10 +170,11 @@ class MatchServiceImplTest {
         ChatCreateDto chatCreateDto = new ChatCreateDto("Como estas?", null, 1L, 2L);
         Chat chat = this.chatMapper.convertCreateToChat(chatCreateDto);
 
-        Match expected = this.matchMapper.convertCreateToMatch(in);
-        expected.setUser1(this.userMapper.convertReadToUser(userReadDto1));
-        expected.setUser2(this.userMapper.convertReadToUser(userReadDto2));
-        expected.setChat(chat);
+        Match entity = this.matchMapper.convertCreateToMatch(in);
+        entity.setUser1(this.userMapper.convertReadToUser(userReadDto1));
+        entity.setUser2(this.userMapper.convertReadToUser(userReadDto2));
+        entity.setChat(chat);
+        MatchReadDto expected = this.matchMapper.convertMatchToRead(entity);
 
         when(this.userService.findUserById(anyLong()))
                 .thenAnswer(invocation -> {
@@ -186,10 +187,10 @@ class MatchServiceImplTest {
                 });
 
         when(this.chatService.create(any(ChatCreateDto.class))).thenReturn(chat);
-        when(this.matchRepository.save(any(Match.class))).thenReturn(expected);
+        when(this.matchRepository.save(any(Match.class))).thenReturn(entity);
 
         //WHEN
-        Match actual = this.matchService.createMatch(in);
+        MatchReadDto actual = this.matchService.createMatch(in);
 
         //THEN
         assertEquals(expected, actual);

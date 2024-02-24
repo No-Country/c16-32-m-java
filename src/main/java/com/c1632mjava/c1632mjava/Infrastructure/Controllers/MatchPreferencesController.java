@@ -49,9 +49,4 @@ public class MatchPreferencesController {
             return ResponseEntity.ok().build();
         }
     }
-
-    //@PostMapping
-    //updateRithmAlgorithm
-    //Input userCreateDto y matchPreferencesCreateDto
-    //output lista de matchReadDto.
 }

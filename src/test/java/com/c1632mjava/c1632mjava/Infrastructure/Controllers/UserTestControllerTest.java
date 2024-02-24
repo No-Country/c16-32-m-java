@@ -3,14 +3,9 @@ package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 import com.c1632mjava.c1632mjava.Application.Implementations.UserServiceImpl;
 import com.c1632mjava.c1632mjava.Domain.Dtos.*;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
-import com.c1632mjava.c1632mjava.Domain.Entities.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.*;
-import com.c1632mjava.c1632mjava.Domain.Services.ReportedMessageService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -25,29 +20,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest //Test de SpringBoot porque Controller.
 @AutoConfigureMockMvc //Configura el manejo de endpoints (post, put, get, delete, patch).
@@ -80,7 +64,7 @@ class UserTestControllerTest {
     String name;
     String password;
     String email;
-    LocalDateTime birthdate;
+    LocalDate birthdate;
     String photo;
     Gender gender;
     String pronouns;
@@ -95,7 +79,7 @@ class UserTestControllerTest {
     String name2;
     String password2;
     String email2;
-    LocalDateTime birthdate2;
+    LocalDate birthdate2;
     String photo2;
     Gender gender2;
     String pronouns2;
@@ -110,7 +94,7 @@ class UserTestControllerTest {
         name = "Pedro Pascal";
         password = "Pedro123!";
         email = "pedropascal123@gmail.com";
-        birthdate = LocalDateTime.of(1980, Month.JULY, 23, 00, 00);
+        birthdate = LocalDate.of(1980, Month.JULY, 23);
         photo = "string_photo.jpg";
         gender = Gender.MASCULINO;
         pronouns = "el";
@@ -126,7 +110,7 @@ class UserTestControllerTest {
         name2 = "Mon Laferte";
         password2 = "MonLaferte123!";
         email2 = "monlaferte123@gmail.com";
-        birthdate2 = LocalDateTime.of(1982, Month.JUNE, 12, 00, 00);
+        birthdate2 = LocalDate.of(1982, Month.JUNE, 12);
         photo2 = "string_photo2.jpg";
         gender2 = Gender.FEMENINO;
         pronouns2 = "ella";
@@ -380,7 +364,7 @@ class UserTestControllerTest {
                     artists, genres, bannedUsers);
 
             ArrayList<ArtistDto> artistDtoList = new ArrayList<>();
-            ArtistDto artistDto = new ArtistDto(1L, "Babasónicos");
+            ArtistDto artistDto = new ArtistDto("artistIdString", "Babasónicos");
             artistDtoList.add(artistDto);
 
             when(userServiceImpl.addLikedArtistToUser(artistDtoList, id))

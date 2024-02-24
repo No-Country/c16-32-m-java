@@ -16,7 +16,6 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
 
     private final MatchPreferencesRepository matchPreferencesRepository;
     private final MatchPreferencesMapper matchPreferencesMapper;
-    private final UserRepository userRepository;
 
     @Override
     public MatchPreferencesReadDto createMatchPreferences(
@@ -78,7 +77,4 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
         matchPreferencesRepository.save(toggleMP);
         return toggleMP.isActive();
     }
-
-    //Método mágico que llama a la dichosa query.
-    //Debe devolver... una lista de matchCreateDto!!!
 }
