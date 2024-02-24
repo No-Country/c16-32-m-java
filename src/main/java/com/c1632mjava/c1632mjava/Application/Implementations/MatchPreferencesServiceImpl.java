@@ -79,6 +79,4 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
         return toggleMP.isActive();
     }
 
-    //Método mágico que llama a la dichosa query.
-    //Debe devolver... una lista de matchCreateDto!!!
 }
