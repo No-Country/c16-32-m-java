@@ -39,19 +39,13 @@ public class UserController {
     @PostMapping("/register")
     @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
-                                                    UserCreateDto userCreateDto,
-                                                     @RequestParam (name ="details") String userDetails){
-        //UserReadDto result = userService.registerUser(userCreateDto);
+                                                    UserCreateDto userCreateDto){
         try{
-            Map<String, Object> userAttributes = new ObjectMapper()
-                    .readValue(URLDecoder.decode(userDetails, StandardCharsets.UTF_8.toString()), Map.class);
-            UserCreateDto mergedUser = userCreateDto.withEmail((String) userAttributes.get("email"));
-            return ResponseEntity.ok(authService.register(mergedUser));
+            return ResponseEntity.ok(authService.register(userCreateDto));
         }
-        catch (RuntimeException | IOException e){
+        catch (RuntimeException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        //return ResponseEntity.ok(result);
     }
 
     @PostMapping("/likedartists/{userId}")
