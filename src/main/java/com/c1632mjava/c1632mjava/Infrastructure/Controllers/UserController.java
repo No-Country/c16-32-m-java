@@ -4,15 +4,18 @@ import com.c1632mjava.c1632mjava.Application.Validations.AuthService;
 import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.LoginDTO;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -44,6 +47,15 @@ public class UserController {
             return ResponseEntity.ok(authService.register(userCreateDto));
         }
         catch (RuntimeException e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> loginUser(@NotNull @RequestBody @Valid LoginDTO data){
+        try{
+            return ResponseEntity.ok(authService.login(data));
+        }catch (UserNotFoundException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
