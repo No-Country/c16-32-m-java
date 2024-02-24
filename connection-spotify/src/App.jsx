@@ -15,6 +15,18 @@ function App() {
   const client_secret = "d4b044d103c241509aaa9d2bf1cfc324";
   const url = "https://accounts.spotify.com/authorize?response_type="+response_type+"&client_id=" + client_id + "&scope="+scope+"&redirect_uri=" + redirect_uri;
 
+  const login = () => {
+      const user = {
+        "password" : "pedro123!",
+        "email" : "guillermodivan@hotmail.com",
+      }
+      console.log(user.email, user.password);
+      axios.post("http://localhost:8080/users/login", user)
+      .then((data)=>{console.log(data)
+      setUserId(data.data.userId)
+      });
+  };
+
   const lookForArtists = () => {
     let accessToken = localStorage.getItem('token');
     axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=50', {
@@ -63,21 +75,31 @@ function App() {
           }
         )
         .then((res) => {
-          localStorage.setItem("token", res.data.access_token);
+          const accessToken = res.data.access_token;
+          localStorage.setItem("token", accessToken);
+
+          axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+              Authorization: 'Bearer ' + accessToken
+            }
+          }).then((result) =>{
+          const {display_name, email, images} = result.data;
           const user = {
-            "name" : "Pedro Pascal",
+            "name" : display_name,
             "password" : "pedro123!",
-            "email" : "pedrito@gmail.com",
-            "birthdate" : "1990-04-02T08:00",
-            "photo" : "string_photo.jpg",
+            "email" : email,
+            "birthdate" : "1990-04-02",
+            "photo" : images[0].url,
             "gender": "MASCULINO", 
             "pronouns" : "el",
             "description" : "<3"
           }
+          console.log(user.email, user.photo);
           axios.post("http://localhost:8080/users/register", user)
           .then((data)=>{console.log(data)
           setUserId(data.data.userId)
           });
+        });
           //obtenido el token hay que limpiar la url.
           //route dom??? 
         });
@@ -88,6 +110,7 @@ function App() {
   return (
     <>
       <a href={url}>Register</a>      
+      <button onClick={login}>Login</button>
       <button onClick={lookForArtists}>Bring artists!</button>
 
       {artists && artists.map((artist,i) => (
