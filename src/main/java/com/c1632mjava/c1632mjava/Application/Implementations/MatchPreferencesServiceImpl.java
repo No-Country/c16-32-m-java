@@ -4,6 +4,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.MatchPreferencesMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.MatchPreferences;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchPreferencesRepository;
+import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
 
     private final MatchPreferencesRepository matchPreferencesRepository;
     private final MatchPreferencesMapper matchPreferencesMapper;
+    private final UserRepository userRepository;
 
     @Override
     public MatchPreferencesReadDto createMatchPreferences(
@@ -76,4 +78,7 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
         matchPreferencesRepository.save(toggleMP);
         return toggleMP.isActive();
     }
+
+    //Método mágico que llama a la dichosa query.
+    //Debe devolver... una lista de matchCreateDto!!!
 }

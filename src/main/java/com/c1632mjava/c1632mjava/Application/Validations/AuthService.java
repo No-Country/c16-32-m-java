@@ -6,6 +6,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,19 +28,19 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
   
     public AuthResponse login(LoginDTO data) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
-        UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(),
+                data.password()));
+        User user = userRepository.findByEmail(data.email())
+                .orElseThrow( () -> new UserNotFoundException(data.email()));
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
+                .userId(user.getUserId())
                 .build();
     }
 
     @Transactional
     public AuthResponse register(UserCreateDto data) {
-
-                /*Optional.ofNullable(userRepository.findByEmail(data.email())
-                .orElseThrow(() -> new RuntimeException("User already exists")));*/
 
         User user = User.builder()
                 .email(data.email())
@@ -50,6 +51,7 @@ public class AuthService {
                 .gender(data.gender())
                 .pronouns(data.pronouns())
                 .description(data.description())
+                .active(true)
                 .build();
         user = userRepository.save(user);
 

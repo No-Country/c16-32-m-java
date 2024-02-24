@@ -9,6 +9,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserAlreadyExistsException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -43,33 +44,39 @@ public class UserController {
     @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
                                                     UserCreateDto userCreateDto){
+            if (userService.findUserByEmail(userCreateDto.email()) != null) {
+                throw new UserAlreadyExistsException(userCreateDto.email());
+            }
         try{
             return ResponseEntity.ok(authService.register(userCreateDto));
         }
         catch (RuntimeException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> loginUser(@NotNull @RequestBody @Valid LoginDTO data){
+    public ResponseEntity<AuthResponse> loginUser(@NotNull @RequestBody
+                                                      @Valid LoginDTO data){
         try{
             return ResponseEntity.ok(authService.login(data));
         }catch (UserNotFoundException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+           throw new UserNotFoundException(data.email());
         }
     }
 
     @PostMapping("/likedartists/{userId}")
     @Transactional
-    public ResponseEntity<UserReadDto> addLikedArtistToUser(@PathVariable Long userId,
+    public ResponseEntity<UserReadDto> addLikedArtistToUser(@PathVariable
+                                                                Long userId,
                                                     @RequestBody @Valid List<ArtistDto> artistDtoList){
         return ResponseEntity.ok(userService.addLikedArtistToUser(artistDtoList, userId));
     }
 
     @PostMapping("/likedgenres/{userId}")
     @Transactional
-    public ResponseEntity<UserReadDto> addLikedGenreToUser(@PathVariable Long userId,
+    public ResponseEntity<UserReadDto> addLikedGenreToUser(@PathVariable
+                                                               Long userId,
                                                     @RequestBody @Valid List<GenreDto> genreDtoList){
         return ResponseEntity.ok(userService.addLikedGenreToUser(genreDtoList, userId));
     }
