@@ -15,7 +15,6 @@ import java.util.List;
 public class Artist implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long artistId;
+    private String artistId;
     private String artistName;
 }

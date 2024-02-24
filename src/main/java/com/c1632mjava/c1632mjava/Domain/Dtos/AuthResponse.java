@@ -4,5 +4,5 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
-public record AuthResponse(@NotNull String token) {
+public record AuthResponse(@NotNull String token, @NotNull Long userId) {
 }

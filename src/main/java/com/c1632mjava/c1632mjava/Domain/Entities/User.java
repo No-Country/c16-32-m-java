@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -42,12 +43,12 @@ public class User implements Serializable, UserDetails {
     private String currentSong;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private ArrayList<Artist> Artists;
+    private List<Artist> Artists;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    private ArrayList<Genre> Genres;
+    private List<Genre> Genres;
 
-    private ArrayList<Long> bannedUsers = new ArrayList<>();
+    private List<Long> bannedUsers = new ArrayList<>();
 
     private boolean active = true;
 

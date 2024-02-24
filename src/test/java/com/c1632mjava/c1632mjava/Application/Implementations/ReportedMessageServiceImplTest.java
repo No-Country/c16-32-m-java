@@ -77,6 +77,7 @@ class ReportedMessageServiceImplTest {
 
         //THEN
         assertEquals(expected, actual);
+
         verify(this.chatRepository, times(1)).findById(anyLong());
         verify(this.reportedMessageRepository, times(1)).save(any(ReportedMessage.class));
     }
@@ -84,12 +85,14 @@ class ReportedMessageServiceImplTest {
     @Test
     void createReportedMessageThrowChatNotFoundException() {
         //GIVEN
+
         ReportedMessageCreateDto in = new ReportedMessageCreateDto(this.message, this.chat.getChatId());
 
         //WHEN AND THEN
         assertThrows(ChatNotFoundException.class, () -> {
             this.reportedMessageService.create(in);
         });
+
         verify(this.chatRepository, times(1)).findById(anyLong());
         verify(this.reportedMessageRepository, never()).save(any(ReportedMessage.class));
     }
