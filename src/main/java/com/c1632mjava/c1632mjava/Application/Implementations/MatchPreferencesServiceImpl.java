@@ -16,7 +16,6 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
 
     private final MatchPreferencesRepository matchPreferencesRepository;
     private final MatchPreferencesMapper matchPreferencesMapper;
-    private final UserRepository userRepository;
 
     @Override
     public MatchPreferencesReadDto createMatchPreferences(

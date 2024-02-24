@@ -19,6 +19,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class UserServiceImplTest {
     String name;
     String password;
     String email;
-    LocalDateTime birthdate;
+    LocalDate birthdate;
     String photo;
     Gender gender;
     String pronouns;
@@ -68,7 +70,7 @@ public class UserServiceImplTest {
     String name2;
     String password2;
     String email2;
-    LocalDateTime birthdate2;
+    LocalDate birthdate2;
     String photo2;
     Gender gender2;
     String pronouns2;
@@ -90,10 +92,10 @@ public class UserServiceImplTest {
         name = "Pedro Pascal";
         password = "Pedro123!";
         email = "pedropascal123@gmail.com";
-        birthdate = LocalDateTime.of(1980, Month.JULY, 23, 00, 00);
+        birthdate = LocalDate.of(1980, Month.JULY, 23);
         photo = "string_photo.jpg";
         gender = Gender.MASCULINO;
-        pronouns = "él";
+        pronouns = "el";
         description = "Hace falta? jajaja";
         socialBattery = SocialBattery.AVAILABLE;
         currentSong = "https://www.youtube.com/watch?v=29NM6ySmwfQ";
@@ -106,11 +108,11 @@ public class UserServiceImplTest {
         name2 = "Mon Laferte";
         password2 = "MonLaferte123!";
         email2 = "monlaferte123@gmail.com";
-        birthdate2 = LocalDateTime.of(1982, Month.JUNE, 12, 00, 00);
+        birthdate2 = LocalDate.of(1982, Month.JUNE, 12);
         photo2 = "string_photo2.jpg";
         gender2 = Gender.FEMENINO;
         pronouns2 = "ella";
-        description2 = "Veeeeen y cuéntame la verdad... ♫♪";
+        description2 = "Veeeeen y cuentame la verdad...";
         socialBattery2 = SocialBattery.AWAY;
         currentSong2 = "https://www.youtube.com/watch?v=WT-VE9OyAJk";
         active2 = false;
@@ -347,9 +349,9 @@ public class UserServiceImplTest {
         @Test
         void shouldAddLikedArtistToUser() {
             ArrayList<ArtistDto> artistDtoList = new ArrayList<>();
-            ArtistDto artist = new ArtistDto(1L, "Babasónicos");
+            ArtistDto artist = new ArtistDto("idString", "Babasónicos");
             artistDtoList.add(artist);
-            Artist artistEntity = new Artist(1L, "Babasonicos");
+            Artist artistEntity = new Artist("idString", "Babasonicos");
 
             User user = new User(id, name, email, password, birthdate,
                     photo, gender, pronouns, description, socialBattery,
@@ -369,7 +371,7 @@ public class UserServiceImplTest {
         @Test
         void shouldNotAddLikedArtistToUserWhenWrongUserId() {
             ArrayList<ArtistDto> artistDtoList = new ArrayList<>();
-            ArtistDto artist = new ArtistDto(1L, "Babasónicos");
+            ArtistDto artist = new ArtistDto("idString", "Babasónicos");
             artistDtoList.add(artist);
 
             when(userRepository.findById(any())).thenReturn(Optional.empty());
@@ -385,9 +387,9 @@ public class UserServiceImplTest {
         @Test
         void shouldNotAddArtistIfItAlreadyExists() {
             ArrayList<ArtistDto> artistDtoList = new ArrayList<>();
-            ArtistDto artistDto = new ArtistDto(1L, "Babasónicos");
+            ArtistDto artistDto = new ArtistDto("idString", "Babasónicos");
             artistDtoList.add(artistDto);
-            Artist artistEntity = new Artist(1L, "Babasonicos");
+            Artist artistEntity = new Artist("idString", "Babasonicos");
             ArrayList<Artist> artistEntityList = new ArrayList<>();
             artistEntityList.add(artistEntity);
 

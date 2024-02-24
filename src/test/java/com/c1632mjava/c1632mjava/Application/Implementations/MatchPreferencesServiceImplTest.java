@@ -46,9 +46,9 @@ class MatchPreferencesServiceImplTest {
     boolean active=true;
 
     @Test
-    void createMatchPreferences() {/*advertencias extrañas*/
+    void createMatchPreferences() {
         MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper );
-        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
+        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(userId, female, male, other, minAge, maxAge, distance,
         compatibilityPercentage, longTermRelationship,justFriends, rightNow);
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
@@ -70,7 +70,7 @@ class MatchPreferencesServiceImplTest {
         MatchPreferencesServiceImpl testing = new MatchPreferencesServiceImpl(matchPreferencesRepository, matchPreferencesMapper);
         MatchPreferences expectedMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
-        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
+        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(userId, female, male, other, minAge, maxAge, distance,
                 compatibilityPercentage, longTermRelationship,justFriends, rightNow);
 
         when(matchPreferencesRepository.findByUserId(userId)).thenReturn(Optional.of(expectedMatchPreferences));
@@ -96,7 +96,7 @@ class MatchPreferencesServiceImplTest {
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow);
         MatchPreferences newMatchPreferences = new MatchPreferences(matchPreferenceId, userId, female, male, other, minAge, maxAge,
                 distance, compatibilityPercentage, longTermRelationship, justFriends, rightNow, active);
-        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(female, male, other, minAge, maxAge, distance,
+        MatchPreferencesReadDto expectedReadDto= new MatchPreferencesReadDto(userId, female, male, other, minAge, maxAge, distance,
                 compatibilityPercentage, longTermRelationship,justFriends, rightNow);
 
         when(matchPreferencesRepository.findByUserId(expectedUpdate.userId())).thenReturn(Optional.of(oldMatchPreferences));
