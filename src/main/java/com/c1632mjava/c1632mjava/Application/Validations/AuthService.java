@@ -1,10 +1,12 @@
 package com.c1632mjava.c1632mjava.Application.Validations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
+import com.c1632mjava.c1632mjava.Domain.Dtos.LoginDTO;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,23 +26,21 @@ public class AuthService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
-    // Integrar oauth 2, UserRegister debe contenter la validación por oauth2
-
-    public AuthResponse login(UserCreateDto data) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
-        UserDetails user = userRepository.findByEmail(data.email()).orElseThrow();
+  
+    public AuthResponse login(LoginDTO data) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(),
+                data.password()));
+        User user = userRepository.findByEmail(data.email())
+                .orElseThrow( () -> new UserNotFoundException(data.email()));
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
+                .userId(user.getUserId())
                 .build();
     }
 
     @Transactional
     public AuthResponse register(UserCreateDto data) {
-
-                /*Optional.ofNullable(userRepository.findByEmail(data.email())
-                .orElseThrow(() -> new RuntimeException("User already exists")));*/
 
         User user = User.builder()
                 .email(data.email())
