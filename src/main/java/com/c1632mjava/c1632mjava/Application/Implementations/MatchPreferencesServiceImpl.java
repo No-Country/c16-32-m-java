@@ -77,5 +77,4 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
         matchPreferencesRepository.save(toggleMP);
         return toggleMP.isActive();
     }
-
 }
