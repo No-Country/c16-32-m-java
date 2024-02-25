@@ -9,16 +9,16 @@ function App() {
   const [userId, setUserId] = useState(0);
 
   const response_type ="code";
-  const client_id = "2a1303d0a2844c3795dbe448994237db";
+  const client_id = "String de client id";
   const scope = "user-read-private user-read-email user-follow-read";
   const redirect_uri = "http://localhost:5173";
-  const client_secret = "d4b044d103c241509aaa9d2bf1cfc324";
+  const client_secret = "String de client secret";
   const url = "https://accounts.spotify.com/authorize?response_type="+response_type+"&client_id=" + client_id + "&scope="+scope+"&redirect_uri=" + redirect_uri;
 
   const login = () => {
       const user = {
         "password" : "pedro123!",
-        "email" : "guillermodivan@hotmail.com",
+        "email" : "email@hotmail.com",
       }
       console.log(user.email, user.password);
       axios.post("http://localhost:8080/users/login", user)
