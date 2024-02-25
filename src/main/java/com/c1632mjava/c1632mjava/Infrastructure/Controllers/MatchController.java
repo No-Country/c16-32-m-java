@@ -36,9 +36,9 @@ public class MatchController {
         return ResponseEntity.noContent().build();
     }
 
-    // Only for tests (development)
     @PostMapping
-    public ResponseEntity<Match> create(@RequestBody MatchCreateDto dto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.matchService.createMatch(dto));
+    public ResponseEntity<MatchReadDto> create(@RequestBody MatchCreateDto dto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                this.matchService.createMatch(dto));
     }
 }

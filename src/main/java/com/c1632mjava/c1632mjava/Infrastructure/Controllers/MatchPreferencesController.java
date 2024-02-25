@@ -2,6 +2,7 @@ package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.*;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
+import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -12,7 +12,6 @@ import java.util.List;
 
 
 public interface UserService {
-    UserReadDto registerUser(UserCreateDto userCreateDto);
     Page<UserReadDto> findAllUsers(boolean active, Pageable paging);
     UserReadDto findUserById(Long id);
     UserReadDto findUserByEmail(String email);

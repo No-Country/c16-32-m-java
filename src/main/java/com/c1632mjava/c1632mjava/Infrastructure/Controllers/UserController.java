@@ -4,15 +4,19 @@ import com.c1632mjava.c1632mjava.Application.Validations.AuthService;
 import com.c1632mjava.c1632mjava.Domain.Dtos.ArtistDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.AuthResponse;
 import com.c1632mjava.c1632mjava.Domain.Dtos.GenreDto;
+import com.c1632mjava.c1632mjava.Domain.Dtos.LoginDTO;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserUpdateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserAlreadyExistsException;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -39,31 +43,40 @@ public class UserController {
     @PostMapping("/register")
     @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
-                                                    UserCreateDto userCreateDto,
-                                                     @RequestParam (name ="details") String userDetails){
-        //UserReadDto result = userService.registerUser(userCreateDto);
+                                                    UserCreateDto userCreateDto){
+            if (userService.findUserByEmail(userCreateDto.email()) != null) {
+                throw new UserAlreadyExistsException(userCreateDto.email());
+            }
         try{
-            Map<String, Object> userAttributes = new ObjectMapper()
-                    .readValue(URLDecoder.decode(userDetails, StandardCharsets.UTF_8.toString()), Map.class);
-            UserCreateDto mergedUser = userCreateDto.withEmail((String) userAttributes.get("email"));
-            return ResponseEntity.ok(authService.register(mergedUser));
+            return ResponseEntity.ok(authService.register(userCreateDto));
         }
-        catch (RuntimeException | IOException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        catch (RuntimeException e){
+            return ResponseEntity.badRequest().build();
         }
-        //return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> loginUser(@NotNull @RequestBody
+                                                      @Valid LoginDTO data){
+        try{
+            return ResponseEntity.ok(authService.login(data));
+        }catch (UserNotFoundException e){
+           throw new UserNotFoundException(data.email());
+        }
     }
 
     @PostMapping("/likedartists/{userId}")
     @Transactional
-    public ResponseEntity<UserReadDto> addLikedArtistToUser(@PathVariable Long userId,
+    public ResponseEntity<UserReadDto> addLikedArtistToUser(@PathVariable
+                                                                Long userId,
                                                     @RequestBody @Valid List<ArtistDto> artistDtoList){
         return ResponseEntity.ok(userService.addLikedArtistToUser(artistDtoList, userId));
     }
 
     @PostMapping("/likedgenres/{userId}")
     @Transactional
-    public ResponseEntity<UserReadDto> addLikedGenreToUser(@PathVariable Long userId,
+    public ResponseEntity<UserReadDto> addLikedGenreToUser(@PathVariable
+                                                               Long userId,
                                                     @RequestBody @Valid List<GenreDto> genreDtoList){
         return ResponseEntity.ok(userService.addLikedGenreToUser(genreDtoList, userId));
     }

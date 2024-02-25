@@ -4,6 +4,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Mappers.MatchPreferencesMapper;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.MatchPreferences;
 import com.c1632mjava.c1632mjava.Domain.Repositories.MatchPreferencesRepository;
+import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import lombok.AllArgsConstructor;

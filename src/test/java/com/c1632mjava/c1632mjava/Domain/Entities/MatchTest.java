@@ -88,6 +88,7 @@ class MatchTest {
 
     @Test
     void setDateOfMatch() {
+
         //GIVEN
         Match match = new Match();
 

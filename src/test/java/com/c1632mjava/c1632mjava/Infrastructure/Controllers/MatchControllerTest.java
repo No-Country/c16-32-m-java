@@ -32,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 @AutoConfigureJsonTesters
 class MatchControllerTest {
+
     @Autowired
     private MockMvc mvc;
     @MockBean
@@ -73,6 +74,7 @@ class MatchControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(this.objectMapper.writeValueAsString(out)));
+
         verify(this.matchService, times(1)).findMatchById(anyLong());
     }
 
@@ -94,12 +96,14 @@ class MatchControllerTest {
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
         verify(this.matchService, times(1)).findAllMatchesByUserId(anyLong(), any(Pageable.class));
     }
 
     @Test
     void deleteMatch() throws Exception {
         //GIVEN
+
         Long matchId = this.matchId;
 
         doNothing().when(this.matchService).deleteMatch(anyLong());
@@ -109,6 +113,7 @@ class MatchControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 //THEN
                 .andExpect(status().isNoContent());
+
         verify(this.matchService, times(1)).deleteMatch(anyLong());
     }
 }

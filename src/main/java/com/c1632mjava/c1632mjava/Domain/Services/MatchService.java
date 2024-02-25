@@ -9,6 +9,6 @@ import org.springframework.data.domain.Pageable;
 public interface MatchService {
     MatchReadDto findMatchById(Long id);
     Page<MatchReadDto> findAllMatchesByUserId(Long userId, Pageable paging);
-    Match createMatch(MatchCreateDto dto);
+    MatchReadDto createMatch(MatchCreateDto dto);
     void deleteMatch(Long id);
 }

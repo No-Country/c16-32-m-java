@@ -70,6 +70,7 @@ class ReportedMessageControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(this.objectMapper.writeValueAsString(out)));
+
         verify(this.reportedMessageService, times(1)).create(any(ReportedMessageCreateDto.class));
     }
 

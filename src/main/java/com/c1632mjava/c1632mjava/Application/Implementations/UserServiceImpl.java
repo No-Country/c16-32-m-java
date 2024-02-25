@@ -30,13 +30,6 @@ public class UserServiceImpl implements UserService {
     private final MatchPreferencesService matchPreferencesService;
     private final MatchRepository matchRepository;
 
-    @Override
-    public UserReadDto registerUser(UserCreateDto userCreateDto) {
-        User user = userMapper.convertCreateToUser(userCreateDto);
-        /*TODO. Password logistics, such as encoder, etc*/
-        userRepository.save(user);
-        return userMapper.convertUserToRead(user);
-    }
 
     @Override
     public Page<UserReadDto> findAllUsers(boolean active, Pageable paging) {

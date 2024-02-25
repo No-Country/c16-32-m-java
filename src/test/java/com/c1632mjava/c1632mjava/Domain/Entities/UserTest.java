@@ -3,14 +3,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
-    Long id; String name; String password; String email; LocalDateTime birthdate;
+    Long id; String name; String password; String email; LocalDate birthdate;
     String photo; Gender gender; String pronouns; String description;
     SocialBattery socialBattery; String currentSong; boolean active;
     ArrayList<Artist> artists; ArrayList<Genre> genres; ArrayList<Long> bannedUsers;
@@ -21,7 +21,7 @@ public class UserTest {
         name = "Pedro Pascal";
         password = "Pedro123!";
         email = "pedropascal123@gmail.com";
-        birthdate = LocalDateTime.of(1980, Month.JULY, 23, 00, 00);
+        birthdate = LocalDate.of(1980, Month.JULY, 23);
         photo = "string_photo.jpg";
         gender = Gender.MASCULINO;
         pronouns = "él";
