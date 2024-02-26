@@ -1,6 +1,7 @@
 package com.c1632mjava.c1632mjava.Domain.Repositories;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchCreateDto;
+import com.c1632mjava.c1632mjava.Domain.Entities.AlgorithmResult;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository <User, Long> {
     Page<User> findAllByActive(Boolean active, Pageable paging);
     Optional<User> findByEmail(String email);
-    @Procedure //Se hace un stored procedure en la base de datos y de acá se lo llama!!
-    List<MatchCreateDto> generateAlgorithm(Long loggedUserId);
+    @Procedure(name = "generateAlgorithm") //Se hace un stored procedure en la base de datos y de acá se lo llama!!
+    List<Object[]> generateAlgorithm(Long loggedUserId);
 }

@@ -16,10 +16,11 @@ public class MatchPreferencesController {
 
     private final MatchPreferencesService matchPreferencesService;
 
-    @PostMapping("/")
+    @PostMapping("/{userId}")
     @Transactional
     public ResponseEntity<MatchPreferencesReadDto> createMatchPreferences(@RequestBody @Valid
-                                                                    MatchPreferencesCreateDto matchPreferencesCreateDto){
+                                                                    MatchPreferencesCreateDto matchPreferencesCreateDto,
+                                                                          @PathVariable Long userId){
         MatchPreferencesReadDto result = matchPreferencesService.createMatchPreferences(
                 matchPreferencesCreateDto);
         return ResponseEntity.ok(result);
