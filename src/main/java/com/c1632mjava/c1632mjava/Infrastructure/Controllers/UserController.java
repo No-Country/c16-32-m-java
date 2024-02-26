@@ -56,8 +56,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> loginUser(@NotNull @RequestBody
-                                                      @Valid LoginDTO data){
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody @Valid LoginDTO data){
         try{
             return ResponseEntity.ok(authService.login(data));
         }catch (UserNotFoundException e){

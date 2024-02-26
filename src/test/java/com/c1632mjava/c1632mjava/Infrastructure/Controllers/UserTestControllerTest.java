@@ -1,15 +1,20 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
 
 import com.c1632mjava.c1632mjava.Application.Implementations.UserServiceImpl;
+import com.c1632mjava.c1632mjava.Application.Validations.AuthService;
 import com.c1632mjava.c1632mjava.Domain.Dtos.*;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.*;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.*;
+import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,7 +25,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
@@ -29,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -38,6 +46,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WithMockUser //Habilita la autenticación (evita el error 403)
 @AutoConfigureJsonTesters //Permite manejarse con DTO en lugar de requerir JSON.
 class UserTestControllerTest {
+
+    @Mock
+    private AuthService authService;
+
+    @Mock
+    private UserService userService;
+
+    @InjectMocks // se inyectan los mocks en la instancia UserController
+    private UserController userController;
 
     @Autowired //Como el test está fuera del contexto de SpringBoot no pueden hacerse por constructor.
     private MockMvc mvc;
@@ -88,6 +105,8 @@ class UserTestControllerTest {
     String currentSong2;
     boolean active2;
 
+    String token;
+
     @BeforeEach
     public void setUpUserAttributes() {
         id = 1l;
@@ -118,6 +137,8 @@ class UserTestControllerTest {
         socialBattery2 = SocialBattery.AWAY;
         currentSong2 = "https://www.youtube.com/watch?v=WT-VE9OyAJk";
         active2 = false;
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2M" +
+                "jM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
     }
 
     /*
@@ -533,6 +554,51 @@ class UserTestControllerTest {
         }
     }
 
+    @Test
+    @DisplayName("Should return 200 plus jwt if correctly registered")
+    public void testRegisterUser() {
+        UserCreateDto userCreateDto = new UserCreateDto(name, password, email, birthdate,
+                photo, gender, pronouns, description);
+        when(userService.findUserByEmail(anyString())).thenReturn(null);
+
+        // Simula el comportamiento del servicio de autenticación
+        AuthResponse authResponse = new AuthResponse(token, id);
+        when(authService.register(any(UserCreateDto.class))).thenReturn(authResponse);
+
+        // Llama al método del controlador que se prueba
+        ResponseEntity<AuthResponse> response = userController.registerUser(userCreateDto);
+
+        // Verifica que la respuesta sea la esperada
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        AuthResponse responseBody = response.getBody();
+        assertNotNull(responseBody, "Response body must not be null");
+
+        // Verifica que el token no sea nulo
+        assertNotNull(responseBody.token(), "Token must not be null");
+        assertEquals(token, responseBody.token());
+
+        // Verifica que los métodos de los servicios fueron llamados
+        verify(userService, times(1)).findUserByEmail(anyString());
+        verify(authService, times(1)).register(any(UserCreateDto.class));
+        verifyNoMoreInteractions(userService, authService);
+    }
+
+    @Test
+    @DisplayName("Should return 200 plus jwt if correctly logged")
+    public void testLoginUser() {
+        LoginDTO loginDTO = new LoginDTO(email, password);
+        AuthResponse authResponse = new AuthResponse(token, id);
+
+        when(authService.login(any(LoginDTO.class))).thenReturn(authResponse);
+
+        ResponseEntity<AuthResponse> response = userController.loginUser(loginDTO);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody().token()); // Assuming getToken() returns the JWT
+
+        verify(authService, times(1)).login(any(LoginDTO.class));
+        verifyNoMoreInteractions(authService);
+    }
 }
 
 
