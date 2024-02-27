@@ -2,14 +2,9 @@ package com.c1632mjava.c1632mjava.Application.Implementations;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
-import com.c1632mjava.c1632mjava.Domain.Entities.AlgorithmResult;
-import com.c1632mjava.c1632mjava.Domain.Entities.MatchPreferences;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchAlgorithmService;
-import com.c1632mjava.c1632mjava.Domain.Services.MatchPreferencesService;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchService;
-import com.c1632mjava.c1632mjava.Domain.Services.UserService;
-import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +51,8 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
                 result.add(addedMatch);
             }
         }
+
+
         return result;
     }
 
