@@ -28,19 +28,69 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
     public final ObjectMapper objectMapper;
 
     @Override
-    public List<MatchReadDto> generateAlgorithm(Long userId) throws JsonProcessingException {
+    public List<MatchReadDto> generateAlgorithm(Long userId)
+            throws JsonProcessingException {
+        List<MatchReadDto> existentMatches = matchService.findAllMatchesByUserId(userId);
+        List<MatchCreateDto> newMatches = generateNewMatchesList(userId);
+
         List<MatchReadDto> result = new ArrayList<>();
-        var matchCreateDtoLists = userRepository.generateAlgorithm(userId);
-        for (var matchCreateLists : matchCreateDtoLists) {
-                var matchCreateDto = new MatchCreateDto(
-                        new BigDecimal(matchCreateLists[2].toString()).floatValue(),
-                        (long) matchCreateLists[0],
-                        (long) matchCreateLists[1]);
-                var matchRead = matchService.createMatch(matchCreateDto);
-                result.add(matchRead);
+        if (!existentMatches.isEmpty()) {
+
+            for (var existentMatch : existentMatches) {
+                boolean flag1 = detectNotRenewedMatches(existentMatch, newMatches);
+                if (!flag1) {
+                    matchService.deleteMatch(existentMatch.matchId());
+                }
+
+                for (var newMatch : newMatches) {
+                    boolean flag2 = detectMatchesToCreate(newMatch, existentMatches);
+                    if (!flag2) {
+                        var addingMatch = matchService.createMatch(newMatch);
+                        result.add(addingMatch);
+                    }
+                }
+            }
+        } else {
+            for (var newMatch : newMatches) {
+                var addedMatch = matchService.createMatch(newMatch);
+                result.add(addedMatch);
+            }
         }
-
-
         return result;
+    }
+
+
+    List<MatchCreateDto> generateNewMatchesList(Long userId) {
+        List<MatchCreateDto> newMatches = new ArrayList<>();
+        var matchCreateDtoLists = userRepository.generateAlgorithm(userId);
+
+        for (var matchCreateLists : matchCreateDtoLists) {
+            var userId1 = (long) matchCreateLists[0];
+            var userId2 = (long) matchCreateLists[1];
+            var compatibilityPercentage = new BigDecimal(matchCreateLists[2].toString()).floatValue();
+            var matchCreateDto = new MatchCreateDto(compatibilityPercentage, userId1, userId2);
+            newMatches.add(matchCreateDto);
+        }
+        return newMatches;
+    }
+
+    boolean detectNotRenewedMatches(MatchReadDto existentMatch, List<MatchCreateDto> newMatches) {
+        for (var newMatch : newMatches) {
+            if (existentMatch.user1().userId() == newMatch.user1() &&
+                    existentMatch.user2().userId() == newMatch.user2()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean detectMatchesToCreate(MatchCreateDto newMatch, List<MatchReadDto> existentMatches) {
+        for (var existentMatch : existentMatches) {
+            if (existentMatch.user1().userId() == newMatch.user1() &&
+                    existentMatch.user2().userId() == newMatch.user2()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

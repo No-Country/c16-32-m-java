@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -65,6 +66,14 @@ public class MatchServiceImpl implements MatchService {
 
         Page<Match> matches = this.matchRepository.findAllByUser1AndActiveIsTrueOrUser2AndActiveIsTrue(user, user, paging);
         return matches.map(this.matchMapper::convertMatchToRead);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<MatchReadDto> findAllMatchesByUserId(Long userId) {
+        this.validId(userId, "usuario");
+        var matches = matchRepository.findAllByUser1UserId(userId);
+        return matches.stream().map(this.matchMapper::convertMatchToRead).toList();
     }
 
     @Transactional
@@ -126,6 +135,14 @@ public class MatchServiceImpl implements MatchService {
         match.getChat().setActive(Boolean.FALSE);
     }
 
+    @Override
+    public Long findMatchByUserId1ByUserId2(Long userId1, Long userId2) {
+        Match findMatch = matchRepository.findByUser1UserIdAndUser2UserId(userId1, userId2)
+            .orElse(null);
+        if (findMatch == null) {return 0L; }
+        return findMatch.getMatchId();
+    }
+
     private void validId(Long id, String subject){
         if(id == null){
             throw new IdNotNullException(subject);
@@ -135,4 +152,6 @@ public class MatchServiceImpl implements MatchService {
             throw new IdLessThanOneException(subject);
         }
     }
+
+
 }
