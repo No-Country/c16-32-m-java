@@ -61,6 +61,18 @@ public class ChatServiceImpl implements ChatService {
         return this.chatRepository.save(chat);
     }
 
+    @Transactional
+    @Override
+    public void save(ChatCreateDto dto) {
+        Optional<Chat> optionalChat = chatRepository.findById(dto.senderId());
+        if(optionalChat.isEmpty()){
+            throw new UserNotFoundException(dto.senderId());
+        }
+        Chat existingChat = optionalChat.get();
+        existingChat.setLastMessage(dto.lastMessage());
+        chatRepository.save(existingChat);
+    }
+
     @Transactional(readOnly = true)
     @Override
     public ChatReadDto findById(Long id) {
@@ -78,6 +90,8 @@ public class ChatServiceImpl implements ChatService {
 
         return this.chatMapper.convertChatToRead(optionalChat.get());
     }
+
+
 
     @Transactional(readOnly = true)
     @Override

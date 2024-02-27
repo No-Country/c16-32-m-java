@@ -16,4 +16,5 @@ public interface ChatMapper {
     @Mapping(target = "match", ignore = true)
     Chat convertCreateToChat(ChatCreateDto dto);
     ChatReadDto convertChatToRead(Chat chat);
+    ChatCreateDto convertReadToCreate(ChatReadDto dto);
 }
