@@ -107,11 +107,55 @@ function App() {
     setCode(code);
   }, []);
 
+    const banUser = () => {
+      const banningId = 7; // ID del usuario logueado.
+      const matchId = 2; // ID del match entre el usuario logueado y del usuario al que queremos bannear.
+
+      const url = `http://localhost:8080/users/${banningId}/ban/${matchId}`;
+      
+      axios.delete(url)
+      .then((data)=>{
+        // Return true or false.
+        console.log(data)
+      });
+  };
+
+    const unbanUser = () => {
+      const banningId = 7; // ID del usuario logueado.
+      const unbannedUserId = 3; // ID del usuario al que queremos desbanear.
+
+      const url = `http://localhost:8080/users/${banningId}/unban/${unbannedUserId}`;
+      
+      axios.put(url)
+      .then((data)=>{
+        // Return true or false.
+        console.log(data)
+      });
+  };
+
+    const reportMessage = () => {
+      const reportedMessage = {
+        "message" : "No me gustó lo que me dijo, me sentí discriminado.",
+        "chatId" : 2 // ID del chat en donde esta el mensaje que se va a reportar.
+      }
+      
+      const url = "http://localhost:8080/reported-messages";
+      
+      axios.post(url, reportedMessage)
+      .then((data)=>{
+        // Return Reported Message created.
+        console.log(data)
+      });
+  };
+
   return (
     <>
       <a href={url}>Register</a>      
       <button onClick={login}>Login</button>
       <button onClick={lookForArtists}>Bring artists!</button>
+      <button onClick={banUser}>Ban user</button>
+      <button onClick={unbanUser}>Unban user</button>
+      <button onClick={reportMessage}>Report message</button>
 
       {artists && artists.map((artist,i) => (
       <p key={i}>{artist.name}</p>))}
