@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
+import Spotify from '../../Components/Iconos/Spotify/Spotify';
 
 import log from '../../assets/log.png'
-import google from '../../assets/google.png'
 import signo from '../../assets/signo.png'
 import AppStore from '../../assets/AppStore.png';
 import GooglePlay from '../../assets/GooglePlay.png';
@@ -15,6 +15,11 @@ const Login = () => {
         window.location.href = '/';
     };
 
+    const handleSpotifyLogin = () => {
+        // Lógica a realizar después de iniciar sesión con Spotify
+        // Por ejemplo, redireccionar a otra página o actualizar el estado para mostrar que el usuario ha iniciado sesión.
+    };
+
     return (
         <div className="login-container">
             <Link className="close-button" onClick={handleCloseClick}>
@@ -22,9 +27,9 @@ const Login = () => {
             </Link>
             <img src={log} alt="Logo" className="login-logo" />
             <h1>Inicia Sesión</h1>
-            <button className="google-button">
-                <img src={google} alt="Google Logo" className="button-icon" />
-                Continuar con Google
+            <button className="spotify-button" onClick={handleSpotifyLogin}>
+                <Spotify onSpotifyLogin={handleSpotifyLogin} />
+                Continuar con Spotify
             </button>
             <Link to="/email-login" className="link">
                 <button className="other-button">
