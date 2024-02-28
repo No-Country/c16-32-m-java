@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,7 @@ public class ChatController {
         Chat createdChat = chatService.create(dto);
         createdChat.getPreviousMessages().add(dto.lastMessage());
         chatService.save(dto);
+        createdChat.setChatId(createdChat.getChatId());
         String destination = "/topic/chat" + createdChat.getChatId();
         messagingTemplate.convertAndSend(destination, createdChat);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdChat);
@@ -56,7 +58,7 @@ public class ChatController {
     public void handleChatMessage(@DestinationVariable Long id, ChatCreateDto dto) {
         ChatReadDto chat = chatService.findById(id);
         if(chat == null){
-            throw new ChatNotFoundException(id);
+            return;
         }
         if(!Objects.equals(chat.sender().userId(), dto.senderId())){
             throw new UserNotFoundException(id);
@@ -65,6 +67,6 @@ public class ChatController {
                 .withDate(LocalDateTime.now())
                 .withPreviousMessages(dto.previousMessages());
         chatService.save(chatMapper.convertReadToCreate(chat));
-        messagingTemplate.convertAndSend("/topic/chat/" + id, dto);
+        messagingTemplate.convertAndSend("/topic/chat" + id, dto);
     }
 }

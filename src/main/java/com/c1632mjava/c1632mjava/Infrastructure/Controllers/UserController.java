@@ -44,14 +44,11 @@ public class UserController {
     @Transactional
     public ResponseEntity<AuthResponse> registerUser(@RequestBody @Valid
                                                     UserCreateDto userCreateDto){
-            if (userService.findUserByEmail(userCreateDto.email()) != null) {
-                throw new UserAlreadyExistsException(userCreateDto.email());
-            }
         try{
             return ResponseEntity.ok(authService.register(userCreateDto));
         }
-        catch (RuntimeException e){
-            return ResponseEntity.badRequest().build();
+        catch (UserAlreadyExistsException e){
+            return ResponseEntity.badRequest().body(new AuthResponse(e.getMessage(), null));
         }
     }
 

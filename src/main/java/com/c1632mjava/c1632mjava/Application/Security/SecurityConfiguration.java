@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/users/register").permitAll()
                                 .requestMatchers("/users/login").permitAll()
-                                .anyRequest().authenticated())
+                                .anyRequest().permitAll())
                 .sessionManagement(sessionManager ->
                         sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)

@@ -6,6 +6,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.User;
 import com.c1632mjava.c1632mjava.Domain.Repositories.UserRepository;
+import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserAlreadyExistsException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,11 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(UserCreateDto data) {
+
+        Optional<User> optionalUser = userRepository.findByEmail(data.email());
+        if(optionalUser.isPresent()){
+            throw new UserAlreadyExistsException(optionalUser.get().getUserId());
+        }
 
         User user = User.builder()
                 .email(data.email())
