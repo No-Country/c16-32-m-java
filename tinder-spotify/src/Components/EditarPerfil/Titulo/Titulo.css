@@ -13,12 +13,14 @@
     display: flex;
     align-items: center; 
     margin-left: 300px;
+    cursor: pointer;
 }
 
 .Sub-chat {
     font-size: 40px;
     font-weight: bold;
     margin-left: 20px;
+    cursor: pointer;
 }
   
 .titulo {
@@ -27,4 +29,3 @@
     line-height: 1; 
     margin-left: 300px; 
 }
- 

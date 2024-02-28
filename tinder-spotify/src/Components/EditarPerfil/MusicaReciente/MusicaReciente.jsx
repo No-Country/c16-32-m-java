@@ -1,39 +1,37 @@
-import React, { useState } from 'react';
-import CancionesEscuchadasLoader from '../../../hook/CancionesEscuchadasLoader';
+import React from 'react';
+import './MusicaReciente.css'
 
-import './MusicaReciente.css';
 import Spotify from '../../../assets/Spotify.png';
 
 const MusicaReciente = () => {
-  const [cancionesEscuchadas, setCancionesEscuchadas] = useState([]);
-
-  const handleCancionesCargadas = (canciones) => {
-    setCancionesEscuchadas(canciones);
-  };
-
-  const agregarCancionEscuchada = (cancion) => {
-    setCancionesEscuchadas([...cancionesEscuchadas, cancion]);
-  };
-
   return (
     <>
-      <div className="cabecera-musica-reciente">
+        <div className="cabecera-musica-reciente">
         <h4>Últimas canciones escuchadas:</h4>
-      </div>
-      <div className="contenedor-con-borde">
-        <div className="musica-reciente">
-          {cancionesEscuchadas.map((cancion, index) => (
-            <div key={index} className="cancion">
-              <button className="boton-cancion" onClick={() => agregarCancionEscuchada(cancion)}>
-                <img src={Spotify} alt={`Logo de la canción ${index + 1}`} />
-                <span>{cancion}</span>
+        </div>
+        <div class="contenedor-con-borde">
+          <div className="musica-reciente">
+            <div className="cancion">
+              <button className="boton-cancion">
+                  <img src={Spotify} alt="Logo de la canción 1" />
+                  <span>Billie Eilish - lovely</span>
               </button>
             </div>
-          ))}
-        </div>
-      </div>
-      <CancionesEscuchadasLoader onCancionesCargadas={handleCancionesCargadas} />
-    </>
+            <div className="song">
+              <button className="song-button">
+                  <img src={Spotify} alt="Logo de la canción 2" />
+                  <span>Nene malo - Bailan las rochas y chetas</span>
+              </button>
+            </div>
+            <div className="song">
+              <button className="song-button">
+                  <img src={Spotify} alt="Logo de la canción 3" />
+                  <span>Billie Eilish - lovely</span>
+              </button>
+            </div>
+          </div>
+        </div>    
+    </>    
   );
 };
 

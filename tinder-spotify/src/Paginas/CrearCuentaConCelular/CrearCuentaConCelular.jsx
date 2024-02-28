@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CrearStep1 from './CrearStep1/CrearStep1';
 import CrearStep2 from './CrearStep2/CrearStep2';
 
+
 const CrearCuentaConCelular = () => {
     const [step, setStep] = useState(1);
 

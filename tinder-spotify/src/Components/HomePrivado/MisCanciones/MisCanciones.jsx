@@ -5,7 +5,7 @@ import Spotify from '../../../assets/Spotify.png';
 const MisCanciones = () => {
   return (
     <div className="mis-canciones-container">
-      <h2 className="titulo">Mis canciones favoritas</h2>
+      <h2 className="tituca">Mis canciones favoritas</h2>
       <div className="cancion">
         <img src={Spotify} alt="Spotify" className="logo-spotify" />
         <span>The White Stripes - Seven Nation Army</span>

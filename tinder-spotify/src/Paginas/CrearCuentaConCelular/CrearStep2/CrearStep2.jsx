@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
 import CloseIcon from '../../../Components/Iconos/CloseIcon/CloseIcon';
 import log from '../../../assets/log.png';
 import './CrearStep2.css';
@@ -10,16 +9,9 @@ const CrearStep2 = ({ handleContinue, handleClose }) => {
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
 
-  const handleContinueClick = async () => {
+  const handleContinueClick = () => {
     if (codigo.trim() !== '') {
-      try {
-        // Aquí realizas la solicitud HTTP con Axios
-        await axios.post('URL_DEL_SERVICIO', { codigo: codigo });
-
-        navigate('/home-privado');
-      } catch (error) {
-        console.error('Error al enviar datos:', error);
-      }
+      navigate('/home-privado');
     } else {
       setAlert('Por favor, ingresa tu código.');
     }

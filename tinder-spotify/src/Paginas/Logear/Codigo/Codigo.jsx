@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import LogoP from '../../../Components/Iconos/LogoP/LogoP';
 import CloseIcon from '../../../Components/Iconos/CloseIcon/CloseIcon';
 import PostTitle from '../../../Components/Paragraph/PostTitle/PostTitle';
@@ -14,34 +13,20 @@ const Codigo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Función para realizar la llamada al servicio externo
-    const verifyCode = async () => {
-      try {
-        // Realizar la llamada al servicio externo usando Axios
-        const response = await axios.post('URL_DEL_SERVICIO', { codigo });
-        console.log('Respuesta del servicio externo:', response.data);
-
-        // Redirigir al usuario a otra página si es necesario
-        navigate('/home-privado');
-      } catch (error) {
-        console.error('Error al llamar al servicio externo:', error);
-        setAlert('Error al verificar el código. Por favor, inténtalo de nuevo.');
-      }
-    };
-    verifyCode();
-  }, [codigo, navigate]); 
-
-  useEffect(() => {
-    if (timeLeft > 0) {
-      const timer = setInterval(() => {
-        setTimeLeft(prevTime => prevTime - 1);
-      }, 1000);
-      return () => clearInterval(timer);
+    if (timeLeft === 0) {
+      return;
     }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, [timeLeft]);
 
   const handleContinue = () => {
     if (codigo.trim() !== '') {
+      navigate('/home-privado');
     } else {
       setAlert('Por favor, ingresa el código de verificación.');
     }
@@ -49,11 +34,13 @@ const Codigo = () => {
 
   const handleResendCode = () => {
     setTimeLeft(80);
+    
   };
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
   return (
     <div className="codigo-container">
       <div className="closeCo-icon-container">
