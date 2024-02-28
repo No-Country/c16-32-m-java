@@ -127,9 +127,10 @@ public class MatchServiceImpl implements MatchService {
 
         Match match = optionalMatch.get();
 
-        if(Boolean.FALSE.equals(match.getActive())){
+        /*if(Boolean.FALSE.equals(match.getActive())){
             throw new MatchNotFoundException(id);
-        }
+            //TODO Chequear cómo es pertinente esto.
+        }*/
 
         match.setActive(Boolean.FALSE);
         match.getChat().setActive(Boolean.FALSE);

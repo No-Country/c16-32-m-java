@@ -36,6 +36,7 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
                 if (!flag1) {
                     matchService.deleteMatch(existentMatch.matchId());
                 }
+            }
 
                 for (var newMatch : newMatches) {
                     boolean flag2 = detectMatchesToCreate(newMatch, existentMatches);
@@ -44,7 +45,6 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
                         result.add(addingMatch);
                     }
                 }
-            }
         } else {
             for (var newMatch : newMatches) {
                 var addedMatch = matchService.createMatch(newMatch);
@@ -71,7 +71,8 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
         return newMatches;
     }
 
-    boolean detectNotRenewedMatches(MatchReadDto existentMatch, List<MatchCreateDto> newMatches) {
+    boolean detectNotRenewedMatches(MatchReadDto existentMatch,
+                                    List<MatchCreateDto> newMatches) {
         for (var newMatch : newMatches) {
             if (existentMatch.user1().userId() == newMatch.user1() &&
                     existentMatch.user2().userId() == newMatch.user2()) {
@@ -81,7 +82,8 @@ public class MatchAlgorithmServiceImpl implements MatchAlgorithmService {
         return false;
     }
 
-    boolean detectMatchesToCreate(MatchCreateDto newMatch, List<MatchReadDto> existentMatches) {
+    boolean detectMatchesToCreate(MatchCreateDto newMatch,
+                                  List<MatchReadDto> existentMatches) {
         for (var existentMatch : existentMatches) {
             if (existentMatch.user1().userId() == newMatch.user1() &&
                     existentMatch.user2().userId() == newMatch.user2()) {
