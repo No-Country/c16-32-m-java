@@ -1,6 +1,7 @@
 package com.c1632mjava.c1632mjava.Domain.Dtos.Chat;
 
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserReadDto;
+import lombok.NoArgsConstructor;
 import lombok.With;
 
 import java.time.LocalDateTime;
