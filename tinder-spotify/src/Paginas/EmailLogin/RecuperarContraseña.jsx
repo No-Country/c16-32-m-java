@@ -5,6 +5,7 @@ import './RecuperarContraseña.css';
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 
 const RecuperarContraseña = () => {
+
     const handleCloseClick = () => {
         window.location.href = '/';
     };
