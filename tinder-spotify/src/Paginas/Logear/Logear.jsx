@@ -27,13 +27,13 @@ const Logear = () => {
 
   return (
     <div className="container logear-container">
-      <div className="logo-container-Log">
-        <LogoP className="logo" />
-      </div>
-      <div className="closeLog-icon">
+            <div className="closeLog-icon">
         <Link to="/">
            <CloseIcon className="close-icon" />
         </Link>
+      </div>
+      <div className="logo-container-Log">
+        <LogoP className="logo" />
       </div>
       <PostTitle className="post-titleLo">Crear cuenta</PostTitle>
       <div className="form-container">
@@ -58,12 +58,13 @@ const Logear = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
+        {alert && <p className="alert-message">{alert}</p>}
         <button className="continue-codi" onClick={handleContinue}>Continuar</button>     
       </div>
-      {alert && <p className="alert-message">{alert}</p>}
+      
       <div className="back-arrow">
         <Link to="/crear-cuenta" className="link">
-          <Volver className="back-arrow-icon" />
+          {/* <Volver className="back-arrow-icon" /> */}
         </Link>
       </div>
     </div>

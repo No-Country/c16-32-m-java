@@ -1,8 +1,13 @@
+@import url('../../../Components/StyleVariables/Color.css');
+
 .crear-step2-container {
     position: relative;
     width: 500px;
     height: 620px;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #e0e0e0; */
+    border-radius: 25px;
+    background-color: var(--winddows-color);
+    box-shadow: var(--shadow-down);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,44 +22,45 @@
     top: 12px;
     right: 12px;
     cursor: pointer;
-  }
+}
 
 .cerrar:hover {
     color: #888;
 }
 
 .crear-step2-logo {
-    width: 100px; 
-    height: auto; 
-    margin-bottom: 20px; 
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 .crear-step2-title {
-    font-size: 24px; 
-    margin-bottom: 10px; 
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .crear-step2-subtitle {
-    font-size: 18px; 
-    margin-bottom: 10px; 
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .crear-step2-input {
-    width: 200px; 
-    height: 30px; 
+    width: 304px;
+    height: 47px;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
 .crear-step2-paragraph {
-    font-size: 18px; 
-    margin-bottom: 20px; 
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .crear-step2-alert {
     font-weight: bold;
-    font-size: 25px;
-    color: #ffffff;
-    background-color:#d40000;
+    font-size: 15px;
+    color: var(--error-color);
+    background-color: var(--error-color-back);
     border-radius: 10px;
     width: auto;
     padding: 5px 40px;
@@ -65,20 +71,21 @@
 }
 
 .crear-step2-button {
-    width: 170px; 
-    height: 40px; 
-    background-color: #b53550; 
-    color: #ffffff; 
+    width: 170px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    ;
     font-size: 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     cursor: pointer;
     line-height: 40px;
 }
 
 .crear-step2-button:hover {
-    background-color: #8e222f;
-  }
+    background-color: var(--primary-color-hover);
+}
 
 .contiStep2 {
     margin-top: 20px;

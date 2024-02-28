@@ -11,7 +11,7 @@ import Logear from './Paginas/Logear/Logear';
 import Codigo from './Paginas/Logear/Codigo/Codigo';
 import HomePrivado from './Components/HomePrivado/HomePrivado';
 import EditarPerfil from './Components/EditarPerfil/EditarPerfil'
-
+import './index.css'
 const App = () => {
     return (
         <Router>

@@ -1,3 +1,5 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .recuperar-contraseña-container {
     width: 500px;
     height: 620px;
@@ -6,7 +8,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #e0e0e0; 
+    border: 1px solid #e0e0e0;
     margin: 0 auto;
     margin-top: 70px;
 }
@@ -58,8 +60,8 @@
 .recuperar-contraseña-button {
     width: 200px;
     height: 50px;
-    background-color: #b53550;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
     font-size: 18px;
     border: none;
     border-radius: 10px;
@@ -69,7 +71,7 @@
 .recuperar-contraseña-button:hover {
     background-color: #8e222f;
 }
-  
+
 .recuperar-contraseña-terms {
     width: 90%;
     margin-top: 20px;

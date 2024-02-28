@@ -1,61 +1,66 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .login-container {
     width: 417px;
     height: 555px;
-    border: 1px solid #e0e0e0; 
-    border-radius: 10px; 
+    border-radius: 25px;
+    background-color: var(--winddows-color);
+    box-shadow: var(--shadow-down);
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    padding: 20px; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
     margin: 50px auto;
 }
-  
-.google-button, .other-button {
-    margin-top: 20px; 
-    border-radius: 20px; 
+
+.google-button,
+.other-button {
+    margin-top: 20px;
+    border-radius: 20px;
 }
-  
+
 .google-button {
-    background-color: #ffffff; 
-    color: #000000; 
+    background-color: var(--buttonOn-font-color);
+    color: #000000;
     width: 288px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: center; 
-    border-radius: 20px; 
+    justify-content: center;
+    border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 0 12px; 
+    padding: 0 12px;
 }
 
 .other-button {
-    background-color: #b53550; 
-    color: #ffffff; 
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    ;
     width: 288px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: center; 
-    border-radius: 20px; 
-    padding: 0 12px; 
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0 12px;
 }
 
 .google-button img,
 .other-button img {
-    margin-right: 10px; 
+    margin-right: 10px;
 }
-  
-h2{
+
+h2 {
     width: 194px;
     height: 24px;
 }
-  
+
 .logos img {
     width: 116px;
     height: 39px;
 }
 
 .link {
-    text-decoration: none; 
+    text-decoration: none;
 }

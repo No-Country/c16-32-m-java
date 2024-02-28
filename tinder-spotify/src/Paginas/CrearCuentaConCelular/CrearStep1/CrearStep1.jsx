@@ -26,17 +26,20 @@ const CrearStep1 = ({ handleContinue, handleClose }) => {
       <img src={log} alt="Logo" className="crear-step1-logo" />
       <h1 className="crear-step1-title">Crear cuenta</h1>
       <h2 className="crear-step1-subtitle">Ingresa tu número de celular</h2>
+      <div className='crear-step1-inputs'>
       <div className="crear-step1-input-group">
-        <label htmlFor="pais" className="crear-step1-label">País:</label>
-        <input type="text" id="pais" className="crear-step1-input" value={pais} onChange={(e) => setPais(e.target.value)} />
+        <label htmlFor="pais" className="crear-step1-pais">País:</label>
+        <input type="text" id="pais" className="crear-step1-input-pais" value={pais} onChange={(e) => setPais(e.target.value)} />
       </div>
       <div className="crear-step1-input-group">
-        <label htmlFor="numero" className="crear-step1-label">Número de celular:</label>
-        <input type="text" id="numero" className="crear-step1-input" value={numero} onChange={(e) => setNumero(e.target.value)} />
+        <label htmlFor="numero" className="crear-step1-numero">Número de celular:</label>
+        <input type="text" id="numero" className="crear-step1-input-numero" value={numero} onChange={(e) => setNumero(e.target.value)} />
       </div>
+      </div>
+      {alert && <p className="alert-message">{alert}</p>}
       <p className="crear-step1-paragraph">Al hacer clic en continuar, te enviaremos un mensaje de texto con un código de verificación. Se pueden aplicar tarifas de mensajes y datos. El número verificado se puede usar para iniciar sesión.</p>
       <button onClick={handleContinueClick} className="crear-step1-button contiStep">Continuar</button>
-      {alert && <p className="alert-message">{alert}</p>}
+      
     </div>
   );
 };

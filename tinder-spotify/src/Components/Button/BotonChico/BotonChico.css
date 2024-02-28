@@ -1,15 +1,18 @@
+@import url('../../StyleVariables/Color.css');
+
 .Boton-chico {
-  width: calc(33.33% - 20px); 
+  width: calc(33.33% - 20px);
   height: 28px;
-  border-radius: 14px; 
-  margin-bottom: 10px; 
-  box-sizing: border-box; 
-  background-color: #CDC5CB; 
-  color: #B53550; 
+  border-radius: 14px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  background-color: var(--buttonOff-color);
+  color: var(--primary-color);
   cursor: pointer;
 }
 
 .Boton-chico.rojo {
-  background-color: #B53550;
-  color: #FFFFFF;
+  background-color: var(--primary-color);
+  color: var(--buttonOn-font-color);
+  ;
 }
