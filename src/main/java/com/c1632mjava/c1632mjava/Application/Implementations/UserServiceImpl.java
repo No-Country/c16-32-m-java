@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public UserReadDto findUserByEmail(String email)
             throws UserNotFoundException {
         User user = userRepository.findByEmail(email)
-                .orElseThrow( () -> new UserNotFoundException(email));
+                .orElse(null);
         return userMapper.convertUserToRead(user);
     }
 

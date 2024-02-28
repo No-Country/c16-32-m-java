@@ -4,6 +4,7 @@ import com.c1632mjava.c1632mjava.Domain.Dtos.Match.MatchReadDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.MatchPreferences.MatchPreferencesCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.User.UserCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Services.MatchAlgorithmService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,11 @@ public class MatchAlgorithmController {
 
     public final MatchAlgorithmService matchAlgorithmService;
 
-    @PostMapping("/{userId}")
+    @GetMapping("/{userId}")
     @Transactional
     public ResponseEntity<List<MatchReadDto>> generateMatchAlgorithm(
-                                   @RequestParam Long userId){
+                                   @PathVariable Long userId) throws JsonProcessingException {
         List<MatchReadDto> result = matchAlgorithmService.generateAlgorithm(userId);
-        //Input userCreateDto y matchPreferencesCreateDto
-        //output lista de matchReadDto.
         return ResponseEntity.ok(result);
     }
 

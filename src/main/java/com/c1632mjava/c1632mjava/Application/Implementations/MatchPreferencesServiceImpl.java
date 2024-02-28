@@ -22,6 +22,7 @@ public class MatchPreferencesServiceImpl implements MatchPreferencesService {
             MatchPreferencesCreateDto matchPreferencesCreateDto) {
         MatchPreferences matchPreferences = matchPreferencesMapper.
                 convertCreateToMatchPreferences(matchPreferencesCreateDto);
+        matchPreferences.setActive(true);
         matchPreferences = matchPreferencesRepository.save(matchPreferences);
         return matchPreferencesMapper.convertMatchPreferencesToRead(matchPreferences);
     }
