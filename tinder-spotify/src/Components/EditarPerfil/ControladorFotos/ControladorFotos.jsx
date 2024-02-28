@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import FotosPerfil from '../ElegirFotoPerfil/FotosPerfil';
 import SeleccionarFotos from '../SeleccionarFotos/SeleccionarFotos';
 
 const ControladorFotos = () => {
   const [porcentajeCarga, setPorcentajeCarga] = useState(0);
   const [mostrarSeleccionarFotos, setMostrarSeleccionarFotos] = useState(false);
+  const [cargaIniciada, setCargaIniciada] = useState(false);
 
-  useEffect(() => {
-    const cargaTemporizador = setTimeout(() => {
-      setPorcentajeCarga(50);
-    }, 2000);
-
-    const mostrarTemporizador = setTimeout(() => {
-      setMostrarSeleccionarFotos(true);
-    }, 4000);
-
+  const iniciarCarga = () => {
+    setCargaIniciada(true);
     const aumentoTemporizador = setInterval(() => {
       setPorcentajeCarga(prevPorcentaje => {
         const nuevoPorcentaje = prevPorcentaje + 1;
@@ -22,14 +17,27 @@ const ControladorFotos = () => {
       });
     }, 50);
 
-    return () => {
-      clearTimeout(cargaTemporizador);
-      clearTimeout(mostrarTemporizador);
+    setTimeout(() => {
       clearInterval(aumentoTemporizador);
-    };
-  }, []);
+      setMostrarSeleccionarFotos(true);
+    }, 4000);
+  };
 
-  return mostrarSeleccionarFotos ? <SeleccionarFotos /> : <FotosPerfil porcentajeCarga={porcentajeCarga} />;
+  const cambiarTarjeta = () => {
+    setPorcentajeCarga(0); 
+    setCargaIniciada(false); 
+    setMostrarSeleccionarFotos(!mostrarSeleccionarFotos);
+  };
+
+  return mostrarSeleccionarFotos ? (
+    <SeleccionarFotos cambiarTarjeta={cambiarTarjeta} />
+  ) : (
+    <FotosPerfil
+      porcentajeCarga={cargaIniciada ? porcentajeCarga : 0}
+      iniciarCarga={iniciarCarga}
+      cambiarTarjeta={cambiarTarjeta}
+    />
+  );
 };
 
 export default ControladorFotos;

@@ -12,6 +12,7 @@
 .logo-container,
 .profile-picture-container {
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .button {

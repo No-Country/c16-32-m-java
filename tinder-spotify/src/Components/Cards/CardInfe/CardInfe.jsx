@@ -15,7 +15,8 @@ const CardInfe = () => {
         manera original. ¿Listo para conectar a <br/> 
         través de la música?</p>
       </div>
-      <div className="CardInfeItem">
+
+      <div className="CardInfeItem2">
         <img src={card2} alt="Imagen 2" />
         <p>ChatBeat es una solución multiplataforma,<br/> 
         es el lugar perfecto para conectar con <br/> 
