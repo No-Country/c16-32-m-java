@@ -1,0 +1,72 @@
+.logear-container {
+    width: 417px;
+    height: 555px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+}
+  
+.logo-container-Log {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.closeLog-icon {
+    position: absolute;
+    top: 60px;
+    right: 800px;
+    cursor: pointer;
+}
+
+.post-titleLo {
+    font-size: 24px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center; 
+}
+  
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.email-input,
+.password-input,
+.repeat-password-input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+  
+.continue-codi {
+    width: 250px;
+    padding: 20px 20px;
+    margin-top: 20px;
+    background-color: #b53550;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.continue-codi:hover {
+    background-color: #8b293e; 
+}
+  
+.back-arrow {
+    margin-top: auto;
+    margin-right: 300px;
+}
+  
+.link {
+    text-decoration: none;
+}
+  

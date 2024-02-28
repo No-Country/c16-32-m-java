@@ -1,0 +1,111 @@
+.codigo-container {
+    position: relative;
+    width: 417px;
+    height: 555px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+}
+
+.closeCo-icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999; 
+    cursor: pointer;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+  
+.post-title-container {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+  
+.post-title {
+    font-size: 24px;
+}
+  
+.verification-text {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+  
+.verification-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.alert-message {
+    font-weight: bold;
+    font-size: 25px;
+    color: #ffffff;
+    background-color:#d40000;
+    border-radius: 10px;
+    width: auto;
+    padding: 5px 40px;
+}
+  
+.change-email-text {
+    margin-bottom: 10px;
+}
+  
+.change-email-reenviar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    margin-top: 10px;
+}
+  
+.change-email-text {
+    flex: 1; 
+    margin-right: 10px;
+    color: #1B59F9;
+}
+  
+.reenviar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 100px;
+    margin-bottom: 5px; 
+    padding-bottom: 0px;
+}
+  
+.resend-text {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.timer-text {
+    margin-top: -10px; 
+}
+
+
+.continuar-button {
+    width: 250px;
+    padding: 20px 20px;
+    background-color: #b53550;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.continuar-button:hover {
+    background-color: #8b293e; 
+}
+  
+.link {
+    text-decoration: none; 
+}

@@ -1,0 +1,15 @@
+.titulo-container {
+    text-align: center; 
+    margin-top: -1060px; ; 
+    max-width: 80%; 
+    margin-left: 950px; 
+    margin-right: 950px;
+    white-space: nowrap;
+}
+  
+.titulo {
+    font-size: 44.79px; 
+    font-weight: bold; 
+    line-height: 1; 
+}
+ 

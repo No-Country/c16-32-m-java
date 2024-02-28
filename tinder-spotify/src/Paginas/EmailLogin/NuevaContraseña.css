@@ -1,0 +1,74 @@
+.nueva-contraseña-container {
+    width: 500px;
+    height: 620px;
+    border: 1px solid #000;
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.nuevaCo {
+    position: absolute;
+    top: 90px;
+    right: 800px;
+    cursor: pointer;
+}
+
+.nueva-contraseña-title {
+    width: 263px;
+    height: 38px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nueva-contraseña-label {
+    width: 143px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.nueva-contraseña-input {
+    width: 70%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.nueva-contraseña-resend span {
+    width: 133px;
+    height: 24px;
+}
+
+.nueva-contraseña-button {
+    width: 50%;
+    height: 50px;
+    background-color: #b53550;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+}
+
+.nueva-contraseña-button:hover {
+    background-color: #8e222f;
+}
+
+.nueva-contraseña-terms {
+    width: 90%;
+    text-align: center;
+    margin-top: 20px;
+}

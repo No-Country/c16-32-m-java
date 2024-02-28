@@ -1,0 +1,20 @@
+.boton-pin {
+    width: 227px;
+    height: 41px;
+    border-radius: 20px; 
+    background-color: #B53550; 
+    color: #FFF2F5; 
+    font-family: 'Title', sans-serif; 
+    font-weight: bold; 
+    font-size: 18px; 
+    border: none; 
+    cursor: pointer; 
+}
+  
+.boton-pin:hover {
+    opacity: 0.8; 
+}
+  
+.boton-pin:focus {
+    outline: none; 
+}

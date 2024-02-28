@@ -1,0 +1,25 @@
+.fragme-container {
+    position: relative;
+    text-align: center;
+    margin-top: 150px;
+}
+  
+.fragme-icon {
+    width: 106px;
+    height: 96px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+  
+.fragme-text-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -80px; 
+    width: 100%;
+}
+
+.fragme-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}

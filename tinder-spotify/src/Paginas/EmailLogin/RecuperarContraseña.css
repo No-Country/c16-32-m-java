@@ -1,0 +1,76 @@
+.recuperar-contraseña-container {
+    width: 500px;
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #e0e0e0; 
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.recuperClo {
+    position: absolute;
+    top: 90px;
+    right: 800px;
+    cursor: pointer;
+}
+
+.recuperar-contraseña-title {
+    width: 200px;
+    height: 38px;
+    margin-bottom: 25px;
+}
+
+.recuperar-contraseña-description {
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.input-container {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recuperar-contraseña-label {
+    width: 140px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.recuperar-contraseña-input {
+    width: 75%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.recuperar-contraseña-resend span {
+    width: 133px;
+    height: 24px;
+}
+
+.recuperar-contraseña-button {
+    width: 200px;
+    height: 50px;
+    background-color: #b53550;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.recuperar-contraseña-button:hover {
+    background-color: #8e222f;
+}
+  
+.recuperar-contraseña-terms {
+    width: 90%;
+    margin-top: 20px;
+}

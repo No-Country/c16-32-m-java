@@ -1,0 +1,26 @@
+.CardInfeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+  
+.CardInfeItem {
+    width: 30%; 
+}
+  
+.CardInfeItem img {
+    width: 80%;
+    height: auto;
+}
+  
+.CardInfeItem p {
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
+
+.CardInfeItem p br {
+    display: block; 
+    content: ""; 
+    margin-top: 10px; 
+}
