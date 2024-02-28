@@ -1,11 +1,13 @@
 .dropdown-container {
     position: fixed;
     top: 0;
+    left: 0; /* Ajusta a 0 para que esté pegado al lado izquierdo */
     right: 0;
     width: 300px;
     height: 100%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #000;
     z-index: 999;
     padding: 20px;
   }
@@ -14,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: #000; /* Agrega el color negro al texto dentro de .header */
   }
   
   .close-button {
@@ -21,17 +24,28 @@
     border: none;
     cursor: pointer;
   }
+
+  .profile {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos hijos */
+    margin-top: 50px;
+    font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    font-weight: bold; /* Establece el peso de la fuente como negrita */
+  }
   
   .profile img {
-    width: 50px;
-    height: 50px;
+    width: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
+    height: 70px;
     border-radius: 50%;
     margin-right: 10px;
   }
   
   .profile p {
     margin: 0;
+    color: #000; /* Agrega el color negro al texto dentro de .header */
+    display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
   }
+  
   
   .menu-item {
     display: flex;
@@ -48,9 +62,12 @@
   .logout-button {
     margin-top: 20px;
     background-color: #b53550;
+    margin-left: auto;
+    margin-right: auto;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-  }
+    display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
+    }

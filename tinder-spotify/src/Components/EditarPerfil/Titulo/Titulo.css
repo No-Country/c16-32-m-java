@@ -1,15 +1,30 @@
 .titulo-container {
-    text-align: center; 
-    margin-top: -1060px; ; 
-    max-width: 80%; 
-    margin-left: 950px; 
-    margin-right: 950px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: -1060px; 
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     white-space: nowrap;
+}
+
+.icono-cont {
+    display: flex;
+    align-items: center; 
+    margin-left: 300px;
+}
+
+.Sub-chat {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 20px;
 }
   
 .titulo {
     font-size: 44.79px; 
     font-weight: bold; 
     line-height: 1; 
+    margin-left: 300px; 
 }
  
