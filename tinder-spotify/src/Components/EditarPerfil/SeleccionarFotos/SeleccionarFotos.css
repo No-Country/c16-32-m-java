@@ -1,0 +1,91 @@
+.seleccionar-fotos-container {
+    position: relative;
+    width: 590px;
+    height: 740px;
+    border: 2px solid rgb(221, 215, 215);
+    border-radius: 10px;
+    padding: 20px;
+    left: 1150px;
+    top: -800px;
+}
+
+.titulo-foto {
+    font-size: 26px; 
+    width: 100%;
+    margin-left: 70px;
+}
+  
+.xdx {
+    margin-left: 250px;
+    cursor: pointer;
+}
+
+.cuadritos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.cuadrito {
+    position: relative;
+    width: 160px;
+    height: 225px;
+    border: 2px solid #df7a90; 
+    border-radius: 20px;
+    margin-bottom: 10px; 
+    overflow: hidden;
+}
+
+.icono-cuadrito {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.botones-seleccion {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 80px; 
+  }
+  
+.boton-cancelar {
+    width: 201px; 
+    height: 52px; 
+    background-color: #b53550; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 20px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    transition: background-color 0.3s ease; 
+}
+
+.boton-guardar {
+    width: 237px; 
+    height: 51px; 
+    background-color: #107B50;
+    color: #ffffff; 
+    border: none; 
+    border-radius: 20px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    transition: background-color 0.3s ease; 
+}
+
+.boton-cancelar:hover {
+    background-color: #8e222f;
+}
+
+.boton-guardar:hover {
+    background-color: #0a5937;
+}

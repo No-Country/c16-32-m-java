@@ -1,0 +1,56 @@
+import React from 'react';
+import './dropdown.css';
+
+import log from '../../../assets/log.png';
+import foto from '../../../assets/foto.png';
+import configuracionb from '../../../assets/configuracionb.png';
+import corazonb from '../../../assets/corazonb.png';
+import chatb from '../../../assets/chatb.png';
+import musicb from '../../../assets/musicb.png';
+import homeb from '../../../assets/homeb.png';
+
+const dropdown = ({ onCloseDropdown }) => {
+
+    const handleCloseButtonClick = () => {
+        onCloseDropdown();
+    };
+    
+  return (
+    <>
+        <div className="dropdown-container">
+            <div className="header">
+                <img src={log} alt="Main Icon" />
+                <h2>ChatBeat</h2>
+                <button className="close-button" onClick={handleCloseButtonClick}>x</button>
+            </div>
+            <div className="profile">
+                <img src={foto} alt="Profile" />
+                <p>Alberto Perez</p>
+            </div>
+            <div className="menu-item">
+                <img src={configuracionb} alt="Icon1" />
+                <p>Configuración</p>
+            </div>
+            <div className="menu-item">
+                <img src={corazonb} alt="Icon2" />
+                <p>Matches</p>
+            </div>
+            <div className="menu-item">
+                <img src={chatb} alt="Icon3" />
+                <p>Chat</p>
+            </div>
+            <div className="menu-item">
+                <img src={musicb} alt="Icon4" />
+                <p>Eventos</p>
+            </div>
+            <div className="menu-item">
+                <img src={homeb} alt="Icon5" />
+                <p>Inicio</p>
+            </div>
+            <button className="logout-button">Cerrar Sesión</button>
+        </div>
+    </>
+  )
+}
+
+export default dropdown;

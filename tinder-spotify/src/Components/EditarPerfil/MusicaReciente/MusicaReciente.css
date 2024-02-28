@@ -1,0 +1,40 @@
+.contenedor-con-borde {
+    border: 2px solid #df7a90; 
+    padding: 40px; 
+    border-radius: 20px
+}
+
+.cancion, .song {
+    margin-bottom: 10px;
+}
+  
+.boton-cancion, .song-button {
+    display: flex;
+    align-items: center;
+    background-color: #B53550;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+  
+.boton-cancion img, .song-button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+  
+.boton-cancion span, .song-button span {
+    flex-grow: 1;
+}
+
+.cabecera-musica-reciente {
+    margin-top: 20px;
+}
+  
+.musica-reciente {
+    display: flex;
+    flex-direction: column;
+}

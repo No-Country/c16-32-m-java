@@ -1,0 +1,41 @@
+.seccion-desplazable {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    margin-left: 90px; 
+}
+
+.botones-radio {
+    margin-bottom: 20px;
+}
+
+.seccion-desplazable h2 {
+    width: 100%;
+    word-wrap: break-word;
+    margin-bottom:20px; 
+}
+  
+.radio-label {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.input-label-custom {
+  border: 2px solid #df7a90; 
+  border-radius: 10px; 
+  padding: 10px 10px ; 
+  margin-top: 10px; 
+  max-width: 70%; 
+}
+
+.input-label-custom .input-label {
+  margin-top: 20px; 
+}
+
+.input-label-custom .input-custom {
+  border: none; 
+  border-radius: 0; 
+  padding: 5px; 
+  margin-left: 10px; 
+}

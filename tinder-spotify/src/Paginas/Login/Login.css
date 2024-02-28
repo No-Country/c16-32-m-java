@@ -1,0 +1,85 @@
+.login-container {
+    position: relative;
+    width: 417px;
+    height: 555px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+}
+  
+.google-button, .other-button {
+    margin-top: 20px; 
+    border-radius: 20px; 
+}
+  
+.google-button {
+    background-color: #ffffff; 
+    color: #000000; 
+    width: 288px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    cursor: pointer;
+    border-radius: 20px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    padding: 0 12px; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.google-button:hover {
+    background-color: #f1f1f1;
+    color: #333333; 
+}
+
+.other-button {
+    background-color: #b53550; 
+    color: #ffffff; 
+    width: 288px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 20px; 
+    padding: 0 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.other-button:hover {
+    background-color: #8b293e; 
+}
+
+.google-button img,
+.other-button img {
+    margin-right: 10px; 
+}
+  
+h2{
+    width: 194px;
+    height: 24px;
+}
+  
+.logos img {
+    width: 116px;
+    height: 39px;
+}
+
+.link {
+    text-decoration: none; 
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #000;
+}

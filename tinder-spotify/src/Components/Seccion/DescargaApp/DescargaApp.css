@@ -1,0 +1,23 @@
+.descarga-app {
+    text-align: center;
+    margin-top: 30px;
+}
+  
+.descarga-title {
+    font-size: 24px; 
+    margin-left: 50%; 
+    transform: translateX(-50%); 
+    margin-top: 10px;
+}
+  
+.logos {
+    margin-top: 20px; 
+    display: flex;
+    justify-content: center; 
+}
+  
+.logos img {
+    width: 150px;
+    margin: 0 70px; 
+    cursor: pointer;
+}

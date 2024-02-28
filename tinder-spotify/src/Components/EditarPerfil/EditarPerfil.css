@@ -1,0 +1,23 @@
+.cont-pri-perf {
+    width: 700px;
+    height: 700px;
+}
+
+
+.editar-perfil-container {
+    width: 650px ;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50px;
+    margin-top: -320px;
+    margin-left: 170px;
+    margin-top: 120px;
+    margin-left: 170px;
+    box-shadow: 0 0 40px rgba(248, 246, 246, 0.875);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
