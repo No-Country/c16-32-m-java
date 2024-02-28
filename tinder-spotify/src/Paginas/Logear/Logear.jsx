@@ -1,27 +1,33 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Logear.css';
+import axios from 'axios'; // Importar Axios
+import useFormValidation from '../../hook/useFormValidation';
 import LogoP from '../../Components/Iconos/LogoP/LogoP';
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 import Volver from '../../Components/Iconos/Volver/Volver';
 import PostTitle from '../../Components/Paragraph/PostTitle/PostTitle';
+import './Logear.css';
 
 const Logear = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const [alert, setAlert] = useState('');
+  const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword, alert, handleContinue } = useFormValidation();
   const navigate = useNavigate();
 
-  const handleContinue = () => {
-    if (email.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
-      setAlert('Por favor, completa todos los campos.');
-    } else {
-      if (password !== repeatPassword) {
-        setAlert('Las contraseñas no coinciden.');
-      } else {
-        navigate('/codigo');
-      }
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async () => {
+    try {
+      // Aquí realizas la llamada a tu servicio externo usando Axios
+      const response = await axios.post('URL_DEL_SERVICIO', {
+        email: email,
+        password: password,
+        repeatPassword: repeatPassword
+      });
+      
+      console.log('Respuesta del servicio externo:', response.data);
+      
+      navigate('/home-privado');
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -32,7 +38,7 @@ const Logear = () => {
       </div>
       <div className="closeLog-icon">
         <Link to="/">
-           <CloseIcon className="close-icon" />
+          <CloseIcon className="close-icon" />
         </Link>
       </div>
       <PostTitle className="post-titleLo">Crear cuenta</PostTitle>
@@ -58,9 +64,9 @@ const Logear = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
-        <button className="continue-codi" onClick={handleContinue}>Continuar</button>     
+        <button className="continue-codi" onClick={handleSubmit}>Continuar</button>     
       </div>
-      {alert && <p className="alert-message">{alert}</p>}
+      {error && <p className="alert-message">{error}</p>}
       <div className="back-arrow">
         <Link to="/crear-cuenta" className="link">
           <Volver className="back-arrow-icon" />
@@ -68,6 +74,6 @@ const Logear = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Logear;
