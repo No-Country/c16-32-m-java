@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import log from '../../../assets/log.png';
 
 import './Titulo.css';
@@ -6,10 +7,10 @@ import './Titulo.css';
 const Titulo = () => {
   return (
     <div className="titulo-container">
-      <div className="icono-cont">
+      <Link to="/home-privado" className="icono-cont">
         <img src={log} alt="log" />
         <h2 className="Sub-chat">ChatBeat</h2>
-      </div>  
+      </Link>
       <h1 className="titulo">Editar Perfil</h1>
     </div>
   );

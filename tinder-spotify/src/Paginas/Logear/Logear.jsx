@@ -8,10 +8,12 @@ import Volver from '../../Components/Iconos/Volver/Volver';
 import PostTitle from '../../Components/Paragraph/PostTitle/PostTitle';
 import './Logear.css';
 
+import './Logear.css';
+
 const Logear = () => {
   const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword, alert, handleContinue } = useFormValidation();
   const navigate = useNavigate();
-
+  
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {

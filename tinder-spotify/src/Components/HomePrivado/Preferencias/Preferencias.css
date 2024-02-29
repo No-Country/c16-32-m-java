@@ -2,25 +2,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    margin-right: 140px;
+}
   
-  .preferencia-btn {
-    margin-top: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background-color: #eaeaea; /* Color de fondo del botón */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.preferencia-btn {
+  width: 100%; 
+  max-width: 500px; 
+  margin-top: 12px; 
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  background-color: #fbf9f9; 
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
   
-  .preferencia-btn:hover {
-    background-color: #d5d5d5; /* Cambia el color de fondo al pasar el mouse sobre el botón */
-  }
-  
-  .icono {
-    width: 30px;
-    margin-right: 10px;
+.preferencia-btn:hover {
+    background-color: #d5d5d5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-  }
+.icon1,
+.icon2,
+.icon3 {
+  width: 35px;
+  margin-right: 20px;
+}
+
+.act1,
+.act2,
+.act3 {
+  flex: 1;
+}

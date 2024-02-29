@@ -17,13 +17,13 @@ const HomePrivado = () => {
           <SideNav/>
           <TituloHome />
           <div className="Home-container">
-          <PerfiHome />
-          <GeneroHome />
-          <DescripHome />
-          <MisCanciones />
-          <Preferencias />
+            <Perfilome />
+            <GeneroHome />
+            <DescripHome />
+            <MisCanciones />
+            <Preferencias />
           </div>
-          <PrincipalFoto />
+            <PrincipalFoto />
       </div>
     </>
   )
