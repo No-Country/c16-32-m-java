@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import './DescripcionTextarea.css';
 
-const DescripcionTextarea = () => {
-  const [descripcion, setDescripcion] = useState("Café de origen, vino tinto, cerveza artesanal, pueblos por visitar y buenas conversaciones, es lo que disfruto mucho y me encantaría conocer quien también goce de estos planes !");
+
+const DescripcionTextarea = ({ description, 
+  setDescription }) => {
 
   const handleTextareaClick = () => {
-    setDescripcion('');
+    setDescription(description);
   };
 
   const handleBlur = () => {
     if (descripcion === '') {
-      setDescripcion("Café de origen, vino tinto, cerveza artesanal, pueblos por visitar y buenas conversaciones, es lo que disfruto mucho y me encantaría conocer quien también goce de estos planes !");
+      setDescripcion("Escribe algo interesante!");
     }
   };
 
@@ -22,7 +23,7 @@ const DescripcionTextarea = () => {
         maxLength={350}
         onClick={handleTextareaClick}
         onBlur={handleBlur}
-        value={descripcion}
+        value={description}
       ></textarea>
     </label>
   );

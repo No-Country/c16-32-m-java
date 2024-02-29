@@ -24,8 +24,10 @@ const MusicaReciente = () => {
         <div className="musica-reciente">
           {cancionesEscuchadas.map((cancion, index) => (
             <div key={index} className="cancion">
-              <button className="boton-cancion" onClick={() => agregarCancionEscuchada(cancion)}>
-                <img src={Spotify} alt={`Logo de la canción ${index + 1}`} />
+              <button className="boton-cancion" 
+              onClick={() => agregarCancionEscuchada(cancion)}>
+                <img src={Spotify} alt={`Logo de la 
+                canción ${index + 1}`} />
                 <span>{cancion}</span>
               </button>
             </div>

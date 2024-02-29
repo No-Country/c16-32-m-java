@@ -18,6 +18,7 @@ const EmailLogin = () => {
       });
       console.log('Respuesta del servicio externo:', response.data);
       localStorage.setItem("token-ChatBeat", response.data.token);
+      localStorage.setItem("userId", response.data.userId);
       navigate('/home-privado');
     } catch (error) {
       setAlert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.');

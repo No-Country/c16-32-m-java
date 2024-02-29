@@ -2,7 +2,7 @@ import React from 'react';
 import './MisCanciones.css';
 import Spotify from '../../../assets/Spotify.png'; 
 
-const MisCanciones = () => {
+const MisCanciones = ({currentSong}) => {
   return (
     <div className="mis-canciones-container">
       <h2 className="titulo">Mis canciones favoritas</h2>
@@ -16,7 +16,7 @@ const MisCanciones = () => {
       </div>
       <div className="cancion">
         <img src={Spotify} alt="Spotify" className="logo-spotify" />
-        <span>Gorillaz - Feel Good Inc</span>
+        <span>{{currentSong}}</span>
       </div>
     </div>
   );
