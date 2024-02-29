@@ -1,5 +1,6 @@
 package com.c1632mjava.c1632mjava.Domain.Entities;
 
+import com.c1632mjava.c1632mjava.Domain.Entities.Converter.LongListConverter;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.Gender;
 import com.c1632mjava.c1632mjava.Domain.Entities.Enums.SocialBattery;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -10,9 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -52,7 +51,8 @@ public class User implements Serializable, UserDetails {
     @ManyToMany (fetch = FetchType.EAGER)
     private List<Genre> Genres;
 
-    private List<Long> bannedUsers = new ArrayList<>();
+    @Convert(converter = LongListConverter.class)
+    private List<Long> bannedUsers;
 
     private boolean active = true;
 

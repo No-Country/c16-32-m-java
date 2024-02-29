@@ -178,10 +178,19 @@ public class UserServiceImpl implements UserService {
 
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
 
-        if (!userToUpdate.getBannedUsers().contains(bannedUserId)) {
+        if(userToUpdate.getBannedUsers() != null){
+            if (!userToUpdate.getBannedUsers().contains(bannedUserId)) {
+                matchToBan.setActive(false);
+                matchRepository.save(matchToBan);
+                userToUpdate.getBannedUsers().add(bannedUserId);
+                userRepository.save(userToUpdate);
+            }
+        } else {
+            List<Long> idList = new ArrayList<>();
+            idList.add(bannedUserId);
+            userToUpdate.setBannedUsers(idList);
             matchToBan.setActive(false);
             matchRepository.save(matchToBan);
-            userToUpdate.getBannedUsers().add(bannedUserId);
             userRepository.save(userToUpdate);
         }
         return true;
@@ -203,14 +212,23 @@ public class UserServiceImpl implements UserService {
     public boolean unbanUser (Long loggedUserId, Long unbanUserId) {
         UserReadDto loggedUser = findUserById(loggedUserId); //Reemplazar luego por el user logueado.
         User userToUpdate = userMapper.convertReadToUser(loggedUser);
+        if(userToUpdate.getBannedUsers() == null){
+            userToUpdate.setBannedUsers(new ArrayList<>());
+        }
+
         if (!userRepository.existsById(unbanUserId) ||
                 !userToUpdate.getBannedUsers().contains(unbanUserId)) {
             throw new UserNotFoundException(unbanUserId);
         }
+
+        if(userToUpdate.getBannedUsers().size() == 1){
+            userToUpdate.setBannedUsers(null);
+            userRepository.save(userToUpdate);
+        } else {
             userToUpdate.getBannedUsers().remove(unbanUserId);
             userRepository.save(userToUpdate);
-            return true;
         }
-
+        return true;
+        }
     }
 

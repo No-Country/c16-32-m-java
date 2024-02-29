@@ -45,17 +45,4 @@ public class AppConfig {
         return username -> userRepository.findByEmail(username)
                 .orElseThrow(()-> new EntityNotFoundException("User not found")); //
     }
-
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(@NotNull CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5500")  // configurar URL del Front-end
-                        .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS") // Tal vez considerar otros métodos, como patch
-                        .allowCredentials(true);
-            }
-        };
-    }
 }
