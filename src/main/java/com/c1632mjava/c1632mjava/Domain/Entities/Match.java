@@ -1,5 +1,6 @@
 package com.c1632mjava.c1632mjava.Domain.Entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class Match implements Serializable {
     @Column(name = "compatibility_percentage")
     private Float compatibilityPercentage;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_of_match")
     private LocalDateTime dateOfMatch;
 
