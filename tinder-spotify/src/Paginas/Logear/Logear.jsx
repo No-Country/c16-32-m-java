@@ -9,7 +9,7 @@ import PostTitle from '../../Components/Paragraph/PostTitle/PostTitle';
 import './Logear.css';
 
 const Logear = () => {
-  const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword, alert, handleContinue } = useFormValidation();
+  const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword } = useFormValidation();
   const navigate = useNavigate();
 
   const [error, setError] = useState(null);
@@ -64,16 +64,9 @@ const Logear = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
-<<<<<<< HEAD
-        {alert && <p className="alert-message">{alert}</p>}
-        <button className="continue-codi" onClick={handleContinue}>Continuar</button>     
-      </div>
-      
-=======
         <button className="continue-codi" onClick={handleSubmit}>Continuar</button>     
       </div>
       {error && <p className="alert-message">{error}</p>}
->>>>>>> 362298dd725179e860d39cfdb98045d90e638caa
       <div className="back-arrow">
         <Link to="/crear-cuenta" className="link">
           {/* <Volver className="back-arrow-icon" /> */}
