@@ -1,5 +1,6 @@
 package com.c1632mjava.c1632mjava.Domain.Entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class ReportedMessage implements Serializable {
     @Column(name = "message")
     private String message;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date")
     private LocalDateTime date;
 
