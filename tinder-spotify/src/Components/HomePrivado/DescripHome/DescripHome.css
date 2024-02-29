@@ -4,10 +4,14 @@
 }
   
 .descrip-title {
-    font-size: 24px;
+    font-size: 21px;
+    font-weight: bold;
+    margin-right: 60px;
 }
   
 .descrip-text {
-    font-size: 16px;
+    font-weight: Roboto regular;
+    font-size: 19px;
     line-height: 1.5;
+    margin-left: 30px;
 }

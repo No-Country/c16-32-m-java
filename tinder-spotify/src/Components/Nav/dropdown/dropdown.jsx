@@ -2,7 +2,7 @@ import React from 'react';
 import './dropdown.css';
 
 import log from '../../../assets/log.png';
-import foto from '../../../assets/foto.png';
+import foto2 from '../../../assets/foto2.png';
 import configuracion from '../../../assets/configuracion.png';
 import corazonb from '../../../assets/corazonb.png';
 import chat from '../../../assets/chat.png';
@@ -24,7 +24,7 @@ const dropdown = ({ onCloseDropdown }) => {
                 <button className="close-button" onClick={handleCloseButtonClick}>x</button>
             </div>
             <div className="profile">
-                <img src={foto} alt="Profile" />
+                <img src={foto2} alt="Profile" />
                 <p>Alberto Perez</p>
             </div>
             <div className="menu-item">

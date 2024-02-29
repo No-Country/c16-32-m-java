@@ -5,7 +5,7 @@ import './SideNav.css';
 import Dropdown from '../../../Components/Nav/dropdown/dropdown'; 
 
 import log from '../../../assets/log.png';
-import foto from '../../../assets/foto.png';
+import foto2 from '../../../assets/foto2.png';
 import configuracionb from '../../../assets/configuracionb.png';
 import corazonb from '../../../assets/corazonb.png';
 import chatb from '../../../assets/chatb.png';
@@ -30,7 +30,7 @@ const SideNav = () => {
         <img className="logo-image" src={log} alt="Logo" style={{ filter: 'brightness(0) invert(1)' }} />
       </div>
       <Link to="/editar-perfil" className="profile-picture profile-picture-container" style={{ marginTop: '50px' }} >
-        <img className="profile-image" src={foto} alt="Profile" />
+        <img className="profile-image" src={foto2} alt="Profile" />
       </Link>
       <div className="icons">
         <div className="icon">
