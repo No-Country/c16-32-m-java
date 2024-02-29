@@ -6,7 +6,7 @@ const DescripHome = ({description}) => {
     <div className="descrip-home-container">
       <h2 className="descrip-title">Sobre mí</h2>
       <p className="descrip-text">
-        {{description}}
+        {description}
       </p>
     </div>
   );

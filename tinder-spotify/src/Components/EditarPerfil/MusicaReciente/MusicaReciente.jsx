@@ -22,7 +22,8 @@ const MusicaReciente = () => {
       </div>
       <div className="contenedor-con-borde">
         <div className="musica-reciente">
-          {cancionesEscuchadas.map((cancion, index) => (
+          {cancionesEscuchadas && 
+          cancionesEscuchadas.map((cancion, index) => (
             <div key={index} className="cancion">
               <button className="boton-cancion" 
               onClick={() => agregarCancionEscuchada(cancion)}>
@@ -34,7 +35,7 @@ const MusicaReciente = () => {
           ))}
         </div>
       </div>
-      <CancionesEscuchadasLoader onCancionesCargadas={handleCancionesCargadas} />
+      {/*<CancionesEscuchadasLoader onCancionesCargadas={handleCancionesCargadas} />*/}
     </>
   );
 };

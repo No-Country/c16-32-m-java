@@ -3,16 +3,10 @@ import './DescripcionTextarea.css';
 
 
 const DescripcionTextarea = ({ description, 
-  setDescription }) => {
+  onDescriptionChange }) => {
 
-  const handleTextareaClick = () => {
-    setDescription(description);
-  };
-
-  const handleBlur = () => {
-    if (descripcion === '') {
-      setDescripcion("Escribe algo interesante!");
-    }
+  const handleTextareaClick = (value) => {
+    onDescriptionChange(value);
   };
 
   return (
@@ -21,8 +15,7 @@ const DescripcionTextarea = ({ description,
       <textarea
         className="componte-tex"
         maxLength={350}
-        onClick={handleTextareaClick}
-        onBlur={handleBlur}
+        onChange={(event)=>{handleTextareaClick(event.target.value)}}
         value={description}
       ></textarea>
     </label>

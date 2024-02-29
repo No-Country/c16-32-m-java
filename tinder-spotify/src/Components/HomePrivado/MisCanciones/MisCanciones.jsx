@@ -16,7 +16,7 @@ const MisCanciones = ({currentSong}) => {
       </div>
       <div className="cancion">
         <img src={Spotify} alt="Spotify" className="logo-spotify" />
-        <span>{{currentSong}}</span>
+        <span>{currentSong}</span>
       </div>
     </div>
   );

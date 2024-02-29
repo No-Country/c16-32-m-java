@@ -11,17 +11,20 @@ const Genero = ({ gender, onGenderChange,
       <div className="botones-radio">
       <label className="radio-label">
         <input type="radio" name="gender" value="FEMENINO" 
-        checked={gender === "FEMENINO"} onChange={onGenderChange}/>
+        checked={gender === "FEMENINO"} 
+        onChange={(event)=>{onGenderChange(event.target.value)}}/>
             Femenino
         </label>
         <label className="radio-label">
          <input type="radio" name="gender" value="MASCULINO" 
-         checked={gender === "MASCULINO"} onChange={onGenderChange}/>
+         checked={gender === "MASCULINO"} 
+         onChange={(event)=>{onGenderChange(event.target.value)}}/>
             Masculino
         </label>
         <label className="radio-label">
         <input type="radio" name="gender" value="OTRX" 
-        checked={gender === "OTRX"} onChange={onGenderChange}/>
+        checked={gender === "OTRX"}
+        onChange={(event)=>{onGenderChange(event.target.value)}}/>
             Otrx
         </label>
       </div>
@@ -31,7 +34,7 @@ const Genero = ({ gender, onGenderChange,
         </label>
         <input id="pronombres" type="text" 
         placeholder="el/ella/elle" className="input-custom"
-        value={pronouns} onChange={onPronounsChange}/>
+        value={pronouns} onChange={(event)=>{onPronounsChange(event.target.value)}}/>
       </div>
     </div>
   );

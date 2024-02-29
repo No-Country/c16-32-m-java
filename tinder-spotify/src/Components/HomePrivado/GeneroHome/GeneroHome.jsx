@@ -6,8 +6,8 @@ const GeneroHome = ({gender, pronouns}) => {
   return (
     <div className="genero-home-container">
       <div>
-        <p><strong>Genero:</strong>{{gender}}</p>
-        <p><strong>Pronombre:</strong>{{pronouns}}</p>
+        <p><strong>Genero:</strong>{gender}</p>
+        <p><strong>Pronombre:</strong>{pronouns}</p>
       </div>
       <div className="ubicacion-container">
         <img src={Ubicacion} alt="Ubicacion" />

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './EditarPerfil.css';
+import { useNavigate } from 'react-router-dom';
 import Titulo from '../EditarPerfil/Titulo/Titulo';
 import SideNav from '../Nav/SideNav/SideNav';
 import Perfil from '../EditarPerfil/Perfil/Perfil';
@@ -22,8 +24,27 @@ const EditarPerfil = () => {
     const [description, setDescription] =useState('');
     const [socialBattery, setSocialBattery] =useState('');
     const [currentSong, setCurrentSong] =useState('');
+    const [alert, setAlert] = useState('');
+    const navigate = useNavigate();
     
+    const getLoggedUser = async () => {
+      const userLogged = await axios.get(
+        "http://localhost:8080/users/id/" + userId, 
+        {
+          headers: { Authorization: 'Bearer ' + tokenChatBeat }
+        });
+        console.log(userLogged.data);
+        setName(userLogged.data.name);
+        setBirthdate(userLogged.data.birthdate);
+        setGender(userLogged.data.gender);
+        setPronouns(userLogged.data.pronouns);
+        setDescription(userLogged.data.description);
+        setSocialBattery(userLogged.data.socialBattery);
+        setCurrentSong(userLogged.data.currentSong);
+    }
   
+    useEffect(() => { getLoggedUser(); },[])
+
     const handleEditProfile = async () => {
       try {
         const response = await axios.put(
@@ -45,6 +66,7 @@ const EditarPerfil = () => {
         
         navigate('/home-privado');
       } catch (error) {
+        console.error(error);
         setAlert('Hubo un error al editar perfil. Por favor, inténtalo de nuevo.');
       }
     };
@@ -60,16 +82,16 @@ const EditarPerfil = () => {
               <Genero gender={gender} onGenderChange={setGender}
                   pronouns={pronouns} onPronounsChange={setPronouns} />
               <DescripcionTextarea description={description}
-                      onDescrptionChange={setDescription} />
+                      onDescriptionChange={setDescription} />
               <MusicaReciente currentSong={currentSong} 
               onCurrentSongChange={setCurrentSong}/>
               <ActividadFisica />
               <GenerosFavoritos />
               <InteraccionSocial socialBattery={socialBattery} 
-              onSocialBattery={setSocialBattery} />
+              onSocialBatteryChange={setSocialBattery} />
+              {alert && (<p>{alert}</p>)}
           </div>
-          <Button onClick={handleEditProfile} > Guardar cambios! </Button>
-          <BotonMe texto="Guardar"/>
+          <button onClick={handleEditProfile}  texto="Guardar">Guardar</button>
           <ControladorFotos />
         </div>
     </>

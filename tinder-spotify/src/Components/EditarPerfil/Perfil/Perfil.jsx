@@ -15,8 +15,8 @@ const Perfil = ({name, onNameChange,
         <img src={foto} alt="Perfil" />
       </div>
       <div className="perfil-info">
-        <input classname="name" type="text" onChange={onNameChange} value={name}/>
-        <input className="edad" type="date" onChange={onBirthdateChange} value={birthdate}/>
+        <input className="name" type="text" onChange={(event)=>{onNameChange(event.target.value)}} value={name}/>
+        <input className="edad" type="date" onChange={(event)=>{onBirthdateChange(event.target.value)}} value={birthdate}/>
       </div>
     </div>
   );

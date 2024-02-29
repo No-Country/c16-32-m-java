@@ -1,4 +1,5 @@
 import './HomePrivado.css';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import TituloHome from '../../Components/HomePrivado/TituloHome/TituloHome';
 import SideNav from '../Nav/SideNav/SideNav';
@@ -24,7 +25,7 @@ const HomePrivado = () => {
     setUser(userLogged.data);
   }
 
-  useEffect(() => { getLoggedUser(); })
+  useEffect(() => { getLoggedUser(); },[])
 
   return (
     <>

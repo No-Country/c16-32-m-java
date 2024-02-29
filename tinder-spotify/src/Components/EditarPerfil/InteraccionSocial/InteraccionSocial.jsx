@@ -12,22 +12,22 @@ const InteraccionSocial = ({socialBattery,
             <label className="radio-label-bajo">
             <input type="radio" name="socialInteraction" value="AVAILABLE"
             checked={socialBattery === "AVAILABLE"} 
-            onChange={onSocialBatteryChange} />
+            onChange={() => {onSocialBatteryChange("AVAILABLE")}} />
               Disponible
             </label>
             <label className="radio-label-bajo">
               <input className="borde-rojo" type="radio" 
               name="socialInteraction" value="BUSY"
               checked={socialBattery === "BUSY"} 
-              onChange={onSocialBatteryChange} />
+              onChange={() => {onSocialBatteryChange("BUSY")}} />
               Ocupadx
             </label>
             <label className="radio-label-bajo">
               <input type="radio" name="socialInteraction" 
               value="AWAY" checked={socialBattery === "AWAY"} 
-              onChange={onSocialBatteryChange} />
+              onChange={() => {onSocialBatteryChange("AWAY")}} />
               No disponible
-            </label>
+              </label>
        </div>
     </div>
   );
