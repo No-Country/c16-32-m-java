@@ -6,10 +6,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: var(--winddows-color);
+    background-color: var(--background-color);
     margin-top: -10px;
-    border: 1px solid #dfd0d0; 
-    box-shadow: 0 2px 4px rgba(146, 115, 115, 0.023); 
+    border: 1px solid #dfd0d0;
+    box-shadow: 0 2px 4px rgba(146, 115, 115, 0.023);
 }
 
 .left-section {
@@ -18,28 +18,28 @@
 }
 
 .logo {
-    width: 60px; 
-    height: auto; 
-    margin-right: 20px; 
+    width: 60px;
+    height: auto;
+    margin-right: 20px;
 }
 
 .left-section span {
-    font-family: 'Roboto', sans-serif; 
-    font-size: 37.32px; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 37.32px;
     font-weight: bold;
-    color: #000; 
+    color: #000;
 }
 
-.middle-section, .right-section {
+.middle-section,
+.right-section {
     display: flex;
     align-items: center;
 }
 
 .middle-section span {
-    font-family: 'Roboto', sans-serif; 
-    font-size: 20px; 
-    color: #000; 
-    margin-right: 10px; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #000;
+    margin-right: 10px;
     cursor: pointer;
 }
-

@@ -1,13 +1,12 @@
 :root {
-
     --primary-color: #C32454;
-    --primary-color-opacity: rgb(195, 36, 84, 0.6) ;
-    --primary-color-hover: #9d2046; 
+    --primary-color-opacity: rgb(195, 36, 84, 0.6);
+    --primary-color-hover: #9d2046;
     --secondary-color: #107B50;
     --secondary-color-hover: #0c603e;
     --terciary-color: #934BDB;
-    --background-color: #D9D9D9;
-    --winddows-color: #FAF9FA;
+    --background-color: #fcfcfc;
+    --windows-color: #EDEDED;
     --buttonOn-font-color: #F7F6F6;
     --regular-font-color: #000000;
     --placeholder-font-color: #79767D;
@@ -15,10 +14,8 @@
     --buttonOff-color: #CAC5CD;
     --error-color: #B90000;
     --error-color-back: #b9000027;
-    --shadow-down:0px 8px 15px rgba(0, 0, 0, 0.3);
-    --shadow-left:8px 0px 15px rgba(0, 0, 0, 0.3);
-
-
+    --shadow-down: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    --shadow-left: 8px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -26,12 +23,12 @@
 .dark {
     --primary-color: #DE657F;
     --primary-color-opacity: rgb(222, 101, 127, 0.6);
-    --primary-color-hover: #c43b59; 
+    --primary-color-hover: #c43b59;
     --secondary-color: #5AE9B0;
     --secondary-color-hover: #269e6e;
     --terciary-color: #B990E2;
     --background-color: #322F35;
-    --winddows-color: #1D1B20;
+    --windows-color: #1D1B20;
     --regular-font-color: #F7F6F6;
     --placeholder-font-color: #79767D;
     --buttonOn-font-color: #000000;
@@ -39,6 +36,6 @@
     --buttonOff-color: #48464C;
     --error-color: #FE4545;
     --error-color-back: #fe454529;
-    --shadow-down:0px 8px 15px rgba(0, 0, 0, 0.3);
-    --shadow-left:8px 0px 15px rgba(0, 0, 0, 0.3);
+    --shadow-down: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    --shadow-left: 8px 0px 15px rgba(0, 0, 0, 0.3);
 }

@@ -3,7 +3,7 @@
 .boton-pin {
     width: 200px;
     height: 35px;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: var(--primary-color);
     color: var(--buttonOn-font-color);
     ;
