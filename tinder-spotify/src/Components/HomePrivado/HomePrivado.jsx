@@ -17,7 +17,7 @@ const HomePrivado = () => {
           <SideNav/>
           <TituloHome />
           <div className="Home-container">
-            <PerfiHome />
+            <Perfilome />
             <GeneroHome />
             <DescripHome />
             <MisCanciones />

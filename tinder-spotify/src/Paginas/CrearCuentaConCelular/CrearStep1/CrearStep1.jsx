@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import useInputValidation from '../useInputValidation';
 import CloseIcon from '../../../Components/Iconos/CloseIcon/CloseIcon';
 import log from '../../../assets/log.png';
 import './CrearStep1.css';
-import useInputValidation from '../useInputValidation';
 
 const CrearStep1 = ({ handleContinue, handleClose }) => {
-  const { alert, validateInputs } = useInputValidation(); 
+  const { alert, validateInputs } = useInputValidation();
   const [pais, setPais] = useState('');
   const [numero, setNumero] = useState('');
 
-  const handleContinueClick = () => {
+  const handleContinueClick = async () => {
     const inputs = [pais, numero];
     const isValid = validateInputs(inputs);
     if (isValid) {
-      handleContinue();
+      try {
+        // Aquí realizas la solicitud HTTP con Axios
+        await axios.post('URL_DEL_SERVICIO', {
+          pais: pais,
+          numero: numero
+        });
+
+        handleContinue();
+      } catch (error) {
+        console.error('Error al enviar datos:', error);
+      }
     }
   };
 
   return (
     <div className="crear-step1-container">
       <Link to="/" className="Step1" onClick={handleClose}>
-          <CloseIcon />
+        <CloseIcon />
       </Link>
       <img src={log} alt="Logo" className="crear-step1-logo" />
       <h1 className="crear-step1-title">Crear cuenta</h1>
