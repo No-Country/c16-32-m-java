@@ -1,3 +1,5 @@
+@import url('../../StyleVariables/Color.css');
+
 .fotos-perfil-container {
     position: relative;
     width: 590px;
@@ -18,7 +20,7 @@
     right: -15px;
     width: 30px;
     height: 30px;
-    background-color: #b53550;
+    background-color: var(--primary-color);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -28,7 +30,7 @@
 .lapiz-icon {
     width: 20px;
     height: 20px;
-    fill: #ffffff;
+    fill: var(--buttonOn-font-color);
     cursor: pointer;
 }
 
@@ -57,8 +59,9 @@
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #107B50;
-    color: #ffffff;
+    background-color: var(--secondary-color);
+    color: var(--buttonOn-font-color);
+    ;
     border: none;
     border-radius: 30px;
     padding: 10px 20px;
@@ -74,10 +77,10 @@
 .barra-carga-container {
     position: relative;
     width: 100%;
-    margin-top: 740px; 
-    margin-bottom: 20px; 
+    margin-top: 740px;
+    margin-bottom: 20px;
 }
-  
+
 .barra-carga {
     position: relative;
     width: 100%;
@@ -92,7 +95,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    background-color: #b53550;
+    background-color: var(--primary-color);
     width: 0;
 }
 
@@ -104,5 +107,5 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #b53550;
+    background-color: var(--primary-color);
 }

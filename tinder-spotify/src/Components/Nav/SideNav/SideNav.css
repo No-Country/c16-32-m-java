@@ -1,12 +1,14 @@
+@import url('../../StyleVariables/Color.css');
+
 .SideNav {
   width: 154px;
   height: 1040px;
-  background-color: #b53550;
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  color: #ffffff;
+  color: var(--buttonOn-font-color);
 }
 
 .logo-container,

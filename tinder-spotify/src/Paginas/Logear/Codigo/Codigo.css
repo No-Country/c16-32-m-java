@@ -1,3 +1,5 @@
+@import url('../../../Components/StyleVariables/Color.css'); 
+
 .codigo-container {
     position: relative;
     width: 417px;
@@ -16,28 +18,28 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 999; 
+    z-index: 999;
     cursor: pointer;
 }
 
 .logo-container {
     margin-bottom: 20px;
 }
-  
+
 .post-title-container {
     margin-bottom: 20px;
     margin-left: 40px;
 }
-  
+
 .post-title {
     font-size: 24px;
 }
-  
+
 .verification-text {
     margin-bottom: 10px;
     font-size: 20px;
 }
-  
+
 .verification-input {
     width: 100%;
     padding: 10px;
@@ -46,54 +48,54 @@
 
 .alert-message {
     font-weight: bold;
-    font-size: 25px;
-    color: #ffffff;
-    background-color:#d40000;
+    font-size: 15px;
+    color: var(--error-color);
+    background-color: var(--error-color-back);
     border-radius: 10px;
     width: auto;
     padding: 5px 40px;
 }
-  
+
 .change-email-text {
     margin-bottom: 10px;
 }
-  
+
 .change-email-reenviar-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; 
+    align-items: flex-start;
     margin-top: 10px;
 }
-  
+
 .change-email-text {
-    flex: 1; 
+    flex: 1;
     margin-right: 10px;
     color: #1B59F9;
 }
-  
+
 .reenviar-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-left: 100px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     padding-bottom: 0px;
 }
-  
+
 .resend-text {
     margin-bottom: 5px;
     cursor: pointer;
 }
 
 .timer-text {
-    margin-top: -10px; 
+    margin-top: -10px;
 }
 
 
 .continuar-button {
     width: 250px;
     padding: 20px 20px;
-    background-color: #b53550;
+    background-color: var(--primary-color);
     color: #fff;
     font-size: 16px;
     border: none;
@@ -103,9 +105,9 @@
 }
 
 .continuar-button:hover {
-    background-color: #8b293e; 
+    background-color: #8b293e;
 }
-  
+
 .link {
-    text-decoration: none; 
+    text-decoration: none;
 }

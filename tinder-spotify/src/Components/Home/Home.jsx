@@ -15,7 +15,8 @@ import fondo from '../../assets/fondo.png';
 
 const Home = () => {
     return (
-        <>  
+        <> 
+        <div className='background-home'> 
         <Nav />
         <div className="container"> 
             <div className="card">
@@ -35,6 +36,7 @@ const Home = () => {
         <CardInfe />
         <Fragme />
         <Footer />
+        </div>
       </>
     );
 }

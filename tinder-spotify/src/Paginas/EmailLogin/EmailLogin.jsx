@@ -48,6 +48,7 @@ const EmailLogin = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {alert && <p className="alert">{alert}</p>}
       </div>
       <Link to="/recuperar-contraseña" className="email-login-link">¿Olvidaste tu contraseña?</Link>
       <button 
@@ -57,7 +58,7 @@ const EmailLogin = () => {
       >
         Continuar
       </button>
-      {alert && <p className="alert-message">{alert}</p>}
+      
       <p className="email-login-paragraph">
         Al hacer clic en continuar, aceptas nuestros Términos y Condiciones.
         Conoce cómo procesamos tus datos en nuestra 

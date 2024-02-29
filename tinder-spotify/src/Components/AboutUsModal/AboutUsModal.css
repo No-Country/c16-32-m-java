@@ -1,3 +1,5 @@
+@import url('../StyleVariables/Color.css'); 
+
 .about-us-modal {
   position: fixed;
   top: 0;

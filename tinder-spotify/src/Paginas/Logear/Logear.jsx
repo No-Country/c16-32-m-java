@@ -9,7 +9,7 @@ import PostTitle from '../../Components/Paragraph/PostTitle/PostTitle';
 import './Logear.css';
 
 const Logear = () => {
-  const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword, alert, handleContinue } = useFormValidation();
+  const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword } = useFormValidation();
   const navigate = useNavigate();
 
   const [error, setError] = useState(null);
@@ -33,13 +33,13 @@ const Logear = () => {
 
   return (
     <div className="container logear-container">
-      <div className="logo-container-Log">
-        <LogoP className="logo" />
-      </div>
-      <div className="closeLog-icon">
+            <div className="closeLog-icon">
         <Link to="/">
           <CloseIcon className="close-icon" />
         </Link>
+      </div>
+      <div className="logo-container-Log">
+        <LogoP className="logo" />
       </div>
       <PostTitle className="post-titleLo">Crear cuenta</PostTitle>
       <div className="form-container">
@@ -69,7 +69,7 @@ const Logear = () => {
       {error && <p className="alert-message">{error}</p>}
       <div className="back-arrow">
         <Link to="/crear-cuenta" className="link">
-          <Volver className="back-arrow-icon" />
+          {/* <Volver className="back-arrow-icon" /> */}
         </Link>
       </div>
     </div>

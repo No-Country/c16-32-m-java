@@ -1,7 +1,12 @@
+@import url('../../../Components/StyleVariables/Color.css');
+
 .crear-step1-container {
-  width: 500px;
-  height: 620px;
-  border: 1px solid #e0e0e0;
+  width: 450px;
+  height: auto;
+  /* border: 1px solid #e0e0e0; */
+  border-radius: 25px;
+  background-color: var(--background-color);
+  box-shadow: var(--shadow-down);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,29 +14,32 @@
   text-align: center;
   margin: auto;
   margin-top: 70px;
+  position: relative;
+  padding: 50px 20px;
 }
 
 .Step1 {
   position: absolute;
-  top: 90px;
-  right: 800px;
+  top: 25px;
+  right: 25px;
   cursor: pointer;
 }
 
 .crear-step1-logo {
-  width: 100px; 
-  height: auto; 
-  margin-bottom: 20px; 
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .crear-step1-title {
-  font-size: 24px; 
-  margin-bottom: 10px; 
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .crear-step1-subtitle {
-  font-size: 18px; 
-  margin-bottom: 10px; 
+  font-size: 18px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .crear-step1-input-group {
@@ -42,34 +50,51 @@
   margin-top: 10px;
 }
 
-.crear-step1-label {
-  font-size: 16px; 
-  margin-bottom: 5px; 
+.crear-step1-pais,
+.crear-step1-numero {
+  font-size: 16px;
+  margin: 5px;
 }
 
-.crear-step1-input {
-  width: 220px; 
-  height: 30px; 
+.crear-step1-input-pais {
+  width: 100px;
+  height: 42px;
+  border-radius: 5px;
+  margin: 10px;
 }
+
+
+.crear-step1-input-numero {
+  width: 250px;
+  height: 42px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.crear-step1-inputs {
+  display: flex;
+}
+
 
 .crear-step1-paragraph {
-  font-size: 15px; 
-  margin-bottom: 20px; 
+  font-size: 15px;
+  margin: 20px 40px;
 }
 
 .crear-step1-button {
-  width: 150px; 
-  height: 40px; 
-  background-color: #b53550; 
-  color: #ffffff; 
+  width: 288px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: var(--buttonOn-font-color);
+  ;
   font-size: 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
 .crear-step1-button:hover {
-  background-color: #8e222f;
+  background-color: var(--primary-color-hover);
 }
 
 .contiStep {
