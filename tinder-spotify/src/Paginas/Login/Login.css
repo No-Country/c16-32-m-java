@@ -4,7 +4,9 @@
     position: relative;
     width: 417px;
     height: 555px;
-    border: 1px solid #e0e0e0;
+    background-color: var(--windows-color);
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
     border-radius: 10px;
     flex-direction: column;
     justify-content: center;
@@ -59,7 +61,7 @@
     }
 
     .other-button:hover {
-        background-color: #8b293e;
+        background-color: var(--primary-color-hover);
     }
 
     .spotify-button img,

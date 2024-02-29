@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: var(--background-color);
+    background-color: var(--windows-color);
     margin-top: -10px;
     border: 1px solid #dfd0d0;
     box-shadow: 0 2px 4px rgba(146, 115, 115, 0.023);

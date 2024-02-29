@@ -15,7 +15,7 @@ import ControladorFotos from '../EditarPerfil/ControladorFotos/ControladorFotos'
 const EditarPerfil = () => {
   return (
     <> 
-        <div className="cont-pri-perf">
+        <div className="cont-pri-perf container">
           <SideNav />
           <Titulo />
           <div className="editar-perfil-container">
