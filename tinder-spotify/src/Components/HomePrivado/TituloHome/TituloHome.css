@@ -1,0 +1,44 @@
+.ti-pri-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: -1060px;
+}
+  
+.logo-conte2 {
+    display: flex;
+    align-items: center; 
+    margin-left: 300px;
+}
+  
+.log1 {
+    width: 80px;
+}
+  
+.tituChat {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+  
+.bot-container {
+    display: flex;
+    align-items: center;
+    margin-left: 800px;
+}
+  
+.bot-f{
+    padding: 20px 50px;
+    background-color: #B53550;
+    color: #ffffff; 
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+  
+.bot-f:hover {
+    background-color:#8e222f;
+}

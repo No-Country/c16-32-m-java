@@ -5,7 +5,7 @@ import lapiz from '../../../assets/lapiz.png';
 import flechaIzqui from '../../../assets/flechaIzqui.png';
 import flechaDere from '../../../assets/flechaDere.png';
 
-const FotosPerfil = ({ porcentajeCarga }) => {
+const FotosPerfil = ({ porcentajeCarga, iniciarCarga }) => {
 
   return (
     <div className="fotos-perfil-container">
@@ -16,7 +16,7 @@ const FotosPerfil = ({ porcentajeCarga }) => {
         <img className="flecha-izquierda" src={flechaIzqui} alt="Flecha izquierda" />
         <img className="flecha-derecha" src={flechaDere} alt="Flecha derecha" />
       </div>
-      <button className="boton-elegir-perfil">Elegir Perfil</button>
+      <button className="boton-elegir-perfil" onClick={iniciarCarga}>Elegir Perfil</button>
       <div className="barra-carga-container">
         <div className="barra-carga">
           <div className="carga-completa" style={{ width: `${porcentajeCarga}%` }} ></div>

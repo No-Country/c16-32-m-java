@@ -1,0 +1,18 @@
+.mis-canciones-container {
+    text-align: center;
+  }
+  
+  .titulo {
+    font-size: 24px;
+  }
+  
+  .cancion {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .logo-spotify {
+    width: 20px;
+    margin-right: 10px;
+  }

@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 import './EmailLogin.css'; 
-
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 
 const EmailLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleContinue = () => {
-    if (email === '' || password === '') {
-      setAlert('Por favor, completa todos los campos.');
-    } else {
-      setAlert('');
-      navigate('/home-privado'); 
+  const handleContinue = async () => {
+    try {
+      // Aquí realizas la llamada a tu servicio externo usando Axios
+      const response = await axios.post('URL_DEL_SERVICIO', {
+        email: email,
+        password: password
+      });
+      console.log('Respuesta del servicio externo:', response.data);
+      navigate('/home-privado');
+    } catch (error) {
+      setAlert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.');
     }
   };
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
+import Spotify from '../../Components/Iconos/Spotify/Spotify';
 
 import log from '../../assets/log.png'
-import google from '../../assets/google.png'
 import signo from '../../assets/signo.png'
 import AppStore from '../../assets/AppStore.png';
 import GooglePlay from '../../assets/GooglePlay.png';
 import './Login.css';
 
 const Login = () => {
+
     const handleCloseClick = () => {
         window.location.href = '/';
     };
@@ -22,9 +24,9 @@ const Login = () => {
             </Link>
             <img src={log} alt="Logo" className="login-logo" />
             <h1>Inicia Sesión</h1>
-            <button className="google-button">
-                <img src={google} alt="Google Logo" className="button-icon" />
-                Continuar con Google
+            <button className="spotify-button">
+                <Spotify />
+                Continuar con Spotify
             </button>
             <Link to="/email-login" className="link">
                 <button className="other-button">

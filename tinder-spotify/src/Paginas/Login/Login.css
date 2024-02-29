@@ -12,6 +12,7 @@
     padding: 20px;
     margin: 50px auto;
 }
+<<<<<<< HEAD
 
 .google-button,
 .other-button {
@@ -22,6 +23,17 @@
 .google-button {
     background-color: var(--buttonOn-font-color);
     color: #000000;
+=======
+  
+.spotify-button, .other-button {
+    margin-top: 20px; 
+    border-radius: 20px; 
+}
+  
+.spotify-button {
+    background-color: #000000; 
+    color: #ffffff; 
+>>>>>>> 362298dd725179e860d39cfdb98045d90e638caa
     width: 288px;
     height: 40px;
     display: flex;
@@ -34,7 +46,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.google-button:hover {
+.spotify-button:hover {
     background-color: #f1f1f1;
     color: #333333;
 }
@@ -57,7 +69,7 @@
     background-color: #8b293e;
 }
 
-.google-button img,
+.spotify-button img,
 .other-button img {
     margin-right: 10px;
 }
