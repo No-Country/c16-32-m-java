@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importar Axios
 import useFormValidation from '../../hook/useFormValidation';
-import useFormValidation from '../../hook/useFormValidation';
-
 import LogoP from '../../Components/Iconos/LogoP/LogoP';
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 import Volver from '../../Components/Iconos/Volver/Volver';
@@ -60,7 +56,7 @@ const Logear = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
-        <button className="continue-codi" onClick={handleSubmit}>Continuar</button>     
+        <button className="continue-codi" onClick={handleContinue}>Continuar</button>     
       </div>
       {error && <p className="alert-message">{error}</p>}
       <div className="back-arrow">

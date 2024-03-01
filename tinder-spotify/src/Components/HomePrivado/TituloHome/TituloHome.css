@@ -1,3 +1,5 @@
+@import url('../../StyleVariables/Color.css'); 
+
 .ti-pri-container {
     display: flex;
     justify-content: space-between;
@@ -27,18 +29,44 @@
     align-items: center;
     margin-left: 800px;
 }
-  
+
 .bot-f{
-    padding: 20px 50px;
-    background-color: #B53550;
-    color: #ffffff; 
+    padding: 10px 50px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color); 
     border: none;
-    border-radius: 20px;
+    border-radius: 25px;
     font-size: 18px;
     white-space: nowrap;
     cursor: pointer;
 }
-  
+
 .bot-f:hover {
-    background-color:#8e222f;
+    background-color:var(--primary-color-hover);
+}
+
+    
+
+
+/* pantalla grande  */
+@media (max-width: 1600px) {
+    .ti-pri-container {
+        margin-top: -750px;
+    }
+
+    .bot-container {
+        margin: 0px 90px 0px 0px;
+    } 
+}
+
+
+/* pantalla chica */
+@media (min-width: 1601px) and (max-width: 2800px) {
+    .ti-pri-container {
+        margin-top: -920px;
+    }
+
+    .bot-container {
+        margin: 0px 160px 0px 0px;
+    }
 }

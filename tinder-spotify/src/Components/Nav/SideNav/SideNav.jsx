@@ -38,31 +38,31 @@ const SideNav = () => {
             <img className="logo-image" src={configuracionb} alt="Logo configuracion" />
           </button>
         </div>
-        <div className="icon">
-          <button className="button">
+        {/* <div className="icon">
+           <button className="button">
             <img className="logo-image" src={corazonb} alt="Logo corazon" />
-          </button>
-        </div>
+          </button> 
+        </div> */}
         <div className="icon">
           <button className="button">
             <img className="logo-image" src={chatb} alt="Logo chat" />
           </button>
         </div>
-        <div className="icon">
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={musicb} alt="Logo music" />
           </button>
-        </div>
-        <div className="icon">
+        </div> */}
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={homeb} alt="Logo inicio" />
           </button>
-        </div>
-        <div className="icon">
+        </div> */}
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={salidab} alt="Logo salir" />
           </button>
-        </div>
+        </div> */}
       </div>
       {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} />}
     </div>

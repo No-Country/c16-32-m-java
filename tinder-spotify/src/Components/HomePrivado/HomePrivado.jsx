@@ -13,17 +13,17 @@ import PrincipalFoto from '../HomePrivado/PrincipalFoto/PrincipalFoto';
 const HomePrivado = () => {
   return (
     <>
-      <div className="contedor-pri">
+      <div className="contedor-pri ">
           <SideNav/>
           <TituloHome />
-          <div className="Home-container">
-            <PerfiHome />
-            <GeneroHome />
-            <DescripHome />
-            <MisCanciones />
-            <Preferencias />
-          </div>
-            <PrincipalFoto />
+            <div className="Home-container  ">
+              <PerfiHome />
+              <GeneroHome />
+              <DescripHome />
+              <MisCanciones />
+              <Preferencias />
+            </div>
+              <PrincipalFoto  />
       </div>
     </>
   )
