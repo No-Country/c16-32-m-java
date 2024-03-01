@@ -1,14 +1,18 @@
+@import url('../../Components/StyleVariables/Color.css'); 
+
 .contedor-pri {
-    width: 700px;
-    height: 700px;
+    width: 100%;
+    background-color: var(--background-color);
 }
 
+
+
 .Home-container {
-    width: 650px ;
+    width: 600px ;
     height: 700px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     padding: 20px;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 50px;
@@ -18,4 +22,22 @@
     box-shadow: 0 0 40px rgba(248, 246, 246, 0.875);
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+/* pantalla grande  */
+@media (max-width: 1092px){
+    .Home-container{
+        margin-top: 20px;
+        width: 650px ;
+        height: 580px;
+    }
+}
+
+/* pantalla chica */
+@media (min-width: 1601px) and (max-width: 2800px) {
+    .Home-container{
+        margin-top: 20px;
+        width: 720px ;
+        height: 720px;
+    }
 }

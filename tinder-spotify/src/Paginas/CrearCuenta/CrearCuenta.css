@@ -4,7 +4,7 @@
     width: 417px;
     height: 555px;
     border-radius: 25px;
-    background-color: var(--background-color);
+    background-color: var(--windows-color);
     box-shadow: var(--shadow-down);
     display: flex;
     flex-direction: column;

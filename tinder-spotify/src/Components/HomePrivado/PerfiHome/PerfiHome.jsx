@@ -1,5 +1,6 @@
 import React from 'react';
-import './PerfilHome.css';
+import './PerfiHome.css';
+import PorceImage from '../../../assets/PorceImage.png';
 
 const PerfiHome = ({name, birthdate}) => {
   console.log(name, birthdate)
@@ -8,6 +9,10 @@ const PerfiHome = ({name, birthdate}) => {
       <div className="perfil-info-custom">
         <p className="edad-custom">{birthdate}</p>
         <p>{name}</p>
+        {/*<div className="porce-con">
+          <img src={PorceImage} alt="Porce" className="Porce" />
+        </div>*/}
+
       </div>
     </div>
   );

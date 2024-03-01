@@ -73,7 +73,7 @@ const EditarPerfil = () => {
 
   return (
     <> 
-        <div className="cont-pri-perf">
+        <div className="cont-pri-perf container">
           <SideNav />
           <Titulo />
           <div className="editar-perfil-container">
@@ -91,7 +91,7 @@ const EditarPerfil = () => {
               onSocialBatteryChange={setSocialBattery} />
               {alert && (<p>{alert}</p>)}
           </div>
-          <button onClick={handleEditProfile}  texto="Guardar">Guardar</button>
+          <button onClick={handleEditProfile}  texto="Guardar">Guardar </button>
           <ControladorFotos />
         </div>
     </>

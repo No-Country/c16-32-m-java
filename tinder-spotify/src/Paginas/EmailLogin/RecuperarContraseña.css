@@ -8,7 +8,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #e0e0e0;
+    background-color: var(--windows-color);
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
     margin: 0 auto;
     margin-top: 70px;
 }
@@ -38,6 +40,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    
 }
 
 .recuperar-contraseña-label {
@@ -47,6 +50,7 @@
 }
 
 .recuperar-contraseña-input {
+    border-radius: 5px;
     width: 75%;
     height: 50px;
     margin-bottom: 20px;
@@ -58,18 +62,18 @@
 }
 
 .recuperar-contraseña-button {
-    width: 200px;
-    height: 50px;
+    width: 288px;
+    height: 35px;
     background-color: var(--primary-color);
     color: var(--buttonOn-font-color);
     font-size: 18px;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     margin-top: 20px;
 }
 
 .recuperar-contraseña-button:hover {
-    background-color: #8e222f;
+    background-color: var(--primary-color-hover);
 }
 
 .recuperar-contraseña-terms {

@@ -60,3 +60,42 @@
   font-size: 16px;
   margin-bottom: 5px;
 }
+
+@media (max-width: 1600px) {
+ 
+  .SideNav {
+    max-height: 900px;
+    height: 750px;
+    width: 120px;
+  }
+  .logo-image {
+    width: 70px;
+  }
+
+  .profile-image {
+    width: 70px;
+    height: 70px;
+
+  }
+
+  }
+
+  /* pantalla chica */
+@media (min-width: 1601px) and (max-width: 2800px){
+
+    .SideNav {
+      height: 930px;
+      width: 120px;
+    }
+    .logo-image {
+      width: 70px;
+    }
+  
+    .profile-image {
+      width: 70px;
+      height: 70px;
+  
+    }
+  
+    }
+  

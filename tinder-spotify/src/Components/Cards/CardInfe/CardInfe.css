@@ -17,6 +17,13 @@
 
 .CardInfeItem {
     width: 30%; 
+    
+}
+
+.CardInfeItem2 {
+    width: 30%;
+    margin-top: 50px; 
+    line-height: 1.9;
 }
 
 

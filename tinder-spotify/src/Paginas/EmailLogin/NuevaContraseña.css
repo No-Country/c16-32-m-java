@@ -3,7 +3,9 @@
 .nueva-contraseña-container {
     width: 500px;
     height: 620px;
-    border: 1px solid #000;
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
+    background-color: var(--windows-color);
     margin: auto;
     display: flex;
     flex-direction: column;

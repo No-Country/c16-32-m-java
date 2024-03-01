@@ -1,7 +1,7 @@
 import React from 'react';
 import './Perfil.css';
 
-import foto from '../../../assets/foto.png';
+import foto2 from '../../../assets/foto2.png';
 
 const Perfil = ({name, onNameChange,
   birthdate, onBirthdateChange}) => {
@@ -12,7 +12,7 @@ const Perfil = ({name, onNameChange,
   return (
     <div className="perfil-seccion">
       <div className="perfil-foto">
-        <img src={foto} alt="Perfil" />
+        <img src={foto2} alt="Perfil" />
       </div>
       <div className="perfil-info">
         <input className="name" type="text" onChange={(event)=>{onNameChange(event.target.value)}} value={name}/>

@@ -1,13 +1,127 @@
+@import url('../../StyleVariables/Color.css'); 
+
 .Principal-container {
     position: relative;
     width: 590px;
     height: 740px;
-    border: 2px solid rgb(221, 215, 215);
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 20px;
     left: 1150px;
-    top: -800px;
+    top: -740px;
     background-image: url('../../../assets/PrincipalFoto.png');
     background-size: cover;
     background-position: center; 
+}
+
+.botoness {
+    position: absolute;
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%); 
+    cursor: pointer;
+}
+
+
+.bot9 {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-top: -90px; 
+    text-align: center;
+    padding: 25px 50px;
+    border-radius: 25px;
+    background-color:var(--background-color-opacity);
+    
+}
+
+
+
+.atras, .chat, .siguiente {
+    display: inline-block;
+    margin: 0 20px; 
+}
+
+.chat {
+    background-color:var(--primary-color);
+    color: var(--buttonOn-font-color); 
+    transition: background-color 0.3s, color 0.3s; 
+    padding: 15px 60px; 
+    border-radius: 20px; 
+    border: none; 
+    cursor: pointer;
+    display: inline-block; 
+    margin-right: 10px;
+    font-size: 18px;
+
+}
+
+.chat:hover {
+    background-color: var(--primary-color-hover);
+
+}
+
+.atras,
+.siguiente {
+    background-color: transparent;
+    border: none; 
+    padding: 0; 
+    cursor: pointer;
+    display: inline-block; 
+    margin-right: 10px; 
+}
+
+.atras img,
+.siguiente img {
+    width: 50px; 
+    height: auto; 
+    margin-bottom: 5px; 
+}
+
+.atras img {
+    margin-right: -40px;
+}
+
+.siguiente img {
+    margin-left: -49px;
+}
+
+
+/* pantalla grande  */
+@media (max-width: 1600px){
+    .Principal-container {
+        width: 500px;
+        height: 600px;
+        padding: 20px;
+        top: -560px;
+        left: 1000px;
+    }
+
+    .bot9 {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        margin-top: -280px; 
+
+    }
+
+}
+
+/* pantalla chica */
+@media (min-width: 1601px) and (max-width: 2800px){
+    .Principal-container {
+        width: 650px;
+        padding: 20px;
+        top: -720px;
+        left: 1100px;
+    }
+
+    .bot9 {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        margin-top: -155px; 
+        padding: 30px 100px;
+    }
+
+
 }

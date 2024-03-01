@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import './EmailLogin.css'; 
+import axios from "axios";
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 
 const EmailLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleContinue = async () => {
     try {
+      console.log("conexión hecha");  
       const response = await axios.post("http://localhost:8080/users/login", {
-        email: email,
-        password: password
+      email: email,
+      password: password
       });
       console.log('Respuesta del servicio externo:', response.data);
       localStorage.setItem("token-ChatBeat", response.data.token);
@@ -22,7 +23,7 @@ const EmailLogin = () => {
       navigate('/home-privado');
     } catch (error) {
       setAlert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.');
-    }
+}
   };
 
   return (
@@ -48,7 +49,6 @@ const EmailLogin = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {alert && <p className="alert">{alert}</p>}
       </div>
       <Link to="/recuperar-contraseña" className="email-login-link">¿Olvidaste tu contraseña?</Link>
       <button 
@@ -58,7 +58,7 @@ const EmailLogin = () => {
       >
         Continuar
       </button>
-      
+      {alert && <p className="alert-message">{alert}</p>}
       <p className="email-login-paragraph">
         Al hacer clic en continuar, aceptas nuestros Términos y Condiciones.
         Conoce cómo procesamos tus datos en nuestra 

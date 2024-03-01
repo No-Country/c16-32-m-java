@@ -1,13 +1,18 @@
 .descrip-home-container {
-    text-align: center;
-    margin-top: 20px;
+    text-align: left;
+    margin: 20px;
+    
 }
   
 .descrip-title {
-    font-size: 24px;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 10px 0px;
 }
   
 .descrip-text {
-    font-size: 16px;
+    font-weight: Roboto regular;
+    font-size: 19px;
     line-height: 1.5;
+    
 }

@@ -1,7 +1,8 @@
 .genero-home-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;    
+    margin: 0px 20px;
   }
   
   .ubicacion-container {
@@ -10,6 +11,6 @@
   }
   
   .ubicacion-container img {
-    width: 20px; /* Ajusta el tamaño del logo de ubicación según sea necesario */
-    margin-right: 10px; /* Espacio entre el logo y el texto */
+    width: 20px;
+    margin-right: 10px;
   }

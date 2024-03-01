@@ -29,7 +29,7 @@ const HomePrivado = () => {
 
   return (
     <>
-      <div className="contedor-pri">
+      <div className="contedor-pri ">
           <SideNav/>
           <TituloHome />
           <div className="Home-container">
@@ -40,7 +40,7 @@ const HomePrivado = () => {
           <Preferencias />
           </div>
           <PrincipalFoto />
-      </div>
+</div>
     </>
   )
 }

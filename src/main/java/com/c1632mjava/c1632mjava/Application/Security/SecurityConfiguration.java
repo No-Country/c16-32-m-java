@@ -47,11 +47,11 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
-                        /*authRequest.requestMatchers("/users/register").permitAll()
+                        authRequest.requestMatchers("/users/register").permitAll()
                                 .requestMatchers("/users/login").permitAll()
                                 .anyRequest().authenticated()
-                )*/
-                        authRequest.anyRequest().permitAll())
+                )
+                        //authRequest.anyRequest().permitAll())
                 .sessionManagement(sessionManager ->
                         sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)

@@ -5,7 +5,7 @@
     height: 620px;
     border-radius: 25px;
     box-shadow: var(--shadow-down);
-    background-color: var(--background-color);
+    background-color: var(--windows-color);
     display: flex;
     flex-direction: column;
     align-items: center;

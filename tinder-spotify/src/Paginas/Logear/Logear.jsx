@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importar Axios
 import useFormValidation from '../../hook/useFormValidation';
 import LogoP from '../../Components/Iconos/LogoP/LogoP';
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
@@ -12,22 +11,15 @@ const Logear = () => {
   const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword } = useFormValidation();
   const navigate = useNavigate();
 
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async () => {
-    try {
-      // Aquí realizas la llamada a tu servicio externo usando Axios
-      const response = await axios.post('URL_DEL_SERVICIO', {
-        email: email,
-        password: password,
-        repeatPassword: repeatPassword
-      });
-      
-      console.log('Respuesta del servicio externo:', response.data);
-      
-      navigate('/home-privado');
-    } catch (error) {
-      setError(error.message);
+  const handleContinue = () => {
+    if (email.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
+      setAlert('Por favor, completa todos los campos.');
+    } else {
+      if (password !== repeatPassword) {
+        setAlert('Las contraseñas no coinciden.');
+      } else {
+        navigate('/codigo');
+      }
     }
   };
 
@@ -64,7 +56,7 @@ const Logear = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
-        <button className="continue-codi" onClick={handleSubmit}>Continuar</button>     
+        <button className="continue-codi" onClick={handleContinue}>Continuar</button>     
       </div>
       {error && <p className="alert-message">{error}</p>}
       <div className="back-arrow">
