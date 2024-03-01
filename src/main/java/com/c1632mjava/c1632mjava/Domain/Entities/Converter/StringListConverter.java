@@ -19,7 +19,7 @@ public class StringListConverter implements AttributeConverter<ArrayList<String>
 
     @Override
     public ArrayList<String> convertToEntityAttribute(byte[] dbData) {
-        if(dbData != null){
+        if(dbData != null && dbData.length > 1){
             return new ArrayList<>(Arrays.asList(new String(dbData).split(",")));
         } else {
             return null;
