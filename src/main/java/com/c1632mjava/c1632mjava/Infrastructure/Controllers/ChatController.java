@@ -10,6 +10,7 @@ import com.c1632mjava.c1632mjava.Domain.Services.ChatService;
 import com.c1632mjava.c1632mjava.Domain.Services.UserService;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.ChatNotFoundException;
 import com.c1632mjava.c1632mjava.Infrastructure.Errors.UserNotFoundException;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -59,37 +61,29 @@ public class ChatController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdChat);
     }
 
-    @MessageMapping("/chat/{id}")
-    public void handleChatMessage(@DestinationVariable Long id, ChatCreateDto dto) {
+    @MessageMapping("/chat")
+    public ResponseEntity<Void> handleChatMessage(@Payload ChatCreateDto dto) {
         try {
             // Intenta encontrar el chat existente
-            ChatReadDto chat = chatService.findById(id);
-            // Verifica si el remitente coincide con el ID del remitente proporcionado en el mensaje
-            if (!Objects.equals(chat.sender().userId(), dto.senderId())) {
-                throw new ChatNotFoundException(id);
+            Chat chat = chatService.findByReceiverSenderId(dto);
+            if (chat != null) {
+                // Verifica si el remitente coincide con el ID del remitente proporcionado en el mensaje
+                if (!Objects.equals(chat.getSender().getUserId(), dto.senderId())) {
+                    throw new ChatNotFoundException(dto.senderId());
+                }
+                // Guarda el chat actualizado
+                chatService.save(dto);
+                // Envía el mensaje actualizado a los suscriptores del chat
+                messagingTemplate.convertAndSend("/topic/chat/" + chat.getChatId() + dto.lastMessage());
+            } else {
+                // Si no se encuentra el chat, crea uno nuevo
+                // Crea un nuevo chat con los usuarios especificados
+                chatService.create(dto);
+                messagingTemplate.convertAndSend("/topic/chat/" + chat.getChatId() + dto.lastMessage());
             }
-            // Actualiza la información del chat con el nuevo mensaje, fecha, etc.
-            ChatReadDto updatedChat = chat.withLastMessage(dto.lastMessage())
-                    .withDate(LocalDateTime.now())
-                    .withPreviousMessages(dto.previousMessages());
-            // Guarda el chat actualizado
-            chatService.save(chatMapper.convertReadToCreate(updatedChat));
-            // Envía el mensaje actualizado a los suscriptores del chat
-            messagingTemplate.convertAndSend("/topic/chat" + id, dto);
         } catch (ChatNotFoundException e) {
-            // Si no se encuentra el chat, crea uno nuevo con el ID proporcionado
-            UserReadDto sender = userService.findUserById(dto.senderId()); //
-            UserReadDto receiver = userService.findUserById(dto.receiverId()); //
-            // Crea un nuevo chat con los usuarios especificados
-            ChatReadDto newChat = new ChatReadDto(id,
-                    dto.lastMessage(),
-                    LocalDateTime.now(),
-                    new ArrayList<>(),
-                    sender,
-                    receiver);
-            chatService.save(chatMapper.convertReadToCreate(newChat));
-            // Envía el mensaje a los suscriptores del nuevo chat
-            messagingTemplate.convertAndSend("/topic/chat" + id, dto);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+        return ResponseEntity.ok().build();
     }
 }

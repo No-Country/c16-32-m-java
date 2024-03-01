@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,13 +66,55 @@ public class ChatServiceImpl implements ChatService {
     @Transactional
     @Override
     public void save(ChatCreateDto dto) {
-        Optional<Chat> optionalChat = chatRepository.findById(dto.senderId());
-        if(optionalChat.isEmpty()){
-            throw new UserNotFoundException(dto.senderId());
+        Optional<Chat> optionalChat = chatRepository.findBySenderReceiver(dto.senderId(), dto.receiverId());
+        if (optionalChat.isPresent()) {
+            // El chat ya existe, actualiza el chat existente
+            Chat existingChat = optionalChat.get();
+
+            Chat updatedChat = chatMapper.convertCreateToChat(dto);
+            updatedChat.setLastMessage(dto.lastMessage());
+            ArrayList<String> previousMessages = existingChat.getPreviousMessages();
+            if (previousMessages == null) {
+                previousMessages = new ArrayList<>();
+            }
+            // Agrega el nuevo mensaje a la lista de mensajes previos
+            previousMessages.add(dto.lastMessage());
+            updatedChat.setPreviousMessages(previousMessages);
+            chatRepository.save(updatedChat);
+        } else {
+            // El chat no existe, se crea
+            Chat chat = this.chatMapper.convertCreateToChat(dto);
+            chat.setDate(LocalDateTime.now());
+            chat.setActive(Boolean.TRUE);
+
+            UserReadDto senderDto = this.userService.findUserById(dto.senderId());
+
+            ArrayList<String> previousMessages = chat.getPreviousMessages();
+            if (previousMessages == null) {
+                previousMessages = new ArrayList<>();
+            }
+            // Agrega el nuevo mensaje a la lista de mensajes previos
+            previousMessages.add(dto.lastMessage());
+            chat.setPreviousMessages(previousMessages);
+
+            if(senderDto == null){
+                throw new UserNotFoundException(dto.senderId());
+            }
+
+            User sender = this.userMapper.convertReadToUser(senderDto);
+            chat.setSender(sender);
+
+            UserReadDto receiverDto = this.userService.findUserById(dto.receiverId());
+
+            if(receiverDto == null){
+                throw new UserNotFoundException(dto.receiverId());
+            }
+
+            User receiver = this.userMapper.convertReadToUser(receiverDto);
+
+            chat.setReceiver(receiver);
+            chatRepository.save(chat);
         }
-        Chat existingChat = optionalChat.get();
-        existingChat.setLastMessage(dto.lastMessage());
-        chatRepository.save(existingChat);
     }
 
     @Transactional(readOnly = true)
@@ -109,6 +153,13 @@ public class ChatServiceImpl implements ChatService {
         Page<Chat> chats = this.chatRepository.findAllBySenderAndActiveIsTrue(user, paging);
 
         return chats.map(this.chatMapper::convertChatToRead);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Chat findByReceiverSenderId(ChatCreateDto dto){
+        return chatRepository.findBySenderReceiver(dto.senderId(), dto.receiverId())
+                .orElse(null);
     }
 
     private void validId(Long id, String subject){
