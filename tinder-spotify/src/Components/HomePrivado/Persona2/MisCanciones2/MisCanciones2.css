@@ -1,0 +1,23 @@
+.mis-canciones-container {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+  
+.tituca {
+  font-weight: bold;
+  font-size: 21px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  margin-right: 250px;
+}
+  
+.cancion {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+  
+.logo-spotify {
+    width: 30px;
+    margin-right: 10px;
+}

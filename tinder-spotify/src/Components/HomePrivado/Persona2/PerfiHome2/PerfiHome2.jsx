@@ -1,13 +1,13 @@
 import React from 'react';
-import './PerfilHome.css';
-import PorceImage from '../../../assets/PorceImage.png';
+import './PerfilHome2.css';
+import PorceImage from '../../../../assets/PorceImage.png';
 
-const PerfilHome = () => {
+const PerfilHome2 = () => {
   return (
     <div className="perfil-seccion-custom">
       <div className="perfil-info-custom">
-        <p className="edad-custom">28,</p>
-        <p>Daniel</p>
+        <p className="edad-custom">27,</p>
+        <p>Julian</p>
         <div className="porce-con">
           <img src={PorceImage} alt="Porce" className="Porce" />
         </div>
@@ -16,4 +16,4 @@ const PerfilHome = () => {
   );
 };
 
-export default PerfilHome;
+export default PerfilHome2;

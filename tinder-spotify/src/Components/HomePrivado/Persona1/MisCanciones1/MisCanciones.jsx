@@ -1,6 +1,6 @@
 import React from 'react';
 import './MisCanciones.css';
-import Spotify from '../../../assets/Spotify.png'; 
+import Spotify from '../../../../assets/Spotify.png'; 
 
 const MisCanciones = () => {
   return (
