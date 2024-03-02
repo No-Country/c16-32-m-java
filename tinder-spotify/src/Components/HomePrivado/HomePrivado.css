@@ -41,3 +41,14 @@
         height: 720px;
     }
 }
+
+ /* 3era pantalla de prueba G */
+@media (min-width: 1092px) and (max-width: 1599px){
+    .Home-container{
+        margin-top: 20px;
+        margin-left: 140px;
+        width: 420px ;
+        height: 430px;
+    }
+
+}

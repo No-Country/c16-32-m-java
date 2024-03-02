@@ -23,7 +23,7 @@ const PrincipalFoto = () => {
         </button>
         <button className="chat">Chat</button>
         <button className="siguiente">
-          Siguiente <img src={fledere} alt="Siguiente" />
+        <img src={fledere} alt="Siguiente" /> Siguiente
         </button>
       </div>
     </div>

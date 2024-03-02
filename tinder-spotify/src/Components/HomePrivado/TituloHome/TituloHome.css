@@ -37,6 +37,7 @@
     border: none;
     border-radius: 25px;
     font-size: 18px;
+    font-weight: bold;
     white-space: nowrap;
     cursor: pointer;
 }
@@ -69,4 +70,22 @@
     .bot-container {
         margin: 0px 160px 0px 0px;
     }
+}
+
+ /* 3era pantalla de prueba G */
+@media (min-width: 1000px) and (max-width: 1599px){
+    .bot-container {
+        margin: 0px 30px 0px 0px;
+    }
+    .logo-conte2 {
+        margin-left: 150px;
+    }
+    .log1 {
+        width: 50px;
+    }
+    .bot-f{
+        padding: 10px 50px;
+        font-size: 15px;
+
+}
 }

@@ -125,3 +125,35 @@
 
 
 }
+ /* 3era pantalla de prueba G */
+@media (min-width: 1092px) and (max-width: 1599px){
+    .Principal-container {
+        width: 400px;
+        height: 450px;
+        padding: 20px;
+        top: -440px;
+        left: 650px;
+    }
+
+    .bot9 {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        margin-top: -430px; 
+        padding: 25px 0px 15px 0px;
+    }
+
+    .atras img,
+    .siguiente img {
+        width: 40px;  
+    }
+    .atras img, .siguiente img {
+        margin: 0px;
+    }
+
+    .chat{
+        padding: 5px 50px;
+    }
+
+
+}
