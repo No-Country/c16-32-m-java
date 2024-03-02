@@ -52,7 +52,7 @@
 /* pantalla grande  */
 @media (max-width: 1600px) {
     .ti-pri-container {
-        margin-top: -750px;
+        margin-top: -925px;
     }
 
     .bot-container {
@@ -75,10 +75,13 @@
  /* 3era pantalla de prueba G */
 @media (min-width: 1000px) and (max-width: 1599px){
     .bot-container {
-        margin: 0px 30px 0px 0px;
+        margin: 0px 50px 0px 0px;
     }
     .logo-conte2 {
         margin-left: 150px;
+    }
+    .tituChat{
+        font-size:37.32px;
     }
     .log1 {
         width: 50px;
@@ -86,6 +89,11 @@
     .bot-f{
         padding: 10px 50px;
         font-size: 15px;
+    }
+    .ti-pri-container {
+        margin-top: -545px;
+    }
 
-}
+
+
 }

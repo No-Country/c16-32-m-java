@@ -33,36 +33,16 @@ const SideNav = () => {
         <img className="profile-image" src={foto2} alt="Profile" />
       </Link>
       <div className="icons">
+      <div className="icon">
+          <button className="button">
+            <img className="logo-image" src={chatb} alt="Logo chat" />
+          </button>
+        </div>
         <div className="icon">
           <button className="button">
             <img className="logo-image" src={configuracionb} alt="Logo configuracion" />
           </button>
         </div>
-        {/* <div className="icon">
-           <button className="button">
-            <img className="logo-image" src={corazonb} alt="Logo corazon" />
-          </button> 
-        </div> */}
-        <div className="icon">
-          <button className="button">
-            <img className="logo-image" src={chatb} alt="Logo chat" />
-          </button>
-        </div>
-        {/* <div className="icon">
-          <button className="button">
-            <img className="logo-image" src={musicb} alt="Logo music" />
-          </button>
-        </div> */}
-        {/* <div className="icon">
-          <button className="button">
-            <img className="logo-image" src={homeb} alt="Logo inicio" />
-          </button>
-        </div> */}
-        {/* <div className="icon">
-          <button className="button">
-            <img className="logo-image" src={salidab} alt="Logo salir" />
-          </button>
-        </div> */}
       </div>
       {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} />}
     </div>

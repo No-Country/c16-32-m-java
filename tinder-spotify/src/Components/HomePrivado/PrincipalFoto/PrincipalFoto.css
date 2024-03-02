@@ -82,7 +82,7 @@
 }
 
 .siguiente img {
-    margin-left: -49px;
+    margin-left: -15px;
 }
 
 
@@ -92,7 +92,7 @@
         width: 500px;
         height: 600px;
         padding: 20px;
-        top: -560px;
+        top: -580px;
         left: 1000px;
     }
 
@@ -100,8 +100,12 @@
         display: flex;
         align-items: start;
         justify-content: center;
-        margin-top: -280px; 
+        margin-top: -300px; 
+    }
 
+    .chat{
+        padding: 10px 70px;
+        margin-right:  -15px;
     }
 
 }
@@ -115,12 +119,14 @@
         left: 1100px;
     }
 
+
+    
     .bot9 {
         display: flex;
         align-items: start;
         justify-content: center;
-        margin-top: -155px; 
-        padding: 30px 100px;
+        margin-top: -150px; 
+
     }
 
 
