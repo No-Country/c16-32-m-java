@@ -1,0 +1,75 @@
+.Principal-container {
+    position: relative;
+    width: 590px;
+    height: 740px;
+    border: 2px solid rgb(221, 215, 215);
+    border-radius: 10px;
+    padding: 20px;
+    left: 1150px;
+    top: -740px;
+    background-image: url('../../../assets/PrincipalFoto.png');
+    background-size: cover;
+    background-position: center; 
+}
+
+.botoness {
+    position: absolute;
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%); 
+    cursor: pointer;
+}
+
+
+.bot9 {
+    margin-top: -90px; 
+    text-align: center; 
+}
+
+.atras, .chat, .siguiente {
+    display: inline-block;
+    margin: 0 20px; 
+}
+
+.chat {
+    background-color: #B53550;
+    color: #FFFFFF; 
+    transition: background-color 0.3s, color 0.3s; 
+    padding: 20px 50px; 
+    border-radius: 20px; 
+    border: none; 
+    cursor: pointer;
+    display: inline-block; 
+    margin-right: 10px;
+
+}
+
+.chat:hover {
+    background-color: #FFFFFF;
+    color: #B53550; 
+}
+
+.atras,
+.siguiente {
+    background-color: transparent;
+    border: none; 
+    padding: 0; 
+    cursor: pointer;
+    display: inline-block; 
+    margin-right: 10px; 
+}
+
+.atras img,
+.siguiente img {
+    width: 50px; 
+    height: auto; 
+    margin-bottom: 5px; 
+}
+
+.atras img {
+    margin-right: -40px;
+}
+
+.siguiente img {
+    margin-left: -49px;
+}

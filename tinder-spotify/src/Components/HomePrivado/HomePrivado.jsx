@@ -4,6 +4,12 @@ import './HomePrivado.css';
 import TituloHome from '../../Components/HomePrivado/TituloHome/TituloHome';
 import PreferentialSettings from '../../Components/Nav/preferentialSettings/preferentialSettings';
 import SideNav from '../Nav/SideNav/SideNav';
+import PerfiHome from '../HomePrivado/PerfiHome/PerfiHome';
+import GeneroHome from '../HomePrivado/GeneroHome/GeneroHome';
+import DescripHome from '../HomePrivado/DescripHome/DescripHome';
+import MisCanciones from '../HomePrivado/MisCanciones/MisCanciones';
+import Preferencias from '../HomePrivado/Preferencias/Preferencias';
+import PrincipalFoto from '../HomePrivado/PrincipalFoto/PrincipalFoto';
 
 //Persona1
 import PerfiHome1 from './Persona1/PerfiHome1/PerfiHome';
