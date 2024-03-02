@@ -97,3 +97,16 @@
 
 
 }
+@media (max-width: 700px){
+    .ti-pri-container {
+        margin:110px -80px 10px 0px;
+        display: flex;
+        justify-content: end;
+    }
+    .logo-conte2 {
+        margin-left: 0px;
+        display: none;
+    }
+    
+
+}

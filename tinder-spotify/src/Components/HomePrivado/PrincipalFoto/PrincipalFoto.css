@@ -163,3 +163,23 @@
 
 
 }
+
+@media (max-width: 700px){
+        .Principal-container {
+        width: 650px;
+        height: 750px;
+        top: 5px;
+        left: 25px;
+    }
+
+    .bot9 {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        margin-top: -130px; 
+        padding: 25px 0px 15px 0px;
+    }
+    .atras img, .siguiente img {
+        margin: 0px 10px;
+    }
+}

@@ -134,4 +134,21 @@
 
 
 }
+
+@media (max-width: 700px){
+  .SideNav {
+    width: 700px;
+    height: 100px;
+    align-items: end;
+    padding: 15px 25px;
+    position: fixed;
+    top:0px;
+    z-index: 999;
+  }
+  
+  .icons , .profile-image  {
+    display: none;
+  }
+
+}
   

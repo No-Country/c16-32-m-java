@@ -52,3 +52,24 @@
     }
 
 }
+
+@media (max-width: 700px){
+
+    
+    .Home-container{
+        margin: 20px;
+        width: 95% ;
+        height: auto;
+        overflow-y: unset;
+        overflow-x: unset;
+        font-size: 25px;
+    }
+    .match-profile{
+        display: flex;
+        flex-direction: column-reverse;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+    }
+
+}

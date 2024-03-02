@@ -71,3 +71,13 @@
     cursor: pointer;
     display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
     }
+
+    @media (max-width: 700px){
+      .dropdown-container{
+        left: auto; 
+        width: 370px;
+        
+      }
+
+    
+    }

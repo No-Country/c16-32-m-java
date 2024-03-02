@@ -16,6 +16,7 @@ const HomePrivado = () => {
       <div className="contedor-pri ">
           <SideNav/>
           <TituloHome />
+          <div className="match-profile">
             <div className="Home-container  ">
               <PerfiHome />
               <GeneroHome />
@@ -24,6 +25,7 @@ const HomePrivado = () => {
               <Preferencias />
             </div>
               <PrincipalFoto  />
+            </div>
       </div>
     </>
   )
