@@ -10,6 +10,8 @@ import './Logear.css';
 
 import './Logear.css';
 
+import './Logear.css';
+
 const Logear = () => {
   const { email, setEmail, password, setPassword, repeatPassword, setRepeatPassword, alert, handleContinue } = useFormValidation();
   const navigate = useNavigate();
