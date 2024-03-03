@@ -22,6 +22,14 @@ const HomePrivado = () => {
   const [user, setUser] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [mostrarPersona1, setMostrarPersona1] = useState(true);
+  const matchedPerson = {
+    name: "Anna Karenina",
+    birthdate: "1991-08-14",
+    gender: "FEMENINO",
+    pronouns: "ella",
+    descrpition: "Soy una apasionada de la vida, siempre buscando nuevas experiencias y conexiones genuinas. Amo sumergirme en el arte, la literatura y la música; son las cosas que hacen latir mi corazón más fuerte.",
+    currentSong: "Todos me miran - Gloria Trevi", 
+  }
 
   const getLoggedUser = async () => {
     const userLogged = await axios.get(
@@ -63,10 +71,10 @@ const HomePrivado = () => {
             </>
           ) : (
             <>
-              <PerfiHome name={user.name} birthdate={user.birthdate} />
-              <GeneroHome gender={user.gender} pronouns={user.pronouns} />
-              <DescripHome description={user.description} />
-              <MisCanciones currentSong={user.currentSong} />
+              <PerfiHome name={matchedPerson.name} birthdate={matchedPerson.birthdate} />
+              <GeneroHome gender={matchedPerson.gender} pronouns={matchedPerson.pronouns} />
+              <DescripHome description={matchedPerson.description} />
+              <MisCanciones currentSong={matchedPerson.currentSong} />
               <Preferencias />
             </>
           )}
