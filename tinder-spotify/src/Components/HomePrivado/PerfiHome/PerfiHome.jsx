@@ -18,4 +18,4 @@ const PerfiHome = ({name, birthdate}) => {
   );
 };
 
-export default PerfilHome;
+export default PerfiHome;

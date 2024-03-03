@@ -1,8 +1,8 @@
 import React from 'react';
-import './PerfilHome.css';
+import './PerfiHome.css';
 import PorceImage from '../../../../assets/PorceImage.png';
 
-const PerfilHome = () => {
+const PerfiHome = () => {
   return (
     <div className="perfil-seccion-custom">
       <div className="perfil-info-custom">
@@ -16,4 +16,4 @@ const PerfilHome = () => {
   );
 };
 
-export default PerfilHome;
+export default PerfiHome;

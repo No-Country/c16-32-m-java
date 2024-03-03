@@ -20,6 +20,8 @@ const HomePrivado = () => {
   const tokenChatBeat = localStorage.getItem("token-ChatBeat");
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [mostrarPersona1, setMostrarPersona1] = useState(true);
 
   const getLoggedUser = async () => {
     const userLogged = await axios.get(
