@@ -39,31 +39,33 @@ const HomePrivado = () => {
           <SideNav/>
            <TituloHome onFilterClick={toggleModal} />
            {modalOpen && <PreferentialSettings  onClose={toggleModal}/>}
-          <div className="Home-container">
-          {mostrarPersona1 ? (
-            <>
-              <PerfiHome1 />
-              <GeneroHome1 />
-              <DescripHome1 />
-              <MisCanciones1 />
-              <Preferencias1 />
-            </>
-           ) : (
-            <>
-              <PerfiHome2 />
-              <GeneroHome2 />
-              <DescripHome2 />
-              <MisCanciones2 />
-              <Preferencias2 />
-            </>
-          )}
+           <div className="match-profile">
+            <div className="Home-container">
+              {mostrarPersona1 ? (
+                <>
+                  <PerfiHome1 />
+                  <GeneroHome1 />
+                  <DescripHome1 />
+                  <MisCanciones1 />
+                  <Preferencias1 />
+                </>
+              ) : (
+                <>
+                  <PerfiHome2 />
+                  <GeneroHome2 />
+                  <DescripHome2 />
+                  <MisCanciones2 />
+                  <Preferencias2 />
+                </>
+              )}
+              </div>
+              {mostrarPersona1 ? (
+              <PrincipalFoto1 onNextClick={togglePrincipalFoto} />
+              ) : (
+              <PrincipalFoto2 onPrevClick={togglePrincipalFoto} />
+              )}
+            </div>
           </div>
-          {mostrarPersona1 ? (
-          <PrincipalFoto1 onNextClick={togglePrincipalFoto} />
-           ) : (
-          <PrincipalFoto2 onPrevClick={togglePrincipalFoto} />
-          )}
-      </div>
     </>
   )
 }
