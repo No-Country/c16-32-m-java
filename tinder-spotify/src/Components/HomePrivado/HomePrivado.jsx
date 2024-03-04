@@ -19,40 +19,78 @@ import PrincipalFoto2 from "./Persona2/PrincipalFoto2/PrincipalFoto2";
 const HomePrivado = () => {
   const tokenChatBeat = localStorage.getItem("token-ChatBeat");
   const userId = localStorage.getItem("userId");
-  const [user, setUser] = useState({});
+  const [userMatches, setUserMatches] = useState([]);
+  const [selectedMatch, setSelectedMatch] = useState({});
+  const [selectedUser, setSelectedUser] = useState();
   const [modalOpen, setModalOpen] = useState(false);
-  const [mostrarPersona1, setMostrarPersona1] = useState(true);
-  const matchedPerson = {
-    name: "Anna Karenina",
-    birthdate: "1991-08-14",
-    gender: "FEMENINO",
-    pronouns: "ella",
-    descrpition: "Soy una apasionada de la vida, siempre buscando nuevas experiencias y conexiones genuinas. Amo sumergirme en el arte, la literatura y la música; son las cosas que hacen latir mi corazón más fuerte.",
-    currentSong: "Todos me miran - Gloria Trevi", 
-  }
+  const [indexActualMatch, setIndexActualMatch] = useState(0);
 
-  const getLoggedUser = async () => {
-    const userLogged = await axios.get(
-      "http://localhost:8080/users/id/" + userId,
+  const getUserMatches = async () => {
+    const userMatches = await axios.get(
+      "http://localhost:8080/matches/users/" + userId,
       {
         headers: { Authorization: "Bearer " + tokenChatBeat },
       }
     );
-    console.log(userLogged.data);
-    setUser(userLogged.data);
+    console.log(userMatches.data.content);
+    setUserMatches(userMatches.data.content);
+    setSelectedMatch(userMatches.data.content[0]);
+    getMatchedUser(userMatches.data.content[0]);
   };
 
   useEffect(() => {
-    getLoggedUser();
+    getUserMatches();
   }, []);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
 
-  const togglePrincipalFoto = () => {
-    setMostrarPersona1((prev) => !prev);
+  const nextMatch = () => {
+    let newIndex = indexActualMatch+1;
+    if (newIndex == 2) { newIndex = 0; }
+    setIndexActualMatch(newIndex);
+    
+    const actualIndexMatch = userMatches.findIndex((match)=>{
+      return match.matchId == selectedMatch.matchId
+    })
+
+    let newIndexMatches = actualIndexMatch+1;
+    if (newIndexMatches == userMatches.length) { 
+      newIndexMatches = 0;
+    }
+
+    const newMatch = userMatches[newIndexMatches];
+    setSelectedMatch(newMatch);
+    getMatchedUser(newMatch);
   };
+
+  const previousMatch = () => {
+    let newIndex = indexActualMatch-1;
+    if (newIndex < 0) { newIndex = 1; }
+    setIndexActualMatch(newIndex);
+    
+    const actualIndexMatch = userMatches.findIndex(
+      (match)=>{
+      return match.matchId == selectedMatch.matchId
+    })
+
+    let newIndexMatches = actualIndexMatch-1;
+    if (newIndexMatches < 0) { 
+      newIndexMatches = userMatches.length-1;
+    }
+
+    const newMatch = userMatches[newIndexMatches];
+    setSelectedMatch(newMatch);
+    getMatchedUser(newMatch);
+  };
+
+  const getMatchedUser = (selectedMatch) => {
+    if (selectedMatch.user1.userId == userId) { 
+    setSelectedUser(selectedMatch.user2); }
+    else setSelectedUser(selectedMatch.user1);
+  };
+
 
   return (
     <>
@@ -60,30 +98,19 @@ const HomePrivado = () => {
         <SideNav />
         <TituloHome onFilterClick={toggleModal} />
         {modalOpen && <PreferentialSettings onClose={toggleModal} />}
+        {selectedUser && (
         <div className="Home-container">
-          {mostrarPersona1 ? (
-            <>
-              <PerfiHome name={user.name} birthdate={user.birthdate} />
-              <GeneroHome gender={user.gender} pronouns={user.pronouns} />
-              <DescripHome description={user.description} />
-              <MisCanciones currentSong={user.currentSong} />
+              <PerfiHome name={selectedUser.name} birthdate={selectedUser.birthdate} />
+              <GeneroHome gender={selectedUser.gender} pronouns={selectedUser.pronouns} />
+              <DescripHome description={selectedUser.description} />
+              <MisCanciones currentSong={selectedUser.currentSong} />
               <Preferencias />
-            </>
-          ) : (
-            <>
-              <PerfiHome name={matchedPerson.name} birthdate={matchedPerson.birthdate} />
-              <GeneroHome gender={matchedPerson.gender} pronouns={matchedPerson.pronouns} />
-              <DescripHome description={matchedPerson.description} />
-              <MisCanciones currentSong={matchedPerson.currentSong} />
-              <Preferencias />
-            </>
-          )}
         </div>
-        {mostrarPersona1 ? (
-          <PrincipalFoto1 onNextClick={togglePrincipalFoto} />
-        ) : (
-          <PrincipalFoto2 onPrevClick={togglePrincipalFoto} />
         )}
+          {indexActualMatch == 0 && (
+              <PrincipalFoto1 onNextClick={nextMatch} />)},
+          {indexActualMatch == 1 && (
+          <PrincipalFoto2 onPrevClick={previousMatch} />)}; 
       </div>
     </>
   );

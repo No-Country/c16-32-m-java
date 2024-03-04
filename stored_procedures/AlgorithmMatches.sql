@@ -31,15 +31,12 @@ AND (u.user_id != loggedUserId)
     (SELECT min_age FROM match_preferences mp WHERE mp.user_id = loggedUserId) AND 
     (SELECT max_age FROM match_preferences mp  WHERE mp.user_id = loggedUserId))
     -- validacion edad
-<<<<<<< HEAD
-    
+
         -- validacion edad
     AND (year(sysdate()) - (SELECT year(lu.birthdate) FROM users lu WHERE lu.user_id = loggedUserId) BETWEEN 
     (SELECT min_age FROM match_preferences mp WHERE mp.user_id = u.user_id) AND 
     (SELECT max_age FROM match_preferences mp  WHERE mp.user_id = u.user_id))
     -- validacion edad
-=======
->>>>>>> 035f6c3eaa73df7aab9a41fe0a3567e4b89209a6
 
 -- validacion identidad de genero
 AND (((SELECT male FROM match_preferences mp  WHERE mp.user_id = loggedUserId) 
@@ -50,8 +47,6 @@ OR ((SELECT other FROM match_preferences mp  WHERE mp.user_id = loggedUserId)
 AND (u.gender = "OTRX")))
 -- validacion identidad de genero
 
-
-<<<<<<< HEAD
 -- validacion identidad de genero
 AND (((SELECT male FROM match_preferences mp  WHERE mp.user_id =u.user_id) 
 AND ( SELECT lu.gender = "MASCULINO" FROM users lu WHERE lu.user_id = loggedUserId ))
@@ -61,9 +56,6 @@ OR ((SELECT other FROM match_preferences mp  WHERE mp.user_id = u.user_id)
 AND ( SELECT lu.gender = "OTRX" FROM users lu WHERE lu.user_id = loggedUserId )))
 -- validacion identidad de genero
 
-
-=======
->>>>>>> 035f6c3eaa73df7aab9a41fe0a3567e4b89209a6
 -- validacion larga relacion
 AND (((SELECT long_term_relationship FROM match_preferences mp  WHERE mp.user_id = loggedUserId) AND 
     (SELECT long_term_relationship FROM match_preferences mp  WHERE mp.user_id = u.user_id)) 
@@ -96,10 +88,7 @@ AND ( (100 * ((SELECT COUNT(DISTINCT artists_artist_id) FROM users_artists ua
                 END
         FROM match_preferences mp  WHERE user_id = loggedUserId))
 -- validacion porcentajes de compatibilidad
-<<<<<<< HEAD
-=======
 
->>>>>>> 035f6c3eaa73df7aab9a41fe0a3567e4b89209a6
 ;
 END$$
 

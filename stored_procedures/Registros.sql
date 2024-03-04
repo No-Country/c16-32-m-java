@@ -117,7 +117,7 @@ INSERT INTO genres(genre_name) VALUE('Hard Rock');
 # USERS (Contraseña: ChatBeat2024)
 #CASO PRUEBA, IR EDITANDO PREFERENCIAS.
 INSERT INTO users(active, banned_users, birthdate, current_song, description, email, gender, name, password, photo, pronouns, social_battery) 
-	VALUE(true, null, '1990-05-15 00:00:00.000000', '1', '1', 'test01@gmail.com', 'MASCULINO', '1', '$2a$10$wx7wlaU/hzADhijCBFjKzuS9tZLUXo7m9TOx5z7ZnQXbLjuTGPCJ2', '1', 'El', 'AVAILABLE');
+	VALUE(true, null, '1990-05-15 00:00:00.000000', '1', '1', 'test01@gmail.com', 'MASCULINO', '1', '$2a$10$8gElQsWqaoMy7UMnS.dkIOQEFSpocUdVqNXLSwwr/BTYmcr7KrxRu', '1', 'El', 'AVAILABLE');
 
 #MASC VARÍAN EN EDAD
 INSERT INTO users(active, banned_users, birthdate, current_song, description, email, gender, name, password, photo, pronouns, social_battery) 
@@ -289,7 +289,7 @@ INSERT INTO users(active, banned_users, birthdate, current_song, description, em
 
 #CASO DESACTIVADO!!
 INSERT INTO users(active, banned_users, birthdate, current_song, description, email, gender, name, password, photo, pronouns, social_battery) 
-	VALUE(false, null, '1990-05-15 00:00:00.000000', '1', '1', 'test01@gmail.com', 'MASCULINO', '71', '$2a$10$wx7wlaU/hzADhijCBFjKzuS9tZLUXo7m9TOx5z7ZnQXbLjuTGPCJ2', '1', 'El', 'AVAILABLE');
+	VALUE(false, null, '1990-05-15 00:00:00.000000', '1', '1', 'test71@gmail.com', 'MASCULINO', '71', '$2a$10$wx7wlaU/hzADhijCBFjKzuS9tZLUXo7m9TOx5z7ZnQXbLjuTGPCJ2', '1', 'El', 'AVAILABLE');
 
 
 
