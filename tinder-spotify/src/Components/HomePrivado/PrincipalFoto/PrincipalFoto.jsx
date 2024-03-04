@@ -1,5 +1,5 @@
 import React from 'react';
-import './PrincipalFoto.css';
+
 
 import fleIzqui from '../../../assets/fleIzqui.png'
 import fledere from '../../../assets/fledere.png';
