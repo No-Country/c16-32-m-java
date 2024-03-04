@@ -9,6 +9,7 @@ import CrearCuentaConCelular from './Paginas/CrearCuentaConCelular/CrearCuentaCo
 import CrearCuenta from './Paginas/CrearCuenta/CrearCuenta';
 import Logear from './Paginas/Logear/Logear';
 import Codigo from './Paginas/Logear/Codigo/Codigo';
+import Error from './Paginas/Error/Error';
 import HomePrivado from './Components/HomePrivado/HomePrivado';
 import EditarPerfil from './Components/EditarPerfil/EditarPerfil'
 import './index.css'
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="/crear-cuenta" element={<CrearCuenta />} />
                     <Route path="/logear" element={<Logear />} />
                     <Route path="/codigo" element={<Codigo/>} />
+                    <Route path="/error" element={<Error />} />
                     <Route path="/home-privado" element={<HomePrivado />} />
                     <Route path="/editar-perfil" element={<EditarPerfil />} />
                 </Routes>

@@ -1,8 +1,8 @@
 import React from 'react';
-import './GeneroHome.css';
-import Ubicacion from '../../../assets/Ubicacion.png';
+import './GeneroHome2.css';
+import Ubicacion from '../../../../assets/Ubicacion.png';
 
-const GeneroHome = () => {
+const GeneroHome2 = () => {
   return (
     <div className="genero-home-container">
       <div>
@@ -11,10 +11,10 @@ const GeneroHome = () => {
       </div>
       <div className="ubicacion-container">
         <img src={Ubicacion} alt="Ubicacion" />
-        <p>Ciudad de México</p>
+        <p>Antofagasta</p>
       </div>
     </div>
   );
 }
 
-export default GeneroHome;
+export default GeneroHome2;

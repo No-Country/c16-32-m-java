@@ -1,10 +1,10 @@
 import React from 'react';
-import './Preferencias.css';
-import Bici from '../../../assets/Bici.png';
-import Peliculas from '../../../assets/Peliculas.png'; 
-import estrella from '../../../assets/estrella.png';
+import './Preferencias2.css';
+import Bici from '../../../../assets/Bici.png';
+import Peliculas from '../../../../assets/Peliculas.png'; 
+import estrella from '../../../../assets/estrella.png';
 
-const Preferencias = () => {
+const Preferencias2 = () => {
   return (
     <div className="preferencias-container">
       <button className="preferencia-btn">
@@ -23,4 +23,4 @@ const Preferencias = () => {
   );
 }
 
-export default Preferencias;
+export default Preferencias2;

@@ -8,10 +8,10 @@
     padding: 20px;
     left: 1150px;
     top: -740px;
-    background-image: url('../../../assets/PrincipalFoto.png');
     background-size: cover;
     background-position: center; 
 }
+
 
 .botoness {
     position: absolute;
@@ -19,6 +19,13 @@
     top: 50%; 
     transform: translateY(-50%); 
     cursor: pointer;
+}
+
+.flechaiz {
+    position: absolute;
+    left: -560px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 
