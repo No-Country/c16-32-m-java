@@ -1,3 +1,19 @@
+.letter {
+    color: #000;
+    font-size: 20px; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.letter2 {
+    color: #000;
+    font-size: 15px; 
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -8,34 +24,49 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    border-color: #000;
+    z-index: 1000; 
 }
   
-.modal {
-    position: relative; 
+.modal { 
     background-color: white;
-    padding: 20px;
+    padding: 100px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-color: #000;
 }
   
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
     margin-bottom: 10px;
+    text-align: center;
+    border-color: #000;
+    position: relative;
 }
   
 .close-button {
-    position: absolute;
-    top: 10px; 
-    right: 10px; 
+    position: relative;
+    top: 1px; 
+    right: 1px;
+    left: 90px; 
     background: none;
     border: none;
     cursor: pointer;
+    font-size: 24px;
 }
   
 .modal-content {
     margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    border-color: #000;
+}
+
+.modal{
+text-align: center;
+border-color: #000;
 }
   
 .searching-for,
@@ -43,13 +74,90 @@
 .age-range,
 .physical-activity {
     margin-bottom: 10px;
+    border-color: #000; 
+    border-radius: 8px;
+    padding: 8px;
+    display: block;
+    border-color: #b53550; 
+    border-style: solid; 
+}
+
+.filter-options  {
+    border-radius: 8px;
+    padding: 8px;
+    display: block;
+    border-color: #b53550;
+    border-style: solid; 
+}
+
+.save-button {
+    margin-top: 20px;
+    background-color: #b53550;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+}
+
+.save-button:hover {
+    background-color: #8f0202;
+    
+}
+
+.div-pequeno {
+    width: 270px;
+    height: 130px;
+    border-radius: 5px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold; 
+    font-style: italic; 
 }
   
-.save-button {
-    background-color: #007bff;
-    color: white;
+.availability-container{
+    border-radius: 8px;
+    padding: 8px;
+    display: block;
+    border-color: #b53550; 
+    border-style: solid;  
+    color: #000;
+    font-size: 15px; 
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.availability-container2{
+    border-radius: 8px;
+    padding: 8px;
+    display: block;
+    border-color: #b53550;
+    border-style: solid; 
+    color: #000;
+    font-size: 15px; 
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.large-button {
+    margin-top: 1px;
+    background-color: #b53550;
+    color: #fff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 7px 70px; 
+    border-radius: 5px;
     cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s; 
+}
+  
+.large-button:hover {
+    background-color: #8c293e; 
 }

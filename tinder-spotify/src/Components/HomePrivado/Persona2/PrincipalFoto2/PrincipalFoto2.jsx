@@ -19,9 +19,9 @@ const PrincipalFoto2 = ({ onNextClick, onPrevClick }) => {
   const avanzarFoto = () => {
     setFotoActual((prevFoto) => {
       if (prevFoto + 1 < fotos.length) {
-        setMostrarFlechaIzquierda(true); // Mostrar la flecha izquierda si no estamos en la última foto
+        setMostrarFlechaIzquierda(true); 
       } else {
-        setMostrarFlechaIzquierda(false); // Ocultar la flecha izquierda si estamos en la última foto
+        setMostrarFlechaIzquierda(false); 
       }
       return (prevFoto + 1) % fotos.length;
     });
@@ -30,9 +30,9 @@ const PrincipalFoto2 = ({ onNextClick, onPrevClick }) => {
   const retrocederFoto = () => {
     setFotoActual((prevFoto) => {
       if (prevFoto - 1 >= 0) {
-        setMostrarFlechaIzquierda(true); // Mostrar la flecha izquierda si no estamos en la primera foto
+        setMostrarFlechaIzquierda(true); 
       } else {
-        setMostrarFlechaIzquierda(false); // Ocultar la flecha izquierda si estamos en la primera foto
+        setMostrarFlechaIzquierda(false); 
       }
       return (prevFoto - 1 + fotos.length) % fotos.length;
     });
