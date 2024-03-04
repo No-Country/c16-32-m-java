@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SideNav.css';
-
+import { useNavigate } from 'react-router-dom';
 import Dropdown from '../../../Components/Nav/dropdown/dropdown'; 
 
 import log from '../../../assets/log.png';
@@ -15,6 +15,7 @@ import salidab from '../../../assets/salidab.png';
 
 const SideNav = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     setIsDropdownOpen(true); 
@@ -22,6 +23,10 @@ const SideNav = () => {
 
   const handleCloseDropdown = () => {
     setIsDropdownOpen(false); 
+  };
+
+  const handleMatchesClick = () => {
+    navigate('/home-privado');
   };
 
   return (
@@ -44,7 +49,7 @@ const SideNav = () => {
           </button> 
         </div> */}
         <div className="icon">
-          <button className="button">
+          <button className="button" onClick={handleMatchesClick} >
             <img className="logo-image" src={chatb} alt="Logo chat" />
           </button>
         </div>

@@ -11,6 +11,7 @@ import Logear from './Paginas/Logear/Logear';
 import Codigo from './Paginas/Logear/Codigo/Codigo';
 import HomePrivado from './Components/HomePrivado/HomePrivado';
 import EditarPerfil from './Components/EditarPerfil/EditarPerfil'
+import UserDashboard from './Paginas/UserDashboard/UserDashboard';
 import './index.css'
 const App = () => {
     return (
@@ -28,6 +29,7 @@ const App = () => {
                     <Route path="/codigo" element={<Codigo/>} />
                     <Route path="/home-privado" element={<HomePrivado />} />
                     <Route path="/editar-perfil" element={<EditarPerfil />} />
+                    <Route path="/user-dashboard" element={<UserDashboard />} />
                 </Routes>
             </div>
         </Router>

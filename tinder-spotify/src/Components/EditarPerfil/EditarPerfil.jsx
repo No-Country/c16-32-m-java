@@ -64,7 +64,7 @@ const EditarPerfil = () => {
         console.log(response.data);
         console.log('Respuesta del servicio externo:', response.data);
         
-        navigate('/home-privado');
+        navigate('/user-dashboard');
       } catch (error) {
         console.error(error);
         setAlert('Hubo un error al editar perfil. Por favor, inténtalo de nuevo.');
