@@ -9,6 +9,7 @@
 }
 
 .main-and-menu{
+    width: 100vw;
     display: flex;
     flex-direction: column;
 
@@ -21,15 +22,14 @@
 }
 
 .Home-container {
-    width: 60vw ;
-    height: 70vh;
+    width: 38vw ;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 20px;
     border-radius: 50px;
-    margin-left: 270px;
-    margin-top: 3%;
+    margin: 25px;
     overflow-y: auto;
     overflow-x: hidden;
     
@@ -39,9 +39,10 @@
 /* mobile */
 @media (max-width: 500px){
 
-    
+    .contedor-pri {
+        flex-direction: colum;
+    }
     .Home-container{
-        /* align-self: flex-start; */
         margin: 0px;
         width: 95% ;
         height: auto;

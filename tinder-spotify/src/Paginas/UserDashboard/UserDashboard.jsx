@@ -42,15 +42,19 @@ const UserDashboard = () => {
     <>
       <div className="contedor-pri ">
         <SideNav />
-        <TituloHome />
-        <div className="Home-container">
-              <PerfiHome name={user.name} birthdate={user.birthdate} />
-              <GeneroHome gender={user.gender} pronouns={user.pronouns} />
-              <DescripHome description={user.description} />
-              <MisCanciones currentSong={user.currentSong} />
-              <Preferencias />
+        <div className="main-and-menu">
+          <TituloHome />
+          <div className="match-profile">
+              <div className="Home-container">
+                    <PerfiHome name={user.name} birthdate={user.birthdate} />
+                    <GeneroHome gender={user.gender} pronouns={user.pronouns} />
+                    <DescripHome description={user.description} />
+                    <MisCanciones currentSong={user.currentSong} />
+                    <Preferencias />
+              </div>
+              <PrincipalFoto onNextClick={togglePrincipalFoto} />
+          </div>
         </div>
-          <PrincipalFoto onNextClick={togglePrincipalFoto} />
       </div>
     </>
   );
