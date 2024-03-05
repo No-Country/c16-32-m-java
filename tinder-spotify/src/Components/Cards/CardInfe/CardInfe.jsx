@@ -26,11 +26,11 @@ const CardInfe = () => {
       <div className="CardInfeItem">
         <img src={card3} alt="Imagen 3" />
         <p>Coordina fácilmente con otras personas <br/>
-         para asistir juntos a los próximos eventos <br/> 
-         musicales en la ciudad. Ya no tendrás que ir <br/> 
-         solo a tus conciertos favoritos. ¡Únete a <br/> 
-         nuestra comunidad y empieza a disfrutar la <br/> 
-         música en compañía!</p>
+          para asistir juntos a los próximos eventos <br/> 
+          musicales en la ciudad. Ya no tendrás que ir <br/> 
+          solo a tus conciertos favoritos. ¡Únete a <br/> 
+          nuestra comunidad y empieza a disfrutar la <br/> 
+          música en compañía!</p>
       </div>
     </div>
   );

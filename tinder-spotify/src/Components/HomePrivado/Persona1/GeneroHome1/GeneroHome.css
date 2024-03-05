@@ -1,8 +1,8 @@
 .genero-home-container {
     display: flex;
     flex-direction: column;
-    align-items: start;    
-    margin: 0px 20px;
+    align-items: center;
+    margin-right: 335px;
   }
   
   .ubicacion-container {

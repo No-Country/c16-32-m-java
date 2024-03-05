@@ -7,12 +7,12 @@
 .descrip-title {
     font-size: 21px;
     font-weight: bold;
-    margin: 10px 0px;
+    margin-right: 60px;
 }
   
 .descrip-text {
     font-weight: Roboto regular;
     font-size: 19px;
     line-height: 1.5;
-    
+    margin-left: 30px;
 }

@@ -1,28 +1,28 @@
 .preferencias-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 140px;
 }
-
+  
 .preferencia-btn {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 12px;
+  width: 100%; 
+  max-width: 500px; 
+  margin-top: 12px; 
   padding: 14px 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #fbf9f9;
+  justify-content: center; 
+  background-color: #fbf9f9; 
   border: none;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
+  
 .preferencia-btn:hover {
-  background-color: #d5d5d5;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #d5d5d5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .icon1,

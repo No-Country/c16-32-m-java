@@ -1,9 +1,18 @@
 .CardInfeContainer {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
+    justify-content: space-between;
+    margin-top: 100px;
+}
+  
+.CardInfeItem {
+    width: 30%;     
+=======
     justify-content: space-around;
     margin: 200px 40px;
     box-sizing: border-box;
+>>>>>>> origin/Fer
 }
 
 .CardInfeItem {
