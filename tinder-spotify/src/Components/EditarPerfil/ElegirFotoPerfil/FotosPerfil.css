@@ -2,13 +2,14 @@
 
 .fotos-perfil-container {
     position: relative;
-    width: 590px;
-    height: 740px;
+    width: 30%;
+    height:75% ;
     border: 2px solid rgb(221, 215, 215);
     border-radius: 10px;
     padding: 20px;
-    left: 1150px;
-    top: -800px;
+    left: 40%;
+    top: -35%; 
+    transform: translate(50%, -50%);
     background-image: url('../../../assets/fotoEdi.png');
     background-size: cover;
     background-position: center; 

@@ -10,13 +10,13 @@ const FotosPerfil = ({ porcentajeCarga, iniciarCarga }) => {
   return (
     <div className="fotos-perfil-container">
       <div className="icono">
-        <img className="lapiz-icon" src={lapiz} alt="Ícono de lápiz" />
+        <img className="lapiz-icon"  onClick={iniciarCarga} src={lapiz} alt="Ícono de lápiz" />
       </div>
       <div className="botones">
         <img className="flecha-izquierda" src={flechaIzqui} alt="Flecha izquierda" />
         <img className="flecha-derecha" src={flechaDere} alt="Flecha derecha" />
       </div>
-      <button className="boton-elegir-perfil" onClick={iniciarCarga}>Elegir Perfil</button>
+      <button className="boton-elegir-perfil" >Elegir Perfil</button>
       <div className="barra-carga-container">
         <div className="barra-carga">
           <div className="carga-completa" style={{ width: `${porcentajeCarga}%` }} ></div>

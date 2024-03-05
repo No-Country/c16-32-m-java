@@ -1,40 +1,41 @@
-@import url('../../StyleVariables/Color.css'); 
+@import url('../../StyleVariables/Color.css');
 
 .ti-pri-container {
-    width: calc(100% - 50px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    margin-top: -46%;
+    padding: 20px;
+    width: 100%;
 }
-  
+
 .logo-conte2 {
     display: flex;
-    align-items: center; 
-    margin-left: 10%;
+    align-items: center;
+    margin: 15px;
+
 }
-  
+
 .log1 {
-    width: 80px;
+    width: 30%;
 }
-  
+
 .tituChat {
     font-size: 40px;
     font-weight: bold;
     margin-left: 20px;
 }
-  
+
 .bot-container {
     display: flex;
     align-items: center;
-    margin-left: 800px;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
-.bot-f{
+.bot-f {
     padding: 10px 50px;
     background-color: var(--primary-color);
-    color: var(--buttonOn-font-color); 
+    color: var(--buttonOn-font-color);
     border: none;
     border-radius: 25px;
     font-size: 18px;
@@ -44,11 +45,8 @@
 }
 
 .bot-f:hover {
-    background-color:var(--primary-color-hover);
+    background-color: var(--primary-color-hover);
 }
-
-    
-
 
 @media (max-width: 700px){
     .ti-pri-container {

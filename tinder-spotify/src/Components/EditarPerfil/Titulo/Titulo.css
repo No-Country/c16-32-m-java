@@ -1,4 +1,4 @@
-.titulo-container {
+/* .titulo-container {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
@@ -14,13 +14,22 @@
     margin-left: auto;
     margin-right: auto;
     white-space: nowrap;
+} */
+
+.titulo-container{
+    display: flex;
+    flex-direction: start;
+    width: 100vw;
+    
 }
 
 .icono-cont {
     display: flex;
     align-items: center; 
-    margin-left: 300px;
+    justify-content: start;
+    margin: 15px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .Sub-chat {
@@ -28,12 +37,13 @@
     font-weight: bold;
     margin-left: 20px;
     cursor: pointer;
+    color: var(--regular-font-color);
 }
-  
+
 .titulo {
     font-size: 44.79px; 
     font-weight: bold; 
     line-height: 1; 
-    margin-left: 300px; 
-    margin-left: 300px; 
+    margin: 15px 20%; 
+
 }

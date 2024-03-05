@@ -1,17 +1,18 @@
-@import url('../../../StyleVariables/Color.css');
+@import url('../../StyleVariables/Color.css');
 
 .Principal-container {
-    width: 35%;
-    height: 80vh;
+    width: calc(35% - 20px);
+    height: 80%;
     border-radius: 25px;
     padding: 20px;
     left: 60%;
     position: absolute; 
-    left: 50%;
-    top: 50%; 
-    transform: translate(30%, -90%);
+    left: 40%;
+    top: 55%; 
+    transform: translate(50%, -50%);
     background-size: cover;
     background-position: center;
+    position: absolute;
 }
 
 
@@ -43,10 +44,15 @@
     padding: 25px 50px;
     border-radius: 25px;
     background-color: var(--background-color-opacity);
+
+
 }
 
 
-.atras,.chat,.siguiente {
+
+.atras,
+.chat,
+.siguiente {
     display: inline-block;
     margin: 0 20px;
 }
@@ -86,13 +92,13 @@
     margin-bottom: 5px;
 }
 
-/* .atras img {
+.atras img {
     margin-right: -40px;
 }
 
 .siguiente img {
     margin-left: -15px;
-} */
+}
 
 @media (max-width: 500px) {
     .Principal-container {
@@ -122,7 +128,7 @@
         left: 0; 
         top: 50%;
         transform: translateY(-50%);
-        width: 35px;
+        width: 30px;
     }
     
     .chat {

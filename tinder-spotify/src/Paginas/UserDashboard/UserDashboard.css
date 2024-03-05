@@ -1,43 +1,61 @@
 @import url('../../Components/StyleVariables/Color.css'); 
 
 .contedor-pri {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: var(--background-color);
+    display: flex;
+    flex-direction: row;
 }
 
+.main-and-menu{
+    display: flex;
+    flex-direction: column;
 
+}
+
+.match-profile{
+    display: flex;
+    flex-direction: row;
+
+}
 
 .Home-container {
-    width: 600px ;
-    height: 700px;
+    width: 60vw ;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 20px;
-    border: 1px solid rgb(255, 255, 255);
     border-radius: 50px;
-    margin-left: 170px;
-    margin-top: 120px;
-    margin-left: 170px;
-    box-shadow: 0 0 40px rgba(248, 246, 246, 0.875);
+    margin-left: 270px;
+    margin-top: 3%;
     overflow-y: auto;
     overflow-x: hidden;
+    
 }
 
-/* pantalla grande  */
-@media (max-width: 1092px){
-    .Home-container{
-        margin-top: 20px;
-        width: 650px ;
-        height: 580px;
-    }
-}
 
-/* pantalla chica */
-@media (min-width: 1601px) and (max-width: 2800px) {
+/* mobile */
+@media (max-width: 500px){
+
+    
     .Home-container{
-        margin-top: 20px;
-        width: 720px ;
-        height: 720px;
+        /* align-self: flex-start; */
+        margin: 0px;
+        width: 95% ;
+        height: auto;
+        overflow-y: unset;
+        overflow-x: unset;
+        font-size:15px;
+        text-align: start;
     }
+    .match-profile{
+        display: flex;
+        flex-direction: column-reverse;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+    }
+
 }

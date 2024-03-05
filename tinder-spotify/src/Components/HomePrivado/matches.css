@@ -1,7 +1,7 @@
 @import url('../../Components/StyleVariables/Color.css'); 
 
 .contedor-pri {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: var(--background-color);
     display: flex;
@@ -9,7 +9,6 @@
 }
 
 .main-and-menu{
-    width: 100vw;
     display: flex;
     flex-direction: column;
 
@@ -22,14 +21,16 @@
 }
 
 .Home-container {
-    width: 38vw ;
-    height: 60vh;
+    width: 40% ;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 20px;
     border-radius: 50px;
-    margin: 25px;
+    margin-left: 270px;
+    margin-top: 3%;
+    margin-left: 170px;
     overflow-y: auto;
     overflow-x: hidden;
     
@@ -39,11 +40,9 @@
 /* mobile */
 @media (max-width: 500px){
 
-    .contedor-pri {
-        flex-direction: colum;
-    }
+    
     .Home-container{
-        margin: 0px;
+        margin: 20px;
         width: 95% ;
         height: auto;
         overflow-y: unset;

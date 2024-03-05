@@ -1,23 +1,32 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .cont-pri-perf {
-    width: 700px;
-    height: 700px;
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
 }
 
-
 .editar-perfil-container {
-    width: 650px ;
-    height: 700px;
+    width: 42%;
+    height: 65%;
+    margin: 20px;
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 50px;
-    margin-top: -320px;
-    margin-left: 170px;
-    margin-top: 120px;
-    margin-left: 170px;
-    box-shadow: 0 0 40px rgba(248, 246, 246, 0.875);
-    overflow-y: auto;
-    overflow-x: hidden;
+}
+
+.save-changes {
+    padding: 10px 50px;
+    border-radius: 25px;
+    bottom: 8%;
+    position: fixed;
+    margin-top: 8%;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    border: none;
+    box-shadow: var(--shadow-down);
 }

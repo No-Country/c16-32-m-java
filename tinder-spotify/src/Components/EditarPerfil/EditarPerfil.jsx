@@ -73,8 +73,9 @@ const EditarPerfil = () => {
 
   return (
     <> 
-        <div className="cont-pri-perf container">
+        <div className="cont-pri-perf ">
           <SideNav />
+          <div className='menu-and-profile'>
           <Titulo />
           <div className="editar-perfil-container">
               <Perfil name={name} onNameChange={setName}
@@ -90,9 +91,11 @@ const EditarPerfil = () => {
               <InteraccionSocial socialBattery={socialBattery} 
               onSocialBatteryChange={setSocialBattery} />
               {alert && (<p>{alert}</p>)}
+              <button onClick={handleEditProfile} className='save-changes' texto="Guardar">Guardar </button>
           </div>
-          <button onClick={handleEditProfile}  texto="Guardar">Guardar </button>
+          
           <ControladorFotos />
+          </div>
         </div>
     </>
   );

@@ -5,6 +5,7 @@
     padding: 40px;
     border-radius: 10px;
     margin-top: 40px;
+    width: 90%;
 }
 
 .titulo-actividad {
@@ -14,14 +15,17 @@
     margin-bottom: 20px;
 }
 
-.boton-menos {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--primary-color);
-}
 
+.boton-menos {
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
 .botones-actividad {
     display: flex;
     flex-wrap: wrap;
@@ -39,13 +43,3 @@
     flex-grow: 0;
 }
 
-.boton-menos {
-    background-color: var(--primary-color);
-    color: var(--buttonOn-font-color);
-    ;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-right: 112px;
-}

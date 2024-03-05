@@ -47,16 +47,16 @@ const HomePrivado = () => {
   };
 
   const nextMatch = () => {
-    let newIndex = indexActualMatch+1;
+    let newIndex = indexActualMatch + 1;
     if (newIndex == 2) { newIndex = 0; }
     setIndexActualMatch(newIndex);
-    
-    const actualIndexMatch = userMatches.findIndex((match)=>{
+
+    const actualIndexMatch = userMatches.findIndex((match) => {
       return match.matchId == selectedMatch.matchId
     })
 
-    let newIndexMatches = actualIndexMatch+1;
-    if (newIndexMatches == userMatches.length) { 
+    let newIndexMatches = actualIndexMatch + 1;
+    if (newIndexMatches == userMatches.length) {
       newIndexMatches = 0;
     }
 
@@ -66,18 +66,18 @@ const HomePrivado = () => {
   };
 
   const previousMatch = () => {
-    let newIndex = indexActualMatch-1;
+    let newIndex = indexActualMatch - 1;
     if (newIndex < 0) { newIndex = 1; }
     setIndexActualMatch(newIndex);
-    
-    const actualIndexMatch = userMatches.findIndex(
-      (match)=>{
-      return match.matchId == selectedMatch.matchId
-    })
 
-    let newIndexMatches = actualIndexMatch-1;
-    if (newIndexMatches < 0) { 
-      newIndexMatches = userMatches.length-1;
+    const actualIndexMatch = userMatches.findIndex(
+      (match) => {
+        return match.matchId == selectedMatch.matchId
+      })
+
+    let newIndexMatches = actualIndexMatch - 1;
+    if (newIndexMatches < 0) {
+      newIndexMatches = userMatches.length - 1;
     }
 
     const newMatch = userMatches[newIndexMatches];
@@ -86,33 +86,41 @@ const HomePrivado = () => {
   };
 
   const getMatchedUser = (selectedMatch) => {
-    if (selectedMatch.user1.userId == userId) { 
-    setSelectedUser(selectedMatch.user2); }
+    if (selectedMatch.user1.userId == userId) {
+      setSelectedUser(selectedMatch.user2);
+    }
     else setSelectedUser(selectedMatch.user1);
   };
 
 
   return (
     <>
-      <div className="contedor-pri ">
+
+    <div className="contedor-pri ">
         <SideNav />
-        <TituloHome onFilterClick={toggleModal} />
-        {modalOpen && <PreferentialSettings onClose={toggleModal} />}
-        {selectedUser && (
-        <div className="Home-container">
-              <PerfiHome name={selectedUser.name} birthdate={selectedUser.birthdate} />
-              <GeneroHome gender={selectedUser.gender} pronouns={selectedUser.pronouns} />
-              <DescripHome description={selectedUser.description} />
-              <MisCanciones currentSong={selectedUser.currentSong} />
-              <Preferencias />
+        <div className="main-and-menu">
+            <TituloHome onFilterClick={toggleModal} />
+            <div className="match-profile">
+                {modalOpen && <PreferentialSettings onClose={toggleModal} />}
+                {selectedUser && (
+
+                    <div className="Home-container">
+                        <PerfiHome name={selectedUser.name} birthdate={selectedUser.birthdate} />
+                        <GeneroHome gender={selectedUser.gender} pronouns={selectedUser.pronouns} />
+                        <DescripHome description={selectedUser.description} />
+                        <MisCanciones currentSong={selectedUser.currentSong} />
+                        <Preferencias />
+                    </div>
+                )}
+                {indexActualMatch == 0 && (
+                    <PrincipalFoto1 onNextClick={nextMatch} />)}
+                {indexActualMatch == 1 && (
+                    <PrincipalFoto2 onPrevClick={previousMatch} />)}
+
+            </div>
         </div>
-        )}
-          {indexActualMatch == 0 && (
-              <PrincipalFoto1 onNextClick={nextMatch} />)},
-          {indexActualMatch == 1 && (
-          <PrincipalFoto2 onPrevClick={previousMatch} />)}; 
-      </div>
-    </>
+    </div>
+</>
   );
 };
 

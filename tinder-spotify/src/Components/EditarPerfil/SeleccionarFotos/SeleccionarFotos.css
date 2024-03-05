@@ -46,8 +46,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 30px; /* ajusta el ancho según sea necesario */
-    height: 30px; /* ajusta el alto según sea necesario */
+    width: 30px; 
+    height: 30px; 
 }
 
 .icono-cuadrito {
@@ -61,8 +61,8 @@
 }
 
 .cuadrito p {
-    text-align: center; /* Alinea el texto al centro */
-    margin: 0; /* Elimina el margen predeterminado */
+    text-align: center;
+    margin: 0; 
 }
 
 .botones-seleccion {
