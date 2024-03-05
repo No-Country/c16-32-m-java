@@ -1,13 +1,8 @@
 @import url('../../../StyleVariables/Color.css'); 
+
 .Principal-container {
     position: relative;
-    width: 590px;
-    height: 740px;
-    border: 2px solid rgb(221, 215, 215);
-    border-radius: 10px;
     padding: 20px;
-    left: 1150px;
-    top: -740px;
     background-size: cover;
     background-position: center; 
 }
@@ -20,15 +15,17 @@
     cursor: pointer;
 }
 
-.flechaiz {
+/* .flechaiz {
     position: absolute;
     left: -560px;
     top: 50%;
     transform: translateY(-50%);
-}
+} */
 
 .bot9 {
-    margin-top: -90px; 
+    display: flex;
+    align-items: start;
+    justify-content: center;
     text-align: center; 
 }
 
@@ -38,20 +35,15 @@
 }
 
 .chat {
-    background-color: #B53550;
-    color: #FFFFFF; 
-    transition: background-color 0.3s, color 0.3s; 
-    padding: 20px 50px; 
-    border-radius: 20px; 
-    border: none; 
-    cursor: pointer;
-    display: inline-block; 
-    margin-right: 10px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color); 
+    transition: background-color 0.3s, color 0.3s;   
+    
 }
 
 .chat:hover {
-    background-color: #FFFFFF;
-    color: #B53550; 
+    background-color: var(--primary-color-hover);
+
 }
 
 .atras,
@@ -61,7 +53,7 @@
     padding: 0; 
     cursor: pointer;
     display: inline-block; 
-    margin-right: 10px; 
+
 }
 
 .atras img,
@@ -71,10 +63,17 @@
     margin-bottom: 5px; 
 }
 
-.atras img {
-    margin-right: -40px;
-}
 
-.siguiente img {
-    margin-left: -49px;
+
+@media (max-width: 500px) {
+
+    .flechaiz {
+        position: absolute;
+        left: -295px; 
+        top: 50%;
+        transform: translateY(-50%);
+        width:35px;
+    }
+    
+
 }

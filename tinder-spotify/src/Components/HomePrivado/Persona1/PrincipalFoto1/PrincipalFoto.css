@@ -1,23 +1,25 @@
-@import url('../../../StyleVariables/Color.css'); 
+@import url('../../../StyleVariables/Color.css');
 
 .Principal-container {
-    position: relative;
-    width: 590px;
-    height: 740px;
+    width: 35%;
+    height: 80vh;
     border-radius: 25px;
     padding: 20px;
-    left: 1150px;
-    top: -740px;
+    left: 60%;
+    position: absolute; 
+    left: 50%;
+    top: 50%; 
+    transform: translate(30%, -90%);
     background-size: cover;
-    background-position: center; 
+    background-position: center;
 }
 
 
 .botoness {
     position: absolute;
     right: 10px;
-    top: 50%; 
-    transform: translateY(-50%); 
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
 }
 
@@ -30,34 +32,39 @@
 
 
 .bot9 {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -0%);
     display: flex;
     align-items: start;
     justify-content: center;
-    margin-top: -90px; 
     text-align: center;
     padding: 25px 50px;
     border-radius: 25px;
-    background-color:var(--background-color-opacity);
-    
+    background-color: var(--background-color-opacity);
+
+
 }
 
 
 
-.atras, .chat, .siguiente {
+.atras,
+.chat,
+.siguiente {
     display: inline-block;
-    margin: 0 20px; 
+    margin: 0 20px;
 }
 
 .chat {
-    background-color:var(--primary-color);
-    color: var(--buttonOn-font-color); 
-    transition: background-color 0.3s, color 0.3s; 
-    padding: 15px 60px; 
-    border-radius: 20px; 
-    border: none; 
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    transition: background-color 0.3s, color 0.3s;
+    padding: 15px 60px;
+    border-radius: 20px;
+    border: none;
     cursor: pointer;
-    display: inline-block; 
-    margin-right: 10px;
+    display: inline-block;
     font-size: 18px;
 
 }
@@ -70,18 +77,18 @@
 .atras,
 .siguiente {
     background-color: transparent;
-    border: none; 
-    padding: 0; 
+    border: none;
+    padding: 0;
     cursor: pointer;
-    display: inline-block; 
-    margin-right: 10px; 
+    display: inline-block;
+
 }
 
 .atras img,
 .siguiente img {
-    width: 50px; 
-    height: auto; 
-    margin-bottom: 5px; 
+    width: 50px;
+    height: auto;
+    margin-bottom: 5px;
 }
 
 .atras img {
@@ -92,101 +99,48 @@
     margin-left: -15px;
 }
 
-
-/* pantalla grande  */
-@media (max-width: 1600px){
+@media (max-width: 500px) {
     .Principal-container {
-        width: 500px;
-        height: 600px;
-        padding: 20px;
-        top: -580px;
-        left: 1000px;
+        width: 90%;
+        height: 550px;
+        top: 5px;
+        left: 25px;
+		 transform: translate(0%, 0%);
     }
 
     .bot9 {
-        display: flex;
-        align-items: start;
-        justify-content: center;
-        margin-top: -300px; 
-    }
-
-    .chat{
-        padding: 10px 70px;
-        margin-right:  -15px;
-    }
-
-}
-
-/* pantalla chica */
-@media (min-width: 1601px) and (max-width: 2800px){
-    .Principal-container {
-        width: 650px;
-        padding: 20px;
-        top: -720px;
-        left: 1100px;
-    }
-
-
-    
-    .bot9 {
-        display: flex;
-        align-items: start;
-        justify-content: center;
-        margin-top: -150px; 
-
-    }
-
-
-}
- /* 3era pantalla de prueba G */
-@media (min-width: 1092px) and (max-width: 1599px){
-    .Principal-container {
-        width: 400px;
-        height: 450px;
-        padding: 20px;
-        top: -440px;
-        left: 650px;
-    }
-
-    .bot9 {
-        display: flex;
-        align-items: start;
-        justify-content: center;
-        margin-top: -430px; 
-        padding: 25px 0px 15px 0px;
+        padding:12px 0px;
     }
 
     .atras img,
     .siguiente img {
-        width: 40px;  
-    }
-    .atras img, .siguiente img {
-        margin: 0px;
+        margin: 0px 2px;
+        width: 25px;
     }
 
-    .chat{
-        padding: 5px 50px;
+    .flecha {
+        width: 30px;
     }
 
+    .flechaiz {
+        position: absolute;
+        left: 0; 
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+    }
+    
+    .chat {
+        padding: 10px 50px;
+        font-size: 15px;
+    
+    }
 
+    
+.atras,
+.chat,
+.siguiente {
+    margin: 0px;
 }
-
-@media (max-width: 700px){
-        .Principal-container {
-        width: 650px;
-        height: 750px;
-        top: 5px;
-        left: 25px;
-    }
-
-    .bot9 {
-        display: flex;
-        align-items: start;
-        justify-content: center;
-        margin-top: -130px; 
-        padding: 25px 0px 15px 0px;
-    }
-    .atras img, .siguiente img {
-        margin: 0px 10px;
-    }
+    
 }

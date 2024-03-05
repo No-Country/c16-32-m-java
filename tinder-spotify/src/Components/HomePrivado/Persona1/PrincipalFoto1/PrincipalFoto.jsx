@@ -65,7 +65,7 @@ const PrincipalFoto = ({ onNextClick }) => {
         </button>
         <button className="chat">Chat</button>
         <button className="siguiente" onClick={handleNextClick}>
-          Siguiente <img src={fledere} alt="Siguiente" />
+          <img src={fledere} alt="Siguiente" /> Siguiente
         </button>
       </div>
     </div>

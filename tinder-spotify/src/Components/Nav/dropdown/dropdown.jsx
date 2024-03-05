@@ -35,19 +35,6 @@ const dropdown = ({ onCloseDropdown }) => {
                 <img src={configuracion} alt="Icon1" />
                 <p>Configuración</p>
             </div>
-            {/* <div className="menu-item">
-                <img src={corazonb} alt="Icon2" />
-                <p>Matches</p>
-            </div> */}
-            
-            {/* <div className="menu-item">
-                <img src={musicb} alt="Icon4" />
-                <p>Eventos</p>
-            </div> */}
-            {/* <div className="menu-item">
-                <img src={homeb} alt="Icon5" />
-                <p>Inicio</p>
-            </div> */}
             <button className="logout-button">Cerrar Sesión</button>
         </div>
     </>

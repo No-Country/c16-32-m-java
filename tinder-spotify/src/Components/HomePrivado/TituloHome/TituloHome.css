@@ -1,17 +1,18 @@
 @import url('../../StyleVariables/Color.css'); 
 
 .ti-pri-container {
+    width: calc(100% - 50px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-top: -1060px;
+    margin-top: -46%;
 }
   
 .logo-conte2 {
     display: flex;
     align-items: center; 
-    margin-left: 300px;
+    margin-left: 10%;
 }
   
 .log1 {
@@ -49,54 +50,6 @@
     
 
 
-/* pantalla grande  */
-@media (max-width: 1600px) {
-    .ti-pri-container {
-        margin-top: -925px;
-    }
-
-    .bot-container {
-        margin: 0px 90px 0px 0px;
-    } 
-}
-
-
-/* pantalla chica */
-@media (min-width: 1601px) and (max-width: 2800px) {
-    .ti-pri-container {
-        margin-top: -920px;
-    }
-
-    .bot-container {
-        margin: 0px 160px 0px 0px;
-    }
-}
-
- /* 3era pantalla de prueba G */
-@media (min-width: 1000px) and (max-width: 1599px){
-    .bot-container {
-        margin: 0px 50px 0px 0px;
-    }
-    .logo-conte2 {
-        margin-left: 150px;
-    }
-    .tituChat{
-        font-size:37.32px;
-    }
-    .log1 {
-        width: 50px;
-    }
-    .bot-f{
-        padding: 10px 50px;
-        font-size: 15px;
-    }
-    .ti-pri-container {
-        margin-top: -545px;
-    }
-
-
-
-}
 @media (max-width: 700px){
     .ti-pri-container {
         margin:110px -80px 10px 0px;

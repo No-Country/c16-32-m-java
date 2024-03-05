@@ -1,3 +1,5 @@
+@import url('../../StyleVariables/Color.css');
+
 .dropdown-container {
     position: fixed;
     top: 0;
@@ -6,8 +8,7 @@
     width: 300px;
     height: 100%;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #000;
+    box-shadow: var(--shadow-left);
     z-index: 999;
     padding: 20px;
   }
@@ -23,6 +24,11 @@
     background: none;
     border: none;
     cursor: pointer;
+    position: relative;
+    top: -67%;
+    right: 1px;
+    left: 1px;
+
   }
 
   .profile {
@@ -34,16 +40,16 @@
   }
   
   .profile img {
-    width: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
+    width: 70px; 
     height: 70px;
     border-radius: 50%;
     margin-right: 10px;
   }
   
-  .profile p {
+  p {
     margin: 0;
-    color: #000; /* Agrega el color negro al texto dentro de .header */
-    display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
+    color: #000; 
+    display: block; 
   }
   
   
@@ -61,22 +67,32 @@
   
   .logout-button {
     margin-top: 20px;
-    background-color: #b53550;
+    background-color: var(--primary-color);
     margin-left: auto;
     margin-right: auto;
-    color: #fff;
+    color: var(--buttonOn-font-color);
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px 25px;
+    border-radius: 25px;
     cursor: pointer;
     display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
     }
+    
+    .header img {
+      width: 90px;
+      padding-right: 25px;
+    }
 
-    @media (max-width: 700px){
+    @media (max-width: 500px){
       .dropdown-container{
         left: auto; 
-        width: 370px;
+        width: 75%;
         
+      }
+      .close-button {
+        right:8px;
+        left: 0px;
+
       }
 
     
