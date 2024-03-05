@@ -1,20 +1,31 @@
-.letter {
+.letter, .letter2 {
     color: #000;
-    font-size: 20px; 
     font-weight: bold;
     text-align: center;
 }
 
-.letter2 {
-    color: #000;
-    font-size: 15px; 
-    font-weight: bold;
-    margin-left: 10px;
+.letter {
+    font-size: 30px; 
+    text-align: center;
 }
 
+.letter2 {
+    font-size: 20px; 
+    margin-left: 0; 
+    text-align: center;
+}
 
+.letter20{
+    font-size: 20px;
+    text-align: center;
+}
 
-.modal-overlay {
+.letter18{
+    font-size: 18px;
+    text-align: center;
+}
+
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -24,37 +35,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: center; 
     border-color: #000;
     z-index: 1000; 
 }
+
   
 .modal { 
     background-color: white;
-    padding: 100px;
+    padding: 75px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-color: #000;
+    align-items: center;
+    border: 1px solid #000; 
 }
-  
+
 .modal-header {
-    
-    margin-bottom: 10px;
+    margin-bottom: 20px; 
+    margin-left: 24px;
     text-align: center;
-    border-color: #000;
+    align-items: center;
     position: relative;
+    border-bottom: 1px solid #000; 
 }
+
   
 .close-button {
     position: relative;
     top: 1px; 
     right: 1px;
-    left: 90px; 
+    left: 110px; 
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 25px;
+    text-align: center;
 }
   
 .modal-content {
@@ -79,19 +95,23 @@ border-color: #000;
     padding: 8px;
     display: block;
     border-color: #b53550; 
-    border-style: solid; 
+    border-style: solid;
+    font-size: 18px;
+    text-align: center;
 }
 
 .filter-options  {
     border-radius: 8px;
     padding: 8px;
     display: block;
-    border-color: #b53550;
+    border-color: #b53550; 
     border-style: solid; 
-}
+    text-align: center;
+  }
 
 .save-button {
     margin-top: 20px;
+    font-size: 20px;
     background-color: #b53550;
     margin-left: auto;
     margin-right: auto;
@@ -101,10 +121,11 @@ border-color: #000;
     border-radius: 5px;
     cursor: pointer;
     display: block;
+    text-align: center;
 }
 
 .save-button:hover {
-    background-color: #8f0202;
+    background-color: #8f0202; 
     
 }
 
@@ -114,31 +135,34 @@ border-color: #000;
     border-radius: 5px;
     display: flex;
     margin-top: 10px;
+    margin-left: 75px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #000000;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold; 
     font-style: italic; 
 }
+
   
 .availability-container{
     border-radius: 8px;
-    padding: 8px;
+    padding: 10px;
     display: block;
     border-color: #b53550; 
-    border-style: solid;  
+    border-style: solid; 
     color: #000;
     font-size: 15px; 
     font-weight: bold;
-    margin-left: 10px;
+    
 }
 
 .availability-container2{
     border-radius: 8px;
-    padding: 8px;
-    display: block;
-    border-color: #b53550;
+    padding: 10px;
+    display: inline-block;
+    border-color: #b53550; 
     border-style: solid; 
     color: #000;
     font-size: 15px; 
@@ -159,5 +183,14 @@ border-color: #000;
 }
   
 .large-button:hover {
-    background-color: #8c293e; 
+    background-color: #8c293e;/
+}
+
+
+.categoria {
+    margin-bottom: 10px;
+}
+  
+.nombre {
+    font-weight: bold;
 }
