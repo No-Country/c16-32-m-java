@@ -3,11 +3,11 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TituloHome from "../../Components/HomePrivado/TituloHome/TituloHome";
 import SideNav from "../../Components/Nav/SideNav/SideNav";
-import PerfiHome from "../../Components/HomePrivado/PerfiHome/PerfiHome";
-import GeneroHome from "../../Components/HomePrivado/GeneroHome/GeneroHome";
-import DescripHome from "../../Components/HomePrivado/DescripHome/DescripHome";
-import MisCanciones from "../../Components/HomePrivado/MisCanciones/MisCanciones";
-import Preferencias from "../../Components/HomePrivado/Preferencias/Preferencias";
+import PerfiHome from "../../Components/HomePrivado/Persona1/PerfiHome1/PerfiHome";
+import GeneroHome from "../../Components/HomePrivado/Persona1/GeneroHome1/GeneroHome";
+import DescripHome from "../../Components/HomePrivado/Persona1/DescripHome1/DescripHome";
+import MisCanciones from "../../Components/HomePrivado/Persona1/MisCanciones1/MisCanciones";
+import Preferencias from "../../Components/HomePrivado/Persona1/Preferencias1/Preferencias";
 
 //PersonaLoggeada
 import PrincipalFoto from "../../Components/HomePrivado/PrincipalFoto/PrincipalFoto";

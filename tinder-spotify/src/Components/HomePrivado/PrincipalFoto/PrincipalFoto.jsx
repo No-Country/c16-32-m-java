@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './PrincipalFoto.css';
+import './PrincipalFoto';
 
 import fleIzqui from '../../../assets/fleIzqui.png';
 import fledere from '../../../assets/fledere.png';

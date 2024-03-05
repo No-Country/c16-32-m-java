@@ -11,7 +11,7 @@ import MusicaReciente from '../EditarPerfil/MusicaReciente/MusicaReciente';
 import ActividadFisica from '../EditarPerfil/ActividadFisica/ActividadFisica';
 import GenerosFavoritos from '../EditarPerfil/GenerosFavoritos/GenerosFavoritos';
 import InteraccionSocial from '../EditarPerfil/InteraccionSocial/InteraccionSocial';
-import BotonMe from '../../Components/Button/BotonMediano/BotonMe';
+// import BotonMe from '../../Components/Button/BotonMediano/BotonMe';
 import ControladorFotos from '../EditarPerfil/ControladorFotos/ControladorFotos';
 
 const EditarPerfil = () => {
