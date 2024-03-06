@@ -1,10 +1,11 @@
 @import url('../StyleVariables/Color.css');
 
 .cont-pri-perf {
-    width: 80vw;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
+    background-color: var(--background-color);
 }
 
 .editar-perfil-container {

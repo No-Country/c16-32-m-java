@@ -7,6 +7,7 @@
     --terciary-color: #934BDB;
     --background-color: #fcfcfc;
     --background-color-opacity:rgba(252, 252, 252, 0.612);
+    --background-black-opacity:rgba(0, 0, 0, 0.5);
     --windows-color: #f2f2f2;
     --buttonOn-font-color: #F7F6F6;
     --regular-font-color: #000000;
@@ -30,6 +31,7 @@
     --terciary-color: #B990E2;
     --background-color: #322f35;
     --background-color-opacity:hsla(270, 6%, 20%, 0.611);
+    --background-black-opacity:rgba(0, 0, 0, 0.5);
     --windows-color: #1D1B20;
     --regular-font-color: #F7F6F6;
     --placeholder-font-color: #79767D;
