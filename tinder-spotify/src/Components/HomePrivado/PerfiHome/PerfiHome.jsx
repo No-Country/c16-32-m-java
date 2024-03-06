@@ -3,16 +3,26 @@ import './PerfiHome.css';
 import PorceImage from '../../../assets/PorceImage.png';
 
 const PerfiHome = ({name, birthdate}) => {
-  console.log(name, birthdate)
+
+const calculateAge = (birthdate) => {
+  const today = new Date();
+  const birthDate = new Date(birthdate);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
+
   return (
     <div className="perfil-seccion-custom">
       <div className="perfil-info-custom">
-        <p className="edad-custom">{birthdate}</p>
+        <p className="edad-custom">{calculateAge(birthdate)}</p>
         <p>{name}</p>
-        {/*<div className="porce-con">
-          <img src={PorceImage} alt="Porce" className="Porce" />
-        </div>*/}
-
       </div>
     </div>
   );

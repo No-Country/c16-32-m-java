@@ -26,7 +26,6 @@ const UserDashboard = () => {
         headers: { Authorization: "Bearer " + tokenChatBeat },
       }
     );
-    console.log(userLogged.data);
     setUser(userLogged.data);
   };
 

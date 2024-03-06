@@ -10,23 +10,19 @@ import { over } from 'stompjs';
 export const Chat = () => {
     const [message, setMessage] = useState('');
     const [stompClient, setStompClient] = useState(null);
-
+    const tokenChatBeat = localStorage.getItem("token-ChatBeat");
     const root = document.documentElement;
-    const computedStyles = getComputedStyle(root);
-    const backgroundColorChat = computedStyles.getPropertyValue('--windows-color');
-    const primaryColor = computedStyles.getPropertyValue('--primary-color');
-    const bannedColor = computedStyles.getPropertyValue('--terciary-color');
     const [chatId, setChatId] = useState(0);
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
     const prevUsersRef = useRef([]);
     const [activeTab, setActiveTab] = useState(0);
     const [users, setUsers] = useState([
         {
-            "id": 1,
-            "chatId": 1,
-            "name": "Roberto",
-            "profilePicUrl": "https://res.cloudinary.com/dy7gwan0n/image/upload/v1709700051/2_rsermf.webp",
-            "history": ["¿Cuál es tu canción favorita?", "Mmmm... Hubris, de Sevdaliza", "Ah, no la conozco. Ahí la escucho..."]
+            "id": "0",
+            "chatId": "0",
+            "name": "0",
+            "profilePicUrl": "0",
+            "history": ['0']
         }
     ]);
 
@@ -56,7 +52,11 @@ export const Chat = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/chats/users/" + userId);
+                const response = await axios.get("http://localhost:8080/chats/users/" + userId,
+                {
+                  headers: { Authorization: "Bearer " + tokenChatBeat },
+                }
+              );
                 const data = response.data.content;
 
                 const transformedUsers = data.map((chat) => ({
@@ -66,7 +66,7 @@ export const Chat = () => {
                     profilePicUrl: chat.sender.photo,
                     history: chat.previousMessages
                 }));
-
+                console.log(transformedUsers);
                 setUsers(transformedUsers);
             } catch (error) {
                 console.error('Error al entrar a los chats:', error);

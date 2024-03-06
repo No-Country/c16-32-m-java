@@ -48,6 +48,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/users/register").permitAll()
+                                .requestMatchers("/chats/**").permitAll()
+                                .requestMatchers("/ws/**").permitAll()
                                 .requestMatchers("/users/login").permitAll()
                                 .anyRequest().authenticated()
                 )
