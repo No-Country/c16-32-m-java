@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './EditarPerfil.css';
+
 import Titulo from '../EditarPerfil/Titulo/Titulo';
 import SideNav from '../Nav/SideNav/SideNav';
 import Perfil from '../EditarPerfil/Perfil/Perfil';

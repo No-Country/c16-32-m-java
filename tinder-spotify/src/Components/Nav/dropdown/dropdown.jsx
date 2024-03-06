@@ -4,10 +4,7 @@ import './dropdown.css';
 import log from '../../../assets/log.png';
 import foto2 from '../../../assets/foto2.png';
 import configuracion from '../../../assets/configuracion.png';
-import corazonb from '../../../assets/corazonb.png';
 import chat from '../../../assets/chat.png';
-import musicb from '../../../assets/musicb.png';
-import homeb from '../../../assets/homeb.png';
 
 const dropdown = ({ onCloseDropdown }) => {
 
@@ -21,7 +18,7 @@ const dropdown = ({ onCloseDropdown }) => {
             <div className="header">
                 <img src={log} alt="Main Icon" />
                 <h2>ChatBeat</h2>
-                <button className="close-button" onClick={handleCloseButtonClick}>x</button>
+                <button className="close-butt" onClick={handleCloseButtonClick}>x</button>
             </div>
             <div className="profile">
                 <img src={foto2} alt="Profile" />
@@ -35,19 +32,6 @@ const dropdown = ({ onCloseDropdown }) => {
                 <img src={configuracion} alt="Icon1" />
                 <p>Configuración</p>
             </div>
-            {/* <div className="menu-item">
-                <img src={corazonb} alt="Icon2" />
-                <p>Matches</p>
-            </div> */}
-            
-            {/* <div className="menu-item">
-                <img src={musicb} alt="Icon4" />
-                <p>Eventos</p>
-            </div> */}
-            {/* <div className="menu-item">
-                <img src={homeb} alt="Icon5" />
-                <p>Inicio</p>
-            </div> */}
             <button className="logout-button">Cerrar Sesión</button>
         </div>
     </>

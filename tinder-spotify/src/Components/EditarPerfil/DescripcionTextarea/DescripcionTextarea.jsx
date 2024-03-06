@@ -4,6 +4,10 @@ import './DescripcionTextarea.css';
 const DescripcionTextarea = () => {
   const [descripcion, setDescripcion] = useState("Café de origen, vino tinto, cerveza artesanal, pueblos por visitar y buenas conversaciones, es lo que disfruto mucho y me encantaría conocer quien también goce de estos planes !");
 
+  const handleTextareaChange = (event) => {
+    setDescripcion(event.target.value);
+  };
+
   const handleTextareaClick = () => {
     setDescripcion('');
   };
@@ -22,6 +26,7 @@ const DescripcionTextarea = () => {
         maxLength={350}
         onClick={handleTextareaClick}
         onBlur={handleBlur}
+        onChange={handleTextareaChange} 
         value={descripcion}
       ></textarea>
     </label>

@@ -4,11 +4,12 @@ import './FotosPerfil.css';
 import lapiz from '../../../assets/lapiz.png';
 import flechaIzqui from '../../../assets/flechaIzqui.png';
 import flechaDere from '../../../assets/flechaDere.png';
+import fotoEdi from '../../../assets/fotoEdi.png'; 
 
-const FotosPerfil = ({ porcentajeCarga, iniciarCarga }) => {
+const FotosPerfil = ({ porcentajeCarga, iniciarCarga}) => {
 
   return (
-    <div className="fotos-perfil-container">
+    <div className="fotos-perfil-container" style={{ backgroundImage: `url(${fotoEdi})` }}> 
       <div className="icono">
         <img className="lapiz-icon" src={lapiz} alt="Ícono de lápiz" />
       </div>

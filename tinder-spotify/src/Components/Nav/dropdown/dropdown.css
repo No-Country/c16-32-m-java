@@ -1,7 +1,7 @@
 .dropdown-container {
     position: fixed;
     top: 0;
-    left: 0; /* Ajusta a 0 para que esté pegado al lado izquierdo */
+    left: 0;
     right: 0;
     width: 300px;
     height: 100%;
@@ -16,25 +16,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #000; /* Agrega el color negro al texto dentro de .header */
+    color: #000; 
   }
   
-  .close-button {
+  .close-butt {
     background: none;
     border: none;
     cursor: pointer;
+    margin-left: auto;
   }
 
   .profile {
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos hijos */
+    align-items: center; 
     margin-top: 50px;
-    font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
-    font-weight: bold; /* Establece el peso de la fuente como negrita */
+    font-size: 18px; 
+    font-weight: bold;
   }
   
   .profile img {
-    width: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
+    width: 70px;
     height: 70px;
     border-radius: 50%;
     margin-right: 10px;
@@ -42,8 +43,8 @@
   
   .profile p {
     margin: 0;
-    color: #000; /* Agrega el color negro al texto dentro de .header */
-    display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
+    color: #000; 
+    display: block;
   }
   
   
@@ -69,5 +70,5 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
+    display: block; 
     }
