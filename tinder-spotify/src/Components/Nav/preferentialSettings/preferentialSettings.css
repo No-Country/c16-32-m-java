@@ -1,165 +1,104 @@
+@import url(../../StyleVariables/Color.css);
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: var(--background-black-opacity);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
-  
-.modal {
-    position: relative; 
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-  
-.modal-header {
+
+.modal-preferences {
+    position: relative;
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
+    width: 30%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    text-align: center;
+    color: var(--regular-font-color);
 }
-  
-.close-button {
+
+
+
+
+.close-button-ch {
     position: absolute;
-    top: 10px; 
-    right: 10px; 
+    right: 30px;
+    top: 15px;
     background: none;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--regular-font-color);
 }
-  
-.modal-content {
-    margin-bottom: 10px;
-}
-  
-.searching-for,
-.filter-options,
-.age-range,
-.physical-activity {
-    margin-bottom: 10px;
-}
-  
-.save-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-}.letter {
-    color: #000;
-    font-size: 20px; 
+
+
+
+.letter {
+    margin: 10px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
+    color: var(--regular-font-color);
 }
 
 .letter2 {
-    color: #000;
-    font-size: 15px; 
+     text-align: center;
+    font-size: 15px;
     font-weight: bold;
     margin-left: 10px;
+    color: var(--regular-font-color);
 }
 
 
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-color: #000;
-    z-index: 1000; 
-}
-  
-.modal { 
-    background-color: white;
-    padding: 100px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-color: #000;
-}
-  
-.modal-header {
-    
-    margin-bottom: 10px;
-    text-align: center;
-    border-color: #000;
-    position: relative;
-}
-  
-.close-button {
-    position: relative;
-    top: 1px; 
-    right: 1px;
-    left: 90px; 
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-}
-  
-.modal-content {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    text-align: center;
-    border-color: #000;
-}
-
-.modal{
-text-align: center;
-border-color: #000;
-}
-  
 .searching-for,
 .filter-options,
 .age-range,
-.physical-activity {
-    margin-bottom: 10px;
-    border-color: #000; 
-    border-radius: 8px;
-    padding: 8px;
+.physical-activity,.availability-container {
+    margin: 10px;
+    border-radius: 25px;
+    padding: 15px;
     display: block;
-    border-color: #b53550; 
-    border-style: solid; 
+    border: 2px solid var(--primary-color-opacity) ;
+    text-align: center;
+    color: var(--regular-font-color);
+}
+.availability-container p{
+    font-weight: bold;
 }
 
-.filter-options  {
-    border-radius: 8px;
-    padding: 8px;
-    display: block;
-    border-color: #b53550;
-    border-style: solid; 
+p {
+    color: var(--regular-font-color);
 }
+
+
 
 .save-button {
     margin-top: 20px;
-    background-color: #b53550;
-    margin-left: auto;
-    margin-right: auto;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px 40px;
+    border-radius: 25px;
     cursor: pointer;
     display: block;
+    font-weight: bold;
 }
 
 .save-button:hover {
-    background-color: #8f0202;
-    
+    background-color:var(--primary-color-hover);
+
 }
 
 .div-pequeno {
@@ -170,48 +109,48 @@ border-color: #000;
     margin-top: 10px;
     justify-content: center;
     align-items: center;
-    color: #000000;
-    font-size: 14px;
-    font-weight: bold; 
-    font-style: italic; 
-}
-  
-.availability-container{
-    border-radius: 8px;
-    padding: 8px;
-    display: block;
-    border-color: #b53550; 
-    border-style: solid;  
-    color: #000;
-    font-size: 15px; 
+    font-size: 12px;
     font-weight: bold;
-    margin-left: 10px;
 }
 
-.availability-container2{
+/* .availability-container2 {
     border-radius: 8px;
     padding: 8px;
     display: block;
-    border-color: #b53550;
-    border-style: solid; 
-    color: #000;
-    font-size: 15px; 
+    border-color: var(--primary-color);
+    border-style: solid;
+    
+    font-size: 15px;
     font-weight: bold;
     margin-left: 10px;
-}
+} */
 
 .large-button {
     margin-top: 1px;
-    background-color: #b53550;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
     border: none;
-    padding: 7px 70px; 
+    padding: 7px 70px;
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s;
 }
-  
+
 .large-button:hover {
-    background-color: #8c293e; 
+    background-color: #8c293e;
+}
+
+
+.availability-options{
+    text-align: end;
+    background-color: #8c293e;
+}
+
+.age-input {
+    margin: 10px;
+}
+
+input{
+    border-radius: 5px;
 }

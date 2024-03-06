@@ -25,12 +25,13 @@ const PreferentialSettings = ({ onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-header">
-          <span className='letter'>Ajustes de preferencia</span>
-          <button onClick={onClose} className="close-button">x</button>
+      <div className="modal-preferences">
+      <button onClick={onClose} className="close-button-ch">x</button>
+        <div className="modal-header-ch">
+          <span className='letter '>Ajustes de preferencia</span>
+        
         </div>
-        <div className="modal-content">
+        <div className="modal-content-ch">
           <div className="filter-options">
           <span className='letter2'>¿Qué estoy buscando?</span>
             <div className="opcion">
@@ -115,12 +116,12 @@ const PreferentialSettings = ({ onClose }) => {
               No Disponible: Actualmente fuera de la aplicación.
             </p>
           </div>
-            <div className='availability-container2'>
+            {/* <div className='availability-container2'>
               <p className='letter2'>Idioma</p>
               <button className='large-button'>Español</button><br />
               <button className='large-button'>Inglés</button><br />
               <button className='large-button'>Francés</button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="modal-footer">

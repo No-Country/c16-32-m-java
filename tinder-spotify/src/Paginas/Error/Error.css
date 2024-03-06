@@ -6,13 +6,13 @@
 
 .letter2 {
     color: #000;
-    font-size: 25px; 
-    
+    font-size: 25px;
+
 }
-  
+
 .logout-button {
     margin-top: 20px;
-    background-color: #b53550;
+    background-color: var(--primary-color);
     margin-left: auto;
     margin-right: auto;
     color: #fff;
@@ -20,12 +20,12 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    display: block; 
+    display: block;
 }
 
 .logout-button:hover {
-        background-color: #8f0202;
-        
+    background-color: #8f0202;
+
 }
 
 .container {
@@ -38,20 +38,20 @@
 }
 
 
-  
+
 .div1 {
-    flex: 0 0 auto; 
+    flex: 0 0 auto;
     max-width: 50%;
 }
-  
+
 .div2 {
-    flex: 0 0 auto; 
+    flex: 0 0 auto;
     max-width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-  
+
 .div2 img {
     width: 100%;
     height: auto;
