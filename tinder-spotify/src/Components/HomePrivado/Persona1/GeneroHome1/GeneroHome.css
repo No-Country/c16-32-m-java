@@ -1,3 +1,5 @@
+@import url('../../../StyleVariables/Color.css'); 
+
 .genero-home-container {
     display: flex;
     flex-direction: column;
