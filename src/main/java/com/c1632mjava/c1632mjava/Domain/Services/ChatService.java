@@ -9,5 +9,5 @@ import org.springframework.data.domain.Pageable;
 public interface ChatService {
     Chat create(ChatCreateDto dto);
     ChatReadDto findById(Long id);
-    Page<ChatReadDto> findAllBySenderId(Long senderId, Pageable paging);
+    Page<ChatReadDto> findAllByUserId(Long userId, Pageable paging);
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./PrincipalFoto.css"
+import './PrincipalFoto.css';
 
 import fleIzqui from '../../../../assets/fleIzqui.png';
 import fledere from '../../../../assets/fledere.png';
@@ -9,12 +9,14 @@ import fondo1 from '../../../../assets/fondo1.png';
 import fondo2 from '../../../../assets/fondo2.png';
 import fondo3 from '../../../../assets/fondo3.png';
 import fondo4 from '../../../../assets/fondo4.png';
+import { useNavigate } from 'react-router-dom';
 
 const fotos = [fondo1, fondo2, fondo3, fondo4];
 
 const PrincipalFoto = ({ onNextClick }) => {
   const [fotoActual, setFotoActual] = useState(0);
   const [mostrarFlechaIzquierda, setMostrarFlechaIzquierda] = useState(false);
+  const navigate = useNavigate();
 
   const avanzarFoto = () => {
     setFotoActual((prevFoto) => {
@@ -47,6 +49,14 @@ const PrincipalFoto = ({ onNextClick }) => {
     retrocederFoto();
   };
 
+  const handleLinkChat = async () => {
+    try {
+      navigate('/chat');
+    } catch (error) {
+      setAlert('Hubo un error al entrar al chat. Por favor, inténtalo de nuevo.');
+    }
+  };
+
   return (
     <div className="Principal-container" style={{ backgroundImage: `url(${fotos[fotoActual]})` }}>
       <div className="barra-carga-container">
@@ -63,9 +73,9 @@ const PrincipalFoto = ({ onNextClick }) => {
         <button className="atras">
           <img src={fleIzqui} alt="Atrás" /> Atrás
         </button>
-        <button className="chat">Chat</button>
+        <button className="chat" onClick={handleLinkChat}>Chat</button>
         <button className="siguiente" onClick={handleNextClick}>
-          <img src={fledere} alt="Siguiente" /> Siguiente
+          Siguiente <img src={fledere} alt="Siguiente" />
         </button>
       </div>
     </div>

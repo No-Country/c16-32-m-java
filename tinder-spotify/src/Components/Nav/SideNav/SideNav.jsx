@@ -25,8 +25,8 @@ const SideNav = () => {
     setIsDropdownOpen(false); 
   };
 
-  const handleMatchesClick = () => {
-    navigate('/home-privado');
+  const handleChatClick = () => {
+    navigate('/chat');
   };
 
   return (
@@ -39,7 +39,7 @@ const SideNav = () => {
       </Link>
       <div className="icons">
       <div className="icon">
-          <button className="button" onClick={handleMatchesClick} >
+          <button className="button" onClick={handleChatClick} >
             <img className="logo-image" src={chatb} alt="Logo chat" />
           </button>
         </div>

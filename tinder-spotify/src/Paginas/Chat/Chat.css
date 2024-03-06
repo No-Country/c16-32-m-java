@@ -1,0 +1,66 @@
+.list-group-item.active {
+    background-color:var(--primary-color) !important;
+    color: #fff;
+    border-color: var(--primary-color) !important;
+}  
+
+.message-sender-color{
+    background-color: var(--background-color-opacity) !important;
+    color: black !important;
+    border-color: var(--background-color-opacity) !important;
+    box-shadow: var(--shadow-down);
+}
+
+.message-receiver-color{
+    background-color: var(--terciary-color) !important;
+    color: black !important;
+    border-color: var(--terciary-color) !important;
+    box-shadow: var(--shadow-down);
+}
+
+.chat-nav{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.display-flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-photo{
+    width: 32px;
+    height: 32px; 
+    border-radius: 50%;
+}
+
+.card-chat{
+    height: 480px; 
+    width: 480px;
+    background-color: var(--windows-color);
+}
+
+.color-card-header{
+    background-color: var(--primary-color) !important;
+}
+
+.name-user-header{
+    color: white; 
+    margin-left: 1px;
+}
+
+.banned-icon{
+    background-color: var(--terciary-color) !important;
+    border-color: var(--terciary-color) !important;
+    border-radius: 50% !important;
+}
+
+.card-body-scroll{
+    overflow-y: scroll !important;
+}
+
+.button-send-message{
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}

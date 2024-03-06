@@ -10,10 +10,16 @@ import CrearCuenta from './Paginas/CrearCuenta/CrearCuenta';
 import Logear from './Paginas/Logear/Logear';
 import Codigo from './Paginas/Logear/Codigo/Codigo';
 import Error from './Paginas/Error/Error';
+import Chat from './Paginas/Chat/Chat';
 import HomePrivado from './Components/HomePrivado/HomePrivado';
 import EditarPerfil from './Components/EditarPerfil/EditarPerfil'
 import UserDashboard from './Paginas/UserDashboard/UserDashboard';
-import './index.css'
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 const App = () => {
     return (
         <Router>
@@ -32,6 +38,7 @@ const App = () => {
                     <Route path="/home-privado" element={<HomePrivado />} />
                     <Route path="/editar-perfil" element={<EditarPerfil />} />
                     <Route path="/user-dashboard" element={<UserDashboard />} />
+                    <Route path="/chat" element={<Chat />} />
                 </Routes>
             </div>
         </Router>

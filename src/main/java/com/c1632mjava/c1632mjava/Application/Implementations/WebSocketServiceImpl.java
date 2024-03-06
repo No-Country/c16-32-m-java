@@ -18,9 +18,8 @@ public class WebSocketServiceImpl implements WebSocketService {
 
     @Transactional
     @Override
-    public void updateChat(String message) {
-        // Deberiamos obtener el ID del chat desde front. Puse 1L para probar.
-        Chat chat = this.chatRepository.findById(1L).orElseThrow(() -> new ChatNotFoundException(1L));
+    public void updateChat(String message, Long chatId) {
+        Chat chat = this.chatRepository.findById(chatId).orElseThrow(() -> new ChatNotFoundException(1L));
         String lastMessage = chat.getLastMessage();
 
         if(chat.getPreviousMessages() == null){

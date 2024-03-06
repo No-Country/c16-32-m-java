@@ -81,18 +81,22 @@ public class ChatServiceImpl implements ChatService {
 
     @Transactional(readOnly = true)
     @Override
-    public Page<ChatReadDto> findAllBySenderId(Long senderId, Pageable paging) {
-        this.validId(senderId, "usuario");
+    public Page<ChatReadDto> findAllByUserId(Long userId, Pageable paging) {
+        this.validId(userId, "usuario");
 
-        UserReadDto userReadDto = this.userService.findUserById(senderId);
+        UserReadDto userReadDto = this.userService.findUserById(userId);
 
         if(userReadDto == null){
-            throw new UserNotFoundException(senderId);
+            throw new UserNotFoundException(userId);
         }
 
         User user = this.userMapper.convertReadToUser(userReadDto);
 
-        Page<Chat> chats = this.chatRepository.findAllBySenderAndActiveIsTrue(user, paging);
+        Page<Chat> chats = this.chatRepository.findAllBySenderAndActiveIsTrueOrReceiverAndActiveIsTrue(user, user, paging);
+
+        chats.forEach(chat -> {
+            chat.getPreviousMessages().add(chat.getLastMessage());
+        });
 
         return chats.map(this.chatMapper::convertChatToRead);
     }
@@ -107,3 +111,4 @@ public class ChatServiceImpl implements ChatService {
         }
     }
 }
+

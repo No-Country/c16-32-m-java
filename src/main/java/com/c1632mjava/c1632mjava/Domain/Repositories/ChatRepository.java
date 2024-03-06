@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Long> {
     Page<Chat> findAllBySenderAndActiveIsTrue(User sender, Pageable paging);
+    Page<Chat> findAllBySenderAndActiveIsTrueOrReceiverAndActiveIsTrue(User sender, User receiver, Pageable paging);
 }

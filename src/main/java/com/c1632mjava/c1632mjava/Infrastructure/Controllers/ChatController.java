@@ -1,5 +1,4 @@
 package com.c1632mjava.c1632mjava.Infrastructure.Controllers;
-
 import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatCreateDto;
 import com.c1632mjava.c1632mjava.Domain.Dtos.Chat.ChatReadDto;
 import com.c1632mjava.c1632mjava.Domain.Entities.Chat;
@@ -23,10 +22,10 @@ public class ChatController {
         return ResponseEntity.ok(this.chatService.findById(id));
     }
 
-    @GetMapping("/senders/{senderId}")
-    public ResponseEntity<Page<ChatReadDto>> findAllBySenderId(@PageableDefault(size = 10) Pageable paging,
-                                                               @PathVariable Long senderId){
-        return ResponseEntity.ok(this.chatService.findAllBySenderId(senderId, paging));
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<Page<ChatReadDto>> findAllByUserId(@PageableDefault(size = 10) Pageable paging,
+                                                             @PathVariable Long userId){
+        return ResponseEntity.ok(this.chatService.findAllByUserId(userId, paging));
     }
 
     // Only for tests (development)
