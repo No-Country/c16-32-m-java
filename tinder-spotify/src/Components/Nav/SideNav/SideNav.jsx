@@ -13,7 +13,7 @@ import musicb from '../../../assets/musicb.png';
 import homeb from '../../../assets/homeb.png';
 import salidab from '../../../assets/salidab.png';
 
-const SideNav = () => {
+const SideNav = ({onChange}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const SideNav = () => {
           </button>
         </div> */}
       </div>
-      {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} />}
+      {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} onChange={onChange} />}
     </div>
   );
 };

@@ -95,7 +95,7 @@
         background: none;
         border: none;
         font-size: 18px;
-        color: #000;
+        color: var(--regular-font-color);
     }
 
     .text-color-button{

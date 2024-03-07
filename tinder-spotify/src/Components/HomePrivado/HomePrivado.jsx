@@ -16,7 +16,7 @@ import PrincipalFoto1 from "./Persona1/PrincipalFoto1/PrincipalFoto";
 //Persona2
 import PrincipalFoto2 from "./Persona2/PrincipalFoto2/PrincipalFoto2";
 
-const HomePrivado = () => {
+const HomePrivado = ({onChange }) => {
   const tokenChatBeat = localStorage.getItem("token-ChatBeat");
   const userId = localStorage.getItem("userId");
   const [userMatches, setUserMatches] = useState([]);
@@ -97,7 +97,7 @@ const HomePrivado = () => {
     <>
 
     <div className="contedor-pri ">
-        <SideNav className="col-1" />
+        <SideNav className="col-1" onChange={onChange}/>
         <div className="main-and-menu col-11">
             <TituloHome onFilterClick={toggleModal} />
             <div className="match-profile">

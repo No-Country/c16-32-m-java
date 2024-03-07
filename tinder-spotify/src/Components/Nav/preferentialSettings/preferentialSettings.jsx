@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './preferentialSettings.css';
 
+
 const PreferentialSettings = ({ onClose }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('amistad');
   const [edadDesde, setEdadDesde] = useState(18);
@@ -125,7 +126,7 @@ const PreferentialSettings = ({ onClose }) => {
           </div>
         </div>
         <div className="modal-footer">
-          <button className="save-button">Guardar cambios</button>
+          <button onClick={onClose} className="save-button">Guardar cambios</button>
         </div>
       </div>
     </div>

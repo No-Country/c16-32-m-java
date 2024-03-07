@@ -14,7 +14,7 @@ import InteraccionSocial from '../EditarPerfil/InteraccionSocial/InteraccionSoci
 // import BotonMe from '../../Components/Button/BotonMediano/BotonMe';
 import ControladorFotos from '../EditarPerfil/ControladorFotos/ControladorFotos';
 
-const EditarPerfil = () => {
+const EditarPerfil = ({onChange}) => {
   const tokenChatBeat = localStorage.getItem("token-ChatBeat");
   const userId = localStorage.getItem("userId");
   const [name, setName] = useState('');
@@ -78,7 +78,7 @@ const EditarPerfil = () => {
   return (
     <>
       <div className="cont-pri-perf ">
-        <SideNav className="col-1" />
+        <SideNav className="col-1" onChange={onChange}/>
         <div className='menu-and-profile col-11'>
           <Titulo />
           <div className="editar-perfil-container">

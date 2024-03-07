@@ -8,7 +8,7 @@ import { over } from 'stompjs';
 import '../../Components/StyleVariables/Color.css'
 import TituloChat from './Titulo/TituloChat';
 
-export const Chat = () => {
+export const Chat = ({onChange}) => {
     const [message, setMessage] = useState('');
     const [stompClient, setStompClient] = useState(null);
     const tokenChatBeat = localStorage.getItem("token-ChatBeat");
@@ -86,7 +86,7 @@ export const Chat = () => {
 
     return (
         <div className=" display-flex-row background-color-chat">
-            <SideNav  className="col-1"/>
+            <SideNav  className="col-1" onChange={onChange}/>
             <div className='chat-nav col-11'>
                 <TituloChat />
                 {users.length > 0 && (

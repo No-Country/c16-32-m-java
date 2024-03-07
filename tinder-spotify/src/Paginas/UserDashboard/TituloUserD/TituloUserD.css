@@ -1,0 +1,66 @@
+@import url('../../../Components/StyleVariables/Color.css');
+
+.ti-pri-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    width: 100%;
+    color: var(--regular-font-color);
+}
+
+.logo-conte2 {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+
+}
+
+.img-logo {
+    padding: 20%;
+    width: 35px;
+}
+
+.tituChat {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.bot-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 9%;
+}
+
+.bot-f {
+    padding: 10px 50px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--regular-font-color);
+}
+
+.bot-f:hover {
+    background-color: var(--primary-color-hover);
+}
+
+@media (max-width: 700px){
+    .ti-pri-container {
+        margin:110px -80px 10px 0px;
+        display: flex;
+        justify-content: end;
+    }
+    .logo-conte2 {
+        margin-left: 0px;
+        display: none;
+    }
+    
+
+}

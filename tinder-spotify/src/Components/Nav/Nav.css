@@ -29,7 +29,7 @@
     font-family: 'Roboto', sans-serif;
     font-size: 37.32px;
     font-weight: bold;
-    color: #000;
+    color: var(--regular-font-color);
     
 }
 
