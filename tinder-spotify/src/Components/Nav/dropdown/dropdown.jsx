@@ -1,6 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './dropdown.css';
-
 import log from '../../../assets/log.png';
 import foto2 from '../../../assets/foto2.png';
 import configuracion from '../../../assets/configuracion.png';
@@ -9,10 +9,16 @@ import '../../StyleVariables/Color.css'
 
 
 const dropdown = ({ onCloseDropdown }) => {
+    
+    const navigate = useNavigate();
 
     const handleCloseButtonClick = () => {
         onCloseDropdown();
     };
+    
+  const handleChatClick = () => {
+    navigate('/chat');
+  };
     
 return (
     <>
@@ -26,7 +32,7 @@ return (
                 <img src={foto2} alt="Profile" />
                 <p>Alberto Perez</p>
             </div>
-            <div className="menu-item">
+            <div className="menu-item" onClick={handleChatClick}>
                 <img src={chat} alt="Icon3" />
                 <p>Chat</p>
             </div>

@@ -12,7 +12,7 @@ const ControladorFotos = () => {
     setCargaIniciada(true);
     const aumentoTemporizador = setInterval(() => {
       setPorcentajeCarga(prevPorcentaje => {
-        const nuevoPorcentaje = prevPorcentaje + 1;
+        const nuevoPorcentaje = prevPorcentaje + 10;
         return nuevoPorcentaje > 100 ? 100 : nuevoPorcentaje;
       });
     }, 50);
@@ -20,7 +20,7 @@ const ControladorFotos = () => {
     setTimeout(() => {
       clearInterval(aumentoTemporizador);
       setMostrarSeleccionarFotos(true);
-    }, 4000);
+    }, 1000);
   };
 
   const cambiarTarjeta = () => {
