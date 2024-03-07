@@ -11,6 +11,7 @@
     box-shadow: var(--shadow-left);
     z-index: 999;
     padding: 20px;
+    background-color: var(--windows-color);
   }
   
   .header {
@@ -76,6 +77,9 @@
     border-radius: 25px;
     cursor: pointer;
     display: block; /* Añade display: block para que margin-left: auto y margin-right: auto funcionen */
+    }
+    .logout-button:hover{
+      background-color: var(--primary-color-hover);
     }
     
     .header img {

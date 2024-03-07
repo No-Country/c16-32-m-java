@@ -18,6 +18,13 @@
     --error-color-back: #b9000027;
     --shadow-down: 0px 8px 15px rgba(0, 0, 0, 0.3);
     --shadow-left: 8px 0px 15px rgba(0, 0, 0, 0.3);
+    --img-logo: url('../../assets/log.png')
+}
+
+.img-logo{
+    background-image: var(--img-logo);
+    background-repeat: no-repeat; 
+    background-position: center;
 }
 
 
@@ -42,4 +49,5 @@
     --error-color-back: #fe454529;
     --shadow-down: 0px 8px 15px rgba(0, 0, 0, 0.3);
     --shadow-left: 8px 0px 15px rgba(0, 0, 0, 0.3);
+    --img-logo: url('../../assets/logodark.png');
 }

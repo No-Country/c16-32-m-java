@@ -4,7 +4,7 @@ import './SideNav.css';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from '../../../Components/Nav/dropdown/dropdown'; 
 
-import log from '../../../assets/log.png';
+import log from '../../../assets/fi-br-menu-burgermenu.png';
 import foto2 from '../../../assets/foto2.png';
 import configuracionb from '../../../assets/configuracionb.png';
 import corazonb from '../../../assets/corazonb.png';
@@ -40,12 +40,12 @@ const SideNav = () => {
       <div className="icons">
       <div className="icon">
           <button className="button" onClick={handleChatClick} >
-            <img className="logo-image" src={chatb} alt="Logo chat" />
+            <img className="icon-image" src={chatb} alt="Logo chat" />
           </button>
         </div>
         <div className="icon">
           <button className="button">
-            <img className="logo-image" src={configuracionb} alt="Logo configuracion" />
+            <img className="icon-image" src={configuracionb} alt="Logo configuracion" />
           </button>
         </div>
       </div>

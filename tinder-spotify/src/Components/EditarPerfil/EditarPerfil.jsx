@@ -74,8 +74,8 @@ const EditarPerfil = () => {
   return (
     <> 
         <div className="cont-pri-perf ">
-          <SideNav />
-          <div className='menu-and-profile'>
+          <SideNav className="col-1" />
+          <div className='menu-and-profile col-11'>
           <Titulo />
           <div className="editar-perfil-container">
               <Perfil name={name} onNameChange={setName}

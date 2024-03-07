@@ -21,8 +21,8 @@ const calculateAge = (birthdate) => {
   return (
     <div className="perfil-seccion-custom">
       <div className="perfil-info-custom">
-        <p>{name}</p>
         <p className="edad-custom">{calculateAge(birthdate)}</p>
+        <p>{name}</p>
       </div>
     </div>
   );

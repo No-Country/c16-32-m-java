@@ -6,6 +6,7 @@ import Nav from '../../Components/Nav/Nav';
 import SideNav from "../../Components/Nav/SideNav/SideNav";
 import SockJS from 'sockjs-client/dist/sockjs';
 import { over } from 'stompjs';
+import '../../Components/StyleVariables/Color.css'
 
 export const Chat = () => {
     const [message, setMessage] = useState('');

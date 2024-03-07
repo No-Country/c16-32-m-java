@@ -4,10 +4,9 @@ import './dropdown.css';
 import log from '../../../assets/log.png';
 import foto2 from '../../../assets/foto2.png';
 import configuracion from '../../../assets/configuracion.png';
-import corazonb from '../../../assets/corazonb.png';
 import chat from '../../../assets/chat.png';
-import musicb from '../../../assets/musicb.png';
-import homeb from '../../../assets/homeb.png';
+import '../../StyleVariables/Color.css'
+
 
 const dropdown = ({ onCloseDropdown }) => {
 
@@ -15,11 +14,11 @@ const dropdown = ({ onCloseDropdown }) => {
         onCloseDropdown();
     };
     
-  return (
+return (
     <>
         <div className="dropdown-container">
             <div className="header">
-                <img src={log} alt="Main Icon" />
+                <img  className="img-logo" />
                 <h2>ChatBeat</h2>
                 <button className="close-button" onClick={handleCloseButtonClick}>x</button>
             </div>

@@ -97,8 +97,8 @@ const HomePrivado = () => {
     <>
 
     <div className="contedor-pri ">
-        <SideNav />
-        <div className="main-and-menu">
+        <SideNav className="col-1" />
+        <div className="main-and-menu col-11">
             <TituloHome onFilterClick={toggleModal} />
             <div className="match-profile">
                 {modalOpen && <PreferentialSettings onClose={toggleModal} />}

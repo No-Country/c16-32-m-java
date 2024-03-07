@@ -1,12 +1,14 @@
 import React from 'react';
 import './TituloHome.css';
-import log from '../../../assets/log.png';
+import '../../StyleVariables/Color.css'
+
+const logo = getComputedStyle(document.documentElement).getPropertyValue('--img-logo');
 
 const TituloHome = ({ onFilterClick }) => {
   return (
     <div className="ti-pri-container">
       <div className="logo-conte2">
-        <img src={log} alt="log" className="log1" />
+        <img  className="img-logo" />
         <h2 className="tituChat">ChatBeat</h2>
       </div>
       <div className="bot-container">
