@@ -1,3 +1,5 @@
+@import url('../../../StyleVariables/Color.css'); 
+
 .descrip-home-container {
     text-align: center;
     margin-top: 20px;

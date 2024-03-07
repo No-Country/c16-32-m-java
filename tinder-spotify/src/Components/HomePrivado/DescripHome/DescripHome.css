@@ -1,3 +1,5 @@
+@import url('../../StyleVariables/Color.css'); 
+
 .descrip-home-container {
     text-align: left;
     margin: 20px;
@@ -8,6 +10,7 @@
     font-size: 21px;
     font-weight: bold;
     margin-right: 60px;
+    color: var(--regular-font-color);
 }
   
 .descrip-text {

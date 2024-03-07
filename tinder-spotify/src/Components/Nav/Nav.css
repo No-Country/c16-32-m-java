@@ -1,4 +1,4 @@
-@import url('../../Components/StyleVariables/Color.css');
+@import url('../StyleVariables/Color.css');
 
 .navbar {
     position: relative;
@@ -42,4 +42,9 @@
     color: #000;
     margin-right: 10px;
     cursor: pointer;
+    color: var(--regular-font-color);
+}
+
+.text-color-logo{
+    color: var(--regular-font-color) !important;
 }

@@ -14,6 +14,7 @@
     margin: auto;
     margin-top: 70px;
     position: relative;
+    color: var(--regular-font-color) !important;
 }
 
 .email-login-title {

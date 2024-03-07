@@ -16,6 +16,7 @@
   margin-top: 70px;
   position: relative;
   padding: 50px 20px;
+  color: var(--regular-font-color);
 }
 
 .Step1 {

@@ -61,7 +61,7 @@
     cursor: pointer;
     display: inline-block;
     font-size: 18px;
-
+    color: var(--regular-font-color) !important;
 }
 
 .chat:hover {

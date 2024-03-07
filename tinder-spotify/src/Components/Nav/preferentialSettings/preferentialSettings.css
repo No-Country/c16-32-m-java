@@ -1,4 +1,4 @@
-@import url(../../StyleVariables/Color.css);
+@import url('../../StyleVariables/Color.css');
 
 .modal-overlay {
     position: fixed;
@@ -94,6 +94,7 @@ p {
     cursor: pointer;
     display: block;
     font-weight: bold;
+    color: var(--regular-font-color);
 }
 
 .save-button:hover {

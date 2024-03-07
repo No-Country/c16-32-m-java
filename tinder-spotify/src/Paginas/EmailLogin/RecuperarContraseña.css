@@ -13,6 +13,7 @@
     box-shadow: var(--shadow-down);
     margin: 0 auto;
     margin-top: 70px;
+    color: var(--regular-font-color);
 }
 
 .recuperClo {
@@ -70,6 +71,7 @@
     border: none;
     border-radius: 25px;
     margin-top: 20px;
+    color: var(--regular-font-color);
 }
 
 .recuperar-contraseña-button:hover {

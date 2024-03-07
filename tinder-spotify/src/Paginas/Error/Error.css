@@ -1,3 +1,5 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .letter {
     color: #000;
     font-size: 50px;

@@ -54,10 +54,10 @@ export const Chat = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/chats/users/" + userId,
-                {
-                  headers: { Authorization: "Bearer " + tokenChatBeat },
-                }
-              );
+                    {
+                        headers: { Authorization: "Bearer " + tokenChatBeat },
+                    }
+                );
                 const data = response.data.content;
 
                 const transformedUsers = data.map((chat) => ({
@@ -85,7 +85,7 @@ export const Chat = () => {
     };
 
     return (
-        <div className="mb-5 display-flex-row">
+        <div className="mb-5 display-flex-row background-color-chat">
             <SideNav />
             <div className='chat-nav'>
                 <Nav />
