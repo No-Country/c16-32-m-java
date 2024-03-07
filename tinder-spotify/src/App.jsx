@@ -23,7 +23,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const App = () => {
     return (
         <Router>
-            <div className=''>
+            <div className='dark'>
                 <Routes>
                     <Route exact path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />

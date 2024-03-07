@@ -11,6 +11,7 @@ import Preferencias from "../../Components/HomePrivado/Preferencias/Preferencias
 
 //PersonaLoggeada
 import PrincipalFoto from "../../Components/HomePrivado/PrincipalFoto/PrincipalFoto";
+import FotosUserDashboard from "../../Components/HomePrivado/PrincipalFoto/FotosUserDashboard";
 
 const UserDashboard = () => {
   const tokenChatBeat = localStorage.getItem("token-ChatBeat");
@@ -18,7 +19,7 @@ const UserDashboard = () => {
   const [user, setUser] = useState({});
   const [mostrarPersona1, setMostrarPersona1] = useState(true);
 
- 
+
   const getLoggedUser = async () => {
     const userLogged = await axios.get(
       "http://localhost:8080/users/id/" + userId,
@@ -44,14 +45,14 @@ const UserDashboard = () => {
         <div className="main-and-menu">
           <TituloHome />
           <div className="match-profile">
-              <div className="Home-container">
-                    <PerfiHome name={user.name} birthdate={user.birthdate} />
-                    <GeneroHome gender={user.gender} pronouns={user.pronouns} />
-                    <DescripHome description={user.description} />
-                    <MisCanciones currentSong={user.currentSong} />
-                    <Preferencias />
-              </div>
-              <PrincipalFoto onNextClick={togglePrincipalFoto} />
+            <div className="Home-container">
+              <PerfiHome name={user.name} birthdate={user.birthdate} />
+              <GeneroHome gender={user.gender} pronouns={user.pronouns} />
+              <DescripHome description={user.description} />
+              <MisCanciones currentSong={user.currentSong} />
+              <Preferencias />
+            </div>
+            <FotosUserDashboard onNextClick={togglePrincipalFoto} />
           </div>
         </div>
       </div>

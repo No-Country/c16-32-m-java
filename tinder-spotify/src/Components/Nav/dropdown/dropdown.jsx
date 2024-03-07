@@ -9,41 +9,47 @@ import '../../StyleVariables/Color.css'
 
 
 const dropdown = ({ onCloseDropdown }) => {
-    
+    const username = localStorage.getItem("username");
+
     const navigate = useNavigate();
 
     const handleCloseButtonClick = () => {
         onCloseDropdown();
     };
-    
-  const handleChatClick = () => {
-    navigate('/chat');
-  };
-    
-return (
-    <>
-        <div className="dropdown-container">
-            <div className="header">
-                <img  className="img-logo" />
-                <h2>ChatBeat</h2>
-                <button className="close-button" onClick={handleCloseButtonClick}>x</button>
+
+    const handleChatClick = () => {
+        navigate('/chat');
+    };
+
+    const handleSignOut = () => {
+        localStorage.clear();
+        navigate('/');
+    };
+
+    return (
+        <>
+            <div className="dropdown-container">
+                <div className="header">
+                    <img className="img-logo" />
+                    <h2>ChatBeat</h2>
+                    <button className="close-button" onClick={handleCloseButtonClick}>x</button>
+                </div>
+                <div className="profile">
+                    <img src={foto2} alt="Profile" />
+                    <p>{username}</p>
+                </div>
+                <div className="menu-item" onClick={handleChatClick}>
+                    <img src={chat} alt="Icon3" />
+                    <p>Chat</p>
+                </div>
+                <div className="menu-item">
+                    <img src={configuracion} alt="Icon1" />
+                    <p>Configuración</p>
+                </div>
+                <button className="logout-button" onClick={handleSignOut}>Cerrar Sesión</button>
             </div>
-            <div className="profile">
-                <img src={foto2} alt="Profile" />
-                <p>Alberto Perez</p>
-            </div>
-            <div className="menu-item" onClick={handleChatClick}>
-                <img src={chat} alt="Icon3" />
-                <p>Chat</p>
-            </div>
-            <div className="menu-item">
-                <img src={configuracion} alt="Icon1" />
-                <p>Configuración</p>
-            </div>
-            <button className="logout-button">Cerrar Sesión</button>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default dropdown;
