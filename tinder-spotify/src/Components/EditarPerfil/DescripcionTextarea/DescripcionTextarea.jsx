@@ -10,10 +10,10 @@ const DescripcionTextarea = ({ description,
   };
 
   return (
-    <label className="input-label-com">
+    <label className="input-label-com ">
       Acerca de mi:
       <textarea
-        className="componte-tex"
+        className="componte-tex "
         maxLength={350}
         onChange={(event)=>{handleTextareaClick(event.target.value)}}
         value={description}

@@ -14,9 +14,13 @@ const Perfil = ({name, onNameChange,
       <div className="perfil-foto">
         <img src={foto2} alt="Perfil" />
       </div>
-      <div className="perfil-info">
-        <input className="name" type="text" onChange={(event)=>{onNameChange(event.target.value)}} value={name}/>
-        <input className="edad" type="date" onChange={(event)=>{onBirthdateChange(event.target.value)}} value={birthdate}/>
+      <div className="perfil-info mt-2">
+        <div className='my-3'>
+        <label htmlFor="name" className='form-label'>Editar nombre </label>
+        <input id='name' className="name form-control" type="text" onChange={(event)=>{onNameChange(event.target.value)}} value={name}/>
+        </div>
+        <label htmlFor="name"  className='form-label'>Editar Fecha de Nacimiento </label>
+        <input id="edad"className="edad form-control" type="date" onChange={(event)=>{onBirthdateChange(event.target.value)}} value={birthdate}/>
       </div>
     </div>
   );

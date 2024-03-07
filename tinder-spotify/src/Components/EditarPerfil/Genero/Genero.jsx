@@ -6,35 +6,35 @@ const Genero = ({ gender, onGenderChange,
 
 
   return (
-    <div className="seccion-desplazable">
-      <h2>¿Cuál es tu género?</h2>
-      <div className="botones-radio">
-      <label className="radio-label">
-        <input type="radio" name="gender" value="FEMENINO" 
-        checked={gender === "FEMENINO"} 
-        onChange={(event)=>{onGenderChange(event.target.value)}}/>
-            Femenino
+    <div className="seccion-desplazable ">
+      <h2 className='text-center'>¿Cuál es tu género?</h2>
+      <div className="botones-radio text-center">
+        <label className="radio-label">
+          <input type="radio" name="gender" value="FEMENINO"
+            checked={gender === "FEMENINO"}
+            onChange={(event) => { onGenderChange(event.target.value) }} />
+          Femenino
         </label>
         <label className="radio-label">
-         <input type="radio" name="gender" value="MASCULINO" 
-         checked={gender === "MASCULINO"} 
-         onChange={(event)=>{onGenderChange(event.target.value)}}/>
-            Masculino
+          <input type="radio" name="gender" value="MASCULINO"
+            checked={gender === "MASCULINO"}
+            onChange={(event) => { onGenderChange(event.target.value) }} />
+          Masculino
         </label>
         <label className="radio-label">
-        <input type="radio" name="gender" value="OTRX" 
-        checked={gender === "OTRX"}
-        onChange={(event)=>{onGenderChange(event.target.value)}}/>
-            Otrx
+          <input type="radio" name="gender" value="OTRX"
+            checked={gender === "OTRX"}
+            onChange={(event) => { onGenderChange(event.target.value) }} />
+          Otrx
         </label>
       </div>
-      <div className="input-label-custom">
-        <label htmlFor="pronombres" className="input-label">
+      <div className="input-label-custom my-3">
+        <label id='input-pro' htmlFor="pronombres" className="input-label form-label my-3 ">
           Pronombres:
         </label>
-        <input id="pronombres" type="text" 
-        placeholder="el/ella/elle" className="input-custom"
-        value={pronouns} onChange={(event)=>{onPronounsChange(event.target.value)}}/>
+        <input id="pronombres" type="text"
+          placeholder="el/ella/elle" className="input-custom form-control "
+          value={pronouns} onChange={(event) => { onPronounsChange(event.target.value) }} />
       </div>
     </div>
   );

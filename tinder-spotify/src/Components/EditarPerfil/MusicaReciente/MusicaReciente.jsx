@@ -18,7 +18,7 @@ const MusicaReciente = () => {
   return (
     <>
       <div className="cabecera-musica-reciente">
-        <h4>Últimas canciones escuchadas:</h4>
+        <h4>Mis canciones favoritas:</h4>
       </div>
       <div className="contenedor-con-borde">
         <div className="musica-reciente">
