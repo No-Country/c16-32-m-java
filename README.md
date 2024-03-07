@@ -28,15 +28,20 @@ Pero, ¿qué pasa si te arrepentís de bloquearle? Bueno, será tan simple como 
 ¿Te gusta como suena? ¡Con ChatBeat tenemos todo dispuesto para que encuentres a gente que comparte tu pasión por la música!
 
 Autores:
-Asad, Martina. Backend. AR. Linkedin: https://www.linkedin.com/in/martina-asad/ - GitHub: https://github.com/MartinaAsad
-Burgos, Valeria. Testing. BO. Linkedin: https://www.linkedin.com/in/valeriaburgos/ - GitHub: https://github.com/valitab
-Deferrari, Leandro. Backend. AR. Linkedin: https://www.linkedin.com/in/leandrodeferrari/ - GitHub: https://github.com/leandrodeferrari
-Diván, Guillermo. Backend. AR. Linkedin: https://www.linkedin.com/in/guillermo-divan/ - GitHub: https://github.com/GuillermoDivan
-Juarez, Carmina. UX. AR. Linkedin: https://www.linkedin.com/in/carminajuarez/ - GitHub: https://github.com/CarminaJ
-Nuñez, Facundo. Frontend. AR. Linkedin: https://www.linkedin.com/in/facundo-nu%C3%B1ez-380b9b234/ - GitHub: https://github.com/facu1391
-Robledo, Emanuel. Frontend. AR. Linkedin: https://www.linkedin.com/in/emanuel-ivan-robledo/ - GitHub: https://github.com/emanuel4969
-Ospina, Alejandro. Backend. CO. Linkedin: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
-Villalba, Fernanda. UX. CO. Linkedin: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
+- Asad, Martina. Backend - QA. AR. LinkedIn: https://www.linkedin.com/in/martina-asad/ - GitHub: https://github.com/MartinaAsad
+- Burgos, Valeria. Diseñadora UX/UI - QA. BO. LinkedIn: https://www.linkedin.com/in/valeriaburgos/ - GitHub: https://github.com/valitab
+- Deferrari, Leandro. Backend - Frontend. AR. LinkedIn: https://www.linkedin.com/in/leandrodeferrari/ - GitHub: https://github.com/leandrodeferrari
+- Diván, Guillermo. Backend - Frontend - PM. AR. LinkedIn: https://www.linkedin.com/in/guillermo-divan/ - GitHub: https://github.com/GuillermoDivan
+- Juarez, Carmina. Diseñadora UX/UI. AR. LinkedIn: https://www.linkedin.com/in/carminajuarez/ - GitHub: https://github.com/CarminaJ
+- Nuñez, Facundo. Frontend. AR. LinkedIn: https://www.linkedin.com/in/facundo-nu%C3%B1ez-380b9b234/ - GitHub: https://github.com/facu1391
+- Robledo, Emanuel. Frontend. AR. LinkedIn: https://www.linkedin.com/in/emanuel-ivan-robledo/ - GitHub: https://github.com/emanuel4969
+- Ospina, Alejandro. Backend - Frontend. CO. LinkedIn: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
+- Villalba, Fernanda. Diseñadora UX/UI - Frontend. CO. LinkedIn: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
+
+
+------------
+
+
 CHATBEAT ♥ ♫♪♫ Tuned connections! ♫♪♫ ♥
 
 Sector: Social media (dating app).
@@ -67,12 +72,12 @@ But what if you change your mind about blocking them? Well, it'll be as simple a
 Do you like the sound of it? With ChatBeat, we have everything set up for you to find people who share your passion for music!
 
 Authors:
-Asad, Martina. Backend. AR. Linkedin: https://www.linkedin.com/in/martina-asad/ - GitHub: https://github.com/MartinaAsad
-Burgos, Valeria. Testing. BO. Linkedin: https://www.linkedin.com/in/valeriaburgos/ - GitHub: https://github.com/valitab
-Deferrari, Leandro. Backend. AR. Linkedin: https://www.linkedin.com/in/leandrodeferrari/ - GitHub: https://github.com/leandrodeferrari
-Diván, Guillermo. Backend. AR. Linkedin: https://www.linkedin.com/in/guillermo-divan/ - GitHub: https://github.com/GuillermoDivan
-Juarez, Carmina. UX. AR. Linkedin: https://www.linkedin.com/in/carminajuarez/ - GitHub: https://github.com/CarminaJ
-Nuñez, Facundo. Frontend. AR. Linkedin: https://www.linkedin.com/in/facundo-nu%C3%B1ez-380b9b234/ - GitHub: https://github.com/facu1391
-Robledo, Emanuel. Frontend. AR. Linkedin: https://www.linkedin.com/in/emanuel-ivan-robledo/ - GitHub: https://github.com/emanuel4969
-Ospina, Alejandro. Backend. CO. Linkedin: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
-Villalba, Fernanda. UX. CO. Linkedin: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
+- Asad, Martina. Backend - QA. AR. LinkedIn: https://www.linkedin.com/in/martina-asad/ - GitHub: https://github.com/MartinaAsad
+- Burgos, Valeria. Diseñadora UX/UI - QA. BO. LinkedIn: https://www.linkedin.com/in/valeriaburgos/ - GitHub: https://github.com/valitab
+- Deferrari, Leandro. Backend - Frontend. AR. LinkedIn: https://www.linkedin.com/in/leandrodeferrari/ - GitHub: https://github.com/leandrodeferrari
+- Diván, Guillermo. Backend - Frontend - PM. AR. LinkedIn: https://www.linkedin.com/in/guillermo-divan/ - GitHub: https://github.com/GuillermoDivan
+- Juarez, Carmina. Diseñadora UX/UI. AR. LinkedIn: https://www.linkedin.com/in/carminajuarez/ - GitHub: https://github.com/CarminaJ
+- Nuñez, Facundo. Frontend. AR. LinkedIn: https://www.linkedin.com/in/facundo-nu%C3%B1ez-380b9b234/ - GitHub: https://github.com/facu1391
+- Robledo, Emanuel. Frontend. AR. LinkedIn: https://www.linkedin.com/in/emanuel-ivan-robledo/ - GitHub: https://github.com/emanuel4969
+- Ospina, Alejandro. Backend - Frontend. CO. LinkedIn: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
+- Villalba, Fernanda. Diseñadora UX/UI - Frontend. CO. LinkedIn: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
