@@ -22,17 +22,17 @@ const MusicaReciente = () => {
       </div>
       <div className="contenedor-con-borde">
         <div className="musica-reciente">
-          {cancionesEscuchadas && 
-          cancionesEscuchadas.map((cancion, index) => (
-            <div key={index} className="cancion">
-              <button className="boton-cancion" 
-              onClick={() => agregarCancionEscuchada(cancion)}>
-                <img src={Spotify} alt={`Logo de la 
+          {cancionesEscuchadas &&
+            cancionesEscuchadas.map((cancion, index) => (
+              <div key={index} className="cancion">
+                <button className="boton-cancion"
+                  onClick={() => agregarCancionEscuchada(cancion)}>
+                  <img src={Spotify} alt={`Logo de la 
                 canción ${index + 1}`} />
-                <span>{cancion}</span>
-              </button>
-            </div>
-          ))}
+                  <span>{cancion}</span>
+                </button>
+              </div>
+            ))}
         </div>
       </div>
       {/*<CancionesEscuchadasLoader onCancionesCargadas={handleCancionesCargadas} />*/}
