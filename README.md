@@ -38,6 +38,13 @@ Autores:
 - Ospina, Alejandro. Backend - Frontend. CO. LinkedIn: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
 - Villalba, Fernanda. Diseñadora UX/UI - Frontend. CO. LinkedIn: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
 
+Deploy:
+
+1. React: Firebase Hosting.
+2. Spring: Railway.
+3. MySQL: Clever Cloud.
+
+- URL: https://chatbeat-nocountry.web.app/
 
 ------------
 
@@ -81,3 +88,11 @@ Authors:
 - Robledo, Emanuel. Frontend. AR. LinkedIn: https://www.linkedin.com/in/emanuel-ivan-robledo/ - GitHub: https://github.com/emanuel4969
 - Ospina, Alejandro. Backend - Frontend. CO. LinkedIn: https://www.linkedin.com/in/alejandro-ospina-castanio/ - GitHub: https://github.com/Alejandro-Ospina
 - Villalba, Fernanda. Diseñadora UX/UI - Frontend. CO. LinkedIn: https://www.linkedin.com/in/vioru2/ - GitHub: https://github.com/vioru
+
+Deploy:
+
+1. React: Firebase Hosting.
+2. Spring: Railway.
+3. MySQL: Clever Cloud.
+
+- URL: https://chatbeat-nocountry.web.app/
