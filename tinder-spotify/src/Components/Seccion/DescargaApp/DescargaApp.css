@@ -3,6 +3,7 @@
 .descarga-app {
     text-align: center;
     margin-top: 30px;
+    color: var(--regular-font-color);
 }
   
 .descarga-title {

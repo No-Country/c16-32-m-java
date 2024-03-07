@@ -20,18 +20,18 @@ const Login = () => {
             </Link>
             <img src={log} alt="Logo" className="login-logo" />
             <h1>Inicia Sesión</h1>
-            <button className="spotify-button">
+            <button className="spotify-button text-color-button">
                 <Spotify />
                 Continuar con Spotify
             </button>
             <Link to="/email-login" className="link">
-                <button className="other-button">
+                <button className="other-button text-color-button">
                     <img src={signo} alt="Signo Logo" className="button-icon" />
                     Continuar con tu Email
                 </button>
             </Link>
             <Link to="/crear-cuenta-con-celular" className="link">
-                <button className="other-button">
+                <button className="other-button text-color-button">
                     <img src={signo} alt="Signo Logo" className="button-icon" />
                     Continuar con tu Número
                 </button>

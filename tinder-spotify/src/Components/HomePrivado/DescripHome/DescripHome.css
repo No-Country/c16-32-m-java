@@ -10,6 +10,7 @@
     font-size: 21px;
     font-weight: bold;
     margin-right: 60px;
+    color: var(--regular-font-color);
 }
   
 .descrip-text {

@@ -94,6 +94,7 @@ p {
     cursor: pointer;
     display: block;
     font-weight: bold;
+    color: var(--regular-font-color);
 }
 
 .save-button:hover {

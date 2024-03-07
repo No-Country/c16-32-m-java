@@ -30,7 +30,7 @@
   border-radius: 40%;
   margin-right: 10px;
   background-color: var(--primary-color);
-  color: var(--buttonOn-font-color);
+  color: var(--regular-font-color);
 }
 
 .perfil-info-custom p {

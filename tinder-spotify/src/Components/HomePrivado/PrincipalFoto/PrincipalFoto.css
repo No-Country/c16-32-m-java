@@ -55,6 +55,7 @@
 .siguiente {
     display: inline-block;
     margin: 0 20px;
+    color: var(--regular-font-color);
 }
 
 .chat {

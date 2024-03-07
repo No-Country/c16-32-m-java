@@ -6,6 +6,7 @@
     align-items: center;
     padding: 20px;
     width: 100%;
+    color: var(--regular-font-color);
 }
 
 .logo-conte2 {
@@ -42,6 +43,7 @@
     font-weight: bold;
     white-space: nowrap;
     cursor: pointer;
+    color: var(--regular-font-color);
 }
 
 .bot-f:hover {

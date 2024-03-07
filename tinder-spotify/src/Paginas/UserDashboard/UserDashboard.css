@@ -6,6 +6,7 @@
     background-color: var(--background-color);
     display: flex;
     flex-direction: row;
+    color: var(--regular-font-color);
 }
 
 .main-and-menu{
