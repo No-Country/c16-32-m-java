@@ -1,4 +1,4 @@
-@import url('../StyleVariables/Color.css'); 
+@import url('../StyleVariables/Color.css');
 
 .contedor-pri {
     width: 100vw;
@@ -8,21 +8,21 @@
     flex-direction: row;
 }
 
-.main-and-menu{
+.main-and-menu {
     width: 100vw;
     display: flex;
     flex-direction: column;
 
 }
 
-.match-profile{
+.match-profile {
     display: flex;
     flex-direction: row;
 
 }
 
 .Home-container {
-    width: 38vw ;
+    width: 38vw;
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -32,26 +32,40 @@
     margin: 25px;
     overflow-y: auto;
     overflow-x: hidden;
-    
+
+}
+
+.compatibility {
+    padding: 20px 10px;
+    border-radius: 35%;
+    margin-right: 10px;
+    background-color: var(--primary-color);
+    color: var(--regular-font-color);
+    font-size: 150%;
+    font-weight: bold;
+    position: relative;
+    right: -86%;
 }
 
 
 /* mobile */
-@media (max-width: 500px){
+@media (max-width: 500px) {
 
     .contedor-pri {
         flex-direction: colum;
     }
-    .Home-container{
+
+    .Home-container {
         margin: 0px;
-        width: 95% ;
+        width: 95%;
         height: auto;
         overflow-y: unset;
         overflow-x: unset;
-        font-size:15px;
+        font-size: 15px;
         text-align: start;
     }
-    .match-profile{
+
+    .match-profile {
         display: flex;
         flex-direction: column-reverse;
         overflow-y: auto;

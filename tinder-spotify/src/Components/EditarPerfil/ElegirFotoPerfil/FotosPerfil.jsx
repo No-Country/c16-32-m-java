@@ -2,8 +2,8 @@ import React from 'react';
 import './FotosPerfil.css';
 
 import lapiz from '../../../assets/lapiz.png';
-import flechaIzqui from '../../../assets/flechaIzqui.png';
-import flechaDere from '../../../assets/flechaDere.png';
+import flechaIzqui from '../../../assets/flechaiz.png';
+import flechaDere from '../../../assets/flecha.png';
 
 const FotosPerfil = ({ porcentajeCarga, iniciarCarga }) => {
 

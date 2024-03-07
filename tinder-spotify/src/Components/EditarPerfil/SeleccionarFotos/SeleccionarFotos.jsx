@@ -20,7 +20,8 @@ const SeleccionarFotos = ({ cambiarTarjeta }) => {
 
   return (
     <div className="seleccionar-fotos-container">
-      <h2 className="titulo-foto">Seleccionar Fotos <img src={xdx} alt="xdx" className="xdx" onClick={cambiarTarjeta} /></h2>
+      <img src={xdx} alt="xdx" className="xdx" onClick={cambiarTarjeta} />
+      <h2 className="titulo-foto">Seleccionar Fotos </h2>
       <div className="cuadritos">
         {cuadritos.map((item, index) => (
           <div key={index} className="cuadrito">

@@ -15,12 +15,13 @@
 }
 
 .about-us-modal-content {
-  background-color: var(--background-color);
+  background-color: var(--windows-color);
   border-radius: 10px;
   padding: 20px;
   width: 80%;
   max-width: 600px;
   position: relative;
+  box-shadow: var(--shadow-down);
 }
 
 .about-us-modal-close {
@@ -38,10 +39,9 @@
   text-align: center;
 }
 
-.about-us-modal-icon img,
-.about-us-modal-bottom-icon img {
-  width: 50px;
-  height: 50px;
+.about-us-modal-icon img {
+  width: 200px;
+  
 }
 
 .about-us-modal-title {
@@ -55,4 +55,9 @@
 
 .about-us-modal-icon {
   margin-bottom: 10px;
+}
+
+.about-us-modal-bottom-icon .charge-img{
+  width: 80%;
+  height: auto;
 }

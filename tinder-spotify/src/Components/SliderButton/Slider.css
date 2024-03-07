@@ -1,0 +1,43 @@
+@import url(../../Components/StyleVariables/Color.css);
+
+.switch {
+    display: flex;
+    align-items: center; 
+    margin: 25px 0px;
+   
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .slider {
+    position: relative;
+    cursor: pointer;
+    width: 80px;
+    height: 30px;
+    background-color: var(--buttonOff-color);
+    transition: background-color 0.4s; 
+    border-radius: 20px; 
+  }
+  
+  .slider:before {
+    content: "";
+    position: absolute;
+    height:28px;
+    width: 28px; 
+    left: 2px; 
+    bottom: 1px; 
+    background-color:var(--primary-color);
+    transition: left 0.4s; 
+    border-radius: 50%; 
+  }
+  
+  input:checked + .slider {
+    background-color: var(--buttonOff-color);
+  }
+  
+  input:checked + .slider:before {
+    left: calc(100% - 29px); 
+  }
+  

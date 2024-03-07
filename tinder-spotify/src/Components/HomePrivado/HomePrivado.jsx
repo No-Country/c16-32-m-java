@@ -105,7 +105,7 @@ const HomePrivado = () => {
                 {selectedUser && (
 
                     <div className="Home-container">
-                       <p>{selectedMatch.compatibilityPercentage}</p>
+                       <p className="compatibility text-end"> % {selectedMatch.compatibilityPercentage}</p>
                         <PerfiHome name={selectedUser.name} birthdate={selectedUser.birthdate} />
                         <GeneroHome gender={selectedUser.gender} pronouns={selectedUser.pronouns} />
                         <DescripHome description={selectedUser.description} />

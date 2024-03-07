@@ -43,11 +43,12 @@ const SideNav = () => {
             <img className="icon-image" src={chatb} alt="Logo chat" />
           </button>
         </div>
-        <div className="icon">
+        
+        {/* <div className="icon">
           <button className="button">
             <img className="icon-image" src={configuracionb} alt="Logo configuracion" />
           </button>
-        </div>
+        </div> */}
       </div>
       {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} />}
     </div>

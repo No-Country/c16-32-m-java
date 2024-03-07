@@ -15,11 +15,11 @@
   display: flex;
   align-items: center;
   justify-content: center; 
-  background-color: #fbf9f9; 
   border: none;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  
 }
   
 .preferencia-btn:hover {

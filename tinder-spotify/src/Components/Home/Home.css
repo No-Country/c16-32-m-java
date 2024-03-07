@@ -15,12 +15,11 @@
     flex-direction: column;
 }
 
-/* .imagen-adicional {
-    width: 120%;
-    height: auto;
+.imagen-adicional {
+    width: 100%;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 100%),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 100%);
-} */
+}
 
 .card-banner {
     position: absolute;
@@ -29,7 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -200px;
+    margin-top: -20%;
 }
 
 .card-images {

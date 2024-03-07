@@ -1,7 +1,7 @@
 import React from 'react';
 import './Preferencias2.css';
 import Bici from '../../../../assets/Bici.png';
-import Peliculas from '../../../../assets/Peliculas.png'; 
+import Peliculas from '../../../../assets/movies.png'; 
 import estrella from '../../../../assets/estrella.png';
 
 const Preferencias2 = () => {

@@ -8,6 +8,7 @@
 }
   
 .preferencia-btn {
+  color: var(--regular-font-color);
   width: 100%; 
   max-width: 500px; 
   margin-top: 12px; 
@@ -15,11 +16,11 @@
   display: flex;
   align-items: center;
   justify-content: center; 
-  background-color: #fbf9f9; 
+  background-color: var(--windows-color); 
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-down);
 }
   
 .preferencia-btn:hover {

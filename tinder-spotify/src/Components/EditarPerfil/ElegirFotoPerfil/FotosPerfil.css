@@ -4,7 +4,6 @@
     position: relative;
     width: 30%;
     height:75% ;
-    border: 2px solid rgb(221, 215, 215);
     border-radius: 10px;
     padding: 20px;
     left: 40%;
@@ -46,11 +45,17 @@
 
 .flecha-izquierda {
     cursor: pointer;
+    width:10%;
+    height: 10%;
+    
 }
 
 .flecha-derecha {
     margin-right: 33px;
     cursor: pointer;
+    width:10%;
+    height: 10%;
+    
 }
 
 .boton-elegir-perfil {

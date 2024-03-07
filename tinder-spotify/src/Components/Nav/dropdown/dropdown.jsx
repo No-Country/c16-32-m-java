@@ -6,7 +6,7 @@ import foto2 from '../../../assets/foto2.png';
 import configuracion from '../../../assets/configuracion.png';
 import chat from '../../../assets/chat.png';
 import '../../StyleVariables/Color.css'
-
+import SliderButton from '../../SliderButton/Slider'
 
 const dropdown = ({ onCloseDropdown }) => {
     const username = localStorage.getItem("username");
@@ -34,18 +34,22 @@ const dropdown = ({ onCloseDropdown }) => {
                     <h2>ChatBeat</h2>
                     <button className="close-button" onClick={handleCloseButtonClick}>x</button>
                 </div>
-                <div className="profile">
+                <div className="profile my-5">
                     <img src={foto2} alt="Profile" />
                     <p>{username}</p>
                 </div>
-                <div className="menu-item" onClick={handleChatClick}>
+                <div className="menu-item mx-3" onClick={handleChatClick}>
                     <img src={chat} alt="Icon3" />
                     <p>Chat</p>
                 </div>
-                <div className="menu-item">
+                <div className="menu-slider m-2">
+                <p className='mx-2'>Cambiar Tema</p>   
+                <SliderButton className="slider-con mx-2" />
+                </div>
+                {/* <div className="menu-item">
                     <img src={configuracion} alt="Icon1" />
                     <p>Configuración</p>
-                </div>
+                </div> */}
                 <button className="logout-button" onClick={handleSignOut}>Cerrar Sesión</button>
             </div>
         </>

@@ -18,7 +18,7 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
 }
 
 .save-changes {
@@ -32,3 +32,17 @@
     border: none;
     box-shadow: var(--shadow-down);
 }
+
+.my-song{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px
+}
+
+.bi-music-note-list {
+    margin: 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: var(--regular-font-color)
+  }

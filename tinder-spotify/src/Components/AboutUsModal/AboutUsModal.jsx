@@ -13,7 +13,7 @@ const AboutUsModal = ({ onClose }) => {
               <span className="about-us-modal-close" onClick={onClose}>&times;</span>
               <div className="about-us-modal-body">
                   <div className="about-us-modal-icon">
-                      <img src={log} alt='' />
+                  <img className="img-logo" />
                   </div>
                   <h2 className="about-us-modal-title">Sobre Nosotros</h2>
                   <div className="about-us-modal-paragraph-container">
@@ -22,7 +22,7 @@ const AboutUsModal = ({ onClose }) => {
                       <p>Encuentra la Armonía en lo Desconocido: Conéctate a Nivel Profundo</p>
                   </div>
                   <div className="about-us-modal-bottom-icon">
-                      <img src={musica} alt="" />
+                      <img className='charge-img' src={musica} alt="barra de carga chatBeat" />
                   </div>
               </div>
           </div>

@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="left-section">
-        <img src={log} alt="Logo" className="logo" />
+        <img  className="logo img-logo" />
         <span className='text-color-logo'>ChatBeat</span>
       </div>
       <div className="middle-section">

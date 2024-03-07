@@ -1,0 +1,39 @@
+@import url('../../../Components/StyleVariables/Color.css');
+
+
+
+.titulo-container{
+    display: flex;
+    flex-direction: start;
+    align-items: center;
+    width: 100vw;
+    
+}
+
+.icono-cont {
+    display: flex;
+    align-items: center; 
+    justify-content: start;
+    margin: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.Sub-chat {
+    color: var(--regular-font-color);
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 20px;
+    cursor: pointer;
+    
+}
+
+.titulo {
+    font-size: 44.79px; 
+    font-weight: bold; 
+    line-height: 1; 
+    margin: 15px 20%; 
+    color: var(--regular-font-color);
+    
+
+}

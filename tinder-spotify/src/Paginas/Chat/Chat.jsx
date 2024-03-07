@@ -2,11 +2,11 @@ import { useEffect, useState, useRef } from 'react';
 import './Chat.css';
 import '../../Components/StyleVariables/Color.css';
 import axios from "axios";
-import Nav from '../../Components/Nav/Nav';
 import SideNav from "../../Components/Nav/SideNav/SideNav";
 import SockJS from 'sockjs-client/dist/sockjs';
 import { over } from 'stompjs';
 import '../../Components/StyleVariables/Color.css'
+import TituloChat from './Titulo/TituloChat';
 
 export const Chat = () => {
     const [message, setMessage] = useState('');
@@ -85,13 +85,13 @@ export const Chat = () => {
     };
 
     return (
-        <div className="mb-5 display-flex-row background-color-chat">
-            <SideNav />
-            <div className='chat-nav'>
-                <Nav />
+        <div className=" display-flex-row background-color-chat">
+            <SideNav  className="col-1"/>
+            <div className='chat-nav col-11'>
+                <TituloChat />
                 {users.length > 0 && (
-                    <div className="row mt-5">
-                        <div className="col-md-12 col-lg-6 mb-3">
+                    <div className="row m-3 chat-container">
+                        <div className="col-md-12 col-lg-6 mb-3 list-chat">
                             <div className="list-group" id="list-tab" role="tablist">
                                 {users.map((user, index) => {
                                     const id = `list-${user.name.toLowerCase().replace(/\s+/g, '-')}`;

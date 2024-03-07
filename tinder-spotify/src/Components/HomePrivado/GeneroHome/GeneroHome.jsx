@@ -4,8 +4,8 @@ import Ubicacion from '../../../assets/Ubicacion.png';
 
 const GeneroHome = ({gender, pronouns}) => {
   return (
-    <div className="genero-home-container">
-      <div>
+    <div className="genero-home">
+      <div className='gender mx-4'>
         <p><strong>Genero:</strong>{gender}</p>
         <p><strong>Pronombre:</strong>{pronouns}</p>
       </div>

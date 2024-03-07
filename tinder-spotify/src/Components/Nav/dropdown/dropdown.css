@@ -12,6 +12,7 @@
     z-index: 999;
     padding: 20px;
     background-color: var(--windows-color);
+    
   }
   
   .header {
@@ -47,17 +48,23 @@
     margin-right: 10px;
   }
   
-  p {
-    margin: 0;
-    color: #000; 
-    display: block; 
+  .menu-item p, .menu-slider p {
+    margin: 0; 
   }
   
+  .header h2{
+    color: var(--regular-font-color);
+  }
   
   .menu-item {
     display: flex;
     align-items: center;
     margin-top: 15px;
+  }
+
+  .menu-slider{
+    display: flex;
+    align-items: center;
   }
   
   .menu-item img {
@@ -85,6 +92,10 @@
     .header img {
       width: 90px;
       padding-right: 25px;
+    }
+
+    .slider-con{
+      margin: 20px;
     }
 
     @media (max-width: 500px){

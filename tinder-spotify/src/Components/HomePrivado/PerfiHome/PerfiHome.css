@@ -29,8 +29,7 @@
   padding: 10px 15px;
   border-radius: 40%;
   margin-right: 10px;
-  background-color: var(--primary-color);
-  color: var(--regular-font-color);
+ 
 }
 
 .perfil-info-custom p {

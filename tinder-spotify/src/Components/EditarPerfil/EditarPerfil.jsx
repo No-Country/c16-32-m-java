@@ -88,7 +88,10 @@ const EditarPerfil = () => {
               pronouns={pronouns} onPronounsChange={setPronouns} />
             <DescripcionTextarea description={description}
               onDescriptionChange={setDescription} />
-            <i className="bi bi-music-note-list"> Última canción escuchada</i> <p><em>{currentSong}</em></p>
+              <div className='text-center my-5 my-song'>
+            <i className="bi bi-music-note-list " > Canción  mas escuchada</i> 
+            <p>{currentSong}</p>
+            </div>
             <ActividadFisica />
             <GenerosFavoritos />
             <InteraccionSocial socialBattery={socialBattery}

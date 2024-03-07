@@ -23,7 +23,7 @@
 .chat-nav{
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    width: 100%;
 }
 
 .display-flex-row{
@@ -38,8 +38,8 @@
 }
 
 .card-chat{
-    height: 480px; 
-    width: 480px;
+   height: 80%;
+    width: 100%;
     background-color: var(--windows-color);
 }
 
