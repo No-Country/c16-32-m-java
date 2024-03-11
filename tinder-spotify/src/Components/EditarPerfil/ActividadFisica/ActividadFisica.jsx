@@ -5,13 +5,13 @@ import BotonChico from '../../Button/BotonChico/BotonChico';
 
 const ActividadFisica = () => {
   return (
-    <div class="contenedor-con-borde-bo">
-      <div class="seccion-actividad">
-        <div class="titulo-actividad">
+    <div className="contenedor-con-borde-bo">
+      <div className="seccion-actividad">
+        <div className="titulo-actividad">
           <p>¿Qué actividad física realizas?</p>
-          <button class="boton-menos">-</button>
+          <button className="boton-menos">-</button>
         </div>
-        <div class="botones-actividad">
+        <div className="botones-actividad">
           <BotonChico texto="Botón rojo" color="#B53550" textoInterior="Correr" />
           <BotonChico texto="Botón gris" color="#CDC5CB" textoInterior="Natación" />
           <BotonChico texto="Botón rojo" color="#B53550" textoInterior="Escalar" />

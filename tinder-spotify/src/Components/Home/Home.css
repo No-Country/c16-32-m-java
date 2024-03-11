@@ -1,4 +1,12 @@
-.container {
+@import url('../../Components/StyleVariables/Color.css');
+
+.background-ChatBeat {
+    background-color: var(--background-color);
+
+}
+
+
+.container-home {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -7,45 +15,45 @@
     flex-direction: column;
 }
 
-.imagen-adicional {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: auto; 
-    z-index: -1;
+/* .imagen-adicional {
+    width: 120%;
+    height: auto;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 100%),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 100%);
-}
-  
-.card {
-    width: 749px;
-    height: 700px;
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 100%);
+} */
+
+.card-banner {
+    position: absolute;
+    width: 600px;
+    height: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -180px;
+    margin-top: -200px;
 }
-  
+
 .card-images {
+    margin-top: 100px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
-  
+
 .card-images img {
     width: 100%;
 }
-  
+
 .paragraph {
-    width: 547px;
+    width: 100%;
     font-size: 21.6px;
     font-weight: bold;
     text-align: center;
-    margin-top: -1px; 
+    margin-top: -15px;
 }
 
 .boton-container {
+    margin-top: -20px;
     text-align: center;
-    margin-top: -350px;
+
 }
+

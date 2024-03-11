@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SideNav.css';
-
+import { useNavigate } from 'react-router-dom';
 import Dropdown from '../../../Components/Nav/dropdown/dropdown'; 
 
 import log from '../../../assets/log.png';
@@ -15,6 +15,7 @@ import salidab from '../../../assets/salidab.png';
 
 const SideNav = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     setIsDropdownOpen(true); 
@@ -22,6 +23,10 @@ const SideNav = () => {
 
   const handleCloseDropdown = () => {
     setIsDropdownOpen(false); 
+  };
+
+  const handleMatchesClick = () => {
+    navigate('/home-privado');
   };
 
   return (
@@ -38,31 +43,31 @@ const SideNav = () => {
             <img className="logo-image" src={configuracionb} alt="Logo configuracion" />
           </button>
         </div>
-        <div className="icon">
-          <button className="button">
+        {/* <div className="icon">
+           <button className="button">
             <img className="logo-image" src={corazonb} alt="Logo corazon" />
-          </button>
-        </div>
+          </button> 
+        </div> */}
         <div className="icon">
-          <button className="button">
+          <button className="button" onClick={handleMatchesClick} >
             <img className="logo-image" src={chatb} alt="Logo chat" />
           </button>
         </div>
-        <div className="icon">
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={musicb} alt="Logo music" />
           </button>
-        </div>
-        <div className="icon">
+        </div> */}
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={homeb} alt="Logo inicio" />
           </button>
-        </div>
-        <div className="icon">
+        </div> */}
+        {/* <div className="icon">
           <button className="button">
             <img className="logo-image" src={salidab} alt="Logo salir" />
           </button>
-        </div>
+        </div> */}
       </div>
       {isDropdownOpen && <Dropdown onCloseDropdown={handleCloseDropdown} />}
     </div>

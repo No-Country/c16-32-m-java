@@ -1,20 +1,23 @@
+@import url('../../StyleVariables/Color.css');
+
 .boton-med {
-    width: 150px; 
-    height: 40px; 
-    background-color: #b53550; 
-    color: #ffffff; 
-    border: none; 
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    font-weight: bold; 
-    text-transform: uppercase; 
+    width: 150px;
+    height: 35px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    ;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
     transition: background-color 0.3s ease;
     margin-left: 400px;
     margin-top: 15px;
 }
 
 .boton-med:hover {
-    background-color: #8e222f;
+    background-color: var(--primary-color-hover);
 }

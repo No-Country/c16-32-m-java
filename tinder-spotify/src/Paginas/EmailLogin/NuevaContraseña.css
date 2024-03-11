@@ -1,8 +1,12 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .nueva-contraseña-container {
     width: 500px;
     height: 620px;
-    border: 1px solid #000;
-    margin: auto; 
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
+    background-color: var(--windows-color);
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,8 +56,8 @@
 .nueva-contraseña-button {
     width: 50%;
     height: 50px;
-    background-color: #b53550;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
     font-size: 18px;
     border: none;
     border-radius: 10px;

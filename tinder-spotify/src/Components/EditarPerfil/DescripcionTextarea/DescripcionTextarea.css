@@ -1,3 +1,4 @@
+@import url('../../StyleVariables/Color.css'); 
 .input-label-com {
     margin-right: 200px;
 }
@@ -8,6 +9,6 @@
     height: 120px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #df7a90;
+    border: 1px solid  var(--primary-color);
     margin-top: 15px;
 }

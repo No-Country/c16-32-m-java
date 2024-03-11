@@ -1,3 +1,5 @@
+@import url('../../StyleVariables/Color.css');
+
 .seleccionar-fotos-container {
     position: relative;
     width: 590px;
@@ -10,11 +12,11 @@
 }
 
 .titulo-foto {
-    font-size: 26px; 
+    font-size: 26px;
     width: 100%;
     margin-left: 70px;
 }
-  
+
 .xdx {
     margin-left: 250px;
     cursor: pointer;
@@ -33,7 +35,7 @@
     height: 215px;
     border: 2px solid #df7a90; 
     border-radius: 20px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     overflow: hidden;
     display: flex;
     justify-content: center; 
@@ -64,45 +66,45 @@
 }
 
 .botones-seleccion {
-    display: flex; 
-    justify-content: space-between; 
-    margin-top: 80px; 
-  }
-  
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
 .boton-cancelar {
-    width: 201px; 
-    height: 52px; 
-    background-color: #b53550; 
-    color: #ffffff; 
-    border: none; 
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    transition: background-color 0.3s ease; 
+    width: 201px;
+    height: 52px;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
 }
 
 .boton-guardar {
-    width: 237px; 
-    height: 51px; 
-    background-color: #107B50;
-    color: #ffffff; 
-    border: none; 
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    font-weight: bold; 
+    width: 237px;
+    height: 51px;
+    background-color: var(--secondary-color);
+    color: var(--buttonOn-font-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
     text-transform: uppercase;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 .boton-cancelar:hover {
-    background-color: #8e222f;
+    background-color: var(--primary-color-hover);
 }
 
 .boton-guardar:hover {
-    background-color: #0a5937;
+    background-color: var(--secondary-color-hover);
 }

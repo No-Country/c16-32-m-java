@@ -6,6 +6,13 @@
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: -1060px; 
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     white-space: nowrap;
 }
 
@@ -27,5 +34,6 @@
     font-size: 44.79px; 
     font-weight: bold; 
     line-height: 1; 
+    margin-left: 300px; 
     margin-left: 300px; 
 }

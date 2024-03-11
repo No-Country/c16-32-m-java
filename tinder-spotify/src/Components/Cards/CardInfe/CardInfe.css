@@ -1,10 +1,20 @@
 .CardInfeContainer {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
     justify-content: space-between;
     margin-top: 100px;
 }
   
+.CardInfeItem {
+    width: 30%;     
+=======
+    justify-content: space-around;
+    margin: 200px 40px;
+    box-sizing: border-box;
+>>>>>>> origin/Fer
+}
+
 .CardInfeItem {
     width: 30%; 
     
@@ -15,19 +25,22 @@
     margin-top: 50px; 
     line-height: 1.9;
 }
-  
+
+
 .CardInfeItem img {
     width: 80%;
-    height: auto;
+    height: 200px;
+    object-fit: contain;
 }
-  
+
 .CardInfeItem p {
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
+    text-align: center;
+
+
 }
 
 .CardInfeItem p br {
-    display: block; 
-    content: ""; 
-    margin-top: 10px; 
+    display: block;
+    content: "";
+    margin-top: 10px;
 }

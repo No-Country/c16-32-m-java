@@ -15,28 +15,30 @@ import fondo from '../../assets/fondo.png';
 
 const Home = () => {
     return (
-        <>  
-        <Nav />
-        <div className="container"> 
-            <div className="card">
-                <div className="card-images"> 
-                    <img src={banner} alt="Imagen 1" />
+        <>
+            <div className='background-ChatBeat'>
+                <Nav />
+                <div className="container-home">
+                    <div className="card-banner">
+                        <div className="card-images">
+                            <img src={banner} alt="Imagen 1" />
+                        </div>
+                        <p className="paragraph">La música une corazones en una conexión perdurable</p>
+                    </div>
+                    <img src={fondo} alt="Fondo" className="imagen-adicional" />
                 </div>
-                <p className="paragraph">La música une corazones en una conexión perdurable</p> 
+                <div className="boton-container">
+                    <Link to="crear-cuenta">
+                        <BotonPin texto="Crear Cuenta" />
+                    </Link>
+                </div>
+                <DescargaApp />
+                <CardInfe />
+                <Fragme />
+                <Footer />
             </div>
-            <img src={fondo} alt="Fondo" className="imagen-adicional" />
-        </div>
-        <div className="boton-container">
-            <Link to="crear-cuenta">
-              <BotonPin texto="Crear Cuenta" />
-            </Link>
-        </div>
-        <DescargaApp />
-        <CardInfe />
-        <Fragme />
-        <Footer />
-      </>
+        </>
     );
 }
-  
+
 export default Home;

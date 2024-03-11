@@ -1,77 +1,119 @@
-import React, { useState } from 'react';
-import './HomePrivado.css';
-
-import TituloHome from '../../Components/HomePrivado/TituloHome/TituloHome';
-import PreferentialSettings from '../../Components/Nav/preferentialSettings/preferentialSettings';
-import SideNav from '../Nav/SideNav/SideNav';
-import PerfiHome from '../HomePrivado/PerfiHome/PerfiHome';
-import GeneroHome from '../HomePrivado/GeneroHome/GeneroHome';
-import DescripHome from '../HomePrivado/DescripHome/DescripHome';
-import MisCanciones from '../HomePrivado/MisCanciones/MisCanciones';
-import Preferencias from '../HomePrivado/Preferencias/Preferencias';
-import PrincipalFoto from '../HomePrivado/PrincipalFoto/PrincipalFoto';
+import "./HomePrivado.css";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import TituloHome from "../../Components/HomePrivado/TituloHome/TituloHome";
+import PreferentialSettings from "../../Components/Nav/preferentialSettings/preferentialSettings";
+import SideNav from "../Nav/SideNav/SideNav";
+import PerfiHome from "../HomePrivado/PerfiHome/PerfiHome";
+import GeneroHome from "../HomePrivado/GeneroHome/GeneroHome";
+import DescripHome from "../HomePrivado/DescripHome/DescripHome";
+import MisCanciones from "../HomePrivado/MisCanciones/MisCanciones";
+import Preferencias from "../HomePrivado/Preferencias/Preferencias";
 
 //Persona1
-import PerfiHome1 from './Persona1/PerfiHome1/PerfiHome';
-import GeneroHome1 from './Persona1/GeneroHome1/GeneroHome';
-import DescripHome1 from './Persona1/DescripHome1/DescripHome';
-import MisCanciones1 from './Persona1/MisCanciones1/MisCanciones';
-import Preferencias1 from './Persona1/Preferencias1/Preferencias';
-import PrincipalFoto1 from './Persona1/PrincipalFoto1/PrincipalFoto';
+import PrincipalFoto1 from "./Persona1/PrincipalFoto1/PrincipalFoto";
 
 //Persona2
-import PerfiHome2 from './Persona2/PerfiHome2/PerfiHome2';;
-import GeneroHome2 from './Persona2/GeneroHome2/GeneroHome2';
-import DescripHome2 from './Persona2/DescripHome2/DescripHome2';
-import MisCanciones2 from './Persona2/MisCanciones2/MisCanciones2';
-import Preferencias2 from './Persona2/Preferencias2/Preferencias2';
-import PrincipalFoto2 from './Persona2/PrincipalFoto2/PrincipalFoto2';
+import PrincipalFoto2 from "./Persona2/PrincipalFoto2/PrincipalFoto2";
 
 const HomePrivado = () => {
+  const tokenChatBeat = localStorage.getItem("token-ChatBeat");
+  const userId = localStorage.getItem("userId");
+  const [userMatches, setUserMatches] = useState([]);
+  const [selectedMatch, setSelectedMatch] = useState({});
+  const [selectedUser, setSelectedUser] = useState();
   const [modalOpen, setModalOpen] = useState(false);
-  const [mostrarPersona1, setMostrarPersona1] = useState(true);
+  const [indexActualMatch, setIndexActualMatch] = useState(0);
+
+  const getUserMatches = async () => {
+    const userMatches = await axios.get(
+      "http://localhost:8080/matches/users/" + userId,
+      {
+        headers: { Authorization: "Bearer " + tokenChatBeat },
+      }
+    );
+    console.log(userMatches.data.content);
+    setUserMatches(userMatches.data.content);
+    setSelectedMatch(userMatches.data.content[0]);
+    getMatchedUser(userMatches.data.content[0]);
+  };
+
+  useEffect(() => {
+    getUserMatches();
+  }, []);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
 
-  const togglePrincipalFoto = () => {
-    setMostrarPersona1((prev) => !prev);
+  const nextMatch = () => {
+    let newIndex = indexActualMatch+1;
+    if (newIndex == 2) { newIndex = 0; }
+    setIndexActualMatch(newIndex);
+    
+    const actualIndexMatch = userMatches.findIndex((match)=>{
+      return match.matchId == selectedMatch.matchId
+    })
+
+    let newIndexMatches = actualIndexMatch+1;
+    if (newIndexMatches == userMatches.length) { 
+      newIndexMatches = 0;
+    }
+
+    const newMatch = userMatches[newIndexMatches];
+    setSelectedMatch(newMatch);
+    getMatchedUser(newMatch);
   };
+
+  const previousMatch = () => {
+    let newIndex = indexActualMatch-1;
+    if (newIndex < 0) { newIndex = 1; }
+    setIndexActualMatch(newIndex);
+    
+    const actualIndexMatch = userMatches.findIndex(
+      (match)=>{
+      return match.matchId == selectedMatch.matchId
+    })
+
+    let newIndexMatches = actualIndexMatch-1;
+    if (newIndexMatches < 0) { 
+      newIndexMatches = userMatches.length-1;
+    }
+
+    const newMatch = userMatches[newIndexMatches];
+    setSelectedMatch(newMatch);
+    getMatchedUser(newMatch);
+  };
+
+  const getMatchedUser = (selectedMatch) => {
+    if (selectedMatch.user1.userId == userId) { 
+    setSelectedUser(selectedMatch.user2); }
+    else setSelectedUser(selectedMatch.user1);
+  };
+
 
   return (
     <>
-      <div className="contedor-pri">
-          <SideNav/>
-           <TituloHome onFilterClick={toggleModal} />
-           {modalOpen && <PreferentialSettings  onClose={toggleModal}/>}
-          <div className="Home-container">
-          {mostrarPersona1 ? (
-            <>
-              <PerfiHome1 />
-              <GeneroHome1 />
-              <DescripHome1 />
-              <MisCanciones1 />
-              <Preferencias1 />
-            </>
-           ) : (
-            <>
-              <PerfiHome2 />
-              <GeneroHome2 />
-              <DescripHome2 />
-              <MisCanciones2 />
-              <Preferencias2 />
-            </>
-          )}
-          </div>
-          {mostrarPersona1 ? (
-          <PrincipalFoto1 onNextClick={togglePrincipalFoto} />
-           ) : (
-          <PrincipalFoto2 onPrevClick={togglePrincipalFoto} />
-          )}
+      <div className="contedor-pri ">
+        <SideNav />
+        <TituloHome onFilterClick={toggleModal} />
+        {modalOpen && <PreferentialSettings onClose={toggleModal} />}
+        {selectedUser && (
+        <div className="Home-container">
+              <PerfiHome name={selectedUser.name} birthdate={selectedUser.birthdate} />
+              <GeneroHome gender={selectedUser.gender} pronouns={selectedUser.pronouns} />
+              <DescripHome description={selectedUser.description} />
+              <MisCanciones currentSong={selectedUser.currentSong} />
+              <Preferencias />
+        </div>
+        )}
+          {indexActualMatch == 0 && (
+              <PrincipalFoto1 onNextClick={nextMatch} />)},
+          {indexActualMatch == 1 && (
+          <PrincipalFoto2 onPrevClick={previousMatch} />)}; 
       </div>
     </>
-  )
-}
+  );
+};
 
 export default HomePrivado;

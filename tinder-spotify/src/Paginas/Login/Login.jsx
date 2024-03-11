@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-
 import CloseIcon from '../../Components/Iconos/CloseIcon/CloseIcon';
 import Spotify from '../../Components/Iconos/Spotify/Spotify';
-
 import log from '../../assets/log.png'
 import signo from '../../assets/signo.png'
 import AppStore from '../../assets/AppStore.png';
@@ -12,7 +9,6 @@ import GooglePlay from '../../assets/GooglePlay.png';
 import './Login.css';
 
 const Login = () => {
-
     const handleCloseClick = () => {
         window.location.href = '/';
     };

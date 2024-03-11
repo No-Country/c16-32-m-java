@@ -1,78 +1,85 @@
+@import url('../../Components/StyleVariables/Color.css');
+
 .email-login-container {
     width: 500px;
     height: 620px;
-    border: 1px solid #e0e0e0; 
+    border-radius: 25px;
+    box-shadow: var(--shadow-down);
+    background-color: var(--windows-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: auto; 
+    margin: auto;
     margin-top: 70px;
+    position: relative;
 }
 
 .email-login-title {
-    width: 100%; 
-    font-size: 2em; 
-    margin-bottom: 20px; 
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 
 .EmailLog {
     position: absolute;
-    top: 90px;
-    right: 800px;
+    top: 25px;
+    right: 25px;
     cursor: pointer;
 }
 
 .input-container {
-    width: 85%; 
-    margin-bottom: 20px; 
+    width: 85%;
+    margin-bottom: 20px;
 }
 
 .email-login-label {
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .email-login-input {
-    width: 100%; 
-    height: 40px; 
-    margin-bottom: 10px; 
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 .email-login-link {
-    font-size: 15px; 
+    font-size: 15px;
 }
 
 .continuarEm {
-    width: 70%; 
-    height: 50px; 
+    width: 70%;
+    height: 50px;
     font-size: 1.2em;
     line-height: 50px;
-    background-color: #b53550;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--buttonOn-font-color);
+    ;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     margin-top: 20px;
     cursor: pointer;
     text-decoration: none;
 }
 
 .continuarEm:hover {
-    background-color: #8e222f;
+    background-color: var(--primary-color-hover);
 }
 
-.alert-message {
+.alert {
     font-weight: bold;
-    font-size: 25px;
-    color: #ffffff;
-    background-color:#d40000;
+    font-size: 15px;
+    color: var(--error-color);
+    background-color: var(--error-color-back);
     border-radius: 10px;
     width: auto;
     padding: 5px 40px;
 }
 
 .email-login-paragraph {
-    width: 90%; 
-    font-size: 15px; 
-    margin-top: 20px; 
+    width: 90%;
+    font-size: 15px;
+    margin-top: 20px;
 }

@@ -1,19 +1,21 @@
 import React from 'react';
-import './PerfilHome.css';
+import './PerfiHome.css';
 import PorceImage from '../../../assets/PorceImage.png';
 
-const PerfilHome = () => {
+const PerfiHome = ({name, birthdate}) => {
+  console.log(name, birthdate)
   return (
     <div className="perfil-seccion-custom">
       <div className="perfil-info-custom">
-        <p className="edad-custom">28,</p>
-        <p>Daniel</p>
-        <div className="porce-con">
+        <p className="edad-custom">{birthdate}</p>
+        <p>{name}</p>
+        {/*<div className="porce-con">
           <img src={PorceImage} alt="Porce" className="Porce" />
-        </div>
+        </div>*/}
+
       </div>
     </div>
   );
 };
 
-export default PerfilHome;
+export default PerfiHome;
